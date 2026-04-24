@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox - gap</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para o indice</a>
+        <span class="eyebrow">gap</span>
+      </div>
+
+      <section class="hero">
+        <h1>gap</h1>
+        <p>
+          <code>gap</code> cria espaco entre os itens de um container flex sem
+          precisar colocar margem em cada filho. E uma forma simples e limpa de
+          controlar respiro entre colunas e linhas.
+        </p>
+        <pre class="code"><code>.container {
+  display: flex;
+  gap: 16px;
+}</code></pre>
+      </section>
+
+      <section class="section demo-grid">
+        <article class="panel">
+          <h2>Sem gap</h2>
+          <p>Os blocos ficam grudados, sem espacamento definido.</p>
+          <pre class="code"><code>gap: 0;</code></pre>
+          <div class="demo-box" style="gap: 0">
+            <div class="item">A</div>
+            <div class="item">B</div>
+            <div class="item">C</div>
+            <div class="item">D</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Um valor</h2>
+          <p>
+            Um unico valor serve para linha e coluna ao mesmo tempo.
+          </p>
+          <pre class="code"><code>gap: 20px;</code></pre>
+          <div class="demo-box" style="gap: 20px">
+            <div class="item soft">A</div>
+            <div class="item soft">B</div>
+            <div class="item soft">C</div>
+            <div class="item soft">D</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Dois valores</h2>
+          <p>
+            O primeiro valor controla a distancia entre linhas. O segundo, entre
+            colunas.
+          </p>
+          <pre class="code"><code>gap: 12px 28px;</code></pre>
+          <div class="demo-box wrap" style="gap: 12px 28px">
+            <div class="item green">1</div>
+            <div class="item green">2</div>
+            <div class="item green">3</div>
+            <div class="item green">4</div>
+            <div class="item green">5</div>
+            <div class="item green">6</div>
+          </div>
+        </article>
+      </section>
+
+      <p class="note">
+        Dica pratica: prefira <code>gap</code> para organizar espacos internos
+        do Flexbox. Use margem nos filhos apenas quando o espaco precisar existir
+        fora daquele grupo.
+      </p>
+    </main>
+  </body>
+</html>

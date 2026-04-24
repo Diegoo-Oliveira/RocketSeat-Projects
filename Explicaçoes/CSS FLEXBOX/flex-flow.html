@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox - flex-flow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para o indice</a>
+        <span class="eyebrow">flex-flow</span>
+      </div>
+
+      <section class="hero">
+        <h1>flex-flow</h1>
+        <p>
+          <code>flex-flow</code> e um atalho para juntar
+          <code>flex-direction</code> e <code>flex-wrap</code>. Em vez de
+          escrever duas propriedades separadas, voce coloca tudo em uma linha.
+        </p>
+        <pre class="code"><code>.container {
+  display: flex;
+  flex-flow: row wrap;
+}</code></pre>
+      </section>
+
+      <section class="section demo-grid">
+        <article class="panel">
+          <h2>row nowrap</h2>
+          <p>
+            Os itens ficam em linha e nao quebram. Se faltar espaco, eles
+            tentam se ajustar dentro da mesma linha.
+          </p>
+          <pre class="code"><code>flex-flow: row nowrap;</code></pre>
+          <div class="demo-box">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>row wrap</h2>
+          <p>
+            Os itens seguem em linha, mas agora podem quebrar para a linha de
+            baixo quando nao couberem no container.
+          </p>
+          <pre class="code"><code>flex-flow: row wrap;</code></pre>
+          <div class="demo-box wrap">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>column wrap</h2>
+          <p>
+            O eixo principal vira vertical. Os itens descem em coluna e, quando
+            acabam o espaco, criam uma nova coluna ao lado.
+          </p>
+          <pre class="code"><code>flex-flow: column wrap;</code></pre>
+          <div class="demo-box column wrap large">
+            <div class="item green">1</div>
+            <div class="item green">2</div>
+            <div class="item green">3</div>
+            <div class="item green">4</div>
+            <div class="item green">5</div>
+            <div class="item green">6</div>
+          </div>
+        </article>
+      </section>
+
+      <p class="note">
+        Regra mental: primeiro pense na direcao (<code>row</code> ou
+        <code>column</code>), depois decida se os itens podem quebrar
+        (<code>wrap</code>) ou nao (<code>nowrap</code>).
+      </p>
+    </main>
+  </body>
+</html>

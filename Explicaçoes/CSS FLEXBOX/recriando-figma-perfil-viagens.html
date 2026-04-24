@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recriando a pagina de perfil do Figma</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para o indice</a>
+        <span class="eyebrow">Figma + Flexbox</span>
+      </div>
+
+      <section class="hero">
+        <h1>Como recriar a pagina do node 3:376</h1>
+        <p>
+          Agora sim estamos olhando para a tela certa: a pagina interna do
+          perfil no <strong>Travelgram</strong>, com cabecalho, bloco do usuario,
+          grade de imagens e rodape. Esta explicacao foi montada com base na
+          captura que voce enviou do node <code>3:376</code>.
+        </p>
+        <p>
+          O ponto principal aqui e este: quase toda a pagina pode ser pensada
+          com <strong>Flexbox</strong>, mas a grade de fotos fica bem melhor com
+          <strong>Grid</strong>. Entender essa divisao faz a recriacao ficar
+          muito mais proxima do Figma.
+        </p>
+        <p class="note">
+          As linhas azuis vistas no print sao marcacoes do editor do Figma
+          sobre o bloco de nome e descricao. Elas nao fazem parte da interface
+          final, entao a recriacao abaixo considera a tela pronta.
+        </p>
+      </section>
+
+      <section class="section panel">
+        <h2>Leitura correta do print</h2>
+        <ol class="formula-list">
+          <li>header branco com logo a esquerda e menu discreto a direita</li>
+          <li>faixa de perfil em cinza claro com avatar, nome, bio e dados</li>
+          <li>galeria com 12 fotos em 4 colunas</li>
+          <li>rodape simples com copyright e links</li>
+        </ol>
+        <p class="note">
+          Essa e a pagina interna do perfil. Nao e a capa do projeto, nem uma
+          secao isolada.
+        </p>
+      </section>
+
+      <section class="section panel travelgram-stage">
+        <div class="travelgram-app">
+          <header class="travelgram-header">
+            <div class="travelgram-brand">
+              <span class="travelgram-brand-mark"></span>
+              <span>Travelgram</span>
+            </div>
+
+            <nav class="travelgram-nav">
+              <span class="travelgram-search" aria-hidden="true"></span>
+              <a href="#">Explorar</a>
+              <a class="active" href="#">Minhas viagens</a>
+              <span class="travelgram-nav-avatar" aria-hidden="true"></span>
+            </nav>
+          </header>
+
+          <section class="travelgram-profile-section">
+            <div class="travelgram-avatar-large"></div>
+
+            <div class="travelgram-profile-copy">
+              <h2>Isabela Torres</h2>
+              <p>
+                Amante de viagens, cultura e gastronomia. Aqui eu compartilho
+                as historias registradas em cada clique, explorando destinos
+                fascinantes ao redor do nosso planeta a partir de movimentadas
+                cidades ate os mais serenos refugios.
+              </p>
+            </div>
+
+            <ul class="travelgram-profile-stats">
+              <li><span class="stat-icon pin"></span> Sao Paulo, Brasil</li>
+              <li><span class="stat-icon stamp"></span> 37 paises</li>
+              <li><span class="stat-icon photo"></span> 240 fotos</li>
+            </ul>
+          </section>
+
+          <section class="travelgram-gallery-grid">
+            <div class="travelgram-shot shot-1"></div>
+            <div class="travelgram-shot shot-2"></div>
+            <div class="travelgram-shot shot-3"></div>
+            <div class="travelgram-shot shot-4"></div>
+            <div class="travelgram-shot shot-5"></div>
+            <div class="travelgram-shot shot-6"></div>
+            <div class="travelgram-shot shot-7"></div>
+            <div class="travelgram-shot shot-8"></div>
+            <div class="travelgram-shot shot-9"></div>
+            <div class="travelgram-shot shot-10"></div>
+            <div class="travelgram-shot shot-11"></div>
+            <div class="travelgram-shot shot-12"></div>
+          </section>
+
+          <footer class="travelgram-footer">
+            <span>Travelgram &copy; 2024</span>
+            <div class="travelgram-footer-links">
+              <a href="#">Termos de uso</a>
+              <a href="#">Politica de privacidade</a>
+            </div>
+          </footer>
+        </div>
+      </section>
+
+      <section class="section demo-grid">
+        <article class="panel">
+          <h2>1. Estrutura geral da pagina</h2>
+          <p>
+            Essa tela e uma pagina interna de perfil. Se voce quebrar o layout
+            em blocos, ela fica assim:
+          </p>
+          <ol class="formula-list">
+            <li>header superior com marca e menu</li>
+            <li>secao do perfil com avatar, bio e estatisticas</li>
+            <li>grade de 12 imagens</li>
+            <li>rodape simples com links</li>
+          </ol>
+          <pre class="code"><code>&lt;main class="app"&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;section class="profile"&gt;...&lt;/section&gt;
+  &lt;section class="gallery"&gt;...&lt;/section&gt;
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/main&gt;</code></pre>
+          <p class="note">
+            Quando voce enxerga a hierarquia certa, o CSS fica muito mais
+            simples.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>2. O app inteiro e uma coluna</h2>
+          <p>
+            O container principal pode ser tratado como uma pilha vertical de
+            grandes secoes.
+          </p>
+          <pre class="code"><code>.app {
+  display: flex;
+  flex-direction: column;
+}</code></pre>
+          <p>
+            O header vem primeiro, depois o perfil, depois a galeria e por fim
+            o rodape.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>3. O header usa Flexbox horizontal</h2>
+          <p>
+            A barra superior tem dois grupos: marca na esquerda e navegacao na
+            direita.
+          </p>
+          <pre class="code"><code>.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+          <p>
+            Esse e um caso classico de <code>justify-content: space-between</code>.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>4. O bloco do perfil tambem e Flexbox</h2>
+          <p>
+            A secao central e formada por tres children principais no mesmo
+            eixo:
+          </p>
+          <ol class="formula-list">
+            <li>avatar</li>
+            <li>texto do perfil</li>
+            <li>lista de estatisticas</li>
+          </ol>
+          <pre class="code"><code>.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}</code></pre>
+          <p>
+            Aqui o Flexbox organiza tudo em linha e o <code>gap</code> cria
+            respiracao entre os blocos.
+          </p>
+          <p class="note">
+            O fundo mais claro dessa faixa e apenas aparencia. A organizacao do
+            avatar, texto e dados continua sendo trabalho do Flexbox.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>5. A bio do usuario e outra coluna</h2>
+          <p>
+            Dentro da parte central, nome e descricao ficam empilhados.
+          </p>
+          <pre class="code"><code>.profile-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}</code></pre>
+          <p>
+            Esse e o tipo de detalhe que costuma passar despercebido no Figma,
+            mas faz muita diferenca na hora de montar.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>6. As estatisticas ficam em coluna</h2>
+          <p>
+            A lista da direita pode ser pensada como um pequeno menu vertical.
+          </p>
+          <pre class="code"><code>.profile-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}</code></pre>
+          <p>
+            Ou seja: ate dentro de um layout grande, voce vai usando Flexbox em
+            blocos menores.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>7. A galeria e melhor com Grid</h2>
+          <p>
+            Aqui esta a parte mais importante da fidelidade visual. A grade de
+            fotos do Figma tem 4 colunas fixas e 3 linhas.
+          </p>
+          <pre class="code"><code>.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}</code></pre>
+          <p>
+            Da para fazer com <code>flex-wrap</code>? Da. Mas para ficar
+            realmente igual ao Figma, Grid e a escolha mais limpa.
+          </p>
+          <p class="note">
+            Para estudar Flexbox, vale testar uma versao com
+            <code>flex-flow: row wrap</code>. Para copiar esta tela com
+            fidelidade, Grid resolve melhor.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>8. O rodape volta para Flexbox</h2>
+          <p>
+            O rodape tem texto pequeno na esquerda e links na direita.
+          </p>
+          <pre class="code"><code>.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+          <p>
+            Esse e outro padrao muito comum em interfaces reais.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Mapa mental desta tela</h2>
+        <ol class="formula-list">
+          <li>estrutura principal: coluna vertical</li>
+          <li>header: Flexbox horizontal</li>
+          <li>perfil: Flexbox horizontal</li>
+          <li>bio e estatisticas: pequenas colunas com Flexbox</li>
+          <li>galeria: Grid</li>
+          <li>rodape: Flexbox horizontal</li>
+        </ol>
+        <p class="note">
+          Resumo desta leitura em
+          <a href="../Perfil de viagens/figma-node-3-376-summary.md">figma-node-3-376-summary.md</a>.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

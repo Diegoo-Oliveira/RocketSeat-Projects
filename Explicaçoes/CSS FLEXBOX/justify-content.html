@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox - justify-content</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para o indice</a>
+        <span class="eyebrow">justify-content</span>
+      </div>
+
+      <section class="hero">
+        <h1>justify-content</h1>
+        <p>
+          <code>justify-content</code> alinha os itens no eixo principal. Se a
+          direcao for <code>row</code>, ele age na horizontal. Se a direcao for
+          <code>column</code>, ele age na vertical.
+        </p>
+        <pre class="code"><code>.container {
+  display: flex;
+  justify-content: center;
+}</code></pre>
+      </section>
+
+      <section class="section demo-grid">
+        <article class="panel">
+          <h2>flex-start</h2>
+          <p>Os itens comecam no inicio do eixo principal.</p>
+          <pre class="code"><code>justify-content: flex-start;</code></pre>
+          <div class="demo-box justify-start">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>center</h2>
+          <p>Todo o grupo vai para o centro do eixo principal.</p>
+          <pre class="code"><code>justify-content: center;</code></pre>
+          <div class="demo-box justify-center">
+            <div class="item soft">1</div>
+            <div class="item soft">2</div>
+            <div class="item soft">3</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>space-between</h2>
+          <p>
+            O primeiro item encosta no inicio, o ultimo vai para o fim e o
+            espaco restante e distribuido no meio.
+          </p>
+          <pre class="code"><code>justify-content: space-between;</code></pre>
+          <div class="demo-box justify-between">
+            <div class="item green">1</div>
+            <div class="item green">2</div>
+            <div class="item green">3</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>space-evenly</h2>
+          <p>
+            O espaco fica igual entre os itens e tambem nas bordas do container.
+          </p>
+          <pre class="code"><code>justify-content: space-evenly;</code></pre>
+          <div class="demo-box justify-evenly">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+          </div>
+        </article>
+      </section>
+
+      <p class="note">
+        Para memorizar: <code>justify-content</code> cuida da distribuicao do
+        grupo inteiro no eixo principal.
+      </p>
+    </main>
+  </body>
+</html>

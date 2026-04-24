@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox - align-content</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para o indice</a>
+        <span class="eyebrow">align-content</span>
+      </div>
+
+      <section class="hero">
+        <h1>align-content</h1>
+        <p>
+          <code>align-content</code> distribui as linhas de itens no eixo
+          cruzado. Ele so faz efeito quando existem varias linhas, entao o
+          container precisa usar <code>flex-wrap: wrap</code>.
+        </p>
+        <pre class="code"><code>.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}</code></pre>
+      </section>
+
+      <section class="section demo-grid">
+        <article class="panel">
+          <h2>flex-start</h2>
+          <p>As linhas sobem e ficam agrupadas no inicio do container.</p>
+          <pre class="code"><code>align-content: flex-start;</code></pre>
+          <div class="demo-box wrap large content-start">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>center</h2>
+          <p>O bloco de linhas vai para o centro do eixo cruzado.</p>
+          <pre class="code"><code>align-content: center;</code></pre>
+          <div class="demo-box wrap large content-center">
+            <div class="item soft">1</div>
+            <div class="item soft">2</div>
+            <div class="item soft">3</div>
+            <div class="item soft">4</div>
+            <div class="item soft">5</div>
+            <div class="item soft">6</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>space-between</h2>
+          <p>
+            A primeira linha vai para cima, a ultima desce e o espaco do meio e
+            distribuido entre as linhas.
+          </p>
+          <pre class="code"><code>align-content: space-between;</code></pre>
+          <div class="demo-box wrap large content-between">
+            <div class="item green">1</div>
+            <div class="item green">2</div>
+            <div class="item green">3</div>
+            <div class="item green">4</div>
+            <div class="item green">5</div>
+            <div class="item green">6</div>
+          </div>
+        </article>
+      </section>
+
+      <p class="note">
+        Diferenca importante: <code>align-items</code> mexe em cada item dentro
+        da linha. <code>align-content</code> mexe no conjunto das linhas.
+      </p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox - align-items</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para o indice</a>
+        <span class="eyebrow">align-items</span>
+      </div>
+
+      <section class="hero">
+        <h1>align-items</h1>
+        <p>
+          <code>align-items</code> alinha os itens no eixo cruzado. Em um layout
+          com <code>flex-direction: row</code>, isso normalmente parece um
+          alinhamento vertical.
+        </p>
+        <pre class="code"><code>.container {
+  display: flex;
+  align-items: center;
+}</code></pre>
+      </section>
+
+      <section class="section demo-grid">
+        <article class="panel">
+          <h2>flex-start</h2>
+          <p>Todos os itens sobem para o inicio do eixo cruzado.</p>
+          <pre class="code"><code>align-items: flex-start;</code></pre>
+          <div class="demo-box tall items-start">
+            <div class="item short">A</div>
+            <div class="item">B</div>
+            <div class="item tall">C</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>center</h2>
+          <p>Os itens ficam centralizados no eixo cruzado.</p>
+          <pre class="code"><code>align-items: center;</code></pre>
+          <div class="demo-box tall items-center">
+            <div class="item short soft">A</div>
+            <div class="item soft">B</div>
+            <div class="item tall soft">C</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>flex-end</h2>
+          <p>Os itens descem para o fim do eixo cruzado.</p>
+          <pre class="code"><code>align-items: flex-end;</code></pre>
+          <div class="demo-box tall items-end">
+            <div class="item short green">A</div>
+            <div class="item green">B</div>
+            <div class="item tall green">C</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>stretch</h2>
+          <p>
+            Se os itens nao tiverem altura fixa, eles podem se esticar para
+            ocupar o espaco do eixo cruzado.
+          </p>
+          <pre class="code"><code>align-items: stretch;</code></pre>
+          <div class="demo-box tall items-stretch">
+            <div class="item auto">A</div>
+            <div class="item auto soft">B</div>
+            <div class="item auto green">C</div>
+          </div>
+        </article>
+      </section>
+
+      <p class="note">
+        Regra mental: <code>align-items</code> age em todos os filhos de uma vez
+        so. Se voce quiser alterar apenas um item, use
+        <code>align-self</code> no proprio filho.
+      </p>
+    </main>
+  </body>
+</html>

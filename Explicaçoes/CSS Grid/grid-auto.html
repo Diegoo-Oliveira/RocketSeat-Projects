@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Propriedades Grid Auto</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Grid auto</span>
+      </div>
+
+      <section class="hero">
+        <h1>Propriedades grid auto</h1>
+        <p>
+          Quando existem mais itens do que posicoes explicitas, o navegador cria
+          linhas ou colunas automaticas. As propriedades <code>grid-auto-rows</code>,
+          <code>grid-auto-columns</code> e <code>grid-auto-flow</code> controlam
+          esse comportamento.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <p>
+            A grade tem tres colunas. Os itens extras criam novas linhas de 72px
+            automaticamente.
+          </p>
+          <div class="visual">
+            <div class="grid-demo auto-demo">
+              <div class="cell wide">span 2</div>
+              <div class="cell">2</div>
+              <div class="cell soft">3</div>
+              <div class="cell soft">4</div>
+              <div class="cell warm wide">span 2</div>
+              <div class="cell">6</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 72px;
+  grid-auto-flow: row;
+}
+
+.item-largo {
+  grid-column: span 2;
+}</code></pre>
+          <p class="note">
+            <code>span 2</code> significa: ocupe duas faixas, sem precisar
+            informar exatamente onde comeca e termina.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alinhamentos Content</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Content</span>
+      </div>
+
+      <section class="hero">
+        <h1>Alinhamentos content</h1>
+        <p>
+          <code>align-content</code> e <code>justify-content</code> distribuem a
+          grade inteira dentro do container. Eles aparecem melhor quando o
+          container e maior que a grade.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <p>
+            A grade pequena foi centralizada dentro de uma area maior.
+          </p>
+          <div class="visual">
+            <div class="align-stage content-center">
+              <div class="cell">1</div>
+              <div class="cell">2</div>
+              <div class="cell">3</div>
+              <div class="cell soft">4</div>
+              <div class="cell soft">5</div>
+              <div class="cell soft">6</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.container {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  grid-template-rows: repeat(2, 58px);
+  align-content: center;
+  justify-content: center;
+}</code></pre>
+          <p class="note">
+            <code>align-content</code> mexe no eixo vertical. 
+            <code>justify-content</code> mexe no eixo horizontal.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

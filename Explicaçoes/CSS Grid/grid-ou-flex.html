@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid ou Flex</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Escolha certa</span>
+      </div>
+
+      <section class="hero">
+        <h1>Grid ou Flex?</h1>
+        <p>
+          A regra pratica: Flexbox e melhor para uma direcao principal. Grid e
+          melhor quando voce precisa controlar linhas e colunas ao mesmo tempo.
+        </p>
+      </section>
+
+      <section class="section compare">
+        <article class="panel">
+          <h2>Flexbox</h2>
+          <p>
+            Bom para menus, barras, alinhamento de botoes, cards em sequencia e
+            componentes pequenos.
+          </p>
+          <div class="visual">
+            <div class="flex-example">
+              <div class="cell">menu</div>
+              <div class="cell soft">link</div>
+              <div class="cell warm">avatar</div>
+              <div class="cell">acao</div>
+            </div>
+          </div>
+          <pre class="code"><code>.menu {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Grid</h2>
+          <p>
+            Bom para galerias, areas nomeadas, dashboards, cards alinhados em
+            linhas e colunas e layouts de pagina.
+          </p>
+          <div class="visual">
+            <div class="grid-example">
+              <div class="cell">1</div>
+              <div class="cell soft">2</div>
+              <div class="cell warm">3</div>
+              <div class="cell">4</div>
+              <div class="cell soft">5</div>
+              <div class="cell warm">6</div>
+            </div>
+          </div>
+          <pre class="code"><code>.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}</code></pre>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Resumo de decisao</h2>
+        <ol class="formula-list">
+          <li>uma linha ou uma coluna principal: provavelmente Flexbox</li>
+          <li>linhas e colunas ao mesmo tempo: provavelmente Grid</li>
+          <li>layout grande da pagina: Grid costuma ser mais claro</li>
+          <li>alinhamento interno de componentes: Flexbox costuma ser mais rapido</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

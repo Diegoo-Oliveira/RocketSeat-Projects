@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Row</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Linhas ocupadas</span>
+      </div>
+
+      <section class="hero">
+        <h1>Grid Row</h1>
+        <p>
+          <code>grid-row</code> faz o mesmo tipo de controle do
+          <code>grid-column</code>, mas no eixo vertical. Ele define em qual
+          linha horizontal o item comeca e onde termina.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <p>
+            O item laranja ocupa da linha 1 ate a linha 4, criando um bloco
+            alto na lateral.
+          </p>
+          <div class="visual">
+            <div class="grid-demo row-demo">
+              <div class="cell warm span-row">grid-row: 1 / 4</div>
+              <div class="cell">A</div>
+              <div class="cell">B</div>
+              <div class="cell">C</div>
+              <div class="cell">D</div>
+              <div class="cell">E</div>
+              <div class="cell">F</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 54px);
+}
+
+.card-alto {
+  grid-row: 1 / 4;
+}</code></pre>
+          <p class="note">
+            Use <code>grid-row</code> quando um card precisa ficar mais alto que
+            os vizinhos.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

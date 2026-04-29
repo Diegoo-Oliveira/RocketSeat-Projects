@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gap no CSS Grid</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Espacamento</span>
+      </div>
+
+      <section class="hero">
+        <h1>Gap</h1>
+        <p>
+          <code>gap</code> cria espaco entre as celulas da grade. Ele substitui
+          a necessidade de colocar margem em cada item.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <p>
+            Aqui a distancia entre linhas e maior que a distancia entre colunas.
+          </p>
+          <div class="visual">
+            <div class="grid-demo gap-demo">
+              <div class="cell">1</div>
+              <div class="cell">2</div>
+              <div class="cell">3</div>
+              <div class="cell soft">4</div>
+              <div class="cell soft">5</div>
+              <div class="cell soft">6</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px 10px;
+}</code></pre>
+          <p class="note">
+            Com dois valores, o primeiro e o espaco entre linhas e o segundo e o
+            espaco entre colunas.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

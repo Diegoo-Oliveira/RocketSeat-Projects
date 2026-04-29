@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Template Areas</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Areas</span>
+      </div>
+
+      <section class="hero">
+        <h1>Grid Template Areas</h1>
+        <p>
+          <code>grid-template-areas</code> permite nomear regioes da grade.
+          Isso deixa layouts grandes mais legiveis, quase como desenhar um mapa
+          da pagina dentro do CSS.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <div class="visual">
+            <div class="grid-demo areas-demo">
+              <div class="cell area-top">top</div>
+              <div class="cell soft area-side">side</div>
+              <div class="cell warm area-content">content</div>
+              <div class="cell area-foot">foot</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "top top"
+    "side content"
+    "foot foot";
+}
+
+.top { grid-area: top; }
+.side { grid-area: side; }
+.content { grid-area: content; }
+.foot { grid-area: foot; }</code></pre>
+          <p class="note">
+            O mesmo nome repetido faz a area ocupar mais espaco. No exemplo,
+            <code>top</code> atravessa as duas colunas.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

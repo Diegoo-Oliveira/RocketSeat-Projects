@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introducao aos alinhamentos no Grid</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Alinhamentos</span>
+      </div>
+
+      <section class="hero">
+        <h1>Introducao aos alinhamentos</h1>
+        <p>
+          No Grid existem tres familias de alinhamento: <code>content</code>,
+          <code>items</code> e <code>self</code>. A diferenca esta em quem voce
+          quer mover: a grade inteira, todos os itens ou apenas um item.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Content</h2>
+          <p>
+            Move a grade inteira dentro do container quando sobra espaco.
+          </p>
+          <pre class="code"><code>align-content: center;
+justify-content: center;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Items</h2>
+          <p>
+            Move todos os itens dentro das suas proprias celulas.
+          </p>
+          <pre class="code"><code>align-items: center;
+justify-items: center;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Self</h2>
+          <p>
+            Move um unico item, sem mudar os outros.
+          </p>
+          <pre class="code"><code>align-self: end;
+justify-self: end;</code></pre>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Mapa mental rapido</h2>
+        <ol class="formula-list">
+          <li><code>content</code>: mexe no conjunto da grade</li>
+          <li><code>items</code>: mexe em todos os itens</li>
+          <li><code>self</code>: mexe em um item especifico</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shorthand grid-template</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Shorthand</span>
+      </div>
+
+      <section class="hero">
+        <h1>Shorthand grid-template</h1>
+        <p>
+          <code>grid-template</code> e um atalho para declarar areas, alturas de
+          linhas e larguras de colunas em um unico bloco.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <div class="visual">
+            <div class="grid-demo template-demo">
+              <div class="cell" style="grid-area: brand">brand</div>
+              <div class="cell soft" style="grid-area: menu">menu</div>
+              <div class="cell warm" style="grid-area: hero">hero</div>
+              <div class="cell" style="grid-area: card">card</div>
+              <div class="cell soft" style="grid-area: aside">aside</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.container {
+  display: grid;
+  grid-template:
+    "brand menu" 58px
+    "hero hero" 120px
+    "card aside" 80px
+    / 1.2fr 0.8fr;
+}</code></pre>
+          <p class="note">
+            O que vem depois da barra <code>/</code> define as colunas. Antes
+            dela ficam as areas e as alturas das linhas.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

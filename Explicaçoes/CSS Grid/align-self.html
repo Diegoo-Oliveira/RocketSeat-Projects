@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alinhamentos Self</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Self</span>
+      </div>
+
+      <section class="hero">
+        <h1>Alinhamentos self</h1>
+        <p>
+          <code>align-self</code> e <code>justify-self</code> alinham apenas um
+          item dentro da propria celula. Eles vencem o alinhamento geral daquele
+          item especifico.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <p>
+            Apenas o item laranja foi levado para o canto inferior direito da
+            celula.
+          </p>
+          <div class="visual">
+            <div class="grid-demo self-demo">
+              <div class="cell">1</div>
+              <div class="cell warm special">self</div>
+              <div class="cell soft">3</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.item-especial {
+  align-self: end;
+  justify-self: end;
+}</code></pre>
+          <p class="note">
+            Use <code>self</code> para excecoes. Use <code>items</code> para
+            alinhar todos os filhos de uma vez.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

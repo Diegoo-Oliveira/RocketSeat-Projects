@@ -1,0 +1,154 @@
+:root {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d9e0ea;
+  --flex: #ef5f4c;
+  --grid: #3b82f6;
+  --grid-soft: #dbeafe;
+  --flex-soft: #ffe5df;
+  --shadow: 0 18px 46px rgba(23, 32, 51, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(59, 130, 246, 0.12), transparent 32%),
+    linear-gradient(225deg, rgba(239, 95, 76, 0.12), transparent 34%),
+    var(--bg);
+}
+
+a {
+  color: inherit;
+}
+
+.page {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 56px;
+}
+
+.hero {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow);
+}
+
+.eyebrow,
+.card-label {
+  display: inline-block;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.eyebrow {
+  background: #eef4ff;
+  color: #2456a6;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 12px;
+  font-size: clamp(2.4rem, 7vw, 4.8rem);
+  line-height: 1;
+}
+
+.hero p {
+  max-width: 68ch;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.card {
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.flex-card:hover {
+  border-color: rgba(239, 95, 76, 0.45);
+}
+
+.grid-card:hover {
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+.flex-card .card-label {
+  width: fit-content;
+  background: var(--flex-soft);
+  color: #a33c2d;
+}
+
+.grid-card .card-label {
+  width: fit-content;
+  background: var(--grid-soft);
+  color: #1d4ed8;
+}
+
+.card h2 {
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+.card p,
+.card li {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.card ul {
+  margin: auto 0 0;
+  padding-left: 18px;
+}
+
+@media (max-width: 640px) {
+  .page {
+    width: min(100% - 20px, 1120px);
+    padding-top: 20px;
+  }
+
+  .hero,
+  .card {
+    border-radius: 16px;
+  }
+}

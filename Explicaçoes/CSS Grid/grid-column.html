@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Column</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Colunas</span>
+      </div>
+
+      <section class="hero">
+        <h1>Grid Column</h1>
+        <p>
+          <code>grid-column</code> controla onde um item comeca e termina no
+          eixo das colunas. Ele usa as linhas invisiveis da grade, nao apenas o
+          numero das colunas.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <p>
+            O item laranja comeca na linha 2 e termina na linha 5. Por isso ele
+            ocupa tres colunas.
+          </p>
+          <div class="visual">
+            <div class="grid-demo line-demo">
+              <div class="cell">1</div>
+              <div class="cell">2</div>
+              <div class="cell">3</div>
+              <div class="cell">4</div>
+              <div class="cell warm span-column">grid-column: 2 / 5</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.item-destaque {
+  grid-column: 2 / 5;
+}</code></pre>
+          <p class="note">
+            Em uma grade com 4 colunas existem 5 linhas verticais: antes da
+            primeira coluna, entre as colunas e depois da ultima.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

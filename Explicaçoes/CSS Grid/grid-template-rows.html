@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Template Rows</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Linhas</span>
+      </div>
+
+      <section class="hero">
+        <h1>Grid Template Rows</h1>
+        <p>
+          <code>grid-template-rows</code> define a altura das linhas explicitas
+          da grade. Pense como se voce desenhasse prateleiras: cada valor cria
+          uma linha com uma altura diferente.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <p>
+            A primeira linha tem 48px, a segunda e maior com 92px, e a terceira
+            tem 64px.
+          </p>
+          <div class="visual">
+            <div class="grid-demo rows-demo">
+              <div class="cell">48px</div>
+              <div class="cell soft">92px</div>
+              <div class="cell warm">64px</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.container {
+  display: grid;
+  grid-template-rows: 48px 92px 64px;
+}</code></pre>
+          <p class="note">
+            Cada valor representa uma linha. Tres valores criam tres linhas
+            explicitas.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Quando usar</h2>
+        <ol class="formula-list">
+          <li>quando voce quer controlar a altura de faixas de uma pagina</li>
+          <li>quando um layout tem topo, conteudo e rodape com alturas previstas</li>
+          <li>quando cards precisam seguir uma proporcao vertical organizada</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

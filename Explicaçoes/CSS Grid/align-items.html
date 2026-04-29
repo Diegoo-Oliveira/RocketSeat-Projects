@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alinhamentos Items</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Grid</a>
+        <span class="eyebrow">Items</span>
+      </div>
+
+      <section class="hero">
+        <h1>Alinhamentos items</h1>
+        <p>
+          <code>align-items</code> e <code>justify-items</code> alinham todos os
+          itens dentro de suas celulas. A grade nao muda de lugar; quem se move
+          sao os elementos dentro dos espacos.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <p>
+            As celulas continuam grandes, mas os itens dentro delas ficaram
+            centralizados.
+          </p>
+          <div class="visual">
+            <div class="align-stage items-center">
+              <div class="cell">1</div>
+              <div class="cell">2</div>
+              <div class="cell">3</div>
+              <div class="cell soft">4</div>
+              <div class="cell soft">5</div>
+              <div class="cell soft">6</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo</h2>
+          <pre class="code"><code>.container {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  grid-template-rows: repeat(2, 58px);
+  align-items: center;
+  justify-items: center;
+}</code></pre>
+          <p class="note">
+            <code>items</code> afeta todos os itens. Para afetar so um, use
+            <code>self</code>.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

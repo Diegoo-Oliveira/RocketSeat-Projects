@@ -37,7 +37,7 @@
       <section class="section panel">
         <h2>Leitura correta do print</h2>
         <ol class="formula-list">
-          <li>header branco com logo a esquerda e menu discreto a direita</li>
+          <li>nav branco com logo a esquerda e menu discreto a direita</li>
           <li>faixa de perfil em cinza claro com avatar, nome, bio e dados</li>
           <li>galeria com 12 fotos em 4 colunas</li>
           <li>rodape simples com copyright e links</li>
@@ -46,6 +46,136 @@
           Essa e a pagina interna do perfil. Nao e a capa do projeto, nem uma
           secao isolada.
         </p>
+      </section>
+
+      <section class="section panel">
+        <h2>O que entrou no seu Travelgram agora</h2>
+        <p>
+          No projeto real, voce separou o CSS por responsabilidade. Isso e bom
+          porque cada arquivo cuida de uma parte da tela e fica mais facil
+          encontrar onde mexer.
+        </p>
+        <ol class="formula-list">
+          <li><code>global.css</code>: reset, variaveis, fonte, cores e classes globais</li>
+          <li><code>styles/index.css</code>: arquivo que importa todos os outros CSS</li>
+          <li><code>nav.css</code>: estilos da navegacao superior</li>
+          <li><code>header.css</code>: bloco de perfil com avatar, texto e informacoes</li>
+          <li><code>main.css</code>: galeria de fotos com Flexbox e quebra de linha</li>
+          <li><code>footer.css</code>: rodape com links empurrados para a direita</li>
+        </ol>
+        <pre class="code"><code>@import url(../global.css);
+@import url(nav.css);
+@import url(header.css);
+@import url(main.css);
+@import url(footer.css);</code></pre>
+        <p class="note">
+          Repare no <code>../global.css</code>: como o <code>index.css</code>
+          esta dentro da pasta <code>styles</code>, o <code>../</code> sobe uma
+          pasta para encontrar o arquivo global.
+        </p>
+      </section>
+
+      <section class="section demo-grid">
+        <article class="panel">
+          <h2>Quando usar nav</h2>
+          <p>
+            Use <code>nav</code> quando o bloco representa navegacao da pagina:
+            logo clicavel, menu, links principais, busca ou atalhos de rota.
+          </p>
+          <pre class="code"><code>&lt;nav class="container"&gt;
+  &lt;a href="#" id="logo"&gt;...&lt;/a&gt;
+  &lt;ul id="first-menu"&gt;...&lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+          <p class="note">
+            No Travelgram, o topo e navegacao de verdade, por isso
+            <code>nav</code> faz mais sentido que uma <code>div</code> solta.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Quando usar div</h2>
+          <p>
+            Use <code>div</code> quando voce so precisa agrupar elementos para
+            layout ou aparencia, sem dar um significado especial para o
+            navegador.
+          </p>
+          <pre class="code"><code>&lt;div class="bg-surface-color"&gt;
+  &lt;nav class="container"&gt;...&lt;/nav&gt;
+  &lt;header&gt;...&lt;/header&gt;
+&lt;/div&gt;</code></pre>
+          <p>
+            Aqui a <code>div</code> serve como faixa de fundo cinza. Ela nao e
+            menu, nao e rodape e nao e conteudo principal: e so um agrupador.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>ul, li e a no menu</h2>
+          <p>
+            Menu normalmente e uma lista de opcoes. Por isso o conjunto
+            <code>ul</code>, <code>li</code> e <code>a</code> combina bem.
+          </p>
+          <pre class="code"><code>&lt;ul id="first-menu"&gt;
+  &lt;li&gt;&lt;a href="#"&gt;Explorer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;Minhas viagens&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          <p class="note">
+            Use <code>a</code> para itens clicaveis. Use <code>p</code> quando
+            for apenas texto comum.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>container</h2>
+          <p>
+            A classe <code>container</code> limita a largura da pagina e cria
+            respiro lateral. Assim o conteudo nao fica colado nas bordas.
+          </p>
+          <pre class="code"><code>.container {
+  padding-inline: 32px;
+  max-width: 1280px;
+  margin-inline: auto;
+}</code></pre>
+          <p>
+            Voce reutilizou essa classe no <code>nav</code>, no
+            <code>header</code>, no <code>main</code> e no
+            <code>footer</code>.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>header, main e footer</h2>
+          <p>
+            Essas tags deixam a estrutura mais clara. O <code>header</code>
+            apresenta o perfil, o <code>main</code> guarda o conteudo principal
+            e o <code>footer</code> fecha a pagina.
+          </p>
+          <pre class="code"><code>&lt;header&gt;perfil da Isabela&lt;/header&gt;
+&lt;main class="container"&gt;galeria de fotos&lt;/main&gt;
+&lt;footer class="container"&gt;links finais&lt;/footer&gt;</code></pre>
+          <p class="note">
+            A tag certa ajuda voce a entender a pagina antes mesmo de olhar o
+            CSS.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Gap e filhos diretos</h2>
+          <p>
+            O <code>gap</code> so cria espaco entre filhos diretos do elemento
+            que recebeu <code>display: flex</code> ou <code>display: grid</code>.
+          </p>
+          <pre class="code"><code>#info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}</code></pre>
+          <p>
+            Por isso o <code>id="info"</code> precisa ficar na
+            <code>ul</code>, porque os <code>li</code> sao os itens que voce
+            quer separar.
+          </p>
+        </article>
       </section>
 
       <section class="section panel travelgram-stage">
@@ -117,17 +247,18 @@
             em blocos, ela fica assim:
           </p>
           <ol class="formula-list">
-            <li>header superior com marca e menu</li>
-            <li>secao do perfil com avatar, bio e estatisticas</li>
-            <li>grade de 12 imagens</li>
+            <li><code>nav</code> superior com marca e menu</li>
+            <li><code>header</code> com avatar, bio e estatisticas</li>
+            <li><code>main</code> com 12 imagens</li>
             <li>rodape simples com links</li>
           </ol>
-          <pre class="code"><code>&lt;main class="app"&gt;
+          <pre class="code"><code>&lt;div class="bg-surface-color"&gt;
+  &lt;nav class="container"&gt;...&lt;/nav&gt;
   &lt;header&gt;...&lt;/header&gt;
-  &lt;section class="profile"&gt;...&lt;/section&gt;
-  &lt;section class="gallery"&gt;...&lt;/section&gt;
-  &lt;footer&gt;...&lt;/footer&gt;
-&lt;/main&gt;</code></pre>
+&lt;/div&gt;
+
+&lt;main class="container"&gt;...&lt;/main&gt;
+&lt;footer class="container"&gt;...&lt;/footer&gt;</code></pre>
           <p class="note">
             Quando voce enxerga a hierarquia certa, o CSS fica muito mais
             simples.
@@ -135,28 +266,31 @@
         </article>
 
         <article class="panel">
-          <h2>2. O app inteiro e uma coluna</h2>
+          <h2>2. A pagina desce em blocos</h2>
           <p>
-            O container principal pode ser tratado como uma pilha vertical de
-            grandes secoes.
+            Mesmo sem colocar <code>display: flex</code> no <code>body</code>,
+            os grandes blocos do HTML ja aparecem um abaixo do outro. O Flexbox
+            entra dentro de cada bloco para alinhar os elementos internos.
           </p>
-          <pre class="code"><code>.app {
-  display: flex;
-  flex-direction: column;
-}</code></pre>
+          <pre class="code"><code>body
+  div.bg-surface-color
+    nav
+    header
+  main
+  footer</code></pre>
           <p>
-            O header vem primeiro, depois o perfil, depois a galeria e por fim
-            o rodape.
+            Por isso a pagina fica naturalmente em ordem vertical: topo, perfil,
+            galeria e rodape.
           </p>
         </article>
 
         <article class="panel">
-          <h2>3. O header usa Flexbox horizontal</h2>
+          <h2>3. O nav usa Flexbox horizontal</h2>
           <p>
             A barra superior tem dois grupos: marca na esquerda e navegacao na
             direita.
           </p>
-          <pre class="code"><code>.header {
+          <pre class="code"><code>nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -169,19 +303,22 @@
         <article class="panel">
           <h2>4. O bloco do perfil tambem e Flexbox</h2>
           <p>
-            A secao central e formada por tres children principais no mesmo
-            eixo:
+            A faixa do perfil tem dois grupos principais no mesmo eixo:
           </p>
           <ol class="formula-list">
-            <li>avatar</li>
-            <li>texto do perfil</li>
-            <li>lista de estatisticas</li>
+            <li><code>#profile</code>: avatar + nome + bio</li>
+            <li><code>#info</code>: localizacao, paises e fotos</li>
           </ol>
-          <pre class="code"><code>.profile {
+          <pre class="code"><code>header .container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+}
+
+#profile {
+  display: flex;
   gap: 32px;
+  align-items: center;
 }</code></pre>
           <p>
             Aqui o Flexbox organiza tudo em linha e o <code>gap</code> cria
@@ -194,18 +331,23 @@
         </article>
 
         <article class="panel">
-          <h2>5. A bio do usuario e outra coluna</h2>
+          <h2>5. A bio empilha naturalmente</h2>
           <p>
-            Dentro da parte central, nome e descricao ficam empilhados.
+            No seu CSS atual, o nome e a descricao ficam um abaixo do outro
+            porque <code>h1</code> e <code>p</code> ja sao elementos de bloco.
+            Voce so precisou ajustar largura e margem.
           </p>
-          <pre class="code"><code>.profile-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+          <pre class="code"><code>#profile &gt; div {
+  max-width: 384px;
+}
+
+#profile h1 {
+  margin-bottom: 8px;
 }</code></pre>
           <p>
-            Esse e o tipo de detalhe que costuma passar despercebido no Figma,
-            mas faz muita diferenca na hora de montar.
+            Se um dia voce quiser controlar esse espacamento com Flexbox, pode
+            colocar <code>display: flex</code> e
+            <code>flex-direction: column</code> nesse <code>div</code>.
           </p>
         </article>
 
@@ -214,10 +356,10 @@
           <p>
             A lista da direita pode ser pensada como um pequeno menu vertical.
           </p>
-          <pre class="code"><code>.profile-stats {
+          <pre class="code"><code>#info {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }</code></pre>
           <p>
             Ou seja: ate dentro de um layout grande, voce vai usando Flexbox em
@@ -226,39 +368,53 @@
         </article>
 
         <article class="panel">
-          <h2>7. A galeria e melhor com Grid</h2>
+          <h2>7. Galeria com Flexbox e wrap</h2>
           <p>
-            Aqui esta a parte mais importante da fidelidade visual. A grade de
-            fotos do Figma tem 4 colunas fixas e 3 linhas.
+            No seu projeto atual, a galeria usa Flexbox. As imagens ficam lado
+            a lado e, quando nao couber mais na linha, quebram para a proxima.
           </p>
-          <pre class="code"><code>.gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+          <pre class="code"><code>main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+main img {
+  width: 286px;
+  height: 286px;
+  object-fit: cover;
 }</code></pre>
           <p>
-            Da para fazer com <code>flex-wrap</code>? Da. Mas para ficar
-            realmente igual ao Figma, Grid e a escolha mais limpa.
+            O <code>flex-wrap: wrap</code> libera a quebra de linha. O
+            <code>gap</code> cria o espaco entre as fotos e o
+            <code>object-fit: cover</code> faz a imagem preencher o quadrado sem
+            distorcer.
           </p>
           <p class="note">
-            Para estudar Flexbox, vale testar uma versao com
-            <code>flex-flow: row wrap</code>. Para copiar esta tela com
-            fidelidade, Grid resolve melhor.
+            Para copiar uma grade perfeitamente regular do Figma, Grid tambem
+            seria uma boa escolha. Para praticar Flexbox, sua solucao com
+            <code>flex-wrap</code> esta no caminho certo.
           </p>
         </article>
 
         <article class="panel">
-          <h2>8. O rodape volta para Flexbox</h2>
+          <h2>8. Rodape com margin-right auto</h2>
           <p>
-            O rodape tem texto pequeno na esquerda e links na direita.
+            No rodape, voce usou Flexbox com <code>gap</code>. Depois, aplicou
+            <code>margin-right: auto</code> no primeiro texto para empurrar os
+            links para a direita.
           </p>
-          <pre class="code"><code>.footer {
+          <pre class="code"><code>footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 24px;
+}
+
+footer span:nth-child(1) {
+  margin-right: auto;
 }</code></pre>
           <p>
-            Esse e outro padrao muito comum em interfaces reais.
+            Esse truque funciona porque margem automatica ocupa o espaco livre
+            disponivel no eixo principal do Flexbox.
           </p>
         </article>
       </section>
@@ -269,14 +425,12 @@
           <li>estrutura principal: coluna vertical</li>
           <li>header: Flexbox horizontal</li>
           <li>perfil: Flexbox horizontal</li>
-          <li>bio e estatisticas: pequenas colunas com Flexbox</li>
-          <li>galeria: Grid</li>
-          <li>rodape: Flexbox horizontal</li>
+          <li>bio: elementos empilhados naturalmente</li>
+          <li>estatisticas: coluna com Flexbox</li>
+          <li>galeria: Flexbox com <code>flex-wrap</code></li>
+          <li>rodape: Flexbox com <code>margin-right: auto</code></li>
+          <li>estrutura semantica: <code>nav</code>, <code>header</code>, <code>main</code> e <code>footer</code></li>
         </ol>
-        <p class="note">
-          Resumo desta leitura em
-          <a href="../Perfil de viagens/figma-node-3-376-summary.md">figma-node-3-376-summary.md</a>.
-        </p>
       </section>
     </main>
   </body>

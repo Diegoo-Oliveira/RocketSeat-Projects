@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial Tech News</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../../index.html">Voltar ao catalogo</a>
+
+      <nav aria-label="Guias relacionados">
+        <a href="../../CSS FLEXBOX/index.html">Revisar Flexbox</a>
+        <a href="../../CSS Grid/index.html">Revisar Grid</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <span class="eyebrow">Tutorial de projeto</span>
+        <h1>Como recriar o Tech News usando Flexbox e CSS Grid</h1>
+        <p>
+          A ideia nao e copiar tudo de uma vez. Primeiro voce le o Figma como
+          blocos, depois decide quais partes sao layout de pagina com Grid e
+          quais partes sao alinhamento de componentes com Flexbox.
+        </p>
+      </section>
+
+      <section class="lesson intro-grid">
+        <div>
+          <span class="section-label">Leitura do Figma</span>
+          <h2>Antes de escrever CSS, separe a tela em regioes</h2>
+          <p>
+            No projeto Tech News, o layout tem uma hierarquia bem clara:
+            cabecalho, menu de categorias, area de destaques, mais lidas,
+            coluna de inteligencia artificial e uma lateral com anuncio e links.
+          </p>
+          <p>
+            Quando voce reconhece essas regioes, fica mais facil escolher a
+            ferramenta certa: Grid para dividir areas grandes e Flexbox para
+            alinhar itens pequenos dentro dessas areas.
+          </p>
+        </div>
+
+        <div class="figma-map" aria-label="Mapa visual do layout">
+          <div class="map-header">header com Flexbox</div>
+          <div class="map-nav">categorias com Flexbox</div>
+          <div class="map-featured">
+            <span>destaque grande</span>
+            <span>grid 2x2</span>
+          </div>
+          <div class="map-popular">mais lidas com Grid</div>
+          <div class="map-bottom">
+            <span>lista principal</span>
+            <span>aside</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Regra pratica</span>
+        <h2>Quando usar Grid e quando usar Flexbox?</h2>
+
+        <div class="compare">
+          <article>
+            <h3>Use CSS Grid</h3>
+            <p>
+              Quando voce precisa criar colunas e linhas ao mesmo tempo, ou
+              posicionar regioes grandes da pagina.
+            </p>
+            <ul>
+              <li>area de destaque: noticia grande + grade 2x2</li>
+              <li>mais lidas: quatro cards lado a lado</li>
+              <li>parte final: conteudo principal + aside</li>
+            </ul>
+          </article>
+
+          <article>
+            <h3>Use Flexbox</h3>
+            <p>
+              Quando voce quer alinhar itens em uma direcao, normalmente linha
+              ou coluna, dentro de um componente.
+            </p>
+            <ul>
+              <li>menu: icone + texto</li>
+              <li>titulo de secao: texto de um lado, link do outro</li>
+              <li>card horizontal: texto + imagem</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Passo 1</span>
+        <h2>Crie a estrutura HTML antes de pensar em detalhes visuais</h2>
+        <p>
+          Comece com nomes de classes que representem as partes do layout. Isso
+          ajuda voce a enxergar a pagina como blocos, nao como um monte de tags
+          soltas.
+        </p>
+
+        <pre><code>&lt;body&gt;
+  &lt;header class="site-header"&gt;
+    &lt;nav class="primary-nav"&gt;...&lt;/nav&gt;
+    &lt;nav class="category-nav"&gt;...&lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main class="container"&gt;
+    &lt;section class="featured-grid"&gt;...&lt;/section&gt;
+    &lt;section class="popular-grid"&gt;...&lt;/section&gt;
+    &lt;section class="main-columns"&gt;...&lt;/section&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Passo 2</span>
+        <h2>Transforme medidas repetidas do Figma em variaveis CSS</h2>
+        <p>
+          O Figma mostra um fundo escuro, um container centralizado, espacamento
+          de 16px entre cards e 32px nas laterais. Coloque isso no `:root`.
+        </p>
+
+        <pre><code>:root {
+  --bg-color: #0f172a;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --brand: #60a5fa;
+  --brand-dark: #1d4ed8;
+  --stroke: #1e293b;
+  --container: 1216px;
+  --gap: 16px;
+}</code></pre>
+      </section>
+
+      <section class="lesson steps">
+        <span class="section-label">Passos 3 a 8</span>
+        <h2>Monte o layout de fora para dentro</h2>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Header principal: Flexbox</h3>
+            <p>
+              O topo tem tres grupos na mesma linha: Menu, logo e Buscar. Esse
+              e um caso classico de Flexbox com `justify-content: space-between`.
+            </p>
+            <pre><code>.primary-nav {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <div>
+            <h3>Menu de categorias: Flexbox</h3>
+            <p>
+              As categorias ficam em uma linha. Use `display: flex` e permita
+              rolagem horizontal no mobile.
+            </p>
+            <pre><code>.category-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  overflow-x: auto;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">5</div>
+          <div>
+            <h3>Area de destaques: Grid</h3>
+            <p>
+              Aqui voce tem duas colunas: uma noticia grande e uma coluna com
+              quatro noticias menores. Grid deixa essa divisao direta.
+            </p>
+            <pre><code>.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 592px;
+  gap: 16px;
+}
+
+.featured-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">6</div>
+          <div>
+            <h3>Card com imagem e texto por cima</h3>
+            <p>
+              Para criar o efeito do Figma, o card vira `position: relative`.
+              A imagem ocupa tudo e o conteudo fica absoluto no rodape.
+            </p>
+            <pre><code>.story-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.story-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-content {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">7</div>
+          <div>
+            <h3>Mais lidas: Grid de quatro colunas</h3>
+            <p>
+              Como os cards tem o mesmo peso visual, use `repeat(4, 1fr)`.
+              Depois, no responsivo, reduza para duas colunas e entao uma.
+            </p>
+            <pre><code>.popular-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">8</div>
+          <div>
+            <h3>Conteudo + aside: Grid no pai, Flex nos filhos</h3>
+            <p>
+              A divisao entre coluna principal e lateral e Grid. Dentro de cada
+              noticia horizontal, Flexbox resolve o alinhamento texto + imagem.
+            </p>
+            <pre><code>.main-columns {
+  display: grid;
+  grid-template-columns: 696px 488px;
+  gap: 32px;
+}
+
+.horizontal-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Responsivo</span>
+        <h2>Quebre as colunas quando faltar espaco</h2>
+        <p>
+          O segredo e nao tentar manter o desktop espremido no celular. Quando a
+          tela fica menor, as colunas viram uma coluna so.
+        </p>
+
+        <pre><code>@media (max-width: 900px) {
+  .featured-grid,
+  .main-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .popular-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .featured-list,
+  .popular-grid {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+      </section>
+
+      <section class="lesson checklist">
+        <span class="section-label">Checklist final</span>
+        <h2>Ordem sugerida para voce praticar</h2>
+        <ol>
+          <li>Crie `index.html`, `styles.css` e uma pasta `assets`.</li>
+          <li>Monte apenas o HTML, sem tentar deixar bonito ainda.</li>
+          <li>Defina cores, fonte, container e espacamentos no `:root`.</li>
+          <li>Use Flexbox no header e nos componentes pequenos.</li>
+          <li>Use Grid nas regioes grandes da pagina.</li>
+          <li>Adicione imagens e overlays dos cards.</li>
+          <li>Por ultimo, escreva os media queries.</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

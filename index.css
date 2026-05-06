@@ -4,12 +4,12 @@
   --ink: #172033;
   --muted: #667085;
   --line: #d9e0ea;
-  --flex: #ef5f4c;
-  --grid: #3b82f6;
-  --tech: #0ea5e9;
-  --grid-soft: #dbeafe;
-  --flex-soft: #ffe5df;
-  --tech-soft: #e0f2fe;
+  --explanations: #3b82f6;
+  --explanations-soft: #dbeafe;
+  --projects: #ef5f4c;
+  --projects-soft: #ffe5df;
+  --quick: #0ea5e9;
+  --quick-soft: #e0f2fe;
   --shadow: 0 18px 46px rgba(23, 32, 51, 0.12);
 }
 
@@ -32,6 +32,12 @@ a {
   color: inherit;
 }
 
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
 .page {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
@@ -49,6 +55,7 @@ a {
 .eyebrow,
 .card-label {
   display: inline-block;
+  width: fit-content;
   padding: 7px 11px;
   border-radius: 999px;
   font-size: 0.78rem;
@@ -62,10 +69,9 @@ a {
   color: #2456a6;
 }
 
-h1,
-h2,
-p {
-  margin-top: 0;
+.eyebrow.small {
+  background: var(--quick-soft);
+  color: #0369a1;
 }
 
 h1 {
@@ -75,7 +81,7 @@ h1 {
 }
 
 .hero p {
-  max-width: 68ch;
+  max-width: 70ch;
   margin-bottom: 0;
   color: var(--muted);
   font-size: 1.08rem;
@@ -103,38 +109,27 @@ h1 {
   transition: transform 0.18s ease, border-color 0.18s ease;
 }
 
-.card:hover {
+.card:hover,
+.project-link:hover {
   transform: translateY(-4px);
 }
 
-.flex-card:hover {
-  border-color: rgba(239, 95, 76, 0.45);
-}
-
-.grid-card:hover {
+.explanations-card:hover {
   border-color: rgba(59, 130, 246, 0.45);
 }
 
-.tech-card:hover {
-  border-color: rgba(14, 165, 233, 0.45);
+.projects-card:hover {
+  border-color: rgba(239, 95, 76, 0.45);
 }
 
-.flex-card .card-label {
-  width: fit-content;
-  background: var(--flex-soft);
-  color: #a33c2d;
-}
-
-.grid-card .card-label {
-  width: fit-content;
-  background: var(--grid-soft);
+.explanations-card .card-label {
+  background: var(--explanations-soft);
   color: #1d4ed8;
 }
 
-.tech-card .card-label {
-  width: fit-content;
-  background: var(--tech-soft);
-  color: #0369a1;
+.projects-card .card-label {
+  background: var(--projects-soft);
+  color: #a33c2d;
 }
 
 .card h2 {
@@ -143,7 +138,8 @@ h1 {
 }
 
 .card p,
-.card li {
+.card li,
+.project-link p {
   color: var(--muted);
   line-height: 1.65;
 }
@@ -153,6 +149,60 @@ h1 {
   padding-left: 18px;
 }
 
+.quick-access {
+  margin-top: 28px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow);
+}
+
+.section-heading {
+  display: grid;
+  gap: 12px;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.1;
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.project-link {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #ffffff;
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.project-link:hover {
+  border-color: rgba(14, 165, 233, 0.45);
+}
+
+.project-link span {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: rgb(112, 243, 243);
+}
+
+.project-link p {
+  margin-bottom: 0;
+}
+
 @media (max-width: 640px) {
   .page {
     width: min(100% - 20px, 1120px);
@@ -160,7 +210,8 @@ h1 {
   }
 
   .hero,
-  .card {
+  .card,
+  .quick-access {
     border-radius: 16px;
   }
 }

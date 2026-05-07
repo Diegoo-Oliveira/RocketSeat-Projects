@@ -1,55 +1,164 @@
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de noticias - TECH NEWS</title>
     <link rel="stylesheet" href="Styles/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="site-header">
         <nav class="primary-nav">
-            <ul>
-                <li>
-                    <div class="nav-menu">
-                        <a href="#">
-                            <img src="assets/menu.svg" alt="">
-                            <p>Menu</p>
-                        </a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="nav-name">
-                        <a href="#">
-                            <h1>TECH NEWS</h1>
-                        </a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="nav-search">
-                        <a href="#">
-                            <p>Buscar</p>
-                            <img src="assets/search.svg" alt="">
-                        </a>
-                    </div>
-                </li>
-            </ul>
+            <div id="menu-item">
+                <a href="#">
+                    <img src="assets/menu.svg" alt="icone do menu">
+                    <span>Menu</span>
+                </a>
+            </div>
+            <div id="menu-name">
+                <a href="#">
+                    <h1>TECH NEWS</h1>
+                </a>
+            </div>
+            <div id="menu-search">
+                <a href="#">
+                    <span>Buscar</span>
+                    <img src="assets/search.svg" alt="icone de procurar">
+                </a>
+            </div>
         </nav>
 
-        <nav class="secondary-nav">
-            <ul>
-                <li>
-                    <a href="#"></a>
-                </li>
-            </ul>
-        </nav>
+        <div class="secondary-navbar">
+            <nav class="secondary-nav">
+                <a href="#" id="nav-ia">
+                    <span>Inteligência Artificial</span>
+                </a>
+
+                <a href="#" id="nav-blockchain">
+                    <span>Blockchain</span>
+                </a>
+                <a href="#" id="nav-holograms">
+                    <span>Hologramas</span>
+                </a>
+                <a href="#" id="nav-internet">
+                    <span>Internet</span>
+                </a>
+                <a href="#" id="nav-vests">
+                    <span>Vestíveis</span>
+                </a>
+
+                <a href="#" id="nav-reality">
+                    <span>Realidade Aumentada</span>
+                </a>
+                <a href="#" id="nav-virtual">
+                    <span>Realidade Virtual</span>
+                </a>
+            </nav>
+        </div>
     </header>
 
     <main>
+        <section class="featured-news">
+            <article id="news-one">
+                <a href="#">
+                    <img src="assets/noticia-01.png" alt="">
+                    <div id="main-news-one">
+                        <p class="content-tag-robotica">ROBÓTICA</p>
+                        <h2>Robôs domésticos começam a ser adotados para tarefas diárias, prometendo mais conforto e eficiência nas residências.</h2>
+                    </div>
+                </a>
+            </article>
+            <div class="featured-grid">
+                <article class="story-card" id="news-two">
+                    <a href="#">
+                        <img src="assets/noticia-02.png" alt="">
+                        <div class="story-content">
+                            <p class="content-tag-hologramas">HOLOGRAMAS</p>
+                            <h3>Novo Smartphone Projetor 3D chega ao mercado, transformando a forma como vemos nossas telas!</h3>
+                        </div>
+                    </a>
+                </article>
 
+                <article class="story-card" id="news-three">
+                    <a href="#">
+                        <img src="assets/noticia-03.png" alt="">
+                        <div class="story-content">
+                            <p class="content-tag-internet">INTERNET</p>
+                            <h3>Tecnologia 6G chega às metrópoles brasileiras, prometendo revolucionar a forma como vivemos e nos comunicamos.</h3>
+                        </div>
+                    </a>
+                </article>
 
+                <article class="story-card" id="news-four">
+                    <a href="#">
+                        <img src="assets/noticia-04.png" alt="">
+                        <div class="story-content">
+                            <p class="content-tag-vestiveis">VESTÍVEIS</p>
+                            <h3>Empresa lança relógio inteligente capaz de monitorar a saúde mental, oferecendo insights valiosos para o bem-estar pessoal.</h3>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="story-card" id="news-five">
+                    <a href="#">
+                        <img src="assets/noticia-05.png" alt="">
+                        <div class="story-content">
+                            <p class="content-tag-ra">REALIDADE VIRTUAL</p>
+                            <h3>Escolas adotam a tecnologia VR para proporcionar experiências imersivas, transformando a aprendizagem tradicional.</h3>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <section class="popular-news">
+            <div id="popular-heading">
+                <a href="#">
+                    <span>Mais lidas da semana</span>
+                </a>
+                <a href="#">
+                    <span>Ver tudo</span>
+                </a>
+            </div>
+            <div id="popular-grid">
+                <article class="popular-card">
+                    <a href="#">
+                        <img src="assets/noticia-06.png" alt="">
+                        <p class="content-tag-veiculos">VEÍCULOS</p>
+                        <h3>Protótipo de veículo voador é apresentado, marcando o início da era dos transportes aéreos pessoais.</h3>
+                    </a>
+                </article>
+
+                <article class="popular-card">
+                    <a href="#">
+                        <img src="assets/noticia-07.png" alt="">
+                        <p class="content-tag-hologramas">HOLOGRAMAS</p>
+                        <h3>Plataforma de videoconferência apresenta nova função de hologramas, tornando as chamadas virtuais mais realistas e envolventes.</h3>
+                    </a>
+                </article>
+
+                <article class="popular-card">
+                    <a href="#">
+                        <img src="assets/noticia-08.png" alt="">
+                        <p class="content-tag-ra">REALIDADE VIRTUAL</p>
+                        <h3>Nova geração de consoles de videogame é lançada, trazendo gráficos ultra-realistas e experiências de jogo totalmente envolventes.</h3>
+                    </a>
+                </article>
+
+                <article class="popular-card">
+                    <a href="#">
+                        <img src="assets/noticia-09.png" alt="">
+                        <p class="content-tag-internet">INTERNET</p>
+                        <h3>Projeto busca oferecer internet de alta velocidade em áreas remotas através de satélites.</h3>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <section></section>
     </main>
 </body>
 </html>

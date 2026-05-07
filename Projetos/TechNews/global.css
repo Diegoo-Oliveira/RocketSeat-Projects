@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --brand-color-light: #60A5FA;
+    --brand-color-dark: #1D4ED8;
+    --bg-color: #0F172A;
+    --stroke-color: #1e293b;
+    --text-color-primary: #f1f5ff;
+    --text-color-secondary: #CBD5E1;
+    --font-family: "Archivo", sans-serif;
+    --heading1: 800 24px/135% var(--font-family);
+    --heading2: 800 16px/140% var(--font-family);
+    --heading3: 800 14px/140% var(--font-family);
+    --span: 600 14px/145% var(--font-family);
+    --paragraph: 400 14px/160% var(--font-family);
+    --font-tag: 500 10px var(--font-family);
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+.content-tag-robotica {
+    display: flex;
+    width: 72px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    color: var(--text-color-primary);
+    font: var(--heading3);
+}
+
+.content-tag-hologramas {
+    display: flex;
+    width: 93px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-tag-vestiveis {
+    display: flex;
+    width: 71px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-tag-ra {
+    display: flex;
+    width: 124px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-tag-internet {
+    display: flex;
+    width: 70px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-tag-veiculos {
+    display: flex;
+    width: 70px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}

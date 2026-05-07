@@ -1,0 +1,49 @@
+.popular-news {
+    padding-top: 80px;
+}
+
+#popular-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-top: 1px solid var(--stroke-color);
+}
+
+#popular-heading a{
+    color: var(--text-color-secondary);
+    font: var(--span);
+}
+
+#popular-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 292px);
+    width: 234px;
+    gap: 16px;
+    padding-bottom: 24px;
+}
+
+#popular-grid img {
+    width: 292px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.popular-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.popular-card p {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+.popular-card h3{
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+    font: var(--heading3);
+}

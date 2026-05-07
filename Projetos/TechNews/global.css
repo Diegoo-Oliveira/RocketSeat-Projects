@@ -122,3 +122,50 @@ h3 {
     color: var(--text-color-secondary);
 }
 
+.content-tag-software {
+    display: flex;
+    width: 70px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-tag-cripto {
+    display: flex;
+    width: 102px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-tag-drone {
+    display: flex;
+    width: 62px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-tag-print {
+    display: flex;
+    width: 96px;
+    height: 20px;
+    background-color: var(--brand-color-dark);
+    font: var(--font-tag);
+    color: var(--text-color-primary);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}

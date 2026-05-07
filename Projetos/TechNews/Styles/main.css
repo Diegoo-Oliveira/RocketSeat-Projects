@@ -1,0 +1,43 @@
+.main-columns {
+    padding-top: 80px;
+    display: grid;
+    grid-template-columns: 696px 488px;
+    gap: 16px;
+}
+
+
+#featured-ia img {
+    width: 176px;
+    height: 176px;
+    object-fit: cover;
+}
+
+#featured-ia-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--stroke-color);
+    color: var(--text-color-secondary);
+    padding-top: 12px;
+}
+
+#ia-news {
+    padding-top: 24px;
+}
+
+.ia-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.ia-card img {
+
+}
+
+.ia-content {
+    width: 504px;
+    height: 164px;
+}
+

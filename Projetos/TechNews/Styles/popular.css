@@ -15,10 +15,13 @@
     font: var(--span);
 }
 
+#popular-heading a:hover {
+    color: var(--brand-color-light);
+}
+
 #popular-grid {
     display: grid;
     grid-template-columns: repeat(4, 292px);
-    width: 234px;
     gap: 16px;
     padding-bottom: 24px;
 }

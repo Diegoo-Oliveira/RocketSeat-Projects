@@ -21,6 +21,11 @@
     padding-top: 12px;
 }
 
+#featured-ia-head a,
+#aside-head a {
+    font: var(--span);
+}
+
 #ia-news {
     display: flex;
     flex-direction: column;

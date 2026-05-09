@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Fieldset</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Fieldset</span>
+      </div>
+
+      <section class="hero">
+        <h1>Fieldset</h1>
+        <p>
+          <code>fieldset</code> agrupa campos relacionados. A tag
+          <code>legend</code> funciona como titulo do grupo e ajuda o usuario a
+          entender aquela parte do formulario.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li>Organiza formularios grandes em blocos menores.</li>
+            <li>Da contexto para radios, checkboxes e grupos de endereco.</li>
+            <li><code>disabled</code> pode desativar todos os campos do grupo.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo fieldset-demo" action="#">
+            <fieldset>
+              <legend>Endereco</legend>
+              <div class="form-row">
+                <label for="rua">Rua</label>
+                <input id="rua" name="rua" type="text" placeholder="Nome da rua" />
+              </div>
+              <div class="form-row">
+                <label for="cidade">Cidade</label>
+                <input id="cidade" name="cidade" type="text" placeholder="Sua cidade" />
+              </div>
+            </fieldset>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;fieldset&gt;
+  &lt;legend&gt;Endereco&lt;/legend&gt;
+
+  &lt;label for="rua"&gt;Rua&lt;/label&gt;
+  &lt;input id="rua" name="rua" type="text" /&gt;
+
+  &lt;label for="cidade"&gt;Cidade&lt;/label&gt;
+  &lt;input id="cidade" name="cidade" type="text" /&gt;
+&lt;/fieldset&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>fieldset {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 14px;
+}</code></pre>
+          <p class="note">
+            Use <code>fieldset</code> quando os campos fazem parte da mesma
+            pergunta ou do mesmo bloco de informacao.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

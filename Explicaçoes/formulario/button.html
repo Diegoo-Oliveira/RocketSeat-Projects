@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Button</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Button</span>
+      </div>
+
+      <section class="hero">
+        <h1>Button</h1>
+        <p>
+          <code>button</code> cria uma acao clicavel. Dentro de formulario, o
+          atributo <code>type</code> e essencial porque muda o comportamento do
+          botao.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li><code>type="submit"</code> envia o formulario.</li>
+            <li><code>type="button"</code> cria um botao sem acao automatica.</li>
+            <li><code>type="reset"</code> limpa os campos do formulario.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <div class="form-row">
+              <label for="button-nome">Nome</label>
+              <input id="button-nome" type="text" value="Maria" />
+            </div>
+
+            <div class="inline-row">
+              <button type="submit">Enviar</button>
+              <button class="secondary" type="button">Salvar rascunho</button>
+              <button class="quiet" type="reset">Limpar</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;button type="button"&gt;Salvar rascunho&lt;/button&gt;
+&lt;button type="reset"&gt;Limpar&lt;/button&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>button {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #0f766e;
+  color: white;
+  font-weight: 700;
+}</code></pre>
+          <p class="note">
+            Sempre defina o <code>type</code>. Sem ele, o botao dentro de um
+            formulario costuma agir como <code>submit</code>.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

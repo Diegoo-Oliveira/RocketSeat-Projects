@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Novos Inputs</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Novos Inputs</span>
+      </div>
+
+      <section class="hero">
+        <h1>Novos Inputs</h1>
+        <p>
+          O HTML tem tipos de input que ja carregam comportamento pronto:
+          calendarios, busca, telefone, URL, mes, semana e horario. Eles ajudam
+          o navegador a entregar a interface mais adequada.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Tipos comuns</h2>
+          <ul class="formula-list">
+            <li><code>date</code>, <code>time</code>, <code>month</code> e <code>week</code> lidam com datas.</li>
+            <li><code>search</code> indica um campo de pesquisa.</li>
+            <li><code>tel</code> melhora o teclado de telefone em celulares.</li>
+            <li><code>url</code> valida enderecos de site.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <div class="mini-grid">
+              <div class="form-row">
+                <label for="data">Data</label>
+                <input id="data" type="date" name="data" />
+              </div>
+              <div class="form-row">
+                <label for="hora">Hora</label>
+                <input id="hora" type="time" name="hora" />
+              </div>
+              <div class="form-row">
+                <label for="busca">Busca</label>
+                <input id="busca" type="search" name="busca" placeholder="Pesquisar" />
+              </div>
+              <div class="form-row">
+                <label for="site">URL</label>
+                <input id="site" type="url" name="site" placeholder="https://site.com" />
+              </div>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;input type="date" name="data" /&gt;
+&lt;input type="time" name="hora" /&gt;
+&lt;input type="search" name="busca" /&gt;
+&lt;input type="tel" name="telefone" /&gt;
+&lt;input type="url" name="site" /&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 10px;
+}</code></pre>
+          <p class="note">
+            A aparencia de calendarios e seletores pode mudar entre navegadores,
+            porque parte da interface e nativa.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

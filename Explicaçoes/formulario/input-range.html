@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Input Range</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Input Range</span>
+      </div>
+
+      <section class="hero">
+        <h1>Input Range</h1>
+        <p>
+          <code>input type="range"</code> cria um controle deslizante. Ele e
+          util quando a pessoa escolhe intensidade, volume, preco ou nota.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li><code>min</code> define o comeco da faixa.</li>
+            <li><code>max</code> define o fim da faixa.</li>
+            <li><code>step</code> define os intervalos do controle.</li>
+            <li><code>value</code> posiciona o marcador inicial.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <div class="form-row">
+              <label for="satisfacao">Satisfacao</label>
+              <input id="satisfacao" name="satisfacao" type="range" min="0" max="10" step="1" value="7" />
+              <div class="range-readout">
+                <span>0</span>
+                <span>10</span>
+              </div>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;input
+  id="satisfacao"
+  name="satisfacao"
+  type="range"
+  min="0"
+  max="10"
+  step="1"
+  value="7"
+/&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>input[type="range"] {
+  width: 100%;
+  accent-color: #0f766e;
+}</code></pre>
+          <p class="note">
+            Para mostrar o valor mudando em tempo real, normalmente voce usa
+            JavaScript junto com <code>output</code>.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

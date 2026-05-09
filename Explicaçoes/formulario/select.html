@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Select</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Select</span>
+      </div>
+
+      <section class="hero">
+        <h1>Select</h1>
+        <p>
+          <code>select</code> cria uma lista de opcoes. Ele e bom quando a
+          pessoa precisa escolher uma alternativa de um conjunto conhecido.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li><code>option</code> representa cada escolha.</li>
+            <li><code>value</code> e o dado enviado quando a opcao e escolhida.</li>
+            <li><code>selected</code> define uma opcao inicial.</li>
+            <li><code>optgroup</code> agrupa opcoes relacionadas.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <div class="form-row">
+              <label for="trilha">Trilha de estudo</label>
+              <select id="trilha" name="trilha" required>
+                <option value="">Selecione uma trilha</option>
+                <optgroup label="Front-end">
+                  <option value="html-css">HTML e CSS</option>
+                  <option value="javascript">JavaScript</option>
+                </optgroup>
+                <optgroup label="Back-end">
+                  <option value="node">Node.js</option>
+                  <option value="api">APIs</option>
+                </optgroup>
+              </select>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;select id="trilha" name="trilha" required&gt;
+  &lt;option value=""&gt;Selecione uma trilha&lt;/option&gt;
+  &lt;optgroup label="Front-end"&gt;
+    &lt;option value="html-css"&gt;HTML e CSS&lt;/option&gt;
+    &lt;option value="javascript"&gt;JavaScript&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 10px;
+}</code></pre>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

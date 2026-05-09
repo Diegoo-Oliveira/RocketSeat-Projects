@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Label</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Label</span>
+      </div>
+
+      <section class="hero">
+        <h1>Label</h1>
+        <p>
+          <code>label</code> e o texto que identifica um campo. Quando ele esta
+          conectado ao input, clicar no texto tambem foca ou marca o campo.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li><code>for</code> no label aponta para o <code>id</code> do campo.</li>
+            <li>Melhora acessibilidade para leitores de tela.</li>
+            <li>Aumenta a area clicavel de checkbox e radio.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <div class="form-row">
+              <label for="usuario">Usuario</label>
+              <input id="usuario" name="usuario" type="text" placeholder="seu usuario" />
+            </div>
+
+            <label class="choice">
+              <input type="checkbox" name="noticias" />
+              Quero receber novidades
+            </label>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;label for="usuario"&gt;Usuario&lt;/label&gt;
+&lt;input id="usuario" name="usuario" type="text" /&gt;
+
+&lt;label&gt;
+  &lt;input type="checkbox" name="noticias" /&gt;
+  Quero receber novidades
+&lt;/label&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>label {
+  color: #162033;
+  font-weight: 700;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}</code></pre>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

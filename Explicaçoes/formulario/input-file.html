@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Input File</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Input File</span>
+      </div>
+
+      <section class="hero">
+        <h1>Input File</h1>
+        <p>
+          <code>input type="file"</code> permite selecionar arquivos do
+          dispositivo. Ele e usado para fotos, documentos, curriculos e anexos.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li><code>accept</code> sugere quais formatos podem ser escolhidos.</li>
+            <li><code>multiple</code> permite selecionar mais de um arquivo.</li>
+            <li>O CSS do botao nativo varia bastante entre navegadores.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#" enctype="multipart/form-data">
+            <div class="form-row">
+              <label for="arquivo">Anexo</label>
+              <input class="file-input" id="arquivo" name="arquivo" type="file" accept=".pdf,.png,.jpg" />
+              <p class="help-text">Aceita PDF, PNG ou JPG.</p>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;form enctype="multipart/form-data"&gt;
+  &lt;label for="arquivo"&gt;Anexo&lt;/label&gt;
+  &lt;input
+    id="arquivo"
+    name="arquivo"
+    type="file"
+    accept=".pdf,.png,.jpg"
+  /&gt;
+&lt;/form&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>.file-input {
+  padding: 16px;
+  border: 1px dashed #94a3b8;
+  border-radius: 14px;
+  background: white;
+}</code></pre>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

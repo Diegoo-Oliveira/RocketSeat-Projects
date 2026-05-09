@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Forms</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">HTML Forms</span>
+      </div>
+
+      <section class="hero">
+        <h1>HTML Forms</h1>
+        <p>
+          A tag <code>form</code> cria a area que junta campos, botoes e dados.
+          Ela diz para onde os dados vao, qual metodo sera usado e quais campos
+          pertencem ao mesmo envio.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Para que serve</h2>
+          <ul class="formula-list">
+            <li><code>action</code> indica a URL que recebe os dados.</li>
+            <li><code>method</code> define como os dados serao enviados.</li>
+            <li><code>name</code> em cada campo vira o nome da informacao enviada.</li>
+            <li><code>submit</code> dispara o envio do formulario.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#" method="post">
+            <div class="form-row">
+              <label for="form-nome">Nome</label>
+              <input id="form-nome" name="nome" type="text" placeholder="Ana Silva" />
+            </div>
+
+            <div class="form-row">
+              <label for="form-email">Email</label>
+              <input id="form-email" name="email" type="email" placeholder="ana@email.com" />
+            </div>
+
+            <button type="submit">Enviar cadastro</button>
+          </form>
+        </article>
+
+        <article class="panel span-2">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;form action="/cadastro" method="post"&gt;
+  &lt;label for="nome"&gt;Nome&lt;/label&gt;
+  &lt;input id="nome" name="nome" type="text" /&gt;
+
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" /&gt;
+
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          <p class="note">
+            O HTML define a estrutura e o significado. O CSS cuida da aparencia,
+            do espacamento e dos estados visuais.
+          </p>
+        </article>
+
+        <article class="panel span-2">
+          <h2>CSS</h2>
+          <pre class="code"><code>form {
+  display: grid;
+  gap: 14px;
+}
+
+input,
+button {
+  min-height: 44px;
+  border-radius: 10px;
+}</code></pre>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

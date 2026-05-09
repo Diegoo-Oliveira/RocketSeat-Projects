@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Input Color</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Input Color</span>
+      </div>
+
+      <section class="hero">
+        <h1>Input Color</h1>
+        <p>
+          <code>input type="color"</code> abre um seletor de cor. O valor
+          enviado costuma ser hexadecimal, como <code>#0f766e</code>.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li><code>value</code> define a cor inicial.</li>
+            <li>O navegador mostra uma interface propria de escolha de cor.</li>
+            <li>Serve bem para temas, preferencias e personalizacao visual.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <div class="form-row">
+              <label for="cor-tema">Cor do tema</label>
+              <input id="cor-tema" name="cor" type="color" value="#0f766e" />
+              <div class="color-preview"></div>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;label for="cor"&gt;Cor do tema&lt;/label&gt;
+&lt;input id="cor" name="cor" type="color" value="#0f766e" /&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>input[type="color"] {
+  width: 72px;
+  height: 48px;
+  padding: 4px;
+  border-radius: 12px;
+}</code></pre>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

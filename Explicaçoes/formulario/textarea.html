@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Textarea</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Textarea</span>
+      </div>
+
+      <section class="hero">
+        <h1>Textarea</h1>
+        <p>
+          <code>textarea</code> e o campo para textos longos. Ele e diferente
+          do input porque permite varias linhas e pode ser redimensionado.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li><code>rows</code> sugere a altura inicial em linhas.</li>
+            <li><code>maxlength</code> limita o tamanho do texto.</li>
+            <li><code>placeholder</code> mostra uma dica dentro do campo.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <div class="form-row">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" rows="5" maxlength="300" placeholder="Escreva sua mensagem"></textarea>
+              <p class="help-text">Limite de 300 caracteres.</p>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;label for="mensagem"&gt;Mensagem&lt;/label&gt;
+&lt;textarea
+  id="mensagem"
+  name="mensagem"
+  rows="5"
+  maxlength="300"
+  placeholder="Escreva sua mensagem"
+&gt;&lt;/textarea&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>textarea {
+  min-height: 132px;
+  padding: 10px 12px;
+  resize: vertical;
+  border-radius: 10px;
+}</code></pre>
+          <p class="note">
+            <code>resize: vertical</code> permite aumentar a altura sem quebrar a
+            largura do layout.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

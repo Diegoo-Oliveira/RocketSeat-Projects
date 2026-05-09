@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Checkbox, Radio e Hidden</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Checkbox, Radio e Hidden</span>
+      </div>
+
+      <section class="hero">
+        <h1>Checkbox, Radio e Hidden</h1>
+        <p>
+          Esses tres inputs resolvem escolhas comuns: marcar varias opcoes,
+          escolher apenas uma opcao e enviar um valor que nao aparece na tela.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Quando usar</h2>
+          <ul class="formula-list">
+            <li><code>checkbox</code>: varias escolhas podem ficar marcadas.</li>
+            <li><code>radio</code>: apenas uma escolha por grupo.</li>
+            <li><code>hidden</code>: envia um dado invisivel para o usuario.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <fieldset class="choice-group">
+              <legend>Interesses</legend>
+              <label class="choice">
+                <input type="checkbox" name="interesses" value="html" checked />
+                HTML
+              </label>
+              <label class="choice">
+                <input type="checkbox" name="interesses" value="css" />
+                CSS
+              </label>
+            </fieldset>
+
+            <fieldset class="choice-group">
+              <legend>Turno</legend>
+              <label class="choice">
+                <input type="radio" name="turno" value="manha" checked />
+                Manha
+              </label>
+              <label class="choice">
+                <input type="radio" name="turno" value="noite" />
+                Noite
+              </label>
+            </fieldset>
+
+            <input type="hidden" name="origem" value="guia-formulario" />
+            <p class="hidden-box">Existe um input hidden neste formulario, mas ele nao aparece como campo visual.</p>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;input type="checkbox" name="interesses" value="html" /&gt;
+
+&lt;input type="radio" name="turno" value="manha" /&gt;
+&lt;input type="radio" name="turno" value="noite" /&gt;
+
+&lt;input type="hidden" name="origem" value="guia-formulario" /&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>input[type="checkbox"],
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #0f766e;
+}</code></pre>
+          <p class="note">
+            Radios que compartilham o mesmo <code>name</code> fazem parte do
+            mesmo grupo de escolha unica.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

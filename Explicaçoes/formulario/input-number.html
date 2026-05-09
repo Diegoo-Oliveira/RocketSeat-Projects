@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Input Number</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Input Number</span>
+      </div>
+
+      <section class="hero">
+        <h1>Input Number</h1>
+        <p>
+          <code>input type="number"</code> recebe numeros e pode limitar valor
+          minimo, valor maximo e intervalo de aumento.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li><code>min</code> define o menor valor aceito.</li>
+            <li><code>max</code> define o maior valor aceito.</li>
+            <li><code>step</code> define de quanto em quanto o valor sobe.</li>
+            <li><code>value</code> define um valor inicial.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <div class="form-row">
+              <label for="quantidade">Quantidade</label>
+              <input id="quantidade" name="quantidade" type="number" min="1" max="10" step="1" value="2" />
+              <p class="help-text">Escolha de 1 a 10 unidades.</p>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;input
+  id="quantidade"
+  name="quantidade"
+  type="number"
+  min="1"
+  max="10"
+  step="1"
+  value="2"
+/&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>input[type="number"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+}</code></pre>
+          <p class="note">
+            O navegador ajuda na interface, mas validacao importante tambem deve
+            existir no backend.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

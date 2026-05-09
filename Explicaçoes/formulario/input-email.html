@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario - Input Email</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para formularios</a>
+        <span class="eyebrow">Input Email</span>
+      </div>
+
+      <section class="hero">
+        <h1>Input Email</h1>
+        <p>
+          <code>input type="email"</code> indica que o campo espera um endereco
+          de email. O navegador valida o formato antes do envio.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes principais</h2>
+          <ul class="formula-list">
+            <li>Mostra teclado melhor em celulares.</li>
+            <li>Exige formato parecido com <code>nome@dominio.com</code>.</li>
+            <li>Combina bem com <code>autocomplete="email"</code>.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo visual</h2>
+          <form class="form-demo" action="#">
+            <div class="form-row">
+              <label for="email-contato">Email</label>
+              <input id="email-contato" name="email" type="email" placeholder="voce@email.com" autocomplete="email" required />
+              <p class="help-text">Digite um email valido para continuar.</p>
+            </div>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>HTML</h2>
+          <pre class="code"><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input
+  id="email"
+  name="email"
+  type="email"
+  placeholder="voce@email.com"
+  autocomplete="email"
+  required
+/&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>CSS</h2>
+          <pre class="code"><code>input:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.14);
+}</code></pre>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

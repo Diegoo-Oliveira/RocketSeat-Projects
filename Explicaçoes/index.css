@@ -7,9 +7,11 @@
   --flex: #ef5f4c;
   --grid: #3b82f6;
   --tech: #0ea5e9;
+  --form: #0f766e;
   --grid-soft: #dbeafe;
   --flex-soft: #ffe5df;
   --tech-soft: #e0f2fe;
+  --form-soft: #ccfbf1;
   --shadow: 0 18px 46px rgba(23, 32, 51, 0.12);
 }
 
@@ -119,6 +121,10 @@ h1 {
   border-color: rgba(14, 165, 233, 0.45);
 }
 
+.form-card:hover {
+  border-color: rgba(15, 118, 110, 0.45);
+}
+
 .flex-card .card-label {
   width: fit-content;
   background: var(--flex-soft);
@@ -135,6 +141,12 @@ h1 {
   width: fit-content;
   background: var(--tech-soft);
   color: #0369a1;
+}
+
+.form-card .card-label {
+  width: fit-content;
+  background: var(--form-soft);
+  color: var(--form);
 }
 
 .card h2 {

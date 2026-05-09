@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Padroes CSS Profissionais</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para CSS Profissional</a>
+        <span class="eyebrow">Padroes</span>
+      </div>
+
+      <section class="hero">
+        <h1>Padroes que deixam o CSS mais limpo</h1>
+        <p>
+          Um layout fica mais profissional quando voce para de criar uma regra
+          para cada elemento e comeca a criar regras para comportamentos que se
+          repetem.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <span class="badge good">1</span>
+          <h2>Tokens globais</h2>
+          <p>
+            Cores, fontes e tamanhos principais ficam no <code>:root</code>.
+            Assim o projeto tem uma fonte de verdade para o visual.
+          </p>
+          <pre class="code"><code>:root {
+  --brand-color-dark: #1d4ed8;
+  --text-color-primary: #f1f5f9;
+  --font-family: "Archivo", sans-serif;
+  --h1: 800 24px/135% var(--font-family);
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <span class="badge good">2</span>
+          <h2>Utilitarios pequenos</h2>
+          <p>
+            Classes pequenas reaproveitam decisoes frequentes: grid, gap,
+            colunas e tamanhos de texto.
+          </p>
+          <pre class="code"><code>.grid { display: grid; }
+.grid-flow-col { grid-auto-flow: column; }
+.gap-16 { gap: 16px; }
+.text-xl { font: var(--h2); }</code></pre>
+        </article>
+
+        <article class="panel">
+          <span class="badge good">3</span>
+          <h2>Componentes reutilizaveis</h2>
+          <p>
+            Se varios elementos tem a mesma aparencia, crie uma classe de
+            componente.
+          </p>
+          <pre class="code"><code>.content-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <span class="badge good">4</span>
+          <h2>Layout por areas</h2>
+          <p>
+            Em paginas grandes, <code>grid-template-areas</code> deixa claro o
+            mapa da tela.
+          </p>
+          <pre class="code"><code>main {
+  display: grid;
+  grid-template-areas:
+    "featured featured"
+    "weekly weekly"
+    "ai aside";
+}</code></pre>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Escopo por contexto</h2>
+        <p>
+          Outra diferenca importante e agrupar regras que pertencem a mesma
+          secao. Em vez de espalhar estilos da area destaque pelo arquivo todo,
+          voce coloca tudo dentro do bloco dela.
+        </p>
+        <pre class="code"><code>#featured {
+  grid-area: featured;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: 0;
+  }
+}</code></pre>
+        <p class="note">
+          Esse estilo usa aninhamento de CSS. A leitura fica: dentro de
+          <code>#featured</code>, estilize as imagens, os cards e o caption.
+        </p>
+      </section>
+
+      <section class="section panel">
+        <h2>Exemplo visual do pensamento</h2>
+        <div class="mini-layout">
+          <div class="demo-header">
+            <span class="demo-title"></span>
+            <span class="demo-link"></span>
+          </div>
+
+          <div class="demo-grid">
+            <div class="demo-card">
+              <span class="demo-tag">tag unica</span>
+            </div>
+            <div class="flow">
+              <div class="demo-card small">
+                <span class="demo-tag">tag</span>
+              </div>
+              <div class="demo-card small">
+                <span class="demo-tag">tag</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-row">
+            <span class="demo-thumb"></span>
+            <span class="demo-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="topic-nav">
+        <a href="comparacao.html">Voltar: comparacao</a>
+        <a href="refatoracao.html">Proxima: refatoracao</a>
+      </nav>
+    </main>
+  </body>
+</html>

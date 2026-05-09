@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checklist de CSS Profissional</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para CSS Profissional</a>
+        <span class="eyebrow">Checklist</span>
+      </div>
+
+      <section class="hero">
+        <h1>Checklist para revisar seus layouts</h1>
+        <p>
+          Use esta lista quando terminar um projeto. Ela ajuda a enxergar se o
+          CSS esta apenas funcionando ou se tambem esta organizado para crescer.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>1. Repeticao</h2>
+          <ul class="decision">
+            <li>Tenho varias classes com as mesmas propriedades?</li>
+            <li>Consigo transformar isso em uma classe unica?</li>
+            <li>A largura fixa e realmente necessaria?</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>2. Nomes de classe</h2>
+          <ul class="decision">
+            <li>O nome descreve um padrao ou apenas um item especifico?</li>
+            <li><code>.content-tag</code> e mais reutilizavel que <code>.content-tag-robotica</code>.</li>
+            <li><code>.section-header</code> e mais reutilizavel que <code>#aside-head</code>.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>3. Layout</h2>
+          <ul class="decision">
+            <li>A pagina grande esta organizada com Grid?</li>
+            <li>Componentes internos usam Flexbox ou Grid de forma simples?</li>
+            <li>O espaçamento esta vindo de <code>gap</code> quando possivel?</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>4. Organizacao</h2>
+          <ul class="decision">
+            <li>Tokens globais ficam no arquivo global?</li>
+            <li>Header, secoes e utilitarios estao separados?</li>
+            <li>As regras de uma secao estao agrupadas no mesmo lugar?</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Regra mental simples</h2>
+        <p>
+          Quando voce for criar uma classe, pergunte: "isso e uma coisa unica
+          da tela ou e um padrao que pode aparecer de novo?".
+        </p>
+        <div class="compare-grid">
+          <div>
+            <span class="badge warning">Cuidado</span>
+            <pre class="code"><code>#news-one
+#news-two
+#popular-heading
+#aside-head
+.content-tag-robotica</code></pre>
+          </div>
+          <div>
+            <span class="badge good">Melhor padrao</span>
+            <pre class="code"><code>.featured-card
+.story-card
+.section-header
+.content-tag
+.grid-flow-col</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section panel">
+        <h2>Quando ser especifico?</h2>
+        <p>
+          Ser especifico nao e errado. Use uma classe ou ID especifico quando a
+          parte da tela realmente tem comportamento unico. O problema aparece
+          quando voce usa especificidade para elementos que compartilham o mesmo
+          visual.
+        </p>
+        <p class="note">
+          Profissional nao significa complexo. Profissional significa facil de
+          entender, facil de mudar e dificil de quebrar sem perceber.
+        </p>
+      </section>
+
+      <nav class="topic-nav">
+        <a href="comparacao.html">Comparacao</a>
+        <a href="padroes.html">Padroes</a>
+        <a href="refatoracao.html">Refatoracao</a>
+      </nav>
+    </main>
+  </body>
+</html>

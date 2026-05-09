@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparacao dos Codigos</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para CSS Profissional</a>
+        <span class="eyebrow">Comparacao</span>
+      </div>
+
+      <section class="hero">
+        <h1>Dois codigos certos, dois niveis de organizacao</h1>
+        <p>
+          O projeto mais especifico funciona porque cada parte recebe sua regra.
+          O projeto da Rocketseat tambem funciona, mas usa menos regras porque
+          transforma repeticoes em padroes.
+        </p>
+      </section>
+
+      <section class="compare-grid">
+        <article class="panel">
+          <span class="badge warning">Mais especifico</span>
+          <h2>Seu TechNews</h2>
+          <p>
+            Cada categoria ganhou uma classe propria, mesmo tendo quase o mesmo
+            estilo visual.
+          </p>
+          <pre class="code"><code>.content-tag-robotica { ... }
+.content-tag-hologramas { ... }
+.content-tag-internet { ... }
+.content-tag-vestiveis { ... }</code></pre>
+          <p class="note">
+            Funciona, mas cria repeticao. Se voce quiser mudar a cor das tags,
+            precisa alterar varias classes.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="badge good">Mais padronizado</span>
+          <h2>Rocketseat</h2>
+          <p>
+            Uma classe unica cuida da aparencia. O texto da categoria muda no
+            HTML, nao no CSS.
+          </p>
+          <pre class="code"><code>.content-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--brand-color-dark);
+}</code></pre>
+          <p class="note">
+            Se mudar o visual da tag, todo o projeto acompanha a mudanca.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>HTML especifico</h2>
+          <pre class="code"><code>&lt;p class="content-tag-robotica"&gt;ROBOTICA&lt;/p&gt;
+&lt;p class="content-tag-internet"&gt;INTERNET&lt;/p&gt;
+&lt;p class="content-tag-ia"&gt;INTELIGENCIA ARTIFICIAL&lt;/p&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>HTML padronizado</h2>
+          <pre class="code"><code>&lt;span class="content-tag"&gt;robotica&lt;/span&gt;
+&lt;span class="content-tag"&gt;internet&lt;/span&gt;
+&lt;span class="content-tag"&gt;inteligencia artificial&lt;/span&gt;</code></pre>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Por que o segundo parece mais profissional?</h2>
+        <ol class="formula-list">
+          <li>Ele separa melhor conteudo e aparencia.</li>
+          <li>Ele reduz repeticao de CSS.</li>
+          <li>Ele cria uma linguagem visual unica para o projeto.</li>
+          <li>Ele facilita manutencao: uma mudanca afeta todos os elementos parecidos.</li>
+        </ol>
+      </section>
+
+      <nav class="topic-nav">
+        <a href="padroes.html">Proxima: padroes profissionais</a>
+        <a href="refatoracao.html">Refatoracao do TechNews</a>
+      </nav>
+    </main>
+  </body>
+</html>

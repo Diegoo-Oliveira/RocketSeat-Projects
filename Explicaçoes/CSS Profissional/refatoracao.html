@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Refatorando o TechNews</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para CSS Profissional</a>
+        <span class="eyebrow">Refatoracao</span>
+      </div>
+
+      <section class="hero">
+        <h1>Como transformar o CSS especifico em CSS profissional</h1>
+        <p>
+          Refatorar nao significa jogar tudo fora. O melhor caminho e trocar
+          repeticoes por padroes aos poucos, mantendo o projeto funcionando.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <span class="badge info">Passo 1</span>
+          <h2>Encontre repeticoes</h2>
+          <p>
+            Comece procurando classes que tem quase as mesmas propriedades. No
+            TechNews, as tags de categoria sao o exemplo mais claro.
+          </p>
+          <pre class="code"><code>.content-tag-robotica
+.content-tag-hologramas
+.content-tag-internet
+.content-tag-vestiveis</code></pre>
+        </article>
+
+        <article class="panel">
+          <span class="badge info">Passo 2</span>
+          <h2>Crie uma classe comum</h2>
+          <p>
+            Pegue o que todas tem igual e coloque em uma classe unica.
+          </p>
+          <pre class="code"><code>.content-tag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 20px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--brand-color-dark);
+  font: var(--font-tag);
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <span class="badge info">Passo 3</span>
+          <h2>Troque o HTML</h2>
+          <p>
+            Em vez de uma classe por categoria, use a mesma classe e mude o
+            texto.
+          </p>
+          <pre class="code"><code>&lt;p class="content-tag"&gt;ROBOTICA&lt;/p&gt;
+&lt;p class="content-tag"&gt;HOLOGRAMAS&lt;/p&gt;
+&lt;p class="content-tag"&gt;INTERNET&lt;/p&gt;</code></pre>
+        </article>
+
+        <article class="panel">
+          <span class="badge info">Passo 4</span>
+          <h2>Repita com outros blocos</h2>
+          <p>
+            Depois das tags, procure cabecalhos, cards, gaps, imagens quadradas
+            e textos que repetem comportamento.
+          </p>
+          <pre class="code"><code>.section-header { ... }
+.news-card { ... }
+.media-square { ... }
+.stack-32 { gap: 32px; }</code></pre>
+        </article>
+      </section>
+
+      <section class="compare-grid">
+        <article class="panel">
+          <span class="badge warning">Antes</span>
+          <h2>Cabecalhos separados</h2>
+          <pre class="code"><code>#popular-heading { ... }
+#featured-ia-head { ... }
+#aside-head { ... }</code></pre>
+          <p>
+            Cada regra resolve uma secao, mas todas descrevem quase o mesmo
+            componente: titulo da secao + link "Ver tudo".
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="badge good">Depois</span>
+          <h2>Um componente de cabecalho</h2>
+          <pre class="code"><code>.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--stroke-color);
+  padding-top: 12px;
+}</code></pre>
+          <p>
+            Agora qualquer secao pode usar o mesmo padrao de cabecalho.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Ordem segura para refatorar</h2>
+        <ol class="formula-list">
+          <li>Escolha uma repeticao pequena.</li>
+          <li>Crie a classe reutilizavel.</li>
+          <li>Troque apenas dois ou tres lugares no HTML.</li>
+          <li>Abra no navegador e confira se nada quebrou.</li>
+          <li>So depois remova as classes antigas.</li>
+        </ol>
+        <p class="note">
+          O segredo e refatorar em partes pequenas. Assim voce aprende padroes
+          sem perder o controle do layout.
+        </p>
+      </section>
+
+      <nav class="topic-nav">
+        <a href="padroes.html">Voltar: padroes</a>
+        <a href="checklist.html">Proxima: checklist</a>
+      </nav>
+    </main>
+  </body>
+</html>

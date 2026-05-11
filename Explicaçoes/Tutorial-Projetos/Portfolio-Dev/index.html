@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial Portfolio Dev</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../index.html">Voltar aos tutoriais</a>
+
+      <nav aria-label="Guias relacionados">
+        <a href="../../CSS Profissional/index.html">CSS Profissional</a>
+        <a href="../../../RocketSeat-Projects/index.html">Projetos do professor</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <span class="eyebrow">Tutorial de projeto</span>
+        <h1>Como montar o Portfolio Dev com uma estrutura mais profissional</h1>
+        <p>
+          O objetivo nao e apenas reproduzir a tela. A ideia e transformar o
+          layout em um projeto organizado, facil de comparar com a referencia do
+          professor e simples de melhorar depois que a primeira versao funcionar.
+        </p>
+        <div class="source-actions">
+          <a class="source-link" href="https://app.rocketseat.com.br/projetos/desafio-pratico-portfolio-dev">
+            Ver pagina do desafio na Rocketseat
+          </a>
+          <a class="source-link secondary" href="https://www.figma.com/design/NkfKgGFcSA1EAim4CSlbfT/Portfolio-Dev--Community-?node-id=3-376&amp;p=f&amp;t=F0ZS9DH72Pq32v2X-0">
+            Abrir layout no Figma
+          </a>
+        </div>
+      </section>
+
+      <section class="lesson intro-grid">
+        <div>
+          <span class="section-label">Leitura do layout</span>
+          <h2>Separe o portfolio por secoes antes de escrever CSS</h2>
+          <p>
+            O layout real tem um topo escuro com elementos de codigo nas
+            laterais, foto circular, texto de boas-vindas, titulo
+            "Desenvolvedora Fullstack", descricao curta, tags de tecnologia,
+            seis projetos, tres servicos e quatro links de contato. Use o node
+            `3:376` do Figma como ponto de partida para conferir hierarquia,
+            espacamentos e ordem das secoes.
+          </p>
+          <p>
+            Cada bloco tem uma responsabilidade. Quando voce nomeia essas
+            responsabilidades no HTML, o CSS fica menos confuso e mais facil de
+            comparar com a versao do professor.
+          </p>
+        </div>
+
+        <div class="portfolio-map" aria-label="Mapa visual do portfolio">
+          <div class="map-hero">intro centralizada + avatar</div>
+          <div class="map-skills">tags de tecnologias</div>
+          <div class="map-projects">meu trabalho: 6 cards</div>
+          <div class="map-services">meus servicos: 3 cards</div>
+          <div class="map-contact">contato: 4 links</div>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">O projeto real</span>
+        <h2>A tela do Figma tem quatro blocos principais</h2>
+        <p>
+          O print mostra uma landing page pessoal em tema escuro. A organizacao
+          fica vertical: apresentacao no topo, projetos em destaque, servicos
+          oferecidos e uma area final de contato.
+        </p>
+
+        <div class="layout-grid">
+          <article>
+            <strong>1. Intro</strong>
+            <p>
+              Fundo escuro, decoracao de codigo nas laterais, foto circular,
+              nome em destaque, titulo grande e tecnologias em badges.
+            </p>
+          </article>
+
+          <article>
+            <strong>2. Meu trabalho</strong>
+            <p>
+              Titulo de secao pequeno, chamada "Veja os projetos em destaque" e
+              seis cards organizados em grid.
+            </p>
+          </article>
+
+          <article>
+            <strong>3. Meus servicos</strong>
+            <p>
+              Tres cards menores para Website e Aplicativos, API e banco de
+              dados e DevOps.
+            </p>
+          </article>
+
+          <article>
+            <strong>4. Contato</strong>
+            <p>
+              Chamada final e lista vertical de links: LinkedIn, Instagram,
+              GitHub e E-mail.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Comparacao</span>
+        <h2>O fluxo profissional fica separado em tres pastas</h2>
+
+        <div class="compare">
+          <article>
+            <h3>Seu projeto</h3>
+            <p>
+              Fica em `Projetos/PortfolioDev`. Aqui voce pratica, erra, testa e
+              evolui o codigo sem copiar a solucao pronta.
+            </p>
+          </article>
+
+          <article>
+            <h3>Projeto do professor</h3>
+            <p>
+              Quando a Rocketseat liberar o codigo final, salve em
+              `RocketSeat-Projects/portfolio-dev-main` para usar como referencia.
+            </p>
+          </article>
+
+          <article>
+            <h3>Tutorial</h3>
+            <p>
+              Esta pagina vira o mapa mental: quais padroes comparar, onde
+              refatorar e como deixar sua versao mais limpa.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Estrutura</span>
+        <h2>Comece com pastas pensadas para crescer</h2>
+          <p>
+            Para um portfolio pequeno, um unico `styles.css` funciona. Para
+            estudar como profissional, vale separar base, utilitarios, componentes
+            e secoes. Essa divisao deixa a comparacao com o professor muito mais
+            objetiva.
+        </p>
+
+        <pre><code>Projetos/PortfolioDev/
+  index.html
+  assets/
+    icons/
+    images/
+  styles/
+    global.css
+    utility.css
+    components.css
+    sections.css
+    index.css</code></pre>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Passo 1</span>
+        <h2>Monte o HTML com secoes semanticas</h2>
+        <p>
+          Escreva primeiro a estrutura. Deixe as classes descreverem o papel de
+          cada parte, nao apenas a aparencia.
+        </p>
+
+        <pre><code>&lt;body&gt;
+  &lt;main&gt;
+    &lt;section class="intro container"&gt;...&lt;/section&gt;
+    &lt;section class="projects section"&gt;...&lt;/section&gt;
+    &lt;section class="services section"&gt;...&lt;/section&gt;
+    &lt;section class="contact section"&gt;...&lt;/section&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Passo 2</span>
+        <h2>Transforme o visual do Figma em tokens no `:root`</h2>
+        <p>
+          Cores, fonte, largura maxima e espacamentos devem nascer em
+          `global.css`. Assim, se voce mudar uma cor depois, o portfolio inteiro
+          acompanha a decisao.
+        </p>
+
+        <pre><code>:root {
+  --gray-100: #e2e4e9;
+  --gray-200: #c0c4ce;
+  --gray-300: #878ea1;
+  --gray-400: #292c34;
+  --gray-500: #16181d;
+  --gray-600: #0d0e11;
+  --red: #e3646e;
+  --purple: #bb72e9;
+  --blue: #3996db;
+  --green: #82bc4f;
+  --yellow: #eabd5f;
+  --container: 1040px;
+  --radius-card: 12px;
+  --gap: 24px;
+}</code></pre>
+      </section>
+
+      <section class="lesson steps">
+        <span class="section-label">Passos 3 a 8</span>
+        <h2>Construa de componentes para secoes</h2>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Crie utilitarios pequenos</h3>
+            <p>
+              `.container`, `.section`, `.section-header` e `.grid` evitam que
+              cada bloco repita largura, margem e alinhamento.
+            </p>
+            <pre><code>.container {
+  width: min(var(--container), 100% - 48px);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: 72px;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <div>
+            <h3>Monte a intro como uma secao centralizada</h3>
+            <p>
+              A primeira dobra nao e um header comum. Ela funciona como uma
+              apresentacao: foto, saudacao, titulo grande, paragrafo e badges.
+            </p>
+            <pre><code>.intro {
+  min-height: 750px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: url("../assets/images/Background_Intro.png") center / cover;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">5</div>
+          <div>
+            <h3>Padronize badges de tecnologia</h3>
+            <p>
+              Nao crie uma classe nova para cada tecnologia se a estrutura visual
+              for a mesma. Use uma classe base e, se precisar, uma variacao de cor.
+            </p>
+            <pre><code>.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--surface);
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">6</div>
+          <div>
+            <h3>Transforme os seis projetos em cards reutilizaveis</h3>
+            <p>
+              A secao "Meu trabalho" tem seis cards com a mesma estrutura. Uma
+              classe unica deixa o HTML menor e a manutencao mais simples.
+            </p>
+            <pre><code>.project-card {
+  display: grid;
+  gap: 20px;
+  padding: 12px;
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">7</div>
+          <div>
+            <h3>Use Grid em projetos e servicos</h3>
+            <p>
+              Projetos aparecem em duas linhas de tres cards. Servicos aparecem
+              em uma linha de tres cards. Grid resolve os dois casos.
+            </p>
+            <pre><code>.projects-grid,
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">8</div>
+          <div>
+            <h3>Use Flexbox nos links de contato</h3>
+            <p>
+              Na area final, cada link tem icone, texto e seta. Flexbox alinha
+              esses itens sem precisar criar uma grade maior.
+            </p>
+            <pre><code>.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Responsivo</span>
+        <h2>Quebre as grades sem perder a hierarquia</h2>
+        <p>
+          No mobile, o portfolio deve continuar parecendo intencional. Reduza
+          colunas, mantenha espacamento consistente e garanta que cards e botoes
+          tenham area de toque confortavel.
+        </p>
+
+        <pre><code>@media (max-width: 900px) {
+  .projects-grid,
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .container {
+    width: min(100% - 32px, var(--container));
+  }
+
+  .projects-grid,
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+      </section>
+
+      <section class="lesson checklist">
+        <span class="section-label">Checklist final</span>
+        <h2>Como comparar com a versao do professor</h2>
+        <ol>
+          <li>As secoes principais aparecem na mesma ordem do layout?</li>
+          <li>Os estilos repetidos viraram componentes reutilizaveis?</li>
+          <li>As cores e espacamentos importantes estao centralizados em tokens?</li>
+          <li>O CSS esta dividido por responsabilidade, e nao por improviso?</li>
+          <li>O responsivo quebra as grades antes de o conteudo ficar apertado?</li>
+          <li>O README explica objetivo, tecnologias e como visualizar o projeto?</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

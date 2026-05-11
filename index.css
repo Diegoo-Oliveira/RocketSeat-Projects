@@ -6,8 +6,12 @@
   --line: #d9e0ea;
   --explanations: #3b82f6;
   --explanations-soft: #dbeafe;
+  --tutorials: #7c3aed;
+  --tutorials-soft: #ede9fe;
   --projects: #ef5f4c;
   --projects-soft: #ffe5df;
+  --teacher: #0f766e;
+  --teacher-soft: #ccfbf1;
   --quick: #0ea5e9;
   --quick-soft: #e0f2fe;
   --shadow: 0 18px 46px rgba(23, 32, 51, 0.12);
@@ -122,14 +126,32 @@ h1 {
   border-color: rgba(239, 95, 76, 0.45);
 }
 
+.tutorials-card:hover {
+  border-color: rgba(124, 58, 237, 0.45);
+}
+
+.teacher-card:hover {
+  border-color: rgba(15, 118, 110, 0.45);
+}
+
 .explanations-card .card-label {
   background: var(--explanations-soft);
   color: #1d4ed8;
 }
 
+.tutorials-card .card-label {
+  background: var(--tutorials-soft);
+  color: var(--tutorials);
+}
+
 .projects-card .card-label {
   background: var(--projects-soft);
   color: #a33c2d;
+}
+
+.teacher-card .card-label {
+  background: var(--teacher-soft);
+  color: var(--teacher);
 }
 
 .card h2 {
@@ -196,7 +218,7 @@ h1 {
 .project-link span {
   font-size: 1.2rem;
   font-weight: 800;
-  color: rgb(112, 243, 243);
+  color: var(--ink);
 }
 
 .project-link p {

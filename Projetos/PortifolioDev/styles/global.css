@@ -30,3 +30,57 @@
     --text-md: 400 16px/140% var(--text-font);
     --text-sm: 400 14px/140% var(--text-font);
 }
+
+
+.subtitle {
+    font: var(--subtitle);
+    color: var(--gray-200);
+}
+
+.title-lg {
+    font: var(--title-lg);
+    color: var(--gray-100);
+}
+
+.title-md {
+    font: var(--title-md);
+    color: var(--gray-100);
+}
+
+.title-sm {
+    font: var(--title-sm);
+    color: var(--gray-100);
+}
+
+.text-sm {
+    font: var(--text-sm);
+    color: var(--gray-300);
+}
+
+.text-md {
+    font: var(--text-md);
+    color: var(--gray-200);
+}
+
+.red-text {
+    color: var(--red);
+}
+
+main{
+    background-color: var(--gray-500);
+}
+
+#intro{
+    background-image: url(../Assets/img/Background_Intro.png);
+    background-size: cover;
+    width: 1366px;
+    height: 750px;
+   margin-inline: auto;
+}
+
+#projects{
+    width: 1366px;
+    height: 750px;
+    margin-inline: auto;
+    display: grid;
+}

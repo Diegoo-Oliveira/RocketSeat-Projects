@@ -1,195 +1,192 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Inconsolata:wght@200..900&family=Maven+Pro:wght@400..900&display=swap" rel="stylesheet">
-    <title>Portifolio Dev</title>
+    <link rel="stylesheet" href="index.css">
+    <title>Portfólio Dev</title>
 </head>
 <body>
-    <div class="container">
-        <section id="info">
+    <main>
+        <section id="intro" class="container">
             <header>
                 <div id="avatar">
-                    <img src="Assets/icons/code.svg" alt="Simbolo de codigo">
-                    <figure id="User">
+                    <img src="Assets/icons/code.svg" alt="">
+                    <div id="profile-picture">
                         <img src="Assets/Image.png" alt="Foto de Martina Santos">
-                        <img src="Assets/Border.svg" alt="Borda da foto de Martina Santos">
-                    </figure>
+                        <img src="Assets/Border.svg" alt="">
+                    </div>
                 </div>
 
-                <div id="Text">
-                    <p class="subtitle">Hello World! Meu nome é Martina Santos e sou</p>
-                    <h1 class="title-lg">Desenvolvedora Fullstack</h1>
+                <div id="intro-text">
+                    <p class="subtitle">Olá, meu nome é Martina Santos e sou</p>
+                    <h1 id="intro-title" class="title-lg">Desenvolvedora Full Stack</h1>
                 </div>
 
-                <p class="text-sm">Transformo necessidades em aplicações reais, evolventes e funcionais. Desenvolvo sistemas através da minha paixão pela tecnologia, contribuindo com soluções inovadoras e eficazes para desafios complexos.</p>
+                <p class="text-sm">Transformo necessidades em aplicações reais, funcionais e escaláveis. Desenvolvo sistemas com foco em tecnologia, usabilidade e soluções eficazes para desafios complexos.</p>
             </header>
 
-            <section id="tags">
-                <figure class="tag">
-                    <img src="Assets/icons/GitHub.svg" alt="Simbolo do github">
-                    <span class="text-md">Github</span>
-                </figure>
+            <section id="tech-tags">
+                <div class="tag">
+                    <img src="Assets/icons/GitHub.svg" alt="">
+                    <span class="text-md">GitHub</span>
+                </div>
 
-                <figure class="tag">
-                    <img src="Assets/icons/HTML.svg" alt="Simbolo da linguagem HTML">
+                <div class="tag">
+                    <img src="Assets/icons/HTML.svg" alt="">
                     <span class="text-md">HTML</span>
-                </figure>
+                </div>
 
-                <figure class="tag">
-                    <img src="Assets/icons/CSS.svg" alt="Simbolo da linguagem CSS">
+                <div class="tag">
+                    <img src="Assets/icons/CSS.svg" alt="">
                     <span class="text-md">CSS</span>
-                </figure>
+                </div>
 
-                <figure class="tag">
-                    <img src="Assets/icons/JavaScript.svg" alt="Simbolo da linguagem JavaScript">
+                <div class="tag">
+                    <img src="Assets/icons/JavaScript.svg" alt="">
                     <span class="text-md">JavaScript</span>
-                </figure>
+                </div>
 
-                <figure class="tag">
-                    <img src="Assets/icons/React.svg" alt="Simbolo da lingaugem React">
+                <div class="tag">
+                    <img src="Assets/icons/React.svg" alt="">
                     <span class="text-md">React</span>
-                </figure>
+                </div>
 
-                <figure class="tag">
-                    <img src="Assets/icons/Node.js.svg" alt="Simbolo da linguagem Nodejs">
-                    <span class="text-md">Nodejs</span>
-                </figure>
+                <div class="tag">
+                    <img src="Assets/icons/Node.js.svg" alt="">
+                    <span class="text-md">Node.js</span>
+                </div>
             </section>
+
+            <img src="Assets/icons/CaretDoubleDown.svg" alt="">
         </section>
 
-        <img src="Assets/icons/CaretDoubleDown.svg" alt="Icone de duas setas para baixo">
-    </div>
-
-    <div class="container">
-        <section id="projects">
+        <section id="projects" class="container">
             <header>
                 <p class="subtitle">Meu trabalho</p>
-                <h2 class="title-md">Veja os projetos em destaque</h2>
+                <h2 id="projects-title" class="title-md">Veja os projetos em destaque</h2>
             </header>
 
             <section id="projects-grid">
-                <figure class="card">
-                    <img src="Assets/img/Thumbnail_Project-01.png" alt="Foto do projeto Travelgram">
+                <article class="card">
+                    <img src="Assets/img/Thumbnail_Project-01.png" alt="Captura de tela do projeto Travelgram">
                     <div>
                         <h3 class="title-sm">Travelgram</h3>
-                        <p class="text-sm">Rede social onde as pessoas mostram os registros de suas viagens pelo mundo</p>
+                        <p class="text-sm">Rede social onde as pessoas mostram os registros de suas viagens pelo mundo.</p>
                     </div>
-                </figure>
+                </article>
 
-                <figure class="card">
-                    <img src="Assets/img/Thumbnail_Project-02.png" alt="Foto do projeto Tech News">
+                <article class="card">
+                    <img src="Assets/img/Thumbnail_Project-02.png" alt="Captura de tela do projeto Tech News">
                     <div>
                         <h3 class="title-sm">Tech News</h3>
-                        <p class="text-sm">Homepage de um portal de notícias sobre a área de tecnologia</p>
+                        <p class="text-sm">Homepage de um portal de notícias sobre tecnologia.</p>
                     </div>
-                </figure>
+                </article>
 
-                <figure class="card">
-                    <img src="Assets/img/Thumbnail_Project-03.png" alt="Foto do projeto Página de receita">
+                <article class="card">
+                    <img src="Assets/img/Thumbnail_Project-03.png" alt="Captura de tela do projeto Página de receita">
                     <div>
                         <h3 class="title-sm">Página de receita</h3>
-                        <p class="text-sm">Página com o passo a passo de uma receita para cupcakes</p>
+                        <p class="text-sm">Página com o passo a passo de uma receita para cupcakes.</p>
                     </div>
-                </figure>
+                </article>
 
-                <figure class="card">
-                    <img src="Assets/img/Thumbnail_Project-04.png" alt="">
+                <article class="card">
+                    <img src="Assets/img/Thumbnail_Project-04.png" alt="Captura de tela do projeto Zingen">
                     <div>
                         <h3 class="title-sm">Zingen</h3>
-                        <p class="text-sm">Landing Page completa e responsiva de um aplicativo de Karaokê</p>
+                        <p class="text-sm">Landing page completa e responsiva de um aplicativo de karaokê.</p>
                     </div>
-                </figure>
+                </article>
 
-                <figure class="card">
-                    <img src="Assets/img/Thumbnail_Project-05.png" alt="">
+                <article class="card">
+                    <img src="Assets/img/Thumbnail_Project-05.png" alt="Captura de tela do projeto Refund">
                     <div>
                         <h3 class="title-sm">Refund</h3>
-                        <p class="text-sm">Um sistema para pedido e acompanhamento de reembolso </p>
+                        <p class="text-sm">Sistema para solicitação e acompanhamento de reembolsos.</p>
                     </div>
-                </figure>
+                </article>
 
-                <figure class="card">
-                    <img src="Assets/img/Thumbnail_Project-06.png" alt="">
+                <article class="card">
+                    <img src="Assets/img/Thumbnail_Project-06.png" alt="Captura de tela do projeto Página de turismo">
                     <div>
                         <h3 class="title-sm">Página de turismo</h3>
-                        <p class="text-sm">Página com as principais informações para quem quer viajar para Busan</p>
+                        <p class="text-sm">Página com as principais informações para quem quer viajar para Busan.</p>
                     </div>
-                </figure>
+                </article>
             </section>
         </section>
-    </div>
 
-    <div class="service">
-        <header>
-            <p class="subtitle">Meus serviços</p>
-            <h2 class="title-md">Como posso ajudar o seu negócio</h2>
-        </header>
-
-        <section id="id">
-            <figure class="card-id">
-                <img src="Assets/icons/Devices.svg" alt="Icone de computador">
-                <div class="service-header">
-                    <h3 class="title-sm">Websites e Aplicativos</h3>
-                    <p class="text-sm">Desenvolvimento de interfaces</p>
-                </div>
-            </figure>
-
-            <figure class="card-id">
-                <img src="Assets/icons/HardDrives.svg" alt="Icone de dois HD">
-                <div class="service-header">
-                    <h3 class="title-sm">API e bancos de dados</h3>
-                    <p class="text-sm">Criação de serviços do sistema</p>
-                </div>
-            </figure>
-
-            <figure class="card-id">
-                <img src="Assets/icons/Infinity.svg" alt="Icone de infinito">
-                <div class="service-header">
-                    <h3 class="title-sm">DevOps</h3>
-                    <p class="text-sm">Gestão e infraestrutura da aplicação</p>
-                </div>
-            </figure>
-        </section>
-    </div>
-
-    <div class="container">
-        <section id="contact">
+        <section id="services" class="service">
             <header>
-                <p>Contato</p>
-                <h2 class="title-md">Gostou do meu trabalho?</h2>
-                <p class="text-md">Entre em contato ou acompanhe as minhas redes sociais!</p>
+                <p class="subtitle">Meus serviços</p>
+                <h2 id="services-title" class="title-md">Como posso ajudar o seu negócio</h2>
             </header>
 
-            <section id="links">
-                <div class="social-button">
-                    <img src="Assets/icons/LinkedinLogo.svg" alt="">
-                    <span class="text-md">Linkedin</span>
-                    <img src="Assets/icons/ArrowUpRight.svg" alt="">
-                </div>
+            <section id="services-grid">
+                <article class="service-card">
+                    <img src="Assets/icons/Devices.svg" alt="">
+                    <div class="service-content">
+                        <h3 class="title-sm">Websites e aplicativos</h3>
+                        <p class="text-sm">Desenvolvimento de interfaces responsivas.</p>
+                    </div>
+                </article>
 
-                <div class="social-button">
+                <article class="service-card">
+                    <img src="Assets/icons/HardDrives.svg" alt="">
+                    <div class="service-content">
+                        <h3 class="title-sm">APIs e bancos de dados</h3>
+                        <p class="text-sm">Criação de serviços, integrações e estruturas de dados.</p>
+                    </div>
+                </article>
+
+                <article class="service-card">
+                    <img src="Assets/icons/Infinity.svg" alt="">
+                    <div class="service-content">
+                        <h3 class="title-sm">DevOps</h3>
+                        <p class="text-sm">Gestão de infraestrutura, deploy e evolução da aplicação.</p>
+                    </div>
+                </article>
+            </section>
+        </section>
+
+        <section id="contact" class="container">
+            <header>
+                <p class="subtitle">Contato</p>
+                <h2 id="contact-title" class="title-md">Gostou do meu trabalho?</h2>
+                <p class="text-md">Entre em contato ou acompanhe minhas redes sociais.</p>
+            </header>
+
+            <section id="social-links">
+                <a class="social-button" href="#">
+                    <img src="Assets/icons/LinkedinLogo.svg" alt="">
+                    <span class="text-md">LinkedIn</span>
+                    <img src="Assets/icons/ArrowUpRight.svg" alt="">
+                </a>
+
+                <a class="social-button" href="#">
                     <img src="Assets/icons/InstagramLogo.svg" alt="">
                     <span class="text-md">Instagram</span>
                     <img src="Assets/icons/ArrowUpRight.svg" alt="">
-                </div>
+                </a>
 
-                <div class="social-button">
+                <a class="social-button" href="#">
                     <img src="Assets/icons/GitHub.svg" alt="">
                     <span class="text-md">GitHub</span>
                     <img src="Assets/icons/ArrowUpRight.svg" alt="">
-                </div>
+                </a>
 
-                <div class="social-button">
+                <a class="social-button" href="#">
                     <img src="Assets/icons/EnvelopeSimple.svg" alt="">
                     <span class="text-md">E-mail</span>
                     <img src="Assets/icons/ArrowUpRight.svg" alt="">
-                </div>
+                </a>
             </section>
         </section>
-    </div>
+    </main>
 </body>
 </html>

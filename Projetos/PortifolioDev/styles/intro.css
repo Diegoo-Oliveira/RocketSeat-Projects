@@ -1,0 +1,60 @@
+#info{
+    width: 1040px;
+    height: 448px;
+    margin-inline: auto;
+    gap: 80px;
+}
+
+#intro header {
+    width: 680px;
+    gap: 56px;
+}
+
+#intro-text{
+    gap: 20px;
+}
+
+#intro-title{
+    gap: 8px;
+    text-align: center;
+}
+
+#intro p:last-child {
+    text-align: center;
+}
+
+#avatar {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+#profile-picture {
+  position: absolute;
+  inset: 0;
+}
+
+#profile-picture img:first-child {
+  position: absolute;
+  width: 88px;
+  height: 88px;
+  top: 6px;
+  left: 6px;
+  border-radius: 50%;
+}
+
+#profile-picture img:last-child {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+}
+
+#avatar > img {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  z-index: 2;
+}
+

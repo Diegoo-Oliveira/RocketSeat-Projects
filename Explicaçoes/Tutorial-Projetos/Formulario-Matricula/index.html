@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial Formulário de Matrícula</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../index.html">Voltar aos tutoriais</a>
+
+      <nav aria-label="Guias relacionados">
+        <a href="../../CSS Profissional/index.html">CSS Profissional</a>
+        <a href="../../../index.html">Index principal</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <span class="eyebrow">Tutorial de projeto</span>
+        <h1>Como montar o Formulário de Matrícula a partir do Figma</h1>
+        <p>
+          Este projeto ensina uma parte muito importante do front-end: criar uma
+          página de formulário grande sem perder organização. O segredo é ler o
+          layout por blocos, montar o HTML semântico primeiro e só depois cuidar
+          dos detalhes visuais.
+        </p>
+
+        <div class="source-actions">
+          <a class="source-link" href="https://www.figma.com/design/dMeUwK7bl97bDDRJZ7Xjzu/Formul%C3%A1rio-de-matr%C3%ADcula--Community-?node-id=3-809&amp;m=dev">
+            Abrir layout no Figma
+          </a>
+          <a class="source-link secondary" href="https://www.figma.com/design/dMeUwK7bl97bDDRJZ7Xjzu/Formul%C3%A1rio-de-matr%C3%ADcula--Community-?node-id=2190-1725&amp;m=dev">
+            Abrir Style Guide
+          </a>
+          <a class="source-link secondary" href="#checklist">
+            Ver checklist final
+          </a>
+        </div>
+      </section>
+
+      <section class="lesson intro-grid">
+        <div>
+          <span class="section-label">Leitura do layout</span>
+          <h2>Antes do código, entenda a tela como duas colunas</h2>
+          <p>
+            Pelo node `3:809` do Figma, a tela principal tem um frame chamado
+            "Forms de matrícula escola", com `1280px` de largura e `848px` de
+            altura. Dentro dele existem duas áreas: o formulário à esquerda e
+            uma área visual/institucional à direita.
+          </p>
+          <p>
+            Essa leitura já decide quase todo o CSS: o pai usa Grid com duas
+            colunas, a coluna esquerda concentra o `form`, e a coluna direita
+            funciona como um painel fixo com marca, texto e ilustração.
+          </p>
+        </div>
+
+        <div class="layout-map" aria-label="Mapa visual do formulário">
+          <div class="map-form">
+            <strong>Form area</strong>
+            <span>656px</span>
+          </div>
+          <div class="map-aside">
+            <strong>Painel visual</strong>
+            <span>624px</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Mapa do Figma</span>
+        <h2>O formulário é grande, mas ele se repete em blocos simples</h2>
+        <p>
+          A coluna esquerda tem `64px` de respiro lateral e um conteúdo central
+          com `528px`. A partir daí, o Figma organiza o formulário em grupos:
+          cabeçalho, dados da criança, endereço, responsável, opções de matrícula,
+          aceite dos termos e ações finais.
+        </p>
+
+        <div class="figma-grid">
+          <article>
+            <strong>1. Cabeçalho</strong>
+            <p>Link de voltar, título "Formulário de matrícula" e texto introdutório.</p>
+          </article>
+
+          <article>
+            <strong>2. Informações da criança</strong>
+            <p>Nome, nascimento, sexo, informações médicas e envio da certidão.</p>
+          </article>
+
+          <article>
+            <strong>3. Endereço residencial</strong>
+            <p>CEP, rua, número, cidade e estado, com campos lado a lado.</p>
+          </article>
+
+          <article>
+            <strong>4. Responsável</strong>
+            <p>Nome do responsável, telefone e e-mail para contato.</p>
+          </article>
+
+          <article>
+            <strong>5. Opções de matrícula</strong>
+            <p>Cards de turno e cards de esportes selecionáveis.</p>
+          </article>
+
+          <article>
+            <strong>6. Finalização</strong>
+            <p>Checkbox de termos e botões "Salvar respostas" e "Fazer matrícula".</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Style Guide</span>
+        <h2>Use o Style Guide como fonte oficial antes de criar seus próprios estilos</h2>
+        <p>
+          O node `2190:1725` do Figma é o apoio mais importante para esse projeto.
+          Ele deve ser consultado antes de escrever o CSS final, porque ali ficam
+          os padrões que se repetem: cores, textos, inputs, botões, checkbox e
+          cards de seleção.
+        </p>
+        <p>
+          A ordem boa de estudo é esta: primeiro leia o layout completo para
+          entender a página; depois abra o Style Guide para copiar os padrões
+          reutilizáveis; por fim, volte ao layout e aplique esses padrões nas
+          seções reais.
+        </p>
+
+        <div class="figma-grid">
+          <article>
+            <strong>Cores</strong>
+            <p>Mapeie fundo, texto, borda, destaque, hover, erro e selecionado.</p>
+          </article>
+
+          <article>
+            <strong>Tipografia</strong>
+            <p>Confira família, peso, tamanho e line-height de títulos, labels e textos.</p>
+          </article>
+
+          <article>
+            <strong>FormControl</strong>
+            <p>Use como base para input, select, textarea, foco, erro e estado preenchido.</p>
+          </article>
+
+          <article>
+            <strong>SelectionCard</strong>
+            <p>Reaproveite nos turnos e esportes, mudando apenas ícone e texto.</p>
+          </article>
+
+          <article>
+            <strong>Button</strong>
+            <p>Identifique o botão primário, o secundário e seus estados de interação.</p>
+          </article>
+
+          <article>
+            <strong>Checkbox</strong>
+            <p>Use para o aceite dos termos e para entender tamanho e alinhamento.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Estrutura</span>
+        <h2>Crie uma pasta focada em formulário, não em página genérica</h2>
+        <p>
+          Como este projeto tem muitos tipos de campo, vale separar CSS base,
+          componentes de formulário e layout. Isso ajuda a não misturar regra de
+          coluna com regra de input.
+        </p>
+
+        <pre><code>Projetos/Formulario-Matricula/
+  index.html
+  assets/
+    icons/
+    images/
+  styles/
+    global.css
+    form.css
+    layout.css
+    buttons.css
+    index.css</code></pre>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Passo 1</span>
+        <h2>Monte o HTML com `form`, `fieldset` e `label`</h2>
+        <p>
+          Em formulário, semântica importa bastante. Cada grupo do Figma pode
+          virar um `fieldset`, cada título de grupo vira `legend`, e todo campo
+          deve ter um `label` conectado pelo `for`.
+        </p>
+
+        <pre><code>&lt;main class="enrollment-page"&gt;
+  &lt;section class="form-area"&gt;
+    &lt;a class="back-link" href="#"&gt;Voltar&lt;/a&gt;
+
+    &lt;header class="form-header"&gt;
+      &lt;h1&gt;Formulário de matrícula&lt;/h1&gt;
+      &lt;p&gt;Preencha os dados abaixo para matricular seu filho...&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;form&gt;
+      &lt;fieldset&gt;
+        &lt;legend&gt;Informações da criança&lt;/legend&gt;
+      &lt;/fieldset&gt;
+    &lt;/form&gt;
+  &lt;/section&gt;
+
+  &lt;aside class="brand-panel"&gt;...&lt;/aside&gt;
+&lt;/main&gt;</code></pre>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Passo 2</span>
+        <h2>Transforme o Figma em tokens no `:root`</h2>
+        <p>
+          Não comece espalhando cores direto nos campos. Primeiro crie variáveis
+          com nomes de função: superfície, texto, borda, destaque, erro e largura.
+          Depois você ajusta os valores exatos olhando o Style Guide e o Inspect
+          do Figma.
+        </p>
+
+        <pre><code>:root {
+  --surface-primary: #ffffff;
+  --surface-secondary: #fee7d6;
+  --text-primary: #292524;
+  --text-secondary: #57534e;
+  --text-tertiary: #8f8881;
+  --stroke-default: #d6d3d1;
+  --stroke-highlight: #f3541c;
+  --semantic-error: #dc2626;
+
+  --form-width: 528px;
+  --page-gap: 64px;
+  --radius-md: 8px;
+}</code></pre>
+      </section>
+
+      <section class="lesson steps">
+        <span class="section-label">Passos 3 a 8</span>
+        <h2>Construa o projeto por camadas</h2>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Crie o layout principal com Grid</h3>
+            <p>
+              O frame do Figma tem duas colunas: `656px` para o formulário e
+              `624px` para o painel lateral. No navegador, use `minmax` para
+              permitir adaptação.
+            </p>
+            <pre><code>.enrollment-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 656px) minmax(420px, 1fr);
+}
+
+.form-area {
+  padding: 64px;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <div>
+            <h3>Padronize os campos em um componente</h3>
+            <p>
+              O Figma usa várias instâncias de `FormControl`. No HTML/CSS, isso
+              vira uma classe base reutilizável para label, input, select e textarea.
+            </p>
+            <pre><code>.field {
+  display: grid;
+  gap: 4px;
+}
+
+.field label {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--stroke-default);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">5</div>
+          <div>
+            <h3>Use grids pequenos dentro dos fieldsets</h3>
+            <p>
+              No endereço, o Figma coloca alguns campos lado a lado. Em vez de
+              criar várias larguras soltas, crie uma linha reutilizável.
+            </p>
+            <pre><code>.fieldset {
+  display: grid;
+  gap: 24px;
+  border: 0;
+  padding: 0;
+}
+
+.fields-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">6</div>
+          <div>
+            <h3>Monte o upload como um campo especial</h3>
+            <p>
+              A certidão de nascimento não deve parecer um input comum. Crie uma
+              área com borda tracejada, ícone e texto. O input real pode ficar
+              invisível, mas ainda acessível pelo `label`.
+            </p>
+            <pre><code>&lt;label class="upload-field" for="birth-file"&gt;
+  &lt;input id="birth-file" type="file" /&gt;
+  &lt;span&gt;Clique aqui para selecionar o arquivo&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">7</div>
+          <div>
+            <h3>Faça cards selecionáveis com radio e checkbox</h3>
+            <p>
+              Para manter simples, deixe o `input` antes do `label`. Assim você
+              consegue estilizar o card selecionado com `input:checked + label`,
+              sem precisar de JavaScript.
+            </p>
+            <pre><code>&lt;input class="sr-only" type="radio" id="morning" name="shift" /&gt;
+&lt;label class="choice-card" for="morning"&gt;Manhã&lt;/label&gt;
+
+.sr-only:checked + .choice-card {
+  border-color: var(--stroke-highlight);
+  background: #fff7f2;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">8</div>
+          <div>
+            <h3>Finalize com botões e estados visuais</h3>
+            <p>
+              O formulário termina com dois botões. O secundário pode ser claro
+              com borda, e o primário pode usar a cor de destaque do layout.
+            </p>
+            <pre><code>.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.button.primary {
+  border-color: var(--stroke-highlight);
+  background: var(--stroke-highlight);
+  color: #ffffff;
+}</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Responsivo</span>
+        <h2>No mobile, o painel lateral deixa de ser prioridade</h2>
+        <p>
+          O Figma mostra a versão desktop. Para telas menores, a melhor decisão
+          é empilhar as áreas ou esconder a ilustração, mantendo o formulário
+          confortável para preenchimento.
+        </p>
+
+        <pre><code>@media (max-width: 960px) {
+  .enrollment-page {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-panel {
+    order: -1;
+    padding: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-area {
+    padding: 24px;
+  }
+
+  .fields-row,
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+      </section>
+
+      <section class="lesson checklist" id="checklist">
+        <span class="section-label">Checklist final</span>
+        <h2>Como saber se o projeto ficou bem estruturado</h2>
+        <ol>
+          <li>O layout principal usa duas colunas no desktop?</li>
+          <li>O formulário está dentro de uma tag `form` real?</li>
+          <li>Os grupos usam `fieldset` e `legend`?</li>
+          <li>Todo campo tem `label` conectado ao input?</li>
+          <li>Os campos repetidos usam a mesma classe base?</li>
+          <li>Os cards de turno e esporte funcionam sem JavaScript?</li>
+          <li>O mobile empilha campos antes de eles ficarem apertados?</li>
+          <li>As cores, larguras e espaçamentos importantes estão em variáveis?</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

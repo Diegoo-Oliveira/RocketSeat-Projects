@@ -194,6 +194,10 @@ li {
   border-color: rgba(124, 58, 237, 0.45);
 }
 
+.tutorial-card.form:hover {
+  border-color: rgba(234, 88, 12, 0.45);
+}
+
 .tutorial-card.tech .card-label {
   background: var(--blue-soft);
   color: #1d4ed8;
@@ -202,6 +206,11 @@ li {
 .tutorial-card.portfolio .card-label {
   background: var(--violet-soft);
   color: var(--violet);
+}
+
+.tutorial-card.form .card-label {
+  background: var(--orange-soft);
+  color: var(--orange);
 }
 
 .tutorial-card h2 {

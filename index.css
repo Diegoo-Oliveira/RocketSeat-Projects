@@ -218,11 +218,23 @@ h1 {
 .project-link span {
   font-size: 1.2rem;
   font-weight: 800;
-  color: var(--ink);
+  color: var(--project-color, var(--ink));
 }
 
 .project-link p {
   margin-bottom: 0;
+}
+
+.project-travelgram {
+  --project-color: #ef5f4c;
+}
+
+.project-technews {
+  --project-color: #0ea5e9;
+}
+
+.project-portfolio {
+  --project-color: #7c3aed;
 }
 
 @media (max-width: 640px) {

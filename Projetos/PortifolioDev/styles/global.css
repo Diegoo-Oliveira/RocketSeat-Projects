@@ -66,6 +66,10 @@
     color: var(--red);
 }
 
+.purple-text {
+    color: var(--purple);
+}
+
 main{
     background-color: var(--gray-500);
 }
@@ -86,39 +90,25 @@ main{
 }
 
 #projects{
+    width: 1366px;
     height: 917px;
     margin-inline: auto;
+    background-color: var(--gray-500);
 }
 
 #services {
+    width: 1366px;
     height: 480px;
     margin-inline: auto;
     background-color: var(--gray-600);
 }
 
 #contact {
+    width: 1366px;
     height: 787px;
     margin-inline: auto;
     background-image: url(../Assets/img/Background_Contacts.png);
     background-size: cover;
-}
-
-.flex-column{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.flex {
-    display: flex;
- }
-
-.gap16 {
-    gap: 16px;
-}
-
-.gap24 {
-    gap: 24px;
 }
 
 .tag {
@@ -136,3 +126,4 @@ main{
     width: 24px;
     height: 24px;
 }
+

@@ -1,0 +1,28 @@
+.contact-container {
+    padding-block: 128px 200px;
+    gap: 48px;
+}
+
+.social-button {
+  width: 400px;
+  height: 68px;
+  background-color: var(--gray-400);
+  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-inline: 20px;
+  text-decoration: none;
+}
+
+.social-button img:last-child {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+}
+
+.social-button img:first-child {
+    width: 28px;
+    height: 28px;
+}
+

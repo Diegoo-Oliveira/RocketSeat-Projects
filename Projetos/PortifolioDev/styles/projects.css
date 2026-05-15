@@ -1,0 +1,27 @@
+.card {
+    width: 330px;
+    height: 280px;
+    background-color: var(--gray-400);
+    padding: 12px ;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card img{
+    width: 306px;
+    height: 156px;
+    border-radius: 8px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px;
+}
+
+#projects-container {
+    padding-block: 72px 144px;
+}

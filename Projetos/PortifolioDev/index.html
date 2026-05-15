@@ -12,7 +12,7 @@
 <body>
     <main>
         <section id="intro">
-            <div class="container flex-column" id="info">
+            <div class="flex-column" id="info">
                 <header class="flex-column">
                     <div id="avatar">
                         <img src="Assets/icons/code.svg" alt="">
@@ -69,16 +69,16 @@
         </section>
 
         <section id="projects">
-            <div class="container">
-                <header>
-                    <p class="subtitle">Meu trabalho</p>
+            <div id="projects-container" class="container flex-column gap56">
+                <header class="flex-column gap8">
+                    <p class="subtitle red-text">Meu trabalho</p>
                     <h2 id="projects-title" class="title-md">Veja os projetos em destaque</h2>
                 </header>
 
-                <div id="projects-grid">
+                <div id="projects-grid" class= "grid grid-column-3 gap24" >
                     <article class="card">
                         <img src="Assets/img/Thumbnail_Project-01.png" alt="Captura de tela do projeto Travelgram">
-                        <div>
+                        <div class="card-info">
                             <h3 class="title-sm">Travelgram</h3>
                             <p class="text-sm">Rede social onde as pessoas mostram os registros de suas viagens pelo mundo.</p>
                         </div>
@@ -86,7 +86,7 @@
 
                     <article class="card">
                         <img src="Assets/img/Thumbnail_Project-02.png" alt="Captura de tela do projeto Tech News">
-                        <div>
+                        <div class="card-info">
                             <h3 class="title-sm">Tech News</h3>
                             <p class="text-sm">Homepage de um portal de notícias sobre tecnologia.</p>
                         </div>
@@ -94,7 +94,7 @@
 
                     <article class="card">
                         <img src="Assets/img/Thumbnail_Project-03.png" alt="Captura de tela do projeto Página de receita">
-                        <div>
+                        <div class="card-info">
                             <h3 class="title-sm">Página de receita</h3>
                             <p class="text-sm">Página com o passo a passo de uma receita para cupcakes.</p>
                         </div>
@@ -102,7 +102,7 @@
 
                     <article class="card">
                         <img src="Assets/img/Thumbnail_Project-04.png" alt="Captura de tela do projeto Zingen">
-                        <div>
+                        <div class="card-info">
                             <h3 class="title-sm">Zingen</h3>
                             <p class="text-sm">Landing page completa e responsiva de um aplicativo de karaokê.</p>
                         </div>
@@ -110,7 +110,7 @@
 
                     <article class="card">
                         <img src="Assets/img/Thumbnail_Project-05.png" alt="Captura de tela do projeto Refund">
-                        <div>
+                        <div class="card-info">
                             <h3 class="title-sm">Refund</h3>
                             <p class="text-sm">Sistema para solicitação e acompanhamento de reembolsos.</p>
                         </div>
@@ -118,7 +118,7 @@
 
                     <article class="card">
                         <img src="Assets/img/Thumbnail_Project-06.png" alt="Captura de tela do projeto Página de turismo">
-                        <div>
+                        <div class="card-info">
                             <h3 class="title-sm">Página de turismo</h3>
                             <p class="text-sm">Página com as principais informações para quem quer viajar para Busan.</p>
                         </div>
@@ -128,18 +128,18 @@
         </section>
 
         <section id="services">
-            <div class="container">
-                <header>
-                    <p class="subtitle">Meus serviços</p>
+            <div class="services-container flex-column gap56">
+                <header class="flex-column gap8">
+                    <p class="subtitle red-text">Meus serviços</p>
                     <h2 id="services-title" class="title-md">Como posso ajudar o seu negócio</h2>
                 </header>
 
-                <div id="services-grid">
+                <div id="services-grid" class="flex gap24">
                     <article class="service-card">
                         <img src="Assets/icons/Devices.svg" alt="">
                         <div class="service-content">
                             <h3 class="title-sm">Websites e aplicativos</h3>
-                            <p class="text-sm">Desenvolvimento de interfaces responsivas.</p>
+                            <p class="text-sm">Desenvolvimento de interfaces</p>
                         </div>
                     </article>
 
@@ -147,7 +147,7 @@
                         <img src="Assets/icons/HardDrives.svg" alt="">
                         <div class="service-content">
                             <h3 class="title-sm">APIs e bancos de dados</h3>
-                            <p class="text-sm">Criação de serviços, integrações e estruturas de dados.</p>
+                            <p class="text-sm">Criação de serviços do sistema</p>
                         </div>
                     </article>
 
@@ -155,7 +155,7 @@
                         <img src="Assets/icons/Infinity.svg" alt="">
                         <div class="service-content">
                             <h3 class="title-sm">DevOps</h3>
-                            <p class="text-sm">Gestão de infraestrutura, deploy e evolução da aplicação.</p>
+                            <p class="text-sm">Gestão e infraestrutura da aplicação.</p>
                         </div>
                     </article>
                 </div>
@@ -163,14 +163,14 @@
         </section>
 
         <section id="contact">
-            <div class="container">
-                <header>
-                    <p class="subtitle">Contato</p>
+            <div class="contact-container flex-column">
+                <header class="flex-column gap8">
+                    <p class="subtitle purple-text">Contato</p>
                     <h2 id="contact-title" class="title-md">Gostou do meu trabalho?</h2>
                     <p class="text-md">Entre em contato ou acompanhe minhas redes sociais.</p>
                 </header>
 
-                <div id="social-links">
+                <div id="social-links" class="flex-column gap16">
                     <a class="social-button" href="#">
                         <img src="Assets/icons/LinkedinLogo.svg" alt="">
                         <span class="text-md">LinkedIn</span>

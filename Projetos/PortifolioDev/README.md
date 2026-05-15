@@ -7,11 +7,12 @@ professor.
 
 ## Status
 
-Projeto iniciado.
+Layout principal em desenvolvimento avancado.
 
-No momento, a pasta ja possui a base do `index.html`, arquivos CSS criados e os
-assets do layout separados em imagens e icones. A implementacao visual ainda
-esta pendente.
+No momento, o projeto ja possui a estrutura HTML das quatro secoes principais e
+os estilos separados por responsabilidade: base global, intro, projetos,
+servicos, contato e utilitarios. A pagina esta montada para o layout desktop do
+Figma, com largura de referencia em `1366px`.
 
 ## Objetivo
 
@@ -55,24 +56,51 @@ PortifolioDev/
       Thumbnail_Project-05.png
       Thumbnail_Project-06.png
   styles/
+    contact.css
     global.css
+    intro.css
+    projects.css
+    services.css
+    utility.css
 ```
 
 ## Arquivos principais
 
 `index.html`
 
-Arquivo principal da pagina. Atualmente contem a estrutura inicial do HTML com
-`doctype`, idioma, meta tags responsivas e titulo do projeto.
+Arquivo principal da pagina. Contem a estrutura das secoes `intro`, `projects`,
+`services` e `contact`, alem dos cards, tags de tecnologias e links sociais.
 
 `index.css`
 
-Arquivo CSS criado na raiz do projeto. Ainda esta vazio.
+Arquivo de entrada dos estilos. Ele importa os arquivos CSS separados dentro da
+pasta `styles`.
 
 `styles/global.css`
 
-Arquivo reservado para estilos globais, tokens de cor, fontes, reset e regras
-base do projeto. Ainda esta vazio.
+Arquivo com reset, tokens de cor, fontes, classes de texto e configuracoes
+principais das secoes.
+
+`styles/intro.css`
+
+Arquivo com os estilos da apresentacao inicial, avatar, textos e tecnologias.
+
+`styles/projects.css`
+
+Arquivo com os estilos dos cards de projeto e espacamento da secao "Meu
+trabalho".
+
+`styles/services.css`
+
+Arquivo com os estilos dos cards da secao "Meus servicos".
+
+`styles/contact.css`
+
+Arquivo com os estilos da secao final de contato e dos botoes sociais.
+
+`styles/utility.css`
+
+Arquivo com classes utilitarias de flex, grid e gaps reutilizados nas secoes.
 
 `Assets/img`
 
@@ -85,20 +113,31 @@ Pasta com os icones das tecnologias e links sociais.
 ## Referencias de estudo
 
 - Tutorial local: `Explicaçoes/Tutorial-Projetos/Portfolio-Dev/index.html`
+- Guia local sobre SVG e cores: `Explicaçoes/SVG-Cores/index.html`
 - Figma: https://www.figma.com/design/NkfKgGFcSA1EAim4CSlbfT/Portfolio-Dev--Community-?node-id=3-376&p=f&t=F0ZS9DH72Pq32v2X-0
 - Desafio Rocketseat: https://app.rocketseat.com.br/projetos/desafio-pratico-portfolio-dev
 
-## Ordem sugerida de desenvolvimento
+## Proximos ajustes
 
-1. Conectar os arquivos CSS no `index.html`.
-2. Criar tokens no `:root` para cores, fontes, espacamentos e largura do container.
-3. Montar a secao de intro com background, avatar, texto e tecnologias.
-4. Criar o componente reutilizavel de card de projeto.
-5. Montar a grid com os seis projetos.
-6. Criar a secao de servicos com tres cards.
-7. Criar a secao de contato com links.
-8. Ajustar responsividade para tablet e celular.
-9. Comparar com o projeto do professor em `RocketSeat-Projects`.
+1. Comparar o layout completo com o Figma em `1366px`.
+2. Ajustar os estados de hover dos botoes sociais.
+3. Definir a estrategia para cores dos SVGs: editar `fill`/`stroke`, criar
+   copias coloridas ou usar SVG inline com `currentColor`.
+4. Revisar responsividade para telas menores.
+5. Comparar com o projeto do professor em `RocketSeat-Projects`.
+
+## Observacoes sobre SVG
+
+Os icones do projeto estao sendo usados com a tag `img`, apontando para arquivos
+`.svg`. Como esses SVGs possuem `fill` fixo dentro do arquivo, o CSS do elemento
+pai nao consegue trocar a cor diretamente.
+
+Para manter o projeto simples, existem tres caminhos:
+
+- alterar o `fill` ou `stroke` direto no arquivo SVG;
+- criar copias coloridas dos icones para estados como hover;
+- usar SVG inline com `currentColor`, quando quiser que o icone obedeca a cor
+  definida no CSS.
 
 ## Observacao
 

@@ -20,7 +20,7 @@ Projetos que voce constroi na mao durante os estudos.
 - [TechNews](Projetos/TechNews/index.html) - portal de noticias sobre tecnologia
   com destaque principal, secoes de noticias, aside e assets proprios.
 - [Portifolio Dev](Projetos/PortifolioDev/index.html) - portfolio pessoal em
-  desenvolvimento, baseado no desafio Portfolio Dev da Rocketseat.
+  desenvolvimento avancado, baseado no desafio Portfolio Dev da Rocketseat.
 
 ## Tutoriais de projetos
 
@@ -34,6 +34,8 @@ Guias para transformar um layout em projeto com uma estrutura mais profissional.
 - [Tutorial Portfolio Dev](Explicaçoes/Tutorial-Projetos/Portfolio-Dev/index.html) -
   roteiro para montar o portfolio com intro, projetos, servicos, contato,
   tokens, utilitarios e componentes.
+- [Guia SVG e cores](Explicaçoes/SVG-Cores/index.html) - estudo sobre `fill`,
+  `stroke`, `currentColor` e hover de icones SVG.
 
 ## Explicacoes e estudos
 
@@ -49,6 +51,8 @@ Paginas conceituais para revisar HTML, CSS e boas praticas.
   inputs, textarea, select, button e fieldset.
 - [CSS Profissional](Explicaçoes/CSS%20Profissional/index.html) - comparacao de
   codigos, padroes reutilizaveis, refatoracao e checklist.
+- [SVG e cores](Explicaçoes/SVG-Cores/index.html) - explicacao pratica para
+  trocar cores de icones SVG usados no Portfolio Dev.
 
 ## Projetos de referencia da Rocketseat
 
@@ -57,8 +61,19 @@ voce terminar a sua versao.
 
 - [Guia RocketSeat Projects](RocketSeat-Projects/index.html) - explicacao de
   como usar a pasta de referencias.
+- [README RocketSeat Projects](RocketSeat-Projects/README.md) - descricao da
+  pasta de referencias e fluxo de comparacao.
 - [Portal de Noticias](RocketSeat-Projects/portal-de-noticias-main/index.html) -
   projeto de referencia da Rocketseat para comparar com o TechNews.
+
+## Repositorios separados
+
+Alguns projetos tambem possuem repositorios proprios no GitHub:
+
+- [Travelgram](https://github.com/Diegoo-Oliveira/Travelgram)
+- [TechNews](https://github.com/Diegoo-Oliveira/TechNews)
+- [PortifolioDev](https://github.com/Diegoo-Oliveira/PortifolioDev)
+- [RocketSeat-Projects](https://github.com/Diegoo-Oliveira/RocketSeat-Projects)
 
 ## Estrutura geral
 
@@ -72,6 +87,7 @@ RocketSeat/
     CSS FLEXBOX/
     CSS Grid/
     CSS Profissional/
+    SVG-Cores/
     Tutorial-Projetos/
     formulario/
   Projetos/
@@ -80,6 +96,7 @@ RocketSeat/
     PortifolioDev/
   RocketSeat-Projects/
     index.html
+    README.md
     portal-de-noticias-main/
 ```
 

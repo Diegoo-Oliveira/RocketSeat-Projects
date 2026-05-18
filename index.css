@@ -237,6 +237,10 @@ h1 {
   --project-color: #7c3aed;
 }
 
+.project-form {
+  --project-color: #e43a12;
+}
+
 @media (max-width: 640px) {
   .page {
     width: min(100% - 20px, 1120px);

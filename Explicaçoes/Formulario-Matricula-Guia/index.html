@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guia completo - Formulario de Matricula</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../index.html">Voltar para explicacoes</a>
+
+      <nav aria-label="Guias relacionados">
+        <a href="../Tutorial-Projetos/Formulario-Matricula/index.html">Tutorial do projeto</a>
+        <a href="../SVG-Cores/index.html">SVG e cores</a>
+        <a href="../../RocketSeat-Projects/formulario-de-matricula/index.html">Projeto do professor</a>
+        <a href="../../index.html">Index principal</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <span class="eyebrow">Padrao de projeto</span>
+        <h1>Guia completo do Formulario de Matricula</h1>
+        <p>
+          Este guia explica a estrutura do projeto do professor, o papel de cada
+          arquivo, a semantica do formulario, a organizacao do CSS, o uso de rem
+          no lugar de pixels soltos, o uso de SVG nos campos, seletores WebKit e
+          o padrao que seus proximos projetos devem seguir.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#padrao">Ver padrao dos proximos projetos</a>
+          <a href="#estrutura-modelo">Ver estrutura modelo</a>
+          <a href="#checklist">Ver checklist final</a>
+        </div>
+      </section>
+
+      <section class="lesson callout" id="padrao">
+        <span class="section-label">A partir de agora</span>
+        <h2>Seus proximos projetos devem seguir esta ideia de estrutura</h2>
+        <p>
+          O projeto ficou mais profissional porque separa responsabilidades. O
+          HTML descreve o conteudo e os grupos do formulario. O CSS fica dividido
+          por funcao: base global, layout da pagina, formulario e campos
+          especificos. Essa separacao evita um arquivo gigante dificil de manter.
+        </p>
+
+        <div class="standard-grid">
+          <article>
+            <strong>1. HTML semantico</strong>
+            <p>Use tags reais para o papel real: `main`, `aside`, `form`, `fieldset`, `legend`, `label`, `input`, `select`, `textarea` e `button`.</p>
+          </article>
+
+          <article>
+            <strong>2. CSS por responsabilidade</strong>
+            <p>Um arquivo para reset/tokens, um para layout, um para formulario e arquivos menores para componentes repetidos.</p>
+          </article>
+
+          <article>
+            <strong>3. Assets organizados</strong>
+            <p>Imagens, logos e icones ficam dentro de `assets`, separados por tipo quando o projeto cresce.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Estrutura de arquivos</span>
+        <h2>A pasta do projeto foi dividida para cada arquivo ter uma missao</h2>
+        <p>
+          A estrutura abaixo e a referencia principal para formularios grandes.
+          O `index.html` monta a tela. O `styles/index.css` apenas importa os
+          outros arquivos. A pasta `fields` guarda estilos de campos especificos.
+        </p>
+
+        <pre><code>RocketSeat-Projects/formulario-de-matricula/
+  index.html
+  README.md
+  assets/
+    logo.svg
+    Illustration.svg
+    icons/
+      alert-circle.svg
+      arrow-down-01.svg
+      calendar-03.svg
+      checkbox-checked.svg
+      radio-checked.svg
+      ...
+  styles/
+    index.css
+    global.css
+    layout.css
+    forms.css
+    fields/
+      index.css
+      input.css
+      droparea.css
+      radio.css
+      checkbox.css
+      buttons.css</code></pre>
+
+        <div class="explain-grid">
+          <article>
+            <h3>`index.html`</h3>
+            <p>Arquivo principal da pagina. Ele carrega fonte, CSS, layout, formulario e painel lateral.</p>
+          </article>
+
+          <article>
+            <h3>`assets/`</h3>
+            <p>Guarda os arquivos visuais usados pela pagina: logo, ilustracao e icones dos campos.</p>
+          </article>
+
+          <article>
+            <h3>`styles/index.css`</h3>
+            <p>Arquivo de entrada do CSS. Ele importa `global.css`, `layout.css` e `forms.css`.</p>
+          </article>
+
+          <article>
+            <h3>`styles/fields/`</h3>
+            <p>Separacao dos componentes de campo: input, upload, radio, checkbox e botoes.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">HTML geral</span>
+        <h2>O HTML foi separado em duas grandes regioes: formulario e painel visual</h2>
+        <p>
+          Dentro do `body`, o projeto usa uma div principal chamada `#app`. Ela
+          recebe o grid de duas colunas no CSS. A primeira coluna e o `main`,
+          onde fica o formulario. A segunda coluna e o `aside`, usado para a
+          marca, frase institucional e ilustracao.
+        </p>
+
+        <pre><code>&lt;body&gt;
+  &lt;div id="app"&gt;
+    &lt;main&gt;
+      &lt;div class="main-container"&gt;
+        &lt;div class="back"&gt;...&lt;/div&gt;
+        &lt;h1&gt;Formulario de matricula&lt;/h1&gt;
+        &lt;p&gt;Texto de introducao&lt;/p&gt;
+
+        &lt;form method="post" enctype="multipart/form-data"&gt;
+          ...
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+
+    &lt;aside&gt;
+      &lt;div class="aside-container"&gt;
+        ...
+      &lt;/div&gt;
+    &lt;/aside&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+        <div class="two-columns">
+          <article>
+            <h3>Por que `main`?</h3>
+            <p>`main` representa o conteudo principal da pagina: o formulario que o usuario precisa preencher.</p>
+          </article>
+
+          <article>
+            <h3>Por que `aside`?</h3>
+            <p>`aside` representa conteudo complementar. A ilustracao e a frase ajudam a marca, mas nao sao o formulario em si.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Estrutura do formulario</span>
+        <h2>`form`, `fieldset`, `legend` e `label` deixam o codigo mais semantico</h2>
+        <p>
+          Um formulario grande nao deve ser uma lista solta de inputs. O projeto
+          agrupa os campos por assunto usando `fieldset`. O titulo de cada grupo
+          fica em `legend`. Cada campo recebe um `label` conectado ao input pelo
+          par `for` e `id`.
+        </p>
+
+        <pre><code>&lt;fieldset class="child-info"&gt;
+  &lt;legend&gt;Informacoes da crianca&lt;/legend&gt;
+
+  &lt;div class="input-wrapper"&gt;
+    &lt;label for="fullname"&gt;Nome completo&lt;/label&gt;
+    &lt;input id="fullname" name="fullname" type="text" /&gt;
+  &lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Parte</th>
+                <th>Funcao</th>
+                <th>Por que usar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>`form`</td>
+                <td>Envolve todos os campos enviados.</td>
+                <td>Permite submit, validacao nativa e envio organizado.</td>
+              </tr>
+              <tr>
+                <td>`fieldset`</td>
+                <td>Agrupa campos relacionados.</td>
+                <td>Melhora leitura, acessibilidade e organizacao visual.</td>
+              </tr>
+              <tr>
+                <td>`legend`</td>
+                <td>Nomeia o grupo do fieldset.</td>
+                <td>Ajuda o usuario e tecnologias assistivas a entenderem o bloco.</td>
+              </tr>
+              <tr>
+                <td>`label`</td>
+                <td>Da nome ao campo.</td>
+                <td>Ao clicar no texto, o input correto recebe foco.</td>
+              </tr>
+              <tr>
+                <td>`name`</td>
+                <td>Nome do dado enviado.</td>
+                <td>Sem `name`, o valor do campo nao vai corretamente no envio.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Blocos do formulario</span>
+        <h2>Cada fieldset representa uma etapa mental do preenchimento</h2>
+
+        <div class="timeline">
+          <article>
+            <span>1</span>
+            <div>
+              <h3>`child-info`</h3>
+              <p>Dados da crianca: nome, data de nascimento, sexo, informacoes medicas e certidao.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>2</span>
+            <div>
+              <h3>`address`</h3>
+              <p>Endereco residencial. Usa linhas flexiveis para rua/numero e cidade/estado.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>3</span>
+            <div>
+              <h3>`gardian`</h3>
+              <p>Dados do responsavel. O campo de e-mail usa `required` e mensagem de erro visual.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>4</span>
+            <div>
+              <h3>`enroll-options`</h3>
+              <p>Turno e esportes. Usa inputs radio dentro de cards personalizados.</p>
+            </div>
+          </article>
+
+          <article>
+            <span>5</span>
+            <div>
+              <h3>Termos e acoes</h3>
+              <p>Checkbox de aceite, botao secundario para salvar e botao primario para enviar.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">CSS principal</span>
+        <h2>`styles/index.css` e um arquivo de entrada, nao um lugar para tudo</h2>
+        <p>
+          O arquivo `styles/index.css` tem apenas imports. Essa escolha faz com
+          que o HTML carregue um unico CSS, mas o desenvolvimento continue
+          organizado em arquivos menores.
+        </p>
+
+        <pre><code>@import url(global.css);
+@import url(layout.css);
+@import url(forms.css);</code></pre>
+
+        <p>
+          O `forms.css`, por sua vez, importa `fields/index.css`, e esse arquivo
+          importa os estilos especificos de cada tipo de campo. Assim o CSS forma
+          uma arvore facil de navegar.
+        </p>
+
+        <pre><code>forms.css
+  imports fields/index.css
+
+fields/index.css
+  imports input.css
+  imports droparea.css
+  imports radio.css
+  imports checkbox.css
+  imports buttons.css</code></pre>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Global CSS</span>
+        <h2>`global.css` guarda reset, variaveis e utilitarios pequenos</h2>
+        <p>
+          O reset remove margem e padding padrao do navegador. As variaveis em
+          `:root` centralizam cores, fontes e tokens. As classes `.flex`,
+          `.flex-1` e `.flex-2` sao utilitarios pequenos para evitar repeticao.
+        </p>
+
+        <pre><code>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-family: "Poppins", sans-serif;
+  --text: 400 1rem/1.5 var(--font-family);
+  --text-sm: 400 0.875rem/1.4 var(--font-family);
+
+  --text-primary: #292524;
+  --text-secondary: #57534e;
+  --text-highlight: #e43a12;
+}</code></pre>
+
+        <div class="note">
+          <strong>Por que variaveis?</strong>
+          <p>Se a cor de destaque mudar, voce troca uma vez em `:root` e o projeto inteiro acompanha.</p>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Layout CSS</span>
+        <h2>`layout.css` cuida da pagina, nao dos inputs</h2>
+        <p>
+          O `#app` usa CSS Grid com duas colunas. A primeira ocupa `51.25%` e a
+          segunda `48.75%`. Esses valores reproduzem a proporcao do layout do
+          Figma. O `main` tem scroll proprio, enquanto o `aside` fica como painel
+          visual.
+        </p>
+
+        <pre><code>#app {
+  display: grid;
+  grid-template-columns: 51.25% 48.75%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+main {
+  overflow: auto;
+  padding: 4rem;
+}
+
+aside {
+  background-color: var(--surface-secondary);
+  padding: 4rem;
+}</code></pre>
+
+        <p>
+          Repare no `padding: 4rem`. Como `1rem` normalmente vale `16px`, `4rem`
+          equivale a `64px`, que e um espacamento comum vindo do Figma.
+        </p>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Forms CSS</span>
+        <h2>`forms.css` organiza o ritmo vertical do formulario</h2>
+        <p>
+          O formulario ganha margem no topo, os fieldsets viram grids com gap, e
+          `fieldset + fieldset` aplica distancia apenas entre um grupo e outro.
+          Isso e melhor do que colocar margem manual em cada bloco.
+        </p>
+
+        <pre><code>form {
+  margin-top: 3rem;
+}
+
+fieldset {
+  border: none;
+  display: grid;
+  gap: 1.5rem;
+}
+
+fieldset + fieldset {
+  margin-top: 3rem;
+}</code></pre>
+
+        <div class="note">
+          <strong>Detalhe importante</strong>
+          <p>`fieldset + fieldset` significa: aplique a regra em um fieldset que vem imediatamente depois de outro fieldset.</p>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Campos base</span>
+        <h2>`input.css` cria o estilo padrao de input, select e textarea</h2>
+        <p>
+          O professor usa uma regra compartilhada para `input`, `textarea` e
+          `select`. Isso garante largura, borda, raio, padding e fonte iguais.
+          Depois ele trata casos especiais como foco, data, select, disabled,
+          invalid e erro.
+        </p>
+
+        <pre><code>input,
+textarea,
+select {
+  appearance: none;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  outline: 1px solid var(--stroke-default);
+  padding: 0.75rem 1rem;
+  font: var(--text);
+}</code></pre>
+
+        <div class="explain-grid">
+          <article>
+            <h3>`appearance: none`</h3>
+            <p>Remove parte do estilo padrao do navegador para o campo ficar mais controlavel.</p>
+          </article>
+
+          <article>
+            <h3>`outline` + `border`</h3>
+            <p>Permite criar foco bonito sem mexer no tamanho total do campo.</p>
+          </article>
+
+          <article>
+            <h3>`input:focus`</h3>
+            <p>Destaca o campo ativo usando cor de borda e fundo suave.</p>
+          </article>
+
+          <article>
+            <h3>`input:invalid`</h3>
+            <p>Usa a validacao nativa do HTML para aplicar borda vermelha.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Select, date e WebKit</span>
+        <h2>O professor removeu controles nativos para desenhar icones proprios</h2>
+        <p>
+          Alguns campos, como `select` e `input type="date"`, ja nascem com
+          aparencia propria do navegador. O problema e que cada navegador pode
+          desenhar esses controles de um jeito. Por isso o projeto usa
+          `appearance: none` para limpar parte do visual nativo e depois coloca
+          icones SVG proprios com `background` e pseudo-elementos.
+        </p>
+
+        <pre><code>select {
+  background: url(../../assets/icons/arrow-down-01.svg) no-repeat calc(100% - 1rem);
+}</code></pre>
+
+        <p>
+          Nesse caso, o `select` perdeu a seta padrao e ganhou uma seta SVG como
+          imagem de fundo. O `calc(100% - 1rem)` posiciona o icone perto da borda
+          direita, deixando `1rem` de respiro.
+        </p>
+
+        <pre><code>input[type="date"] {
+  position: relative;
+
+  &amp;::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+
+  &amp;::before {
+    content: "";
+    position: absolute;
+    background: url(../../assets/icons/calendar-03.svg) center/contain;
+    right: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}</code></pre>
+
+        <div class="explain-grid">
+          <article>
+            <h3>`::-webkit-calendar-picker-indicator`</h3>
+            <p>Seleciona o icone nativo do calendario em navegadores baseados em WebKit/Blink, como Chrome, Edge e Safari.</p>
+          </article>
+
+          <article>
+            <h3>`opacity: 0`</h3>
+            <p>Esconde o icone nativo, mas o campo continua sendo um `input type="date"` real.</p>
+          </article>
+
+          <article>
+            <h3>`::before`</h3>
+            <p>Cria um icone visual novo, usando o SVG `calendar-03.svg` como background.</p>
+          </article>
+
+          <article>
+            <h3>Por que WebKit?</h3>
+            <p>Porque esse pedaco interno do campo de data nao tem um seletor padrao igual em todos os navegadores.</p>
+          </article>
+        </div>
+
+        <div class="note">
+          <strong>Importante</strong>
+          <p>`-webkit` ou `::-webkit-*` nao e biblioteca e nao precisa instalar nada. E um prefixo/seletor especifico de navegador. Use apenas quando precisar controlar uma parte interna que o CSS padrao nao alcanca bem.</p>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Upload</span>
+        <h2>`droparea.css` transforma um input file em uma area clicavel</h2>
+        <p>
+          O input de arquivo real continua existindo, mas fica invisivel e ocupa
+          toda a area. A div `.dropzone` mostra o visual: borda tracejada, icone
+          e texto. Quando o usuario passa o mouse ou foca o input, a area muda de
+          cor.
+        </p>
+
+        <pre><code>.dropzone {
+  border: 2px dashed transparent;
+  outline: 1px dashed var(--stroke-default);
+  display: grid;
+  justify-items: center;
+  position: relative;
+}
+
+.dropzone input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  opacity: 0;
+}</code></pre>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">SVG e cores</span>
+        <h2>O projeto usa SVG de dois jeitos diferentes, e isso muda como a cor funciona</h2>
+        <p>
+          A explicacao de SVG e cores aparece aqui na pratica. Quando o SVG esta
+          direto no HTML, o CSS consegue mirar em partes internas como `path` e
+          trocar `stroke` ou `fill`. Quando o SVG entra como `img` ou
+          `background-image`, o CSS da pagina nao consegue alterar facilmente o
+          `path` interno do arquivo. Por isso o projeto troca o arquivo inteiro
+          em estados diferentes.
+        </p>
+
+        <div class="two-columns">
+          <article>
+            <h3>SVG inline</h3>
+            <p>Usado na area de upload. Como o SVG esta dentro do HTML, o CSS consegue fazer `.dropzone svg path { stroke: ... }`.</p>
+          </article>
+
+          <article>
+            <h3>SVG como imagem</h3>
+            <p>Usado em radio e checkbox. Como entra por `background-image`, o projeto troca entre `default`, `hover` e `checked`.</p>
+          </article>
+        </div>
+
+        <pre><code>.dropzone:hover svg path {
+  stroke: var(--stroke-highlight);
+}
+
+.radio-inner .radio-image {
+  background-image: url(../../assets/icons/radio-default.svg);
+}
+
+.radio-inner:has(:checked) .radio-image {
+  background-image: url(../../assets/icons/radio-checked.svg);
+}</code></pre>
+
+        <div class="explain-grid">
+          <article>
+            <h3>`fill`</h3>
+            <p>Pinta a parte interna de uma forma SVG.</p>
+          </article>
+
+          <article>
+            <h3>`stroke`</h3>
+            <p>Pinta a linha ou contorno de uma forma SVG.</p>
+          </article>
+
+          <article>
+            <h3>`currentColor`</h3>
+            <p>Faz o SVG herdar a cor do texto, mas precisa estar preparado no proprio SVG.</p>
+          </article>
+
+          <article>
+            <h3>Troca de arquivo</h3>
+            <p>Boa solucao quando o icone esta como `background-image` e voce quer estados visuais diferentes.</p>
+          </article>
+        </div>
+
+        <div class="note">
+          <strong>Regra pratica</strong>
+          <p>Se precisar trocar cor via CSS, prefira SVG inline ou SVG preparado com `currentColor`. Se estiver usando `img` ou `background-image`, use arquivos separados para cada estado visual.</p>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Radio cards</span>
+        <h2>`radio.css` faz radios parecerem cards selecionaveis</h2>
+        <p>
+          Cada `.radio-inner` e um card. O `input` fica absoluto e ocupa todo o
+          card, mas o visual do radio e feito por `.radio-image`, trocando imagem
+          conforme hover, foco e checked.
+        </p>
+
+        <pre><code>.radio-inner {
+  border: 1px solid var(--stroke-default);
+  border-radius: 0.5rem;
+  display: grid;
+  justify-items: center;
+  position: relative;
+}
+
+.radio-inner:has(:checked) {
+  border: 2px solid var(--stroke-highlight);
+}</code></pre>
+
+        <div class="note">
+          <strong>O que e `:has()`?</strong>
+          <p>`:has(:checked)` quer dizer: estilize o card quando ele tiver dentro dele um input marcado.</p>
+        </div>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Checkbox e botoes</span>
+        <h2>Checkbox e botoes seguem a mesma logica de componente</h2>
+        <p>
+          O checkbox usa um input invisivel e uma imagem visual que muda quando
+          o input esta marcado. Os botoes usam `all: unset` para remover estilos
+          padrao do navegador e depois recebem variantes: `.btn-primary` e
+          `.btn-secondary`.
+        </p>
+
+        <pre><code>.checkbox-wrapper [type="checkbox"] {
+  all: unset;
+  position: absolute;
+  inset: 0;
+}
+
+.checkbox-wrapper:has(:checked) .checkbox-image {
+  background-image: url(../../assets/icons/checkbox-checked.svg);
+}
+
+button.btn-primary {
+  color: white;
+  background-color: #e43a12;
+}</code></pre>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Nesting CSS</span>
+        <h2>O projeto usa aninhamento com `&` para escrever seletores ligados</h2>
+        <p>
+          Em alguns arquivos aparece CSS assim: `main { & .main-container { ... } }`.
+          O `&` representa o seletor pai. Entao `& .main-container` vira
+          `main .main-container`. Isso reduz repeticao, mas deve ser usado com
+          cuidado para nao criar seletores longos demais.
+        </p>
+
+        <pre><code>main {
+  padding: 4rem;
+
+  &amp; .main-container {
+    max-width: 33rem;
+    margin-left: auto;
+  }
+}</code></pre>
+
+        <p>
+          Padrao recomendado: use nesting quando o filho so faz sentido dentro
+          daquele bloco. Se o componente sera reutilizado em outros lugares,
+          prefira uma classe propria.
+        </p>
+      </section>
+
+      <section class="lesson">
+        <span class="section-label">Rem e pixel</span>
+        <h2>Use `rem` para transformar medidas do Figma em valores mais flexiveis</h2>
+        <p>
+          Por padrao, navegadores usam `16px` como tamanho base de fonte. Entao
+          `1rem` normalmente equivale a `16px`. O projeto usa bastante `rem`
+          porque ele respeita configuracoes de acessibilidade do usuario e evita
+          uma chuva de pixels soltos no CSS.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pixel no Figma</th>
+                <th>Valor em rem</th>
+                <th>Uso comum</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>64px</td>
+                <td>`4rem`</td>
+                <td>Padding grande da pagina.</td>
+              </tr>
+              <tr>
+                <td>48px</td>
+                <td>`3rem`</td>
+                <td>Distancia entre blocos grandes.</td>
+              </tr>
+              <tr>
+                <td>32px</td>
+                <td>`2rem`</td>
+                <td>Padding interno de cards ou grupos.</td>
+              </tr>
+              <tr>
+                <td>24px</td>
+                <td>`1.5rem`</td>
+                <td>Gap entre campos.</td>
+              </tr>
+              <tr>
+                <td>16px</td>
+                <td>`1rem`</td>
+                <td>Texto base e padding horizontal.</td>
+              </tr>
+              <tr>
+                <td>14px</td>
+                <td>`0.875rem`</td>
+                <td>Texto menor, label e ajuda.</td>
+              </tr>
+              <tr>
+                <td>12px</td>
+                <td>`0.75rem`</td>
+                <td>Padding vertical de inputs.</td>
+              </tr>
+              <tr>
+                <td>8px</td>
+                <td>`0.5rem`</td>
+                <td>Border radius e gaps pequenos.</td>
+              </tr>
+              <tr>
+                <td>4px</td>
+                <td>`0.25rem`</td>
+                <td>Gap entre label e campo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note">
+          <strong>Regra pratica</strong>
+          <p>Use `rem` para fonte, padding, margin, gap e radius. Use `px` principalmente para bordas finas como `1px` e ajustes muito especificos.</p>
+        </div>
+      </section>
+
+      <section class="lesson" id="estrutura-modelo">
+        <span class="section-label">Padrao para novos projetos</span>
+        <h2>Modelo recomendado para suas proximas pastas</h2>
+        <p>
+          Para projetos simples, use uma estrutura enxuta. Para projetos com
+          muitos componentes, crie subpastas dentro de `styles`.
+        </p>
+
+        <pre><code>Projetos/NomeDoProjeto/
+  index.html
+  README.md
+  assets/
+    images/
+    icons/
+  styles/
+    index.css
+    global.css
+    layout.css
+    components/
+      buttons.css
+      cards.css
+    sections/
+      header.css
+      main.css
+      footer.css</code></pre>
+
+        <p>
+          Para formularios, siga a estrutura mais parecida com o projeto do
+          professor:
+        </p>
+
+        <pre><code>Projetos/NomeDoFormulario/
+  index.html
+  assets/
+    icons/
+  styles/
+    index.css
+    global.css
+    layout.css
+    forms.css
+    fields/
+      index.css
+      input.css
+      select.css
+      radio.css
+      checkbox.css
+      buttons.css</code></pre>
+      </section>
+
+      <section class="lesson checklist" id="checklist">
+        <span class="section-label">Checklist final</span>
+        <h2>Antes de considerar um projeto finalizado, confira estes pontos</h2>
+
+        <ol>
+          <li>O `index.html` tem estrutura semantica clara?</li>
+          <li>O CSS principal apenas importa os arquivos menores?</li>
+          <li>Existe `global.css` com reset, variaveis e fonte base?</li>
+          <li>O layout da pagina esta separado dos estilos de componentes?</li>
+          <li>Campos repetidos compartilham classes e regras base?</li>
+          <li>Medidas grandes do Figma foram convertidas para `rem`?</li>
+          <li>Bordas finas continuam em `px` quando fizer sentido?</li>
+          <li>Assets estao dentro de `assets`, sem caminhos espalhados?</li>
+          <li>O projeto abre localmente pelo `index.html` antes de ser considerado finalizado?</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

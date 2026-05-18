@@ -9,11 +9,13 @@
   --tech: #0ea5e9;
   --form: #0f766e;
   --pro: #7c3aed;
+  --standard: #ea580c;
   --grid-soft: #dbeafe;
   --flex-soft: #ffe5df;
   --tech-soft: #e0f2fe;
   --form-soft: #ccfbf1;
   --pro-soft: #ede9fe;
+  --standard-soft: #ffedd5;
   --shadow: 0 18px 46px rgba(23, 32, 51, 0.12);
 }
 
@@ -131,6 +133,10 @@ h1 {
   border-color: rgba(124, 58, 237, 0.45);
 }
 
+.standard-card:hover {
+  border-color: rgba(234, 88, 12, 0.45);
+}
+
 .flex-card .card-label {
   width: fit-content;
   background: var(--flex-soft);
@@ -159,6 +165,12 @@ h1 {
   width: fit-content;
   background: var(--pro-soft);
   color: var(--pro);
+}
+
+.standard-card .card-label {
+  width: fit-content;
+  background: var(--standard-soft);
+  color: var(--standard);
 }
 
 .card h2 {

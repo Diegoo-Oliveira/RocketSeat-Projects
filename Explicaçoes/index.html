@@ -4,118 +4,150 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catalogo de explicacoes</title>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="../index.css" />
   </head>
   <body>
-    <main class="page">
-      <section class="hero">
-        <span class="eyebrow">RocketSeat estudos</span>
-        <h1>Catalogo de explicacoes</h1>
-        <p>
-          Escolha um assunto para abrir um guia visual com exemplos, imagens
-          explicativas feitas em HTML/CSS e paginas separadas por conceito.
-        </p>
-      </section>
+    <div class="workspace-shell">
+      <aside class="sidebar" aria-label="Navegacao das explicacoes">
+        <a class="home-button" href="../index.html">Home</a>
 
-      <section class="catalog">
-        <a class="card flex-card" href="CSS FLEXBOX/index.html">
-          <span class="card-label">CSS Layout</span>
-          <h2>Flexbox</h2>
-          <p>
-            Eixo principal, eixo cruzado, gap, alinhamentos, children e uma
-            pagina aplicada ao projeto Travelgram.
-          </p>
-          <ul>
-            <li>display: flex</li>
-            <li>justify-content</li>
-            <li>align-items</li>
-          </ul>
-        </a>
+        <div class="sidebar-heading">
+          <span>Explicacoes</span>
+          <h2>Guias de estudo</h2>
+          <p>Conceitos separados por assunto para consultar durante os projetos.</p>
+        </div>
 
-        <a class="card grid-card" href="CSS Grid/index.html">
-          <span class="card-label">CSS Layout</span>
-          <h2>CSS Grid</h2>
-          <p>
-            Linhas, colunas, areas, atalhos, alinhamentos, grid automatico e
-            quando escolher Grid ou Flexbox.
-          </p>
-          <ul>
-            <li>grid-template-columns</li>
-            <li>grid-template-areas</li>
-            <li>grid-auto-flow</li>
-          </ul>
-        </a>
+        <nav class="side-nav" aria-label="Categorias">
+          <a href="#visao" class="active">Visao geral</a>
+          <a href="#layout">CSS Layout</a>
+          <a href="#formularios">Formularios</a>
+          <a href="#profissional">Boas praticas</a>
+          <a href="../index.html">Inicio</a>
+        </nav>
+      </aside>
 
-        <a class="card form-card" href="formulario/index.html">
-          <span class="card-label">HTML/CSS</span>
-          <h2>Formularios</h2>
+      <main class="content">
+        <section class="hero" id="visao">
+          <span class="eyebrow">RocketSeat estudos</span>
+          <h1>Catalogo de explicacoes</h1>
           <p>
-            Guia separado por funcao para estudar form, button, tipos de input,
-            label, textarea, select e fieldset.
+            Escolha um assunto para abrir um guia visual com exemplos, paginas
+            separadas por conceito e materiais de apoio para seus projetos.
           </p>
-          <ul>
-            <li>input text, email e password</li>
-            <li>checkbox, radio e hidden</li>
-            <li>label, select e fieldset</li>
-          </ul>
-        </a>
 
-        <a class="card standard-card" href="Formulario-Matricula-Guia/index.html">
-          <span class="card-label">Padrao novo</span>
-          <h2>Formulario de Matricula</h2>
-          <p>
-            Explicacao completa do projeto do professor, com estrutura de
-            arquivos, HTML semantico, CSS modular, rem, SVG, WebKit e checklist.
-          </p>
-          <ul>
-            <li>fieldset, legend e label</li>
-            <li>CSS por responsabilidade</li>
-            <li>padrao para proximos projetos</li>
-          </ul>
-        </a>
+          <div class="hero-actions">
+            <a class="action-button primary" href="../index.html">Voltar ao inicio</a>
+            <a class="action-button" href="Tutorial-Projetos/index.html">Abrir tutoriais</a>
+          </div>
+        </section>
 
-        <a class="card pro-card" href="CSS Profissional/index.html">
-          <span class="card-label">Boas praticas</span>
-          <h2>CSS Profissional</h2>
-          <p>
-            Comparacao entre o TechNews especifico e o modelo com padroes,
-            utilitarios, componentes e layout por areas.
-          </p>
-          <ul>
-            <li>classes reutilizaveis</li>
-            <li>menos repeticao</li>
-            <li>refatoracao passo a passo</li>
-          </ul>
-        </a>
+        <section class="section-block" id="layout" aria-labelledby="layout-title">
+          <div class="section-heading">
+            <span class="eyebrow small">CSS Layout</span>
+            <h2 id="layout-title">Base para organizar telas</h2>
+            <p>Comece por aqui quando a duvida for alinhamento, linhas, colunas e distribuicao.</p>
+          </div>
 
-        <a class="card grid-card" href="SVG-Cores/index.html">
-          <span class="card-label">HTML/CSS</span>
-          <h2>SVG e cores</h2>
-          <p>
-            Explica por que SVG usado com img nao muda de cor pelo pai, quando
-            trocar fill direto no arquivo e quando usar currentColor.
-          </p>
-          <ul>
-            <li>fill e stroke</li>
-            <li>currentColor</li>
-            <li>icones do Portfolio Dev</li>
-          </ul>
-        </a>
+          <div class="hub-grid">
+            <a class="resource-card accent-coral" href="CSS FLEXBOX/index.html">
+              <span class="card-label">CSS Layout</span>
+              <h3>Flexbox</h3>
+              <p>Eixo principal, eixo cruzado, gap, alinhamentos, children e uma pagina aplicada ao Travelgram.</p>
+              <ul>
+                <li>display: flex</li>
+                <li>justify-content</li>
+                <li>align-items</li>
+              </ul>
+            </a>
 
-        <a class="card tech-card" href="Tutorial-Projetos/index.html">
-          <span class="card-label">Projetos guiados</span>
-          <h2>Tutoriais</h2>
-          <p>
-            Area separada para tutoriais de projetos completos, incluindo
-            Tech News, Portfolio Dev e a comparacao com referencias do professor.
-          </p>
-          <ul>
-            <li>Tech News</li>
-            <li>Portfolio Dev</li>
-            <li>estrutura profissional</li>
-          </ul>
-        </a>
-      </section>
-    </main>
+            <a class="resource-card accent-blue" href="CSS Grid/index.html">
+              <span class="card-label">CSS Layout</span>
+              <h3>CSS Grid</h3>
+              <p>Linhas, colunas, areas, atalhos, alinhamentos, grid automatico e quando escolher Grid.</p>
+              <ul>
+                <li>grid-template-columns</li>
+                <li>grid-template-areas</li>
+                <li>grid-auto-flow</li>
+              </ul>
+            </a>
+          </div>
+        </section>
+
+        <section class="section-block" id="formularios" aria-labelledby="forms-title">
+          <div class="section-heading">
+            <span class="eyebrow small green">HTML/CSS</span>
+            <h2 id="forms-title">Formularios, SVG e padroes</h2>
+            <p>Use estes guias quando o projeto tiver campos, icones, estados visuais e CSS modular.</p>
+          </div>
+
+          <div class="hub-grid">
+            <a class="resource-card accent-green" href="formulario/index.html">
+              <span class="card-label">HTML/CSS</span>
+              <h3>Formularios</h3>
+              <p>Guia separado por funcao para estudar form, button, tipos de input, label, textarea, select e fieldset.</p>
+              <ul>
+                <li>input text, email e password</li>
+                <li>checkbox, radio e hidden</li>
+                <li>label, select e fieldset</li>
+              </ul>
+            </a>
+
+            <a class="resource-card accent-orange" href="Formulario-Matricula-Guia/index.html">
+              <span class="card-label">Padrao novo</span>
+              <h3>Formulario de Matricula</h3>
+              <p>Explicacao completa do projeto do professor, com CSS modular, rem, SVG, WebKit e checklist.</p>
+              <ul>
+                <li>fieldset, legend e label</li>
+                <li>CSS por responsabilidade</li>
+                <li>padrao para proximos projetos</li>
+              </ul>
+            </a>
+
+            <a class="resource-card accent-blue" href="SVG-Cores/index.html">
+              <span class="card-label">HTML/CSS</span>
+              <h3>SVG e cores</h3>
+              <p>Explica por que SVG usado com img nao muda de cor pelo pai e quando usar currentColor.</p>
+              <ul>
+                <li>fill e stroke</li>
+                <li>currentColor</li>
+                <li>icones do Portfolio Dev</li>
+              </ul>
+            </a>
+          </div>
+        </section>
+
+        <section class="section-block" id="profissional" aria-labelledby="pro-title">
+          <div class="section-heading">
+            <span class="eyebrow small purple">Organizacao</span>
+            <h2 id="pro-title">Boas praticas e projetos guiados</h2>
+            <p>Materiais para melhorar estrutura, comparar codigos e refatorar com mais criterio.</p>
+          </div>
+
+          <div class="hub-grid">
+            <a class="resource-card accent-purple" href="CSS Profissional/index.html">
+              <span class="card-label">Boas praticas</span>
+              <h3>CSS Profissional</h3>
+              <p>Comparacao entre o TechNews especifico e o modelo com padroes, utilitarios e componentes.</p>
+              <ul>
+                <li>classes reutilizaveis</li>
+                <li>menos repeticao</li>
+                <li>refatoracao passo a passo</li>
+              </ul>
+            </a>
+
+            <a class="resource-card accent-blue" href="Tutorial-Projetos/index.html">
+              <span class="card-label">Projetos guiados</span>
+              <h3>Tutoriais</h3>
+              <p>Area separada para tutoriais de projetos completos e comparacao com referencias do professor.</p>
+              <ul>
+                <li>Tech News</li>
+                <li>Portfolio Dev</li>
+                <li>Formulario de Matricula</li>
+              </ul>
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
 </html>

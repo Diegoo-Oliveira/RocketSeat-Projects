@@ -4,112 +4,110 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tutoriais de Projetos</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../index.css" />
   </head>
   <body>
-    <header class="topbar">
-      <a href="../../index.html">Voltar para o inicio</a>
+    <div class="workspace-shell">
+      <aside class="sidebar" aria-label="Navegacao dos tutoriais">
+        <a class="home-button" href="../../index.html">Home</a>
 
-      <nav aria-label="Guias relacionados">
-        <a href="../index.html">Explicacoes</a>
-        <a href="../../RocketSeat-Projects/index.html">Projetos do professor</a>
-      </nav>
-    </header>
-
-    <main class="page">
-      <section class="hero">
-        <span class="eyebrow">Guia de tutoriais</span>
-        <h1>Tutoriais guiados por projeto</h1>
-        <p>
-          Esta area fica separada das explicacoes conceituais. Aqui cada projeto
-          vira um roteiro de construcao: leitura do layout, estrutura de pastas,
-          decisoes de HTML/CSS e comparacao com o codigo de referencia.
-        </p>
-      </section>
-
-      <section class="method">
-        <div>
-          <span class="section-label">Metodo de estudo</span>
-          <h2>Use sempre a comparacao em tres camadas</h2>
-          <p>
-            Primeiro voce construi seu projeto em `Projetos`. Depois guarda o
-            projeto do professor em `RocketSeat-Projects`. Por fim, usa este
-            tutorial para entender as escolhas profissionais que aproximam os
-            dois codigos.
-          </p>
+        <div class="sidebar-heading">
+          <span>Tutoriais</span>
+          <h2>Roteiros por projeto</h2>
+          <p>Use quando quiser entender como transformar layout em HTML e CSS organizado.</p>
         </div>
 
-        <div class="flow">
-          <article>
-            <strong>1. Meu codigo</strong>
-            <span>Projetos/NomeDoProjeto</span>
-          </article>
-          <article>
-            <strong>2. Codigo do professor</strong>
-            <span>RocketSeat-Projects/nome-do-projeto</span>
-          </article>
-          <article>
-            <strong>3. Tutorial</strong>
-            <span>estrutura, padroes e refatoracao</span>
-          </article>
-        </div>
-      </section>
+        <nav class="side-nav" aria-label="Categorias">
+          <a href="#visao" class="active">Visao geral</a>
+          <a href="#tutoriais">Tutoriais</a>
+          <a href="#metodo">Metodo</a>
+          <a href="../index.html">Explicacoes</a>
+          <a href="../../RocketSeat-Projects/index.html">Professor</a>
+        </nav>
+      </aside>
 
-      <section class="tutorial-grid" aria-label="Tutoriais disponiveis">
-        <a class="tutorial-card tech" href="Tech-News/index.html">
-          <span class="card-label">Projeto guiado</span>
-          <h2>Tech News</h2>
+      <main class="content">
+        <section class="hero" id="visao">
+          <span class="eyebrow purple">Guia de tutoriais</span>
+          <h1>Tutoriais guiados por projeto</h1>
           <p>
-            Entenda como ler o Figma do portal de noticias, separar regioes
-            grandes com Grid e alinhar componentes menores com Flexbox.
+            Esta area fica separada das explicacoes conceituais. Aqui cada projeto
+            vira um roteiro de construcao: leitura do layout, estrutura de pastas,
+            decisoes de HTML/CSS e comparacao com o codigo de referencia.
           </p>
-          <ul>
-            <li>leitura por regioes</li>
-            <li>Grid nas areas maiores</li>
-            <li>Flexbox dentro dos cards</li>
-          </ul>
-        </a>
 
-        <a class="tutorial-card portfolio" href="Portfolio-Dev/index.html">
-          <span class="card-label">Novo tutorial</span>
-          <h2>Portfolio Dev</h2>
-          <p>
-            Roteiro para montar o portfolio com uma estrutura mais profissional:
-            tokens, utilitarios, componentes, secoes e leitura do layout no Figma.
-          </p>
-          <ul>
-            <li>apresentacao e skills</li>
-            <li>servicos, projetos e contato</li>
-            <li>estrutura escalavel de CSS</li>
-          </ul>
-        </a>
+          <div class="hero-actions">
+            <a class="action-button primary" href="../../index.html">Voltar ao inicio</a>
+            <a class="action-button" href="../index.html">Abrir explicacoes</a>
+          </div>
+        </section>
 
-        <a class="tutorial-card form" href="Formulario-Matricula/index.html">
-          <span class="card-label">Formulario</span>
-          <h2>Formulario de Matricula</h2>
-          <p>
-            Aprenda a ler o layout de um formulario grande no Figma e transformar
-            a tela em HTML semantico, componentes de campo e layout responsivo.
-          </p>
-          <ul>
-            <li>form, fieldset e label</li>
-            <li>inputs, upload e cards selecionaveis</li>
-            <li>duas colunas no desktop</li>
-          </ul>
-        </a>
-      </section>
+        <section class="section-block" id="tutoriais" aria-labelledby="tutorial-title">
+          <div class="section-heading">
+            <span class="eyebrow small purple">Disponiveis</span>
+            <h2 id="tutorial-title">Escolha um roteiro</h2>
+          </div>
 
-      <section class="panel">
-        <span class="section-label">Padrao dos proximos</span>
-        <h2>O que todo tutorial novo deve responder</h2>
-        <ol>
-          <li>Quais secoes existem no Figma?</li>
-          <li>Qual e a melhor estrutura de pastas para o projeto?</li>
-          <li>Quais estilos se repetem e podem virar componentes?</li>
-          <li>Quais diferencas aparecem ao comparar com o codigo do professor?</li>
-          <li>Qual checklist final confirma que o projeto ficou mais profissional?</li>
-        </ol>
-      </section>
-    </main>
+          <div class="hub-grid">
+            <a class="resource-card accent-blue" href="Tech-News/index.html">
+              <span class="card-label">Projeto guiado</span>
+              <h3>Tech News</h3>
+              <p>Entenda como ler o Figma do portal de noticias, separar regioes grandes com Grid e alinhar componentes menores com Flexbox.</p>
+              <ul>
+                <li>leitura por regioes</li>
+                <li>Grid nas areas maiores</li>
+                <li>Flexbox dentro dos cards</li>
+              </ul>
+            </a>
+
+            <a class="resource-card accent-purple" href="Portfolio-Dev/index.html">
+              <span class="card-label">Projeto guiado</span>
+              <h3>Portfolio Dev</h3>
+              <p>Roteiro para montar o portfolio com tokens, utilitarios, componentes, secoes e leitura do layout no Figma.</p>
+              <ul>
+                <li>apresentacao e skills</li>
+                <li>servicos, projetos e contato</li>
+                <li>estrutura escalavel de CSS</li>
+              </ul>
+            </a>
+
+            <a class="resource-card accent-orange" href="Formulario-Matricula/index.html">
+              <span class="card-label">Formulario</span>
+              <h3>Formulario de Matricula</h3>
+              <p>Aprenda a ler um formulario grande no Figma e transformar a tela em HTML semantico e componentes de campo.</p>
+              <ul>
+                <li>form, fieldset e label</li>
+                <li>inputs, upload e cards</li>
+                <li>duas colunas no desktop</li>
+              </ul>
+            </a>
+          </div>
+        </section>
+
+        <section class="section-block" id="metodo" aria-labelledby="method-title">
+          <div class="section-heading">
+            <span class="eyebrow small green">Metodo de estudo</span>
+            <h2 id="method-title">Compare sempre em tres camadas</h2>
+          </div>
+
+          <div class="flow-list">
+            <article class="flow-card accent-coral">
+              <strong>1. Meu codigo</strong>
+              <span>Construa primeiro em `Projetos/NomeDoProjeto`.</span>
+            </article>
+
+            <article class="flow-card accent-green">
+              <strong>2. Codigo do professor</strong>
+              <span>Abra a referencia em `RocketSeat-Projects/nome-do-projeto`.</span>
+            </article>
+
+            <article class="flow-card accent-blue">
+              <strong>3. Tutorial</strong>
+              <span>Use o roteiro para entender estrutura, padroes e refatoracao.</span>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
 </html>

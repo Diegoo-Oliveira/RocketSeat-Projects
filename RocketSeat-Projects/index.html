@@ -3,97 +3,105 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RocketSeat Projects</title>
-    <link rel="stylesheet" href="index.css" />
+    <title>Projetos do professor | RocketSeat</title>
+    <link rel="stylesheet" href="../index.css" />
   </head>
   <body>
-    <main class="page">
-      <div class="topbar">
-        <a href="../index.html">Voltar para o inicio</a>
-        <span class="eyebrow">Projetos do professor</span>
-      </div>
+    <div class="workspace-shell">
+      <aside class="sidebar" aria-label="Navegacao das referencias">
+        <a class="home-button" href="../index.html">Home</a>
 
-      <section class="hero">
-        <h1>Referencias da Rocketseat para comparar seus projetos</h1>
-        <p>
-          Esta pasta guarda os projetos feitos pelo professor durante as aulas.
-          Use como referencia depois de terminar sua propria versao, comparando
-          estrutura, nomes de classes, organizacao de CSS e padroes reutilizaveis.
-        </p>
-      </section>
+        <div class="sidebar-heading">
+          <span>Referencias</span>
+          <h2>Projetos do professor</h2>
+          <p>Use depois de terminar sua versao para comparar estrutura, CSS e padroes.</p>
+        </div>
 
-      <section class="project-grid" aria-label="Projetos de referencia">
-        <a class="card" href="portal-de-noticias-main/index.html">
-          <span class="badge">Disponivel</span>
-          <h2>Portal de Noticias</h2>
+        <nav class="side-nav" aria-label="Categorias">
+          <a href="#visao" class="active">Visao geral</a>
+          <a href="#referencias">Projetos</a>
+          <a href="#comparacao">Comparacao</a>
+          <a href="../Projetos/index.html">Sua pratica</a>
+          <a href="../Explicaçoes/index.html">Explicacoes</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="hero" id="visao">
+          <span class="eyebrow green">Projetos do professor</span>
+          <h1>Referencias da Rocketseat para comparar seus projetos</h1>
           <p>
-            Codigo da Rocketseat para o projeto Tech News, com CSS separado por
-            arquivos de base, cabecalho, secoes e utilitarios.
+            Esta pasta guarda os projetos feitos pelo professor durante as aulas.
+            Abra somente depois de terminar sua propria versao, comparando estrutura,
+            nomes de classes, organizacao de CSS e padroes reutilizaveis.
           </p>
-        </a>
 
-        <a class="card" href="formulario-de-matricula/index.html">
-          <span class="badge">Disponivel</span>
-          <h2>Formulario de Matricula</h2>
-          <p>
-            Codigo da Rocketseat para o projeto Estrelas do Amanha, com foco em
-            formularios, inputs personalizados, validacao visual e CSS modular.
-          </p>
-        </a>
-      </section>
+          <div class="hero-actions">
+            <a class="action-button primary" href="../index.html">Voltar ao inicio</a>
+            <a class="action-button" href="../Projetos/index.html">Abrir seus projetos</a>
+          </div>
+        </section>
 
-      <section class="panel">
-        <h2>Como comparar com seus codigos</h2>
-        <ol>
-          <li>Termine primeiro sua versao em `Projetos`.</li>
-          <li>Abra a versao do professor nesta pasta apenas depois disso.</li>
-          <li>Compare a estrutura de pastas e o papel de cada arquivo CSS.</li>
-          <li>Procure classes repetidas no seu codigo que poderiam virar componentes.</li>
-          <li>Refatore aos poucos, mantendo o projeto funcionando a cada etapa.</li>
-        </ol>
-      </section>
+        <section class="section-block" id="referencias" aria-labelledby="references-title">
+          <div class="section-heading">
+            <span class="eyebrow small green">Disponiveis</span>
+            <h2 id="references-title">Projetos de referencia</h2>
+          </div>
 
-      <section class="compare-grid">
-        <article class="panel mini">
-          <span class="badge soft">Seu codigo</span>
-          <h2>Projetos/TechNews</h2>
-          <p>
-            Sua implementacao manual. E aqui que voce pratica e cria sua propria
-            solucao antes de olhar a referencia.
-          </p>
-          <a href="../Projetos/TechNews/index.html">Abrir sua versao</a>
-        </article>
+          <div class="hub-grid">
+            <a class="resource-card accent-green" href="portal-de-noticias-main/index.html">
+              <span class="card-label">Disponivel</span>
+              <h3>Portal de Noticias</h3>
+              <p>Codigo da Rocketseat para o projeto Tech News, com CSS separado por base, cabecalho, secoes e utilitarios.</p>
+              <ul>
+                <li>portal de noticias</li>
+                <li>Grid e componentes</li>
+                <li>comparacao com TechNews</li>
+              </ul>
+            </a>
 
-        <article class="panel mini">
-          <span class="badge soft">Tutorial</span>
-          <h2>Explicacao guiada</h2>
-          <p>
-            Use o tutorial para entender por que certas escolhas deixam o CSS
-            menor, mais limpo e mais facil de manter.
-          </p>
-          <a href="../Explicaçoes/Tutorial-Projetos/Tech-News/index.html">Abrir tutorial Tech News</a>
-        </article>
+            <a class="resource-card accent-orange" href="formulario-de-matricula/index.html">
+              <span class="card-label">Disponivel</span>
+              <h3>Formulario de Matricula</h3>
+              <p>Codigo da Rocketseat para o projeto Estrelas do Amanha, com foco em formulario e CSS modular.</p>
+              <ul>
+                <li>fieldset e inputs</li>
+                <li>radio e checkbox customizados</li>
+                <li>SVG, WebKit e rem</li>
+              </ul>
+            </a>
+          </div>
+        </section>
 
-        <article class="panel mini">
-          <span class="badge soft">Seu codigo</span>
-          <h2>Projetos/Formulario-matricula</h2>
-          <p>
-            Sua versao do formulario. Compare a divisao dos fieldsets, nomes de
-            classes, wrappers dos campos e arquivos CSS separados por contexto.
-          </p>
-          <a href="../Projetos/Formulario-matricula/index.html">Abrir sua versao</a>
-        </article>
+        <section class="section-block" id="comparacao" aria-labelledby="compare-title">
+          <div class="section-heading">
+            <span class="eyebrow small">Comparacao</span>
+            <h2 id="compare-title">Use as referencias com metodo</h2>
+          </div>
 
-        <article class="panel mini">
-          <span class="badge soft">Tutorial</span>
-          <h2>Explicacao guiada</h2>
-          <p>
-            Reforce o passo a passo do projeto, desde a leitura do layout ate a
-            organizacao de inputs, radio cards, checkbox e botoes.
-          </p>
-          <a href="../Explicaçoes/Tutorial-Projetos/Formulario-Matricula/index.html">Abrir tutorial Formulario</a>
-        </article>
-      </section>
-    </main>
+          <div class="comparison-grid">
+            <a class="compact-link accent-blue" href="../Projetos/TechNews/index.html">
+              <strong>Sua versao - TechNews</strong>
+              <span>Abra sua implementacao antes de comparar com o professor.</span>
+            </a>
+
+            <a class="compact-link accent-green" href="portal-de-noticias-main/index.html">
+              <strong>Professor - Portal de Noticias</strong>
+              <span>Compare estrutura de pastas, utilitarios, secoes e responsividade.</span>
+            </a>
+
+            <a class="compact-link accent-orange" href="../Explicaçoes/Formulario-Matricula-Guia/index.html">
+              <strong>Guia - Formulario de Matricula</strong>
+              <span>Estude o projeto do professor com explicacao de HTML, CSS, SVG e WebKit.</span>
+            </a>
+
+            <article class="status-note">
+              <strong>Sua versao do formulario</strong>
+              <p>A pasta `Projetos/Formulario-matricula` nao aparece no workspace atual, entao deixei sem link para evitar 404.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
 </html>

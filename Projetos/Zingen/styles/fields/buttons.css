@@ -1,0 +1,29 @@
+.white-button {
+    border-radius: .5rem;
+    background-color: var(--text-color-primary);
+    color: var(--background-color);
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+        background: linear-gradient(90deg, #FC4A1A, #F7B733);
+    }
+}
+
+.transparent-button {
+    border-radius: .5rem;
+    border: 2px solid var(--text-color-primary);
+    background-color: transparent;
+    color: var(--text-color-primary);
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+        background: linear-gradient(90deg, #FC4A1A, #F7B733);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        border-image: linear-gradient(90deg, #FC4A1A, #F7B733) 1;
+    }
+}

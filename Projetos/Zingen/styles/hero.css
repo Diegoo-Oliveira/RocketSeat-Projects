@@ -1,0 +1,58 @@
+#hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+
+    & #hero-main {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        & #hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+
+            & img {
+                width: 25.75rem;
+                height: 6.5rem;
+            }
+
+            & #hero-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+
+                & h1 {
+                    font: var(--desktop-h1);
+                }
+
+                & p {
+                    font: 500 2.5rem/140% var(--font-family);
+                    color: var(--text-color-secondary);
+                }
+            }
+        }
+
+        & #hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+
+            & .white-button {
+                padding: 1rem 2rem;
+            }
+
+            & .transparent-button {
+                padding: 1rem 2rem;
+            }
+        }
+    }
+
+}

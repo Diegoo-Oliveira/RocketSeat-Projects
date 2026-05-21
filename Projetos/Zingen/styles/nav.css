@@ -26,15 +26,6 @@
     }
 
     & button {
-        width: 9rem;
-        height: 3rem;
-        border-radius: .5rem;
-        background-color: var(--text-color-primary);
-        color: var(--background-color);
-        cursor: pointer;
-    }
-
-    & button:hover {
-        background: linear-gradient(90deg, #FC4A1A, #F7B733);
+        padding: .75rem 1.5rem;
     }
 }

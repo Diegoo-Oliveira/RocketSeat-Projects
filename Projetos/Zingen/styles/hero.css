@@ -1,9 +1,13 @@
 #hero-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    gap: 99px;
 
     max-width: 1280px;
+    height: 43.75rem;
     margin: 0 auto;
     width: 100%;
 
@@ -11,6 +15,8 @@
         display: flex;
         flex-direction: column;
         gap: 3rem;
+        z-index: 3;
+        padding-top: 5rem;
 
         & #hero-content {
             display: flex;
@@ -55,4 +61,61 @@
         }
     }
 
+}
+
+#hero-illustration {
+    position: relative;
+    width: 1280px;
+    height: 700px;
+
+    & #elipse-container {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+
+        & #elipse-gray {
+            position: absolute;
+            width: 5000px;
+            height: 5000px;
+            border-radius: 50%;
+            z-index: 2;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--surface-color);
+        }
+    }
+
+    & #hero-backlight {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+
+        & .div-orange {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background-color: var(--brand-color-secondary);
+            filter: blur(100px);
+            opacity: 1;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        & .div-yellow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: var(--brand-color-primary);
+            filter: blur(100px);
+            opacity: 1;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+    }
 }

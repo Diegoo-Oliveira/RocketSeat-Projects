@@ -17,13 +17,4 @@
     color: var(--text-color-primary);
     cursor: pointer;
     text-align: center;
-
-    &:hover {
-        background: linear-gradient(90deg, #FC4A1A, #F7B733);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-        border-image: linear-gradient(90deg, #FC4A1A, #F7B733) 1;
-    }
 }

@@ -1,0 +1,40 @@
+#nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-shrink: 0;
+
+    & a {
+        color: var(--text-color-secondary);
+    }
+
+    & a:hover {
+        background: linear-gradient(90deg, #FC4A1A, #F7B733);
+        background-clip: text;
+        color: transparent;
+    }
+
+    & button {
+        width: 9rem;
+        height: 3rem;
+        border-radius: .5rem;
+        background-color: var(--text-color-primary);
+        color: var(--background-color);
+        cursor: pointer;
+    }
+
+    & button:hover {
+        background: linear-gradient(90deg, #FC4A1A, #F7B733);
+    }
+}

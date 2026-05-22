@@ -67,6 +67,8 @@
     position: relative;
     width: 1280px;
     height: 700px;
+    overflow: hidden;
+    z-index: 1;
 
     & #elipse-container {
         position: absolute;

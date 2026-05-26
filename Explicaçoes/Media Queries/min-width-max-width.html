@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>min-width vs max-width</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Media Queries</a>
+        <span class="eyebrow">Estrategia</span>
+      </div>
+
+      <section class="hero">
+        <h1>min-width vs max-width</h1>
+        <p>
+          Existem dois jeitos de pensar responsividade: comecar pelo celular
+          e ir crescendo (<strong>mobile-first</strong>) ou comecar pelo desktop
+          e ir encolhendo (<strong>desktop-first</strong>). A diferenca esta em
+          usar <code>min-width</code> ou <code>max-width</code>.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Mobile-first (min-width)</h2>
+          <p>
+            Voce escreve o CSS base pensando no celular. Depois usa
+            <code>min-width</code> para adicionar regras quando a tela for
+            <strong>maior</strong> que o valor.
+          </p>
+          <pre class="code"><code>/* Base: celular (tela pequena) */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* A partir de 768px: tablet */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    padding: 24px;
+  }
+}
+
+/* A partir de 1024px: desktop */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px;
+  }
+}</code></pre>
+          <p class="note tip">
+            <strong>min-width</strong> significa "a partir de". O CSS base e
+            para telas pequenas e voce vai adicionando conforme cresce.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Desktop-first (max-width)</h2>
+          <p>
+            Voce escreve o CSS base pensando no desktop. Depois usa
+            <code>max-width</code> para remover ou alterar regras quando a
+            tela for <strong>menor</strong> que o valor.
+          </p>
+          <pre class="code"><code>/* Base: desktop (tela grande) */
+.container {
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+/* Ate 1023px: tablet */
+@media (max-width: 1023px) {
+  .container {
+    padding: 24px;
+  }
+}
+
+/* Ate 767px: celular */
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    padding: 16px;
+  }
+}</code></pre>
+          <p class="note warning">
+            <strong>max-width</strong> significa "ate". O CSS base e para
+            telas grandes e voce vai ajustando conforme encolhe.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Comparacao visual</h2>
+          <p>
+            <span class="badge badge-green">Mobile-first</span> cresce de
+            baixo para cima.
+            <span class="badge badge-purple">Desktop-first</span> diminui de
+            cima para baixo.
+          </p>
+          <div class="visual">
+            <div class="compare">
+              <div>
+                <span class="compare-label mobile">MOBILE-FIRST</span>
+                <pre class="code"><code>/* base: celular */
+.nav { flex-direction: column; }
+
+@media (min-width: 768px) {
+  .nav { flex-direction: row; }
+}
+
+@media (min-width: 1024px) {
+  .nav { gap: 24px; }
+}</code></pre>
+              </div>
+              <div>
+                <span class="compare-label desktop">DESKTOP-FIRST</span>
+                <pre class="code"><code>/* base: desktop */
+.nav { flex-direction: row; gap: 24px; }
+
+@media (max-width: 1023px) {
+  .nav { gap: 16px; }
+}
+
+@media (max-width: 767px) {
+  .nav { flex-direction: column; }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Qual escolher?</h2>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Criterio</th>
+                <th>Mobile-first</th>
+                <th>Desktop-first</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Operador</td>
+                <td><code>min-width</code></td>
+                <td><code>max-width</code></td>
+              </tr>
+              <tr>
+                <td>CSS base</td>
+                <td>Para celular</td>
+                <td>Para desktop</td>
+              </tr>
+              <tr>
+                <td>Direcao</td>
+                <td>Cresce adicionando</td>
+                <td>Encolhe removendo</td>
+              </tr>
+              <tr>
+                <td>Performance</td>
+                <td>Melhor em celulares</td>
+                <td>Carrega CSS extra no celular</td>
+              </tr>
+              <tr>
+                <td>Quando usar</td>
+                <td>Projetos novos</td>
+                <td>Sites legados ou dashboards</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note tip">
+            A industria recomenda <strong>mobile-first</strong> como padrao.
+            A maioria dos acessos hoje vem de celulares, entao faz sentido
+            comecar pelo menor e ir crescendo.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Erro comum: misturar min e max</h2>
+          <p>
+            Evite misturar min-width e max-width no mesmo projeto. Isso gera
+            conflitos dificeis de debugar.
+          </p>
+          <pre class="code"><code>/* ❌ Errado: misturando estrategias */
+@media (max-width: 768px) { ... }
+@media (min-width: 500px) { ... }
+
+/* ✅ Correto: escolha uma direcao */
+/* Mobile-first: so min-width */
+@media (min-width: 768px) { ... }
+@media (min-width: 1024px) { ... }
+
+/* OU Desktop-first: so max-width */
+@media (max-width: 1023px) { ... }
+@media (max-width: 767px) { ... }</code></pre>
+          <p class="note warning">
+            Se precisar de uma faixa especifica (ex: so tablet), use
+            <code>and</code> para combinar:
+            <code>@media (min-width: 768px) and (max-width: 1023px)</code>
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Ordem importa</h2>
+          <p>
+            No mobile-first, coloque os <code>min-width</code> em ordem
+            crescente. No desktop-first, coloque os <code>max-width</code> em
+            ordem decrescente. Assim a cascata funciona corretamente.
+          </p>
+          <pre class="code"><code>/* Mobile-first: menor → maior */
+@media (min-width: 480px) { ... }
+@media (min-width: 768px) { ... }
+@media (min-width: 1024px) { ... }
+
+/* Desktop-first: maior → menor */
+@media (max-width: 1023px) { ... }
+@media (max-width: 767px) { ... }
+@media (max-width: 479px) { ... }</code></pre>
+          <p class="note">
+            Se a ordem estiver errada, um @media anterior pode ser sobrescrito
+            por um posterior, mesmo que nao fosse a intencao.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Resumo</h2>
+        <ol class="formula-list">
+          <li><code>min-width</code> = mobile-first: CSS base pro celular, cresce</li>
+          <li><code>max-width</code> = desktop-first: CSS base pro desktop, encolhe</li>
+          <li>nao misture os dois no mesmo projeto</li>
+          <li>a ordem dos @media deve seguir a direcao escolhida</li>
+          <li>mobile-first e o padrao recomendado pela industria</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="breakpoints.html">← Breakpoints</a>
+        <a href="media-types.html">Media Types →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

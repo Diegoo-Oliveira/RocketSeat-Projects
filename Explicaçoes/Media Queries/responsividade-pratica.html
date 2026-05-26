@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsividade na pratica</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Media Queries</a>
+        <span class="eyebrow">Pratica</span>
+      </div>
+
+      <section class="hero">
+        <h1>Responsividade na pratica</h1>
+        <p>
+          Agora que voce conhece a teoria, vamos aplicar tudo em exemplos
+          reais: adaptar grids, sidebars, fontes, navegacao e layouts
+          completos para celular, tablet e desktop.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo 1: Grid responsivo</h2>
+          <p>
+            Um grid que vai de 3 colunas no desktop para 2 no tablet e 1 no
+            celular.
+          </p>
+          <pre class="code"><code>.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1023px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+          <div class="visual">
+            <p style="margin:0 0 8px;font-weight:700;color:var(--ink)">Desktop: 3 colunas</p>
+            <div class="layout-demo layout-cols-3">
+              <div class="cell teal">Card 1</div>
+              <div class="cell purple">Card 2</div>
+              <div class="cell orange">Card 3</div>
+            </div>
+            <p style="margin:14px 0 8px;font-weight:700;color:var(--ink)">Tablet: 2 colunas</p>
+            <div class="layout-demo layout-cols-2">
+              <div class="cell teal">Card 1</div>
+              <div class="cell purple">Card 2</div>
+              <div class="cell orange">Card 3</div>
+            </div>
+            <p style="margin:14px 0 8px;font-weight:700;color:var(--ink)">Celular: 1 coluna</p>
+            <div class="layout-demo layout-cols-1">
+              <div class="cell teal">Card 1</div>
+              <div class="cell purple">Card 2</div>
+              <div class="cell orange">Card 3</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo 2: Sidebar que vira topo</h2>
+          <p>
+            No desktop a sidebar fica ao lado. No celular ela vira um bloco
+            acima do conteudo.
+          </p>
+          <pre class="code"><code>.layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 767px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+          <div class="visual">
+            <p style="margin:0 0 8px;font-weight:700;color:var(--ink)">Desktop: side-by-side</p>
+            <div class="sidebar-demo">
+              <div class="demo-sidebar">Sidebar</div>
+              <div class="demo-main">Conteudo principal</div>
+            </div>
+            <p style="margin:14px 0 8px;font-weight:700;color:var(--ink)">Celular: empilhado</p>
+            <div class="sidebar-demo sidebar-demo-stacked">
+              <div class="demo-sidebar">Sidebar (agora no topo)</div>
+              <div class="demo-main">Conteudo principal</div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo 3: Navegacao responsiva</h2>
+          <p>
+            No desktop os links ficam em linha. No celular viram um menu
+            vertical (hamburguer simplificado com CSS puro).
+          </p>
+          <pre class="code"><code>.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .nav {
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+    display: none;  /* esconde por padrao */
+  }
+
+  .nav-links.open {
+    display: flex;  /* mostra quando abrir */
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+}</code></pre>
+          <p class="note tip">
+            Para um menu hamburguer completo voce precisa de JavaScript para
+            alternar a classe <code>.open</code>. Mas o CSS sozinho ja cuida
+            de toda a adaptacao visual.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo 4: Tipografia responsiva</h2>
+          <p>
+            Fontes que se adaptam ao tamanho da tela usando media queries
+            e a funcao <code>clamp()</code>.
+          </p>
+          <pre class="code"><code>/* Metodo 1: Media queries tradicionais */
+h1 { font-size: 3rem; }
+
+@media (max-width: 1023px) {
+  h1 { font-size: 2.4rem; }
+}
+
+@media (max-width: 639px) {
+  h1 { font-size: 1.8rem; }
+}
+
+/* Metodo 2: clamp() (sem media query!) */
+h1 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  /* minimo: 1.8rem
+     ideal: 5% da viewport
+     maximo: 3rem */
+}
+
+/* Metodo 3: combinando os dois */
+h1 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+}
+
+@media (max-width: 479px) {
+  h1 {
+    font-size: 1.5rem; /* garante legibilidade */
+    line-height: 1.2;
+  }
+}</code></pre>
+          <p class="note tip">
+            <code>clamp()</code> substitui muitas media queries de tipografia.
+            Use media queries so para ajustes que clamp nao resolve, como
+            mudar o line-height.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo 5: Imagens responsivas</h2>
+          <pre class="code"><code>/* Imagem fluida basica */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Imagens diferentes por tamanho de tela */
+.hero-bg {
+  background-image: url('hero-desktop.jpg');
+  background-size: cover;
+}
+
+@media (max-width: 1023px) {
+  .hero-bg {
+    background-image: url('hero-tablet.jpg');
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-bg {
+    background-image: url('hero-mobile.jpg');
+  }
+}
+
+/* Com srcset no HTML (alternativa melhor) */
+/* &lt;img srcset="small.jpg 480w,
+              medium.jpg 1024w,
+              large.jpg 1920w"
+     sizes="(max-width: 640px) 100vw,
+            (max-width: 1024px) 50vw,
+            33vw"
+     src="large.jpg"
+     alt="Exemplo"&gt; */</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo 6: Espaçamentos e padding</h2>
+          <pre class="code"><code>.section {
+  padding: 64px 40px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1023px) {
+  .section {
+    padding: 48px 28px;
+  }
+}
+
+@media (max-width: 639px) {
+  .section {
+    padding: 32px 16px;
+  }
+
+  .container {
+    /* no celular, usa toda a largura */
+    max-width: 100%;
+  }
+}
+
+/* Truque com clamp para padding fluido */
+.section-fluid {
+  padding: clamp(24px, 5vw, 64px)
+           clamp(16px, 4vw, 40px);
+}</code></pre>
+          <p class="note tip">
+            Reduzir padding em telas menores e essencial. Cada pixel conta
+            num celular com 375px de largura.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Checklist de responsividade</h2>
+        <ol class="formula-list">
+          <li>meta viewport no HTML: <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></li>
+          <li>imagens com <code>max-width: 100%</code></li>
+          <li>fontes com <code>clamp()</code> ou media queries</li>
+          <li>grids que reduzem colunas em telas menores</li>
+          <li>sidebar que empilha verticalmente</li>
+          <li>navegacao que se adapta ou vira menu</li>
+          <li>paddings e margins que diminuem em mobile</li>
+          <li>testar em pelo menos 3 larguras: 375px, 768px e 1280px</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="operadores-logicos.html">← Operadores</a>
+        <a href="unidades-responsivas.html">Unidades →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

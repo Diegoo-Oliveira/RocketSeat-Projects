@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Features</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Media Queries</a>
+        <span class="eyebrow">Features</span>
+      </div>
+
+      <section class="hero">
+        <h1>Media Features</h1>
+        <p>
+          Media features sao as <strong>condicoes</strong> que voce testa
+          dentro do <code>@media</code>. A mais famosa e <code>width</code>,
+          mas existem dezenas de outras para orientacao, resolucao, preferencia
+          de cor, modo escuro e muito mais.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Dimensoes da viewport</h2>
+          <p>As mais usadas no dia a dia. Todas aceitam prefixo min- e max-.</p>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>O que testa</th>
+                <th>Exemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>width</code></td>
+                <td>Largura exata da viewport</td>
+                <td><code>(width: 1024px)</code></td>
+              </tr>
+              <tr>
+                <td><code>min-width</code></td>
+                <td>Largura minima (a partir de)</td>
+                <td><code>(min-width: 768px)</code></td>
+              </tr>
+              <tr>
+                <td><code>max-width</code></td>
+                <td>Largura maxima (ate)</td>
+                <td><code>(max-width: 767px)</code></td>
+              </tr>
+              <tr>
+                <td><code>height</code></td>
+                <td>Altura exata da viewport</td>
+                <td><code>(height: 900px)</code></td>
+              </tr>
+              <tr>
+                <td><code>min-height</code></td>
+                <td>Altura minima</td>
+                <td><code>(min-height: 600px)</code></td>
+              </tr>
+              <tr>
+                <td><code>max-height</code></td>
+                <td>Altura maxima</td>
+                <td><code>(max-height: 500px)</code></td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* Tela mais larga que 1024px */
+@media (min-width: 1024px) {
+  .container { max-width: 1200px; }
+}
+
+/* Tela com pouca altura (ex: landscape no celular) */
+@media (max-height: 500px) {
+  .hero { padding: 12px; }
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Orientacao</h2>
+          <p>Detecta se o dispositivo esta em pe (portrait) ou deitado (landscape).</p>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Quando e true</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>orientation: portrait</code></td>
+                <td>Quando a altura e maior que a largura</td>
+              </tr>
+              <tr>
+                <td><code>orientation: landscape</code></td>
+                <td>Quando a largura e maior que a altura</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* Celular deitado: esconder sidebar, layout horizontal */
+@media (orientation: landscape) and (max-height: 500px) {
+  .sidebar { display: none; }
+  .content { flex-direction: row; }
+}
+
+/* Celular em pe: layout vertical */
+@media (orientation: portrait) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+          <p class="note tip">
+            Combinar <code>orientation</code> com <code>max-height</code> e
+            muito util para celulares deitados, onde a tela e larga mas baixa.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Proporcao da tela</h2>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>O que testa</th>
+                <th>Exemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>aspect-ratio</code></td>
+                <td>Proporcao largura/altura</td>
+                <td><code>(aspect-ratio: 16/9)</code></td>
+              </tr>
+              <tr>
+                <td><code>min-aspect-ratio</code></td>
+                <td>Proporcao minima</td>
+                <td><code>(min-aspect-ratio: 1/1)</code></td>
+              </tr>
+              <tr>
+                <td><code>max-aspect-ratio</code></td>
+                <td>Proporcao maxima</td>
+                <td><code>(max-aspect-ratio: 4/3)</code></td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* Telas ultra-wide (21:9 ou mais) */
+@media (min-aspect-ratio: 21/9) {
+  .hero {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+/* Telas quase quadradas */
+@media (max-aspect-ratio: 4/3) {
+  .video-container {
+    aspect-ratio: 4/3;
+  }
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Resolucao e pixel density</h2>
+          <p>Detecta telas de alta resolucao (Retina, HiDPI).</p>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>O que testa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>resolution</code></td>
+                <td>Densidade em dpi ou dpcm</td>
+              </tr>
+              <tr>
+                <td><code>min-resolution</code></td>
+                <td>Densidade minima</td>
+              </tr>
+              <tr>
+                <td><code>-webkit-device-pixel-ratio</code></td>
+                <td>Compatibilidade com Safari antigo</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* Telas Retina (2x ou mais) */
+@media (min-resolution: 2dppx) {
+  .logo {
+    background-image: url('logo@2x.png');
+    background-size: 200px 60px;
+  }
+}
+
+/* Alternativa com -webkit para Safari */
+@media (-webkit-min-device-pixel-ratio: 2) {
+  .logo {
+    background-image: url('logo@2x.png');
+  }
+}</code></pre>
+          <p class="note">
+            <code>dppx</code> = dots per pixel. 2dppx = tela Retina (2 pixels
+            fisicos para cada pixel CSS).
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Preferencias do usuario</h2>
+          <p>
+            Features modernas que respeitam as configuracoes do sistema
+            operacional do usuario.
+          </p>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>O que detecta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>prefers-color-scheme</code></td>
+                <td>Modo claro ou escuro do sistema</td>
+              </tr>
+              <tr>
+                <td><code>prefers-reduced-motion</code></td>
+                <td>Usuario pediu menos animacoes</td>
+              </tr>
+              <tr>
+                <td><code>prefers-contrast</code></td>
+                <td>Usuario quer mais ou menos contraste</td>
+              </tr>
+              <tr>
+                <td><code>prefers-reduced-transparency</code></td>
+                <td>Usuario quer menos transparencia</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* Modo escuro automatico */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --ink: #e2e8f0;
+    --muted: #94a3b8;
+  }
+}
+
+/* Desativar animacoes para usuarios sensiveis */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: more) {
+  :root {
+    --ink: #000000;
+    --bg: #ffffff;
+    --line: #000000;
+  }
+}</code></pre>
+          <p class="note tip">
+            <code>prefers-color-scheme</code> e
+            <code>prefers-reduced-motion</code> sao as mais importantes.
+            Sempre que possivel, implemente as duas nos seus projetos.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Capacidades do dispositivo</h2>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>O que detecta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>hover: hover</code></td>
+                <td>Dispositivo tem cursor que "hovera"</td>
+              </tr>
+              <tr>
+                <td><code>hover: none</code></td>
+                <td>Toque, sem hover (celular)</td>
+              </tr>
+              <tr>
+                <td><code>pointer: fine</code></td>
+                <td>Ponteiro preciso (mouse)</td>
+              </tr>
+              <tr>
+                <td><code>pointer: coarse</code></td>
+                <td>Ponteiro impreciso (dedo)</td>
+              </tr>
+              <tr>
+                <td><code>any-hover</code></td>
+                <td>Qualquer input disponivel</td>
+              </tr>
+              <tr>
+                <td><code>any-pointer</code></td>
+                <td>Qualquer tipo de ponteiro</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* Efeito hover so em dispositivos com mouse */
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+}
+
+/* Botoes maiores em dispositivos touch */
+@media (pointer: coarse) {
+  .button {
+    min-height: 48px;
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Botoes normais em dispositivos com mouse */
+@media (pointer: fine) {
+  .button {
+    min-height: 36px;
+    padding: 8px 14px;
+  }
+}</code></pre>
+          <p class="note tip">
+            Usar <code>hover: hover</code> evita que efeitos hover "grudem"
+            em celulares. Em touch, o hover fica ativo apos o toque e causa
+            confusao visual.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Resumo das features</h2>
+        <ol class="formula-list">
+          <li><strong>width/height</strong>: as mais usadas, com prefixos min- e max-</li>
+          <li><strong>orientation</strong>: portrait (em pe) vs landscape (deitado)</li>
+          <li><strong>aspect-ratio</strong>: proporcao da tela</li>
+          <li><strong>resolution</strong>: telas Retina e HiDPI</li>
+          <li><strong>prefers-color-scheme</strong>: modo escuro automatico</li>
+          <li><strong>prefers-reduced-motion</strong>: acessibilidade</li>
+          <li><strong>hover/pointer</strong>: mouse vs toque</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="media-types.html">← Media Types</a>
+        <a href="operadores-logicos.html">Operadores →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

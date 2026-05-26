@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breakpoints</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Media Queries</a>
+        <span class="eyebrow">Breakpoints</span>
+      </div>
+
+      <section class="hero">
+        <h1>Breakpoints</h1>
+        <p>
+          Breakpoints sao os "pontos de corte" onde o layout muda. Sao os
+          valores de largura que voce usa no <code>@media</code> para decidir
+          quando trocar o design. Nao existe um padrao obrigatorio, mas existem
+          faixas que a maioria dos projetos usa.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Faixas mais comuns</h2>
+          <p>
+            A tabela abaixo mostra os breakpoints que a maioria dos frameworks
+            e projetos profissionais utiliza.
+          </p>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Dispositivo</th>
+                <th>Faixa</th>
+                <th>Breakpoint</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Celular pequeno</td>
+                <td>0 – 479px</td>
+                <td><code>max-width: 479px</code></td>
+              </tr>
+              <tr>
+                <td>Celular grande</td>
+                <td>480 – 767px</td>
+                <td><code>max-width: 767px</code></td>
+              </tr>
+              <tr>
+                <td>Tablet</td>
+                <td>768 – 1023px</td>
+                <td><code>max-width: 1023px</code></td>
+              </tr>
+              <tr>
+                <td>Laptop</td>
+                <td>1024 – 1279px</td>
+                <td><code>max-width: 1279px</code></td>
+              </tr>
+              <tr>
+                <td>Desktop</td>
+                <td>1280px +</td>
+                <td><code>min-width: 1280px</code></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note">
+            Esses valores nao sao regras absolutas. O importante e testar
+            no seu layout e ajustar onde ele "quebra".
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Visual dos pontos de corte</h2>
+          <p>Cada faixa corresponde a um tipo de dispositivo:</p>
+          <div class="visual">
+            <div class="breakpoint-bar">
+              <div class="bp-segment bp-phone">Celular<br>0–767px</div>
+              <div class="bp-segment bp-tablet">Tablet<br>768–1023px</div>
+              <div class="bp-segment bp-laptop">Laptop<br>1024–1279px</div>
+              <div class="bp-segment bp-desktop">Desktop<br>1280px+</div>
+            </div>
+            <div class="device-row">
+              <div class="device device-phone">
+                <div class="device-screen"></div>
+                <span>Celular</span>
+              </div>
+              <div class="device device-tablet">
+                <div class="device-screen"></div>
+                <span>Tablet</span>
+              </div>
+              <div class="device device-laptop">
+                <div class="device-screen"></div>
+                <span>Laptop</span>
+              </div>
+              <div class="device device-desktop">
+                <div class="device-screen"></div>
+                <span>Desktop</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Codigo com breakpoints</h2>
+          <p>Usando max-width (desktop-first):</p>
+          <pre class="code"><code>/* Padrao: layout para desktop */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Tablet: 3 colunas */
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Celular grande: 2 colunas */
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Celular pequeno: 1 coluna */
+@media (max-width: 479px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Regra de ouro</h2>
+          <p>
+            Nao defina breakpoints por dispositivo. Defina pelo conteudo:
+            redimensione o navegador e observe onde o layout fica ruim. E ali
+            que voce coloca o breakpoint.
+          </p>
+          <ol class="formula-list">
+            <li>abra o layout no navegador</li>
+            <li>va diminuindo a largura devagar</li>
+            <li>quando algo "quebrar" ou ficar feio, anote a largura</li>
+            <li>crie um @media nessa largura</li>
+            <li>repita ate chegar na menor tela</li>
+          </ol>
+          <p class="note tip">
+            Esse metodo garante que o layout funciona em qualquer tamanho,
+            nao so nos dispositivos que voce testou.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Resumo</h2>
+        <ol class="formula-list">
+          <li>breakpoints sao os valores de largura que disparam mudancas no layout</li>
+          <li>celular, tablet, laptop e desktop sao faixas comuns, nao regras fixas</li>
+          <li>o melhor breakpoint e onde o seu conteudo precisa mudar</li>
+          <li>teste redimensionando o navegador, nao decorando numeros</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="o-que-e-media-query.html">← O que e @media</a>
+        <a href="min-width-max-width.html">min vs max →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

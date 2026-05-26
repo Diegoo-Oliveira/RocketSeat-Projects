@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Container Queries</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Media Queries</a>
+        <span class="eyebrow">Moderno</span>
+      </div>
+
+      <section class="hero">
+        <h1>Container Queries</h1>
+        <p>
+          Container queries sao a evolucao das media queries. Em vez de
+          perguntar "qual o tamanho da <strong>tela</strong>?", voce
+          pergunta "qual o tamanho do <strong>pai</strong>?". Isso muda
+          completamente como pensamos componentes reutilizaveis.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>O problema que resolve</h2>
+          <p>
+            Com media queries, um card sempre muda de layout junto com a tela.
+            Mas e se o card estiver em uma sidebar de 300px? A tela tem 1200px,
+            entao o card recebe o layout "desktop", mas ele esta apertado em
+            300px de espaco.
+          </p>
+          <pre class="code"><code>/* Media query: olha a tela */
+@media (min-width: 768px) {
+  .card { flex-direction: row; }
+}
+/* Problema: o card em uma sidebar estreita
+   recebe layout "row" mesmo sem espaco */
+
+/* Container query: olha o pai */
+@container (min-width: 400px) {
+  .card { flex-direction: row; }
+}
+/* Solucao: o card so muda se o pai
+   tiver pelo menos 400px */</code></pre>
+          <p class="note tip">
+            Container queries tornam componentes verdadeiramente
+            independentes. Eles se adaptam ao espaco disponivel, nao ao
+            tamanho da janela.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Sintaxe basica</h2>
+          <p>
+            Dois passos: (1) marcar o pai como container e (2) escrever
+            <code>@container</code> no lugar de <code>@media</code>.
+          </p>
+          <pre class="code"><code>/* Passo 1: definir o container */
+.card-wrapper {
+  container-type: inline-size;
+  container-name: card-area;
+}
+
+/* Atalho */
+.card-wrapper {
+  container: card-area / inline-size;
+}
+
+/* Passo 2: usar @container */
+@container card-area (min-width: 400px) {
+  .card {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .card img {
+    width: 200px;
+  }
+}
+
+@container card-area (max-width: 399px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card img {
+    width: 100%;
+  }
+}</code></pre>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>container-type</h2>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Valor</th>
+                <th>O que faz</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>inline-size</code></td>
+                <td>O container responde a largura (o mais comum)</td>
+              </tr>
+              <tr>
+                <td><code>size</code></td>
+                <td>Responde a largura E altura</td>
+              </tr>
+              <tr>
+                <td><code>normal</code></td>
+                <td>Nao e um container (padrao)</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note">
+            <code>inline-size</code> e o valor que voce vai usar em 99% dos
+            casos. <code>size</code> adiciona contencao de altura tambem, o
+            que pode causar problemas se o conteudo for dinamico.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Container units</h2>
+          <p>
+            Assim como <code>vw</code> e relativo a viewport, existem
+            unidades relativas ao container.
+          </p>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Unidade</th>
+                <th>Relativa a</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>cqw</code></td>
+                <td>1% da largura do container</td>
+              </tr>
+              <tr>
+                <td><code>cqh</code></td>
+                <td>1% da altura do container</td>
+              </tr>
+              <tr>
+                <td><code>cqi</code></td>
+                <td>1% do inline-size do container</td>
+              </tr>
+              <tr>
+                <td><code>cqb</code></td>
+                <td>1% do block-size do container</td>
+              </tr>
+              <tr>
+                <td><code>cqmin</code></td>
+                <td>O menor entre cqi e cqb</td>
+              </tr>
+              <tr>
+                <td><code>cqmax</code></td>
+                <td>O maior entre cqi e cqb</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>.card-wrapper {
+  container-type: inline-size;
+}
+
+.card h2 {
+  /* Fonte que escala com o container */
+  font-size: clamp(1rem, 4cqi, 2rem);
+}
+
+.card {
+  padding: 3cqi;
+}</code></pre>
+          <p class="note tip">
+            <code>cqi</code> (container query inline) e o mais usado. Funciona
+            como <code>vw</code> mas relativo ao container pai, nao a tela.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo completo</h2>
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="grid"&gt;
+  &lt;section class="card-area"&gt;
+    &lt;article class="product-card"&gt;
+      &lt;img src="produto.jpg" alt="Produto"&gt;
+      &lt;div class="info"&gt;
+        &lt;h3&gt;Nome do produto&lt;/h3&gt;
+        &lt;p&gt;Descricao do produto...&lt;/p&gt;
+        &lt;span class="price"&gt;R$ 99,90&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS */
+.card-area {
+  container: product / inline-size;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Quando o container tiver espaco */
+@container product (min-width: 500px) {
+  .product-card {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .product-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+@container product (min-width: 700px) {
+  .product-card img {
+    width: 280px;
+  }
+
+  .info h3 {
+    font-size: 1.5rem;
+  }
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>@media vs @container</h2>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Criterio</th>
+                <th>@media</th>
+                <th>@container</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Referencia</td>
+                <td>Viewport (tela)</td>
+                <td>Container (pai)</td>
+              </tr>
+              <tr>
+                <td>Escopo</td>
+                <td>Global</td>
+                <td>Local (componente)</td>
+              </tr>
+              <tr>
+                <td>Reutilizacao</td>
+                <td>Componente depende da tela</td>
+                <td>Componente independente</td>
+              </tr>
+              <tr>
+                <td>Suporte</td>
+                <td>Todos os navegadores</td>
+                <td>Modernos (2023+)</td>
+              </tr>
+              <tr>
+                <td>Quando usar</td>
+                <td>Layout geral da pagina</td>
+                <td>Componentes reutilizaveis</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note tip">
+            Use <code>@media</code> para o layout macro (pagina inteira) e
+            <code>@container</code> para componentes individuais. Os dois
+            se complementam perfeitamente.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Suporte de navegadores</h2>
+        <p>
+          Container queries sao suportadas por Chrome 105+, Firefox 110+,
+          Safari 16+ e Edge 105+. Isso cobre a grande maioria dos usuarios
+          em 2024-2025. Para projetos que precisam de suporte a navegadores
+          mais antigos, use media queries como fallback.
+        </p>
+        <pre class="code"><code>/* Fallback com @supports */
+.card-area {
+  /* Navegadores antigos ignoram container */
+}
+
+@supports (container-type: inline-size) {
+  .card-area {
+    container: card / inline-size;
+  }
+}
+
+/* Media query como fallback */
+@media (max-width: 767px) {
+  .product-card { flex-direction: column; }
+}
+
+/* Container query para navegadores modernos */
+@container card (max-width: 400px) {
+  .product-card { flex-direction: column; }
+}</code></pre>
+      </section>
+
+      <div class="topic-nav">
+        <a href="unidades-responsivas.html">← Unidades</a>
+        <a href="o-que-e-media-query.html">Inicio →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

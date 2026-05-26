@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operadores logicos</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Media Queries</a>
+        <span class="eyebrow">Operadores</span>
+      </div>
+
+      <section class="hero">
+        <h1>Operadores logicos</h1>
+        <p>
+          Operadores logicos permitem <strong>combinar</strong> varias
+          condicoes em um unico <code>@media</code>. Voce pode exigir que
+          todas sejam verdadeiras, que pelo menos uma seja, ou negar uma
+          condicao inteira.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>and – E logico</h2>
+          <p>
+            Todas as condicoes precisam ser verdadeiras. Funciona como
+            "E isso E aquilo".
+          </p>
+          <pre class="code"><code>/* Tela entre 768px e 1023px (so tablet) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sidebar { width: 200px; }
+}
+
+/* Tela landscape com no minimo 600px de largura */
+@media (orientation: landscape) and (min-width: 600px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* So para telas, com modo escuro, e largura minima */
+@media screen and (prefers-color-scheme: dark) and (min-width: 768px) {
+  .panel { background: #1e293b; }
+}</code></pre>
+          <p class="note">
+            Voce pode encadear quantos <code>and</code> quiser. Todas as
+            condicoes devem ser verdadeiras para o bloco ser aplicado.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>virgula (,) – OU logico</h2>
+          <p>
+            Basta <strong>uma</strong> das condicoes ser verdadeira. Cada
+            trecho separado por virgula e avaliado independentemente.
+          </p>
+          <pre class="code"><code>/* Celular OU impressao */
+@media (max-width: 767px), print {
+  .sidebar { display: none; }
+}
+
+/* Tela menor que 480px OU landscape com pouca altura */
+@media (max-width: 479px),
+       (orientation: landscape) and (max-height: 400px) {
+  .hero {
+    padding: 12px;
+    font-size: 1.2rem;
+  }
+}</code></pre>
+          <p class="note tip">
+            A virgula funciona como o <code>OR</code>. Pense: "aplique se
+            for celular <strong>OU</strong> se estiver imprimindo".
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>not – negacao</h2>
+          <p>
+            Inverte toda a media query. O que era verdadeiro vira falso
+            e vice-versa.
+          </p>
+          <pre class="code"><code>/* Qualquer coisa que NAO seja print */
+@media not print {
+  .screen-only { display: block; }
+}
+
+/* Telas que NAO sao maiores que 1024px
+   (ou seja: telas de ate 1024px) */
+@media not screen and (min-width: 1025px) {
+  .sidebar { display: none; }
+}</code></pre>
+          <p class="note warning">
+            <code>not</code> nega a media query <strong>inteira</strong>, nao
+            so a feature. <code>not screen and (min-width: 768px)</code> nega
+            tudo, nao so o min-width.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>only – compatibilidade</h2>
+          <p>
+            O operador <code>only</code> foi criado para navegadores antigos
+            que nao entendiam media queries. Hoje e praticamente desnecessario.
+          </p>
+          <pre class="code"><code>/* Uso classico de only */
+@media only screen and (max-width: 768px) {
+  .mobile-menu { display: flex; }
+}
+
+/* Na pratica, e identico a: */
+@media screen and (max-width: 768px) {
+  .mobile-menu { display: flex; }
+}</code></pre>
+          <p class="note">
+            Navegadores modernos ignoram o <code>only</code>. Voce pode
+            encontrar em projetos antigos, mas nao precisa usar em codigo novo.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Combinando tudo</h2>
+          <p>
+            Voce pode misturar todos os operadores para criar condicoes
+            bem especificas.
+          </p>
+          <pre class="code"><code>/* Faixa de tablet com modo escuro */
+@media screen
+  and (min-width: 768px)
+  and (max-width: 1023px)
+  and (prefers-color-scheme: dark) {
+  .panel {
+    background: #1e293b;
+    border-color: #334155;
+  }
+}
+
+/* Celular OU tablet em landscape */
+@media (max-width: 479px),
+       (min-width: 480px) and (max-width: 1023px)
+         and (orientation: landscape) {
+  .hero { padding: 16px; }
+}
+
+/* Dispositivos que tem hover E modo claro */
+@media (hover: hover) and (prefers-color-scheme: light) {
+  .card:hover {
+    background: #f0f9ff;
+    transform: translateY(-2px);
+  }
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Sintaxe moderna: range</h2>
+          <p>
+            CSS Level 4 introduziu uma sintaxe mais legivel usando
+            <code>&lt;</code>, <code>&gt;</code> e <code>&lt;=</code>.
+            Suportada na maioria dos navegadores modernos.
+          </p>
+          <pre class="code"><code>/* Antigo (Level 3) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  ...
+}
+
+/* Moderno (Level 4 range) */
+@media (768px <= width <= 1023px) {
+  ...
+}
+
+/* Outros exemplos de range */
+@media (width >= 1024px) {
+  /* desktop */
+}
+
+@media (width < 768px) {
+  /* celular */
+}
+
+@media (400px <= width < 900px) {
+  /* faixa customizada */
+}</code></pre>
+          <p class="note tip">
+            A sintaxe de range e mais facil de ler, mas ainda nao e suportada
+            por todos os navegadores. Verifique no caniuse.com antes de usar
+            em producao.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Tabela resumo</h2>
+        <table class="breakpoints-table">
+          <thead>
+            <tr>
+              <th>Operador</th>
+              <th>Funcao</th>
+              <th>Exemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>and</code></td>
+              <td>Todas verdadeiras</td>
+              <td><code>(min-width: 768px) and (max-width: 1023px)</code></td>
+            </tr>
+            <tr>
+              <td><code>,</code> (virgula)</td>
+              <td>Pelo menos uma verdadeira</td>
+              <td><code>(max-width: 479px), print</code></td>
+            </tr>
+            <tr>
+              <td><code>not</code></td>
+              <td>Nega tudo</td>
+              <td><code>not print</code></td>
+            </tr>
+            <tr>
+              <td><code>only</code></td>
+              <td>Compatibilidade (obsoleto)</td>
+              <td><code>only screen and (...)</code></td>
+            </tr>
+            <tr>
+              <td><code>&lt;= &gt;=</code></td>
+              <td>Range moderno (Level 4)</td>
+              <td><code>(768px &lt;= width &lt;= 1023px)</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="topic-nav">
+        <a href="media-features.html">← Media Features</a>
+        <a href="responsividade-pratica.html">Pratica →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

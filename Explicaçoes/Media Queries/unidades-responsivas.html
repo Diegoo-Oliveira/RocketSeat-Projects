@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unidades responsivas</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Media Queries</a>
+        <span class="eyebrow">Unidades</span>
+      </div>
+
+      <section class="hero">
+        <h1>Unidades responsivas</h1>
+        <p>
+          Media queries controlam <strong>quando</strong> o layout muda.
+          Unidades responsivas controlam <strong>como</strong> os elementos
+          se adaptam. Juntas, formam a base completa da responsividade.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Unidades relativas</h2>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Unidade</th>
+                <th>Relativa a</th>
+                <th>Exemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>%</code></td>
+                <td>Tamanho do pai</td>
+                <td><code>width: 50%</code> = metade do pai</td>
+              </tr>
+              <tr>
+                <td><code>em</code></td>
+                <td>Font-size do elemento pai</td>
+                <td><code>padding: 2em</code> = 2x a fonte do pai</td>
+              </tr>
+              <tr>
+                <td><code>rem</code></td>
+                <td>Font-size do root (html)</td>
+                <td><code>font-size: 1.5rem</code> = 1.5x a fonte base</td>
+              </tr>
+              <tr>
+                <td><code>vw</code></td>
+                <td>1% da largura da viewport</td>
+                <td><code>width: 80vw</code> = 80% da tela</td>
+              </tr>
+              <tr>
+                <td><code>vh</code></td>
+                <td>1% da altura da viewport</td>
+                <td><code>height: 100vh</code> = tela inteira</td>
+              </tr>
+              <tr>
+                <td><code>vmin</code></td>
+                <td>1% da menor dimensao</td>
+                <td>Util para manter proporcao</td>
+              </tr>
+              <tr>
+                <td><code>vmax</code></td>
+                <td>1% da maior dimensao</td>
+                <td>Util em landscape</td>
+              </tr>
+              <tr>
+                <td><code>ch</code></td>
+                <td>Largura do caractere "0"</td>
+                <td><code>max-width: 72ch</code> = ~72 caracteres</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel">
+          <h2>rem vs em vs px</h2>
+          <pre class="code"><code>/* px: fixo, nao escala */
+h1 { font-size: 48px; }
+
+/* rem: relativo ao root, consistente */
+h1 { font-size: 3rem; }
+/* Se html font-size = 16px → 3rem = 48px */
+/* Se usuario mudar para 20px → 3rem = 60px */
+
+/* em: relativo ao pai, pode "compor" */
+.parent { font-size: 20px; }
+.child  { font-size: 1.5em; }
+/* .child = 20 × 1.5 = 30px */
+
+.child .grandchild { font-size: 1.5em; }
+/* .grandchild = 30 × 1.5 = 45px ← acumula! */</code></pre>
+          <p class="note warning">
+            <code>em</code> acumula com o pai. Se o pai tem 1.2em e o filho
+            tem 1.2em, o resultado e 1.44x a fonte do avo. Use <code>rem</code>
+            para evitar esse efeito cascata.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Viewport units: vw e vh</h2>
+          <pre class="code"><code>/* Hero que ocupa a tela inteira */
+.hero {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Fonte que cresce com a tela */
+h1 {
+  font-size: 5vw;
+  /* Em 1200px de tela → 60px
+     Em 375px de tela → 18.75px */
+}
+
+/* Cuidado: vw puro fica muito pequeno em mobile
+   e muito grande em desktop.
+   Solucao: usar clamp() */</code></pre>
+          <p class="note tip">
+            <code>100vh</code> em celulares pode incluir a barra do navegador.
+            Use <code>100dvh</code> (dynamic viewport height) para evitar
+            esse problema em navegadores modernos.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>clamp(), min() e max()</h2>
+          <p>
+            Funcoes CSS que criam valores fluidos sem media queries.
+          </p>
+          <pre class="code"><code>/* clamp(minimo, ideal, maximo) */
+h1 {
+  font-size: clamp(1.8rem, 5vw, 4rem);
+  /* Nunca menor que 1.8rem
+     Escala com 5vw
+     Nunca maior que 4rem */
+}
+
+/* Padding fluido */
+.section {
+  padding: clamp(20px, 5vw, 64px);
+}
+
+/* Largura responsiva */
+.container {
+  width: min(1200px, 100% - 32px);
+  /* O menor entre 1200px e (100% - 32px) */
+}
+
+/* max() para garantir minimo */
+.sidebar {
+  width: max(250px, 25%);
+  /* O maior entre 250px e 25% */
+}</code></pre>
+          <p class="note tip">
+            <code>clamp()</code> e extremamente poderoso. Um unico valor
+            substitui 2 ou 3 media queries inteiras para tipografia e
+            espacamentos.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Combinando com media queries</h2>
+          <pre class="code"><code>/* Base responsiva com clamp() */
+.container {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 48px);
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+}
+
+/* Ajustes finos com media queries */
+@media (max-width: 639px) {
+  .container {
+    /* no celular, reduzir margem lateral */
+    width: calc(100% - 16px);
+  }
+
+  h1 {
+    /* no celular, forcar line-height maior */
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    /* em monitores grandes, centralizar mais */
+    max-width: 1400px;
+  }
+}</code></pre>
+          <p class="note">
+            Use <code>clamp()</code> para a fluidez geral e media queries
+            para ajustes pontuais que a funcao nao resolve.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Tabela de decisao</h2>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Situacao</th>
+                <th>Usar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fonte que escala suavemente</td>
+                <td><code>clamp(min, ideal, max)</code></td>
+              </tr>
+              <tr>
+                <td>Largura maxima de container</td>
+                <td><code>min(1200px, 100% - 32px)</code></td>
+              </tr>
+              <tr>
+                <td>Mudar layout de colunas para linhas</td>
+                <td><code>@media (max-width: ...)</code></td>
+              </tr>
+              <tr>
+                <td>Esconder/mostrar elementos</td>
+                <td><code>@media</code> com <code>display: none</code></td>
+              </tr>
+              <tr>
+                <td>Padding/margin fluidos</td>
+                <td><code>clamp()</code> ou <code>%</code></td>
+              </tr>
+              <tr>
+                <td>Imagem de fundo diferente</td>
+                <td><code>@media</code> com <code>background-image</code></td>
+              </tr>
+              <tr>
+                <td>Grid automatico</td>
+                <td><code>repeat(auto-fit, minmax(...))</code></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note tip">
+            <code>repeat(auto-fit, minmax(250px, 1fr))</code> cria um grid
+            responsivo sem nenhuma media query. O navegador calcula quantas
+            colunas cabem automaticamente.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Resumo</h2>
+        <ol class="formula-list">
+          <li>use <code>rem</code> para fontes e espacamentos previsíveis</li>
+          <li>use <code>%</code> e <code>vw/vh</code> para dimensoes fluidas</li>
+          <li><code>clamp()</code> substitui muitas media queries de tipografia</li>
+          <li><code>min()</code> e otimo para containers com largura maxima</li>
+          <li>combine <code>clamp()</code> com media queries para ajustes finos</li>
+          <li><code>auto-fit</code> + <code>minmax()</code> = grid responsivo sem @media</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="responsividade-pratica.html">← Pratica</a>
+        <a href="container-queries.html">Container Queries →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

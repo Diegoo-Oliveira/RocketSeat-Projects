@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O que e @media</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Media Queries</a>
+        <span class="eyebrow">Fundamento</span>
+      </div>
+
+      <section class="hero">
+        <h1>O que e @media</h1>
+        <p>
+          <code>@media</code> e uma regra CSS que aplica estilos somente quando
+          uma condicao e verdadeira. Pense como um <strong>if</strong> do CSS:
+          "se a tela for menor que 768px, faca isso". Ela e a base de tudo
+          que chamamos de responsividade.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Anatomia da regra</h2>
+          <p>
+            Toda media query segue o mesmo padrao: a palavra <code>@media</code>,
+            uma condicao entre parenteses e um bloco de CSS que so vale
+            quando a condicao for verdadeira.
+          </p>
+          <pre class="code"><code>@media (condicao) {
+  /* CSS que so vale quando a condicao e verdadeira */
+  .elemento {
+    propriedade: valor;
+  }
+}</code></pre>
+          <p class="note">
+            As chaves externas abrem e fecham o bloco do @media. Dentro dele
+            voce escreve CSS normal, como se fosse outra folha de estilos.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo basico</h2>
+          <p>
+            Mudar a cor de fundo do body quando a tela for menor que 768px.
+          </p>
+          <pre class="code"><code>/* Estilo padrao (para telas grandes) */
+body {
+  background: #ffffff;
+  color: #172033;
+}
+
+/* Quando a tela for ate 768px */
+@media (max-width: 768px) {
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+  }
+}</code></pre>
+          <p class="note tip">
+            O navegador le o CSS de cima para baixo. Se a tela tiver 600px,
+            primeiro aplica background branco, depois entra no @media e
+            sobrescreve para o fundo escuro.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Como o navegador avalia</h2>
+          <ol class="formula-list">
+            <li>O navegador carrega todo o CSS normalmente</li>
+            <li>Ao encontrar <code>@media</code>, verifica a condicao</li>
+            <li>Se a condicao for <strong>verdadeira</strong>, aplica o bloco</li>
+            <li>Se for <strong>falsa</strong>, ignora completamente o bloco</li>
+            <li>Ao redimensionar a janela, reavalia em tempo real</li>
+          </ol>
+          <p class="note">
+            E por isso que voce ve o layout mudar ao arrastar a borda do
+            navegador: o @media e checado continuamente.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Onde escrever</h2>
+          <p>Voce pode usar @media em tres lugares:</p>
+          <pre class="code"><code>/* 1. Dentro do proprio arquivo CSS */
+@media (max-width: 768px) { ... }
+
+/* 2. Na tag link do HTML (carrega o arquivo
+      somente quando a condicao bate) */
+&lt;link rel="stylesheet"
+      href="mobile.css"
+      media="(max-width: 768px)"&gt;
+
+/* 3. Dentro de uma tag style no HTML */
+&lt;style&gt;
+  @media (max-width: 768px) { ... }
+&lt;/style&gt;</code></pre>
+          <p class="note tip">
+            O jeito mais comum e escrever tudo no final do mesmo arquivo CSS.
+            Assim voce mantem tudo em um lugar so, facil de ler e manter.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Resumo rapido</h2>
+        <ol class="formula-list">
+          <li><code>@media</code> e um "if" do CSS que testa condicoes da tela</li>
+          <li>so aplica os estilos quando a condicao e verdadeira</li>
+          <li>e reavaliado em tempo real ao redimensionar a janela</li>
+          <li>pode ser escrito no CSS, no HTML com link ou com style</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="breakpoints.html">Breakpoints →</a>
+        <a href="min-width-max-width.html">min vs max →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

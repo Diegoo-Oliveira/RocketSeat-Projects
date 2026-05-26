@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Types</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Media Queries</a>
+        <span class="eyebrow">Types</span>
+      </div>
+
+      <section class="hero">
+        <h1>Media Types</h1>
+        <p>
+          Antes de falar de largura de tela, o CSS permite que voce separe
+          estilos por <strong>tipo de midia</strong>. Cada type indica para
+          qual categoria de dispositivo ou contexto aquele CSS deve valer.
+        </p>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Os 4 tipos de midia</h2>
+          <table class="breakpoints-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Para que serve</th>
+                <th>Exemplo de uso</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>all</code></td>
+                <td>Todos os dispositivos, sem excecao</td>
+                <td>Padrao quando voce nao especifica nada</td>
+              </tr>
+              <tr>
+                <td><code>screen</code></td>
+                <td>Telas: monitores, celulares, tablets</td>
+                <td>O que voce mais usa no dia a dia</td>
+              </tr>
+              <tr>
+                <td><code>print</code></td>
+                <td>Impressao: quando o usuario imprime a pagina</td>
+                <td>Remover menu, trocar fundo para branco</td>
+              </tr>
+              <tr>
+                <td><code>speech</code></td>
+                <td>Leitores de tela com sintetizador de voz</td>
+                <td>Muito raro, quase nao usado</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note">
+            <code>all</code> e o padrao. Quando voce escreve
+            <code>@media (max-width: 768px)</code> sem tipo, e o mesmo que
+            <code>@media all and (max-width: 768px)</code>.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Sintaxe com tipos</h2>
+          <p>O media type vem antes das features, separado por <code>and</code>.</p>
+          <pre class="code"><code>/* So para telas */
+@media screen and (max-width: 768px) {
+  .sidebar { display: none; }
+}
+
+/* So para impressao */
+@media print {
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-size: 12pt;
+  }
+
+  .nav, .footer, .sidebar {
+    display: none;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: underline;
+  }
+}
+
+/* Para todos os tipos com uma condicao */
+@media all and (min-width: 1024px) {
+  .container { max-width: 1200px; }
+}</code></pre>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo pratico: print</h2>
+          <p>
+            Quando o usuario clica em "Imprimir" (Ctrl + P), o navegador
+            aplica os estilos do <code>@media print</code>. E o unico tipo,
+            alem de screen, que voce vai usar com frequencia.
+          </p>
+          <pre class="code"><code>/* Estilos normais para a tela */
+.header {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  padding: 24px;
+}
+
+.no-print {
+  /* botoes, menus, coisas interativas */
+}
+
+/* Ao imprimir: remover decoracao, economizar tinta */
+@media print {
+  .header {
+    background: none;
+    color: black;
+    border-bottom: 2px solid black;
+  }
+
+  .no-print {
+    display: none;
+  }
+
+  /* Mostrar URLs dos links */
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}</code></pre>
+          <p class="note tip">
+            Adicionar <code>a::after</code> com <code>attr(href)</code> no
+            print faz os links aparecerem por extenso no papel. E um padrao
+            profissional muito valorizado.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Na tag link do HTML</h2>
+          <p>
+            Voce tambem pode usar o atributo <code>media</code> direto no
+            <code>&lt;link&gt;</code> para carregar arquivos CSS diferentes
+            para cada tipo.
+          </p>
+          <pre class="code"><code>&lt;!-- CSS para telas --&gt;
+&lt;link rel="stylesheet"
+      href="screen.css"
+      media="screen"&gt;
+
+&lt;!-- CSS so para impressao --&gt;
+&lt;link rel="stylesheet"
+      href="print.css"
+      media="print"&gt;
+
+&lt;!-- CSS para telas ate 768px --&gt;
+&lt;link rel="stylesheet"
+      href="mobile.css"
+      media="screen and (max-width: 768px)"&gt;</code></pre>
+          <p class="note">
+            O navegador baixa todos os arquivos CSS de qualquer forma, mas
+            so aplica os que batem com a midia atual. Entao nao economiza
+            download, mas pode ajudar na organizacao.
+          </p>
+        </article>
+      </section>
+
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Types obsoletos</h2>
+          <p>
+            No passado existiam mais tipos como <code>tv</code>,
+            <code>handheld</code>, <code>projection</code> e
+            <code>tty</code>. Todos foram removidos do padrao moderno.
+          </p>
+          <pre class="code"><code>/* ❌ Nao use mais estes tipos */
+@media tv { ... }
+@media handheld { ... }
+@media projection { ... }
+@media tty { ... }
+
+/* ✅ Hoje so existem 4 tipos validos */
+@media all { ... }
+@media screen { ... }
+@media print { ... }
+@media speech { ... }</code></pre>
+          <p class="note warning">
+            Se voce encontrar <code>@media handheld</code> em codigos antigos,
+            saiba que navegadores modernos ignoram completamente.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Quando especificar o tipo</h2>
+          <ol class="formula-list">
+            <li>para <strong>impressao</strong>: sempre use <code>@media print</code></li>
+            <li>para <strong>telas</strong>: voce pode omitir (all e o padrao)</li>
+            <li>se quiser ser explicito: use <code>screen and (...)</code></li>
+            <li>nunca use tipos obsoletos como tv ou handheld</li>
+          </ol>
+          <p class="note tip">
+            Na pratica, voce so vai escrever <code>@media print</code> e
+            <code>@media (max-width: ...)</code>. O tipo <code>screen</code>
+            quase nunca precisa ser explicitado.
+          </p>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <h2>Resumo</h2>
+        <ol class="formula-list">
+          <li>existem 4 media types: all, screen, print e speech</li>
+          <li>all e o padrao quando voce nao especifica</li>
+          <li>print e o unico que voce vai usar alem de screen</li>
+          <li>types obsoletos (tv, handheld) devem ser ignorados</li>
+          <li>o tipo vem antes das features, separado por and</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="min-width-max-width.html">← min vs max</a>
+        <a href="media-features.html">Media Features →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

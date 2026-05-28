@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial LP de Produto – Zingen</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../index.html">Voltar aos tutoriais</a>
+
+      <nav aria-label="Guias relacionados">
+        <a href="../../CSS FLEXBOX/index.html">Revisar Flexbox</a>
+        <a href="../../CSS Grid/index.html">Revisar Grid</a>
+        <a href="../../CSS Profissional/index.html">CSS Profissional</a>
+      </nav>
+    </header>
+
+    <main class="page">
+
+      <!-- ═══════ HERO ═══════ -->
+      <section class="hero">
+        <span class="eyebrow">Tutorial – LP de Produto</span>
+        <h1>Como construir a Landing Page do Zingen</h1>
+        <p>
+          Este roteiro explica como transformar o layout do Figma em código HTML e CSS
+          organizado. O projeto usa <strong>CSS modular</strong> (um arquivo por seção),
+          <strong>utilitários reutilizáveis</strong> e a técnica de
+          <strong>CSS aninhado nativo</strong> (sem pré-processadores).
+          Siga passo a passo para entender cada decisão de estrutura.
+        </p>
+      </section>
+
+      <!-- ═══════ VISÃO GERAL ═══════ -->
+      <section class="lesson intro-grid">
+        <div>
+          <span class="section-label brand">Leitura do layout</span>
+          <h2>Identifique as seções antes de escrever código</h2>
+          <p>
+            O primeiro passo é ler o Figma e separar a página em grandes blocos.
+            O Zingen tem exatamente 7 seções principais — cada uma vira uma tag
+            <code>&lt;section&gt;</code> no HTML com um <code>id</code> próprio.
+          </p>
+          <p>
+            Perceba que o header e o footer ficam fora das sections, pois são
+            elementos globais da página.
+          </p>
+
+          <h3>Seções do projeto</h3>
+          <ol>
+            <li><strong>header / nav</strong> – logo + links de navegação + botão CTA</li>
+            <li><strong>#hero</strong> – ícone musical + h1 + subtítulo + botões</li>
+            <li><strong>#smartphones-img</strong> – imagem decorativa dos celulares</li>
+            <li><strong>#about</strong> – eyebrow + título + texto + mockup (two columns no desktop)</li>
+            <li><strong>#features</strong> – 5 cards em grid de 4 colunas (só desktop)</li>
+            <li><strong>#pricing</strong> – header + 3 cards de plano (Básico, Premium, Família)</li>
+            <li><strong>#download</strong> – CTA de download com botões App Store e Play Store</li>
+            <li><strong>footer</strong> – logo + 3 colunas de links + redes sociais</li>
+          </ol>
+        </div>
+
+        <div>
+          <p style="margin-bottom:8px;font-weight:800;font-size:0.82rem;color:var(--brand-dark);text-transform:uppercase">Mapa visual da página</p>
+          <div class="figma-map map-lp">
+            <div class="map-nav">header (logo + nav links + btn)</div>
+            <div class="map-hero">hero (ícone + h1 + subtítulo + botões)</div>
+            <div class="map-smartphones">smartphones-img (imagem decorativa)</div>
+            <div class="map-about">about (texto | mockup)</div>
+            <div class="map-features">
+              <span>card 1</span>
+              <span>card 2 (2 cols)</span>
+              <span>card 3</span>
+              <span>card 4 (2 cols)</span>
+              <span>card 5 (2 cols)</span>
+            </div>
+            <div class="map-pricing">
+              <span>Básico</span>
+              <span class="map-premium">Premium ⭐</span>
+              <span>Família</span>
+            </div>
+            <div class="map-download">download (CTA + stores)</div>
+            <div class="map-footer">footer (logo + links + social)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ PASSO 0: ESTRUTURA DE PASTAS ═══════ -->
+      <section class="lesson">
+        <span class="section-label">Passo 0</span>
+        <h2>Estrutura de pastas e arquivos</h2>
+        <p>
+          Este projeto usa <strong>CSS modular</strong>: cada seção da página tem
+          seu próprio arquivo CSS. O arquivo <code>index.css</code> importa todos
+          usando <code>@import</code>. Isso facilita encontrar e editar o estilo
+          de qualquer parte sem buscar em um arquivo gigante.
+        </p>
+
+        <pre><code>lp-de-produto/
+├── assets/
+│   ├── icons/              ← SVGs de ícone (MagicWand, GameController, etc)
+│   │   ├── Check.svg       ← usado como bullet nas listas de pricing
+│   │   ├── tiktok.svg / tiktok-hover.svg
+│   │   └── ...
+│   ├── logo.svg
+│   ├── music-bars.svg      ← ícone grande do hero
+│   ├── smartphones.png     ← mockup de celulares
+│   ├── Tela 1.png / 2.png / 3.png
+│   ├── bg-hero-desktop.svg ← fundo ondulado do hero (só desktop)
+│   ├── illustration.svg    ← fundo da seção smartphones-img
+│   ├── button-appstore.svg
+│   └── button-playstore.svg
+├── styles/
+│   ├── index.css           ← importa todos os arquivos abaixo
+│   ├── global.css          ← reset, variáveis CSS, tipografia base
+│   ├── utility.css         ← .container, .flex, .grid, .even-columns, etc
+│   ├── buttons.css         ← componente .btn com variantes e técnica aria-label
+│   ├── social.css          ← ícones de redes sociais no footer
+│   ├── header.css          ← estilos da nav
+│   ├── hero.css            ← seção principal
+│   ├── sections.css        ← estilos compartilhados entre seções (eyebrow, p)
+│   ├── about.css           ← seção "Conheça o app"
+│   ├── cards.css           ← estilo base do .card (background, border-radius)
+│   ├── features.css        ← grid de funcionalidades (só carrega no desktop)
+│   ├── pricing.css         ← seção de planos
+│   ├── download.css        ← seção de download
+│   └── footer.css          ← rodapé
+└── index.html</code></pre>
+
+        <p class="note tip">
+          <strong>Detalhe importante:</strong> o <code>features.css</code> é importado
+          com condição de media query diretamente no <code>@import</code>:
+          <code>@import url(features.css) (width &gt;= 80em);</code>
+          Isso significa que o CSS de features só é aplicado em telas largas —
+          no mobile, o layout padrão (cards empilhados) já vem do HTML + cards.css.
+        </p>
+      </section>
+
+      <!-- ═══════ PASSO 1: GLOBAL CSS ═══════ -->
+      <section class="lesson steps">
+        <span class="section-label brand">Passo 1 – global.css</span>
+        <h2>Variáveis, reset e tipografia base</h2>
+        <p>
+          O <code>global.css</code> define o design system completo: cores, fontes,
+          tamanhos e espaçamentos. Use <strong>variáveis CSS</strong> para tudo —
+          assim você muda um valor e o site inteiro se atualiza.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>Variáveis de cor e tipografia</h3>
+            <p>Todas as cores e fontes do projeto ficam no <code>:root</code>.</p>
+            <pre><code>:root {
+  /* Cores */
+  --bg-color: #09090b;          /* fundo escuro da página */
+  --surface-color: #18181b;     /* fundo dos cards */
+  --stroke-color: #27272a;      /* bordas e separadores */
+  --text-color-primary: #f4f4f5;
+  --text-color-secondary: #a1a1aa;
+  --brand-color-primary: #f7b733;   /* amarelo */
+  --brand-color-secondary: #fc4a1a; /* laranja-avermelhado */
+
+  /* Fonte */
+  --ff-sans: 'Inter', system-ui, sans-serif;
+  --fw-base: 400;
+  --fw-md: 500;
+  --fw-bold: 800;
+
+  /* Tamanhos de fonte (mobile) */
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2.5rem;
+
+  /* Espaçamentos */
+  --py-base: 1rem;
+  --py-lg: 1.5rem;
+  --py-xl: 3rem;
+  --px-lg: 1.5rem;
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Escalar para desktop com uma única @media</h3>
+            <p>
+              No desktop (≥ 80em = 1280px), as variáveis de fonte e espaçamento
+              aumentam. Todo o site que usa <code>var(--fs-2xl)</code> cresce automaticamente.
+            </p>
+            <pre><code>@media (width >= 80em) {
+  :root {
+    --fs-lg: 2rem;
+    --fs-xl: 3rem;
+    --fs-2xl: 4rem;
+
+    --py-base: 1.5rem;
+    --py-lg: 2.5rem;
+    --py-xl: 5rem;
+    --px-lg: 2rem;
+  }
+}</code></pre>
+            <p class="note">
+              Isso é diferente do mobile-first clássico: as variáveis base já
+              existem, e apenas seus <em>valores</em> mudam no desktop. É uma
+              abordagem híbrida mas muito limpa.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Reset e estilos de elementos globais</h3>
+            <pre><code>*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;                 /* herda fonte do pai, elimina user-agent */
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Efeito hover de gradiente em todos os links */
+a:hover {
+  background: linear-gradient(
+    90deg,
+    var(--brand-color-secondary) 0%,
+    var(--brand-color-primary) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+img {
+  max-width: 100%;
+  display: inline-block;
+}
+
+ul[role='list'] {
+  list-style: none;   /* remove bullets apenas quando role=list */
+}</code></pre>
+            <p class="note tip">
+              <strong>font: inherit</strong> no reset universal é uma técnica
+              moderna: elimina o estilo de fonte padrão do navegador em
+              <code>input</code>, <code>button</code>, <code>select</code> etc.
+              Você não precisa mais de <code>font-family: inherit</code> em cada campo.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════ PASSO 2: UTILITÁRIOS ═══════ -->
+      <section class="lesson steps">
+        <span class="section-label brand">Passo 2 – utility.css</span>
+        <h2>Classes utilitárias: container, flex, grid e even-columns</h2>
+        <p>
+          Em vez de repetir <code>display: flex</code> e <code>gap: 1rem</code>
+          em cada seção, o projeto cria classes utilitárias que são compostas
+          diretamente no HTML. Essa é a base do design system.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>O .container centraliza e limita a largura</h3>
+            <pre><code>.container {
+  --max-width: 375px;                    /* mobile: largura máxima */
+  width: min(var(--max-width), 100% - var(--px-lg) * 2);
+  margin-inline: auto;
+}
+
+@media (width >= 80em) {
+  .container {
+    --max-width: 80rem;                  /* desktop: 1280px */
+  }
+}</code></pre>
+            <p class="note">
+              <code>min()</code> garante que o container nunca ultrapasse
+              <code>--max-width</code>, mas também nunca quebre a margem lateral.
+              É uma alternativa elegante ao clássico <code>max-width + padding</code>.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>.even-columns: grid que vira colunas no desktop</h3>
+            <pre><code>/* Mobile: empilhado */
+.even-columns {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Desktop: colunas iguais lado a lado */
+@media (width >= 80em) {
+  .even-columns {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}</code></pre>
+            <p class="note tip">
+              <strong>grid-auto-flow: column</strong> faz os itens irem para
+              novas colunas (em vez de linhas). Combinado com
+              <strong>grid-auto-columns: 1fr</strong>, cada filho ocupa a mesma
+              largura — independente de quantos forem. Não precisa declarar
+              <code>grid-template-columns</code>.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Utilitários de espaçamento e layout</h3>
+            <pre><code>/* Padding vertical */
+.py-base { padding-block: var(--py-base); }
+.py-lg   { padding-block: var(--py-lg); }
+.py-xl   { padding-block: var(--py-xl); }
+
+/* Padding horizontal */
+.px-lg   { padding-inline: var(--px-lg); }
+
+/* Flexbox rápido */
+.flex         { display: flex; }
+.items-center { align-items: center; }
+.gap-1        { gap: 1rem; }
+.gap-1\.5     { gap: 1.5rem; }
+
+/* Grid rápido */
+.grid { display: grid; }
+
+/* Visibilidade */
+.desktop-only { display: none; }
+@media (width >= 80em) {
+  .desktop-only { display: initial; }
+}</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════ PASSO 3: BOTÕES ═══════ -->
+      <section class="lesson steps">
+        <span class="section-label brand">Passo 3 – buttons.css</span>
+        <h2>O componente .btn e a técnica do aria-label</h2>
+        <p>
+          O projeto usa uma técnica avançada para botões que precisam de
+          <strong>borda gradiente</strong>: o texto vem do atributo
+          <code>aria-label</code> via CSS <code>content: attr(aria-label)</code>.
+          Isso mantém a acessibilidade e elimina texto vazio no HTML.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>Estrutura base do .btn</h3>
+            <pre><code>.btn {
+  --btn-bg-color: var(--text-color-primary);
+  --btn-color: var(--bg-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border: 0;
+  border-radius: 0.5rem;
+  background: var(--btn-bg-color);
+  color: var(--btn-color);
+  font: var(--fw-md) var(--fs-base) / 1.5rem var(--ff-sans);
+  cursor: pointer;
+}
+
+/* Hover: gradiente vira o fundo */
+.btn:hover {
+  --btn-bg-color: linear-gradient(
+    90deg,
+    var(--brand-color-secondary) 0%,
+    var(--brand-color-primary) 100%
+  );
+  --btn-color: var(--surface-color);
+  color: var(--btn-color);
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Variantes de tamanho</h3>
+            <pre><code>.btn-sm  { padding: 0.5rem 1rem;   font-size: var(--fs-sm); }
+.btn-md  { padding: 0.75rem 1.5rem; font-size: var(--fs-base); }
+.btn-lg  { padding: 1rem 2rem;     font-size: 1.125rem; }
+
+@media (width >= 80em) {
+  .btn-sm { padding: 0.75rem 1.5rem; font-size: var(--fs-base); }
+  .btn-md { padding: 1rem 2rem;     font-size: 1.125rem; }
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>A técnica do botão com borda gradiente</h3>
+            <p>
+              Quando um <code>.btn</code> tem <code>aria-label</code>, ele vira
+              um botão com borda gradiente. O truque usa três camadas:
+            </p>
+            <ol>
+              <li>O elemento <code>.btn</code> recebe o <strong>gradiente como background</strong></li>
+              <li>O <code>::before</code> cobre o interior com a cor de fundo, criando o efeito de borda</li>
+              <li>O <code>::after</code> exibe o texto do <code>aria-label</code> com gradiente no texto</li>
+            </ol>
+            <pre><code>/* No HTML — botão sem texto visível */
+&lt;a href="#pricing" aria-label="Ver planos" class="btn btn-md"&gt;&lt;/a&gt;
+
+/* No CSS */
+.btn[aria-label] {
+  position: relative;
+
+  /* Camada 1: cobre o interior para criar a "borda" */
+  &::before {
+    content: '';
+    position: absolute;
+    border-radius: inherit;
+    inset: 1px;                      /* 1px menor que o btn em todos os lados */
+    background-color: var(--bg-color);
+  }
+
+  /* Camada 2: texto vem do aria-label com gradiente */
+  &::after {
+    content: attr(aria-label);
+    background: var(--btn-bg-color);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    z-index: 1;                      /* fica acima do ::before */
+  }
+}</code></pre>
+            <p class="note tip">
+              <strong>Por que usar aria-label?</strong> O elemento fica semanticamente
+              acessível (leitores de tela lêem o atributo), o HTML fica limpo
+              sem texto vazio, e o CSS puxa o conteúdo automaticamente com
+              <code>content: attr(aria-label)</code>.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════ PASSO 4: HTML GERAL ═══════ -->
+      <section class="lesson steps">
+        <span class="section-label brand">Passo 4 – HTML</span>
+        <h2>Estrutura HTML: composição de classes no markup</h2>
+        <p>
+          A grande sacada do projeto é compor as classes utilitárias diretamente
+          no HTML. Uma <code>&lt;div&gt;</code> pode ter várias classes ao mesmo
+          tempo — cada uma contribui com um comportamento específico.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>Header / nav</h3>
+            <pre><code>&lt;header&gt;
+  &lt;div class="container py-base"&gt;
+    &lt;nav class="flex items-center gap-1.5"&gt;
+      &lt;a href="#"&gt;
+        &lt;img src="assets/logo.svg" alt="Logo Zingen" /&gt;
+      &lt;/a&gt;
+
+      &lt;!-- Só aparece no desktop (.desktop-only) --&gt;
+      &lt;a href="#about" class="desktop-only"&gt;Conheça o app&lt;/a&gt;
+      &lt;a href="#features" class="desktop-only"&gt;Funcionalidades&lt;/a&gt;
+      &lt;a href="#pricing" class="desktop-only"&gt;Planos e preços&lt;/a&gt;
+
+      &lt;!-- Sempre visível: CTA de download --&gt;
+      &lt;a href="#download" class="btn btn-sm"&gt;Baixar agora&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+            <p class="note">
+              <code>container py-base</code> = centraliza a largura + padding vertical.
+              <code>flex items-center gap-1.5</code> = nav em linha com espaço entre itens.
+              Os links de navegação usam <code>desktop-only</code> para aparecer apenas
+              em telas largas.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Seção Hero</h3>
+            <pre><code>&lt;section id="hero"&gt;
+  &lt;div class="container py-xl"&gt;
+    &lt;img src="assets/music-bars.svg" alt="" /&gt;
+    &lt;h1&gt;Quem canta seus males espanta&lt;/h1&gt;
+    &lt;p&gt;Cantar nunca foi tão fácil&lt;/p&gt;
+
+    &lt;div class="buttons flex items-center gap-1"&gt;
+      &lt;!-- Botão com borda gradiente (técnica aria-label) --&gt;
+      &lt;a href="#pricing" aria-label="Ver planos" class="btn btn-md"&gt;&lt;/a&gt;
+      &lt;!-- Botão sólido normal --&gt;
+      &lt;a href="#downloads" class="btn btn-md"&gt;Baixar agora&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            <p class="note">
+              Note os <strong>dois tipos de botão</strong> lado a lado: um com
+              <code>aria-label</code> (borda gradiente) e um com texto normal (fundo sólido).
+              O hero.css adiciona <code>text-align: center</code> e espaça os elementos.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Seção About (duas colunas no desktop)</h3>
+            <pre><code>&lt;section id="about"&gt;
+  &lt;div class="container even-columns py-xl items-center"&gt;
+    &lt;div&gt;
+      &lt;header&gt;
+        &lt;strong&gt;Conheça o app&lt;/strong&gt;
+        &lt;h2&gt;O aplicativo perfeito para aprender a cantar&lt;/h2&gt;
+      &lt;/header&gt;
+      &lt;p&gt;Nosso algoritmo de IA...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;!-- Imagem só aparece no desktop --&gt;
+      &lt;img class="desktop-only" src="assets/smartphones.png" alt="" /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            <p class="note tip">
+              <code>even-columns</code> empilha no mobile e cria 2 colunas iguais no desktop.
+              <code>items-center</code> alinha verticalmente texto e imagem.
+              O <code>&lt;header&gt;</code> dentro da section organiza eyebrow + título —
+              o <code>sections.css</code> estiliza esse padrão globalmente.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════ PASSO 5: FEATURES ═══════ -->
+      <section class="lesson steps">
+        <span class="section-label brand">Passo 5 – features.css</span>
+        <h2>O grid de funcionalidades: layout só no desktop</h2>
+        <p>
+          Esta é a seção mais complexa. No <strong>mobile</strong>, os 5 cards
+          ficam empilhados (isso vem do <code>cards.css</code> + layout padrão do HTML).
+          No <strong>desktop</strong>, o <code>features.css</code> monta um grid
+          de 4 colunas × 2 linhas com cards de tamanhos diferentes.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>HTML dos cards de features</h3>
+            <pre><code>&lt;section id="features"&gt;
+  &lt;div class="cards container py-xl grid gap-1.5"&gt;
+    &lt;!-- Card pequeno: ocupa 1 coluna --&gt;
+    &lt;div class="card py-lg px-lg"&gt;
+      &lt;img src="assets/icons/MagicWand.svg" alt="" /&gt;
+      &lt;h3&gt;A maior biblioteca de músicas de Karaokê!&lt;/h3&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Card grande: ocupa 2 colunas no desktop --&gt;
+    &lt;div class="card py-lg px-lg"&gt;
+      &lt;div&gt; &lt;!-- texto fica limitado a max-width: 16rem --&gt;
+        &lt;img src="assets/icons/GameController.svg" alt="" /&gt;
+        &lt;h3&gt;Experiência gamificada&lt;/h3&gt;
+        &lt;p&gt;...&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;!-- Imagem de tela (só aparece no desktop) --&gt;
+      &lt;img class="desktop-only" src="assets/Tela 2.png" alt="" /&gt;
+    &lt;/div&gt;
+    &lt;!-- ... mais 3 cards --&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>O grid de 4 colunas no features.css</h3>
+            <p>
+              Lembre: este arquivo só carrega em telas ≥ 80em (por causa do
+              <code>@import url(features.css) (width &gt;= 80em)</code> no index.css).
+            </p>
+            <pre><code>#features {
+  /* Grid: 2 colunas de 17.5rem + 2 fracionadas = 4 colunas no total */
+  & .cards {
+    grid-template-columns: 17.5rem 1fr 1fr 17.5rem;
+    grid-template-rows: 25rem 25rem;
+    gap: 2rem;
+  }
+
+  & .card {
+    position: relative;    /* para imagens com position: absolute */
+    overflow: hidden;
+
+    & img.desktop-only {
+      position: absolute;
+      max-width: 15rem;
+      filter: drop-shadow(1rem 1rem 4rem rgb(0 0 0 / 0.34));
+    }
+  }
+
+  /* Linha 1 */
+  & .card:nth-child(1) { grid-column: 1/2; }           /* pequeno: col 1 */
+  & .card:nth-child(2) { grid-column: 2/4; }           /* grande: cols 2-3 */
+  & .card:nth-child(3) { grid-column: 4/5; }           /* pequeno: col 4 */
+
+  /* Linha 2 */
+  & .card:nth-child(4) { grid-column: 1/3; grid-row: 2/3; } /* grande: cols 1-2 */
+  & .card:nth-child(5) { grid-column: 3/5; grid-row: 2/3; } /* grande: cols 3-4 */
+}</code></pre>
+            <p class="note tip">
+              O uso de <code>nth-child</code> para posicionar cada card é o padrão
+              mais limpo: o HTML não precisa de classes extras, e o CSS declara
+              explicitamente onde cada card vai no grid.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Posicionamento das imagens dentro dos cards grandes</h3>
+            <pre><code>/* Card 2: imagem no canto inferior direito */
+& .card:nth-child(2) {
+  & > div { max-width: 16rem; }    /* limita o texto */
+  & .desktop-only {
+    bottom: 2rem;
+    right: 2rem;
+  }
+}
+
+/* Card 4: imagem no canto inferior esquerdo */
+& .card:nth-child(4) {
+  & > div {
+    max-width: 16rem;
+    margin-left: auto;             /* texto empurrado para a direita */
+  }
+  & .desktop-only {
+    bottom: 2rem;
+    left: 2rem;
+  }
+}
+
+/* Card 5: imagem no canto superior direito */
+& .card:nth-child(5) {
+  & > div { max-width: 16rem; }
+  & .desktop-only {
+    top: 2rem;
+    right: 2rem;
+  }
+}</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════ PASSO 6: PRICING ═══════ -->
+      <section class="lesson steps">
+        <span class="section-label brand">Passo 6 – pricing.css</span>
+        <h2>Seção de preços: o card Premium em destaque</h2>
+        <p>
+          A seção de pricing usa <code>even-columns</code> para os 3 planos lado a lado.
+          O destaque está no card <strong>Premium</strong>, que recebe uma borda gradiente
+          usando a mesma técnica do botão: um <code>::before</code> com gradiente atrás
+          de um elemento com fundo sólido.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>HTML da seção pricing</h3>
+            <pre><code>&lt;section id="pricing"&gt;
+  &lt;div class="container py-xl"&gt;
+    &lt;header&gt;
+      &lt;strong&gt;Planos e preços&lt;/strong&gt;
+      &lt;h2&gt;Assine e tenha acesso ilimitado...&lt;/h2&gt;
+    &lt;/header&gt;
+
+    &lt;div class="cards even-columns items-center"&gt;
+      &lt;!-- Card Básico --&gt;
+      &lt;div class="card py-lg px-lg"&gt;
+        &lt;h3&gt;Básico&lt;/h3&gt;
+        &lt;zin-pricing&gt;Grátis&lt;/zin-pricing&gt;  &lt;!-- elemento customizado --&gt;
+        &lt;a href="#download" class="btn btn-md" aria-label="Baixar agora"&gt;&lt;/a&gt;
+        &lt;div class="separator"&gt;&lt;/div&gt;
+        &lt;ul role="list" class="grid gap-1"&gt;
+          &lt;li&gt;Com anúncios&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Card Premium (wrapper com borda gradiente) --&gt;
+      &lt;div class="premium"&gt;
+        &lt;div class="card py-lg px-lg"&gt;
+          &lt;span&gt;1 mês grátis&lt;/span&gt;  &lt;!-- badge posicionado absolutamente --&gt;
+          &lt;h3&gt;Premium&lt;/h3&gt;
+          &lt;zin-pricing&gt;R$ 24,90 &lt;small&gt;/mês&lt;/small&gt;&lt;/zin-pricing&gt;
+          &lt;a href="#" class="btn btn-md"&gt;Experimente de graça&lt;/a&gt;
+          &lt;div class="separator"&gt;&lt;/div&gt;
+          &lt;ul role="list" class="grid gap-1"&gt;
+            &lt;li&gt;Sem interrupção de anúncios&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Card Família --&gt;
+      &lt;div class="card py-lg px-lg"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            <p class="note">
+              <code>&lt;zin-pricing&gt;</code> é um <strong>elemento HTML customizado</strong>
+              (custom element). Ele funciona como qualquer tag, mas com nome próprio.
+              O CSS o trata como um elemento de bloco com a tipografia especial do preço.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Borda gradiente no card Premium</h3>
+            <pre><code>#pricing {
+  & .premium {
+    position: relative;
+    padding: 2px;             /* espaço para a borda aparecer */
+
+    /* Gradiente como pseudo-elemento atrás do card */
+    &::before {
+      content: '';
+      background: linear-gradient(
+        90deg,
+        var(--brand-color-secondary) 0%,
+        var(--brand-color-primary) 100%
+      );
+      position: absolute;
+      inset: 0;
+      border-radius: 1.5rem;
+      z-index: -1;            /* fica atrás do .card */
+    }
+
+    /* Badge "1 mês grátis" posicionado absolutamente */
+    & .card > span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(90deg, ...);
+      border-top-left-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+    }
+
+    /* O card premium tem padding-top maior para o badge não cobrir o conteúdo */
+    & .card { padding-top: 4.25rem; }
+  }
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Separador e bullets de lista</h3>
+            <pre><code>/* Linha divisória com gradiente radial */
+& .separator {
+  height: 1px;
+  margin-block: 2rem;
+  background: radial-gradient(
+    var(--text-color-secondary),
+    var(--surface-color) 70%
+  );
+}
+
+/* Bullets com ícone SVG via background */
+& li {
+  color: var(--text-color-secondary);
+  background: url(../assets/icons/Check.svg) no-repeat;
+  padding-left: 2rem;      /* espaço para o ícone */
+}</code></pre>
+            <p class="note tip">
+              Usar <code>background-image</code> como bullet é mais flexível que
+              <code>list-style-image</code>: você controla posição, tamanho e
+              espaçamento com precisão.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════ PASSO 7: FOOTER ═══════ -->
+      <section class="lesson steps">
+        <span class="section-label brand">Passo 7 – footer.css e social.css</span>
+        <h2>Rodapé: grid de links e ícones sociais com CSS variável</h2>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>HTML do footer</h3>
+            <pre><code>&lt;footer&gt;
+  &lt;div class="container py-xl grid"&gt;
+    &lt;section class="grid top"&gt;
+      &lt;img src="assets/logo.svg" alt="" /&gt;
+
+      &lt;nav class="even-columns"&gt;
+        &lt;ul role="list" class="grid gap-1.5"&gt;
+          &lt;li class="title"&gt;Produto&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#features"&gt;Funcionalidades&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#pricing"&gt;Planos e preços&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;!-- + Empresa, Legal --&gt;
+      &lt;/nav&gt;
+    &lt;/section&gt;
+
+    &lt;section class="bottom flex gap-1.5"&gt;
+      &lt;div class="flex gap-1.5"&gt;
+        &lt;!-- Cada link usa aria-label para identificar a rede --&gt;
+        &lt;a href="#" class="social" aria-label="tiktok"&gt;&lt;/a&gt;
+        &lt;a href="#" class="social" aria-label="instagram"&gt;&lt;/a&gt;
+        &lt;a href="#" class="social" aria-label="twitter"&gt;&lt;/a&gt;
+        &lt;a href="#" class="social" aria-label="discord"&gt;&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;span class="copy"&gt;©2024 Zingen Technologies, Inc.&lt;/span&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Ícones sociais com CSS variável (social.css)</h3>
+            <p>
+              Cada ícone social usa <code>aria-label</code> para selecionar
+              a imagem certa via seletor de atributo CSS.
+            </p>
+            <pre><code>a.social {
+  --bg-img: '';             /* variável local: começa vazia */
+  background-image: var(--bg-img);
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+
+  /* Seletores por aria-label: cada rede tem seu SVG */
+  &[aria-label='tiktok'] {
+    --bg-img: url(../assets/icons/tiktok.svg);
+    &:hover { --bg-img: url(../assets/icons/tiktok-hover.svg); }
+  }
+
+  &[aria-label='instagram'] {
+    --bg-img: url(../assets/icons/instagram.svg);
+    &:hover { --bg-img: url(../assets/icons/instagram-hover.svg); }
+  }
+
+  /* ... twitter, discord */
+}</code></pre>
+            <p class="note tip">
+              <strong>CSS aninhado nativo</strong> (sem Sass): o sinal <code>&amp;</code>
+              dentro de uma regra CSS nativa se refere ao seletor pai.
+              Funciona em todos os browsers modernos desde 2023.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════ PADRÕES CSS AVANÇADOS ═══════ -->
+      <section class="lesson">
+        <span class="section-label brand">Referência rápida</span>
+        <h2>Padrões CSS avançados usados neste projeto</h2>
+
+        <div class="compare">
+          <article>
+            <h3>CSS Nesting (aninhamento nativo)</h3>
+            <p>
+              Usado em quase todos os arquivos CSS do projeto. Evita repetir
+              seletores e agrupa estilos de um componente no mesmo bloco.
+            </p>
+            <pre><code>#hero {
+  text-align: center;
+
+  /* & = o próprio #hero */
+  & h1 { margin-top: 1rem; }
+  & p  { color: var(--text-color-secondary); }
+  & .buttons { justify-content: center; }
+}</code></pre>
+          </article>
+
+          <article>
+            <h3>@import com media query</h3>
+            <p>
+              O <code>features.css</code> só é carregado em telas largas.
+              Isso mantém o CSS de features <em>completamente ausente</em> no mobile.
+            </p>
+            <pre><code>/* index.css */
+@import url(features.css) (width >= 80em);</code></pre>
+          </article>
+        </div>
+
+        <div class="compare" style="margin-top: 1.5rem;">
+          <article>
+            <h3>Seletores de atributo</h3>
+            <p>Seleciona elementos pelo valor de qualquer atributo HTML.</p>
+            <pre><code>/* Imagem de music-bars (pelo src) */
+#hero img[src*='music'] { width: 12.875rem; }
+
+/* Botão com aria-label (técnica do borda gradiente) */
+.btn[aria-label] { position: relative; }
+
+/* Ícone social (pelo aria-label) */
+a.social[aria-label='tiktok'] { --bg-img: url(...); }</code></pre>
+          </article>
+
+          <article>
+            <h3>CSS custom properties como estado</h3>
+            <p>
+              Variáveis locais mudam no hover sem duplicar blocos de CSS.
+            </p>
+            <pre><code>.btn {
+  --btn-bg-color: var(--text-color-primary);
+
+  background: var(--btn-bg-color);
+}
+
+/* Hover muda só a variável */
+.btn:hover {
+  --btn-bg-color: linear-gradient(...);
+}</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══════ CHECKLIST ═══════ -->
+      <section class="lesson">
+        <span class="section-label">Checklist de construção</span>
+        <h2>Ordem sugerida para construir o projeto</h2>
+
+        <div class="flow-list">
+          <article class="flow-card step-0">
+            <strong>0. Estrutura de pastas</strong>
+            <span>Crie as pastas <code>assets/</code> e <code>styles/</code> + <code>index.html</code> vazio</span>
+          </article>
+          <article class="flow-card step-1">
+            <strong>1. global.css</strong>
+            <span>Defina todas as variáveis, reset e estilos base de tipografia</span>
+          </article>
+          <article class="flow-card step-2">
+            <strong>2. utility.css</strong>
+            <span>Crie .container, .flex, .grid, .even-columns, .desktop-only</span>
+          </article>
+          <article class="flow-card step-3">
+            <strong>3. buttons.css</strong>
+            <span>Componente .btn completo com variantes e técnica aria-label</span>
+          </article>
+          <article class="flow-card step-4">
+            <strong>4. HTML completo</strong>
+            <span>Escreva todo o HTML usando as classes utilitárias</span>
+          </article>
+          <article class="flow-card step-5">
+            <strong>5. sections.css + cards.css</strong>
+            <span>Estile os padrões compartilhados entre seções</span>
+          </article>
+          <article class="flow-card step-6">
+            <strong>6. hero.css → about.css → pricing.css → download.css</strong>
+            <span>Estile cada seção do topo para o rodapé</span>
+          </article>
+          <article class="flow-card step-7">
+            <strong>7. features.css</strong>
+            <span>Monte o grid de 4 colunas para desktop</span>
+          </article>
+          <article class="flow-card step-8">
+            <strong>8. footer.css + social.css</strong>
+            <span>Finalize com o rodapé e ícones sociais</span>
+          </article>
+        </div>
+      </section>
+
+    </main>
+  </body>
+</html>

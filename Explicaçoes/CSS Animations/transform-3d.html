@@ -36,20 +36,27 @@
             dramatico e o efeito; quanto <strong>maior</strong>, mais
             sutil.
           </p>
-          <pre class="code"><code>/* Como propriedade no pai (afeta todos os filhos) */
+          <pre class="code"><code>&lt;!-- HTML — perspective como propriedade no pai --&gt;
+&lt;div class="container"&gt;
+  &lt;div class="elemento"&gt;3D&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Como propriedade no pai (afeta todos os filhos) */
 .container {
   perspective: 600px;
 }
+.elemento {
+  transform: rotateY(30deg);
+}
 
-/* Como funcao no proprio elemento */
+/* CSS — Como funcao no proprio elemento */
 .elemento {
   transform: perspective(600px) rotateY(30deg);
 }
 
-/* Valores tipicos */
-perspective: 200px;  /* muito dramatico */
-perspective: 500px;  /* equilibrado */
-perspective: 1000px; /* sutil */</code></pre>
+/* CSS — Valores tipicos */
+.container { perspective: 200px; }  /* muito dramatico */
+.container { perspective: 500px; }  /* equilibrado */
+.container { perspective: 1000px; } /* sutil */</code></pre>
           <p class="note tip">
             Prefira usar <code>perspective</code> como propriedade no pai
             para que todos os filhos compartilhem o mesmo ponto de fuga.
@@ -133,12 +140,21 @@ perspective: 1000px; /* sutil */</code></pre>
               </tr>
             </tbody>
           </table>
-          <pre class="code"><code>transform: rotateX(45deg);   /* tampa abrindo */
-transform: rotateY(45deg);   /* porta abrindo */
-transform: rotateZ(45deg);   /* giro no plano */
+          <pre class="code"><code>&lt;!-- HTML — o pai precisa de perspective --&gt;
+&lt;div class="container"&gt;
+  &lt;div class="cartao"&gt;Conteudo&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS */
+.container {
+  perspective: 600px;
+}
+
+.cartao { transform: rotateX(45deg); }   /* tampa abrindo */
+.cartao { transform: rotateY(45deg); }   /* porta abrindo */
+.cartao { transform: rotateZ(45deg); }   /* giro no plano */
 
 /* Funcao unificada com vetor */
-transform: rotate3d(1, 1, 0, 45deg);
+.cartao { transform: rotate3d(1, 1, 0, 45deg); }
 /* Gira 45deg ao redor do eixo definido pelo vetor (1,1,0) */</code></pre>
         </article>
 
@@ -165,16 +181,22 @@ transform: rotate3d(1, 1, 0, 45deg);
             Movem o elemento no espaco 3D. O eixo Z e o que vai "para
             dentro" e "para fora" da tela:
           </p>
-          <pre class="code"><code>/* Move em todos os 3 eixos */
-transform: translate3d(20px, 10px, 50px);
+          <pre class="code"><code>&lt;!-- HTML — o pai precisa de perspective --&gt;
+&lt;div class="container"&gt;
+  &lt;div class="filho"&gt;Perto&lt;/div&gt;
+  &lt;div class="filho afastado"&gt;Longe&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS */
+.container {
+  perspective: 600px;
+}
+
+/* Move em todos os 3 eixos */
+.filho { transform: translate3d(20px, 10px, 50px); }
 
 /* So no eixo Z (profundidade) */
-transform: translateZ(50px);   /* vem na direcao do usuario */
-transform: translateZ(-50px);  /* afasta do usuario */
-
-/* Precisa de perspective no pai para funcionar */
-.container { perspective: 600px; }
-.filho     { transform: translateZ(80px); }</code></pre>
+.filho { transform: translateZ(50px); }   /* vem na direcao do usuario */
+.filho.afastado { transform: translateZ(-50px); }  /* afasta do usuario */</code></pre>
           <p class="note">
             <code>translateZ</code> positivo faz o elemento parecer maior
             (mais perto), negativo faz parecer menor (mais longe). Sem
@@ -184,16 +206,19 @@ transform: translateZ(-50px);  /* afasta do usuario */
 
         <article class="panel">
           <h2>scale3d e outras funcoes 3D</h2>
-          <pre class="code"><code>/* Escala em 3 dimensoes */
-transform: scale3d(1.5, 1.5, 1);
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="cubo"&gt;3D&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Escala em 3 dimensoes */
+.cubo { transform: scale3d(1.5, 1.5, 1); }
 /* scaleZ raramente tem efeito visivel sozinho */
 
-/* Combinando funcoes 3D */
-transform: perspective(600px)
-           rotateY(30deg)
-           translateZ(40px)
-           scale(1.1);
-
+/* CSS — Combinando funcoes 3D */
+.cubo {
+  transform: perspective(600px)
+             rotateY(30deg)
+             translateZ(40px)
+             scale(1.1);
+}
 /* Ordem: perspective sempre primeiro */</code></pre>
           <p class="note tip">
             Quando <code>perspective</code> e usada como funcao dentro
@@ -213,12 +238,16 @@ transform: perspective(600px)
             filhos mantenham suas posicoes 3D, voce precisa de
             <code>preserve-3d</code>.
           </p>
-          <pre class="code"><code>/* Sem preserve-3d: filhos ficam planos */
+          <pre class="code"><code>&lt;!-- HTML — pai com preserve-3d --&gt;
+&lt;div class="pai"&gt;
+  &lt;div class="filho"&gt;Filho 3D&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Sem preserve-3d: filhos ficam planos */
 .pai {
   transform: rotateY(30deg);
 }
 
-/* Com preserve-3d: filhos existem em 3D */
+/* CSS — Com preserve-3d: filhos existem em 3D */
 .pai {
   transform: rotateY(30deg);
   transform-style: preserve-3d;
@@ -256,11 +285,13 @@ transform: perspective(600px)
             <code>backface-visibility: hidden</code>, o elemento
             desaparece quando mostra as costas.
           </p>
-          <pre class="code"><code>/* Verso visivel (padrao) */
-backface-visibility: visible;
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="cartao"&gt;Frente&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Verso visivel (padrao) */
+.cartao { backface-visibility: visible; }
 
-/* Verso escondido */
-backface-visibility: hidden;
+/* CSS — Verso escondido */
+.cartao { backface-visibility: hidden; }
 
 /* Essencial para efeito card-flip:
    a face de tras so aparece quando o cartao vira */</code></pre>
@@ -307,14 +338,21 @@ backface-visibility: hidden;
 
         <article class="panel">
           <h2>Codigo do Card Flip</h2>
-          <pre class="code"><code>/* 1. Container com perspective */
+          <pre class="code"><code>&lt;!-- HTML — estrutura completa do card-flip --&gt;
+&lt;div class="flip-scene"&gt;
+  &lt;div class="flip-card"&gt;
+    &lt;div class="flip-face flip-front"&gt;Frente&lt;/div&gt;
+    &lt;div class="flip-face flip-back"&gt;Verso&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — 1. Container com perspective */
 .flip-scene {
   perspective: 800px;
   width: 220px;
   height: 140px;
 }
 
-/* 2. Cartao que gira */
+/* CSS — 2. Cartao que gira */
 .flip-card {
   position: relative;
   width: 100%;
@@ -323,12 +361,12 @@ backface-visibility: hidden;
   transform-style: preserve-3d;
 }
 
-/* 3. Hover gira 180 graus */
+/* CSS — 3. Hover gira 180 graus */
 .flip-scene:hover .flip-card {
   transform: rotateY(180deg);
 }
 
-/* 4. Faces do cartao */
+/* CSS — 4. Faces do cartao */
 .flip-face {
   position: absolute;
   inset: 0;
@@ -338,13 +376,13 @@ backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
-/* 5. Frente: estilo normal */
+/* CSS — 5. Frente: estilo normal */
 .flip-front {
   background: #e11d48;
   color: #ffffff;
 }
 
-/* 6. Verso: ja comeca virado */
+/* CSS — 6. Verso: ja comeca virado */
 .flip-back {
   background: #7c3aed;
   color: #ffffff;
@@ -441,7 +479,9 @@ backface-visibility: hidden;
               navegadores nao propagam preserve-3d por mais de um nivel.
             </li>
           </ol>
-          <pre class="code"><code>/* Truque de GPU acceleration */
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="elemento-que-vai-animar"&gt;Conteudo&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Truque de GPU acceleration */
 .elemento-que-vai-animar {
   will-change: transform;
   transform: translate3d(0, 0, 0);

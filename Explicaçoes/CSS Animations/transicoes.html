@@ -34,6 +34,8 @@
             :focus ou classe JS), a mudanca e instantanea. Com transition, o
             navegador cria uma interpolacao suave entre o valor antigo e o novo.
           </p>
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;button class="botao"&gt;Clique aqui&lt;/button&gt;</code></pre>
           <pre class="code"><code>/* SEM transition — mudança instantanea */
 .botao { background: #e11d48; }
 .botao:hover { background: #7c3aed; }
@@ -60,7 +62,17 @@
               <div class="demo-box rose transition-demo">Hover</div>
             </div>
           </div>
-          <pre class="code"><code>.box {
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="box"&gt;Hover&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS */
+.box {
+  width: 80px;
+  height: 80px;
+  background: #e11d48;
+  color: #fff;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
   transition: all 0.5s ease;
 }
 .box:hover {
@@ -115,20 +127,28 @@
             O shorthand junta tudo em uma linha. A ordem recomendada e:
             <code>property duration timing-function delay</code>.
           </p>
-          <pre class="code"><code>/* Forma longa */
-transition-property: background;
-transition-duration: 0.3s;
-transition-timing-function: ease-in-out;
-transition-delay: 0s;
+          <pre class="code"><code>&lt;!-- HTML — o mesmo elemento para os 3 exemplos --&gt;
+&lt;a class="link" href="#"&gt;Passe o mouse&lt;/a&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Forma longa */
+.link {
+  transition-property: background;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
 
-/* Shorthand equivalente */
-transition: background 0.3s ease-in-out 0s;
+/* CSS — Shorthand equivalente */
+.link {
+  transition: background 0.3s ease-in-out 0s;
+}
 
-/* Varias propriedades separadas por virgula */
-transition:
-  background 0.3s ease,
-  transform 0.5s ease-in-out 0.1s,
-  box-shadow 0.4s ease;</code></pre>
+/* CSS — Varias propriedades separadas por virgula */
+.link {
+  transition:
+    background 0.3s ease,
+    transform 0.5s ease-in-out 0.1s,
+    box-shadow 0.4s ease;
+}</code></pre>
           <p class="note warning">
             Se voce escrever dois valores de tempo, o primeiro e sempre a
             <strong>duration</strong> e o segundo e o <strong>delay</strong>.
@@ -208,9 +228,18 @@ transition:
               </tr>
             </tbody>
           </table>
-          <pre class="code"><code>/* cubic-bezier personalizado */
-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="caixa"&gt;Hover&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — cubic-bezier personalizado */
+.caixa {
+  width: 80px;
+  height: 80px;
+  background: #e11d48;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.caixa:hover {
+  transform: scale(1.3);
+}
 /* Esse cria um efeito de "overshoot" —
    o elemento passa do destino e volta */</code></pre>
         </article>
@@ -306,7 +335,11 @@ transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
       <section class="lesson-grid">
         <article class="panel">
           <h2>Exemplo: botao com hover</h2>
-          <pre class="code"><code>.botao {
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;button class="botao"&gt;Enviar formulario&lt;/button&gt;
+&lt;button class="botao"&gt;Salvar projeto&lt;/button&gt;</code></pre>
+          <pre class="code"><code>/* CSS */
+.botao {
   padding: 12px 24px;
   background: #e11d48;
   color: #ffffff;
@@ -334,11 +367,19 @@ transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
         <article class="panel">
           <h2>Exemplo: card com elevacao</h2>
-          <pre class="code"><code>.card {
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;a class="card" href="pagina.html"&gt;
+  &lt;h3&gt;Titulo do card&lt;/h3&gt;
+  &lt;p&gt;Descricao curta do conteudo.&lt;/p&gt;
+&lt;/a&gt;</code></pre>
+          <pre class="code"><code>/* CSS */
+.card {
+  display: block;
   padding: 22px;
   border: 1px solid #d9e2ec;
   border-radius: 16px;
   background: #ffffff;
+  text-decoration: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition:
     transform 0.2s ease,

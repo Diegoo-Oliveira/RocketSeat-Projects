@@ -31,15 +31,24 @@
             Move o elemento ao longo dos eixos X e Y sem tirar do fluxo
             do documento. Os vizinhos continuam no lugar original.
           </p>
-          <pre class="code"><code>/* Move 30px para direita e 10px para cima */
-transform: translate(30px, -10px);
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="caixa"&gt;Mover&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Move 30px para direita e 10px para cima */
+.caixa {
+  width: 80px;
+  height: 80px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 14px;
+  transform: translate(30px, -10px);
+}
 
-/* Funcoes separadas por eixo */
-transform: translateX(30px);
-transform: translateY(-10px);
+/* CSS — Funcoes separadas por eixo */
+.caixa { transform: translateX(30px); }
+.caixa { transform: translateY(-10px); }
 
-/* Usando porcentagem (relativo ao proprio elemento) */
-transform: translate(50%, -50%);
+/* CSS — Usando porcentagem (relativo ao proprio elemento) */
+.caixa { transform: translate(50%, -50%); }
 /* Muito usado para centralizar com position: absolute */</code></pre>
           <div class="visual">
             <span class="visual-label">hover para ver translate</span>
@@ -56,16 +65,25 @@ transform: translate(50%, -50%);
             por <code>transform-origin</code>). Valores positivos giram
             no sentido horario.
           </p>
-          <pre class="code"><code>/* Gira 45 graus no sentido horario */
-transform: rotate(45deg);
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="icone"&gt;★&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Gira 45 graus no sentido horario */
+.icone {
+  width: 60px;
+  height: 60px;
+  background: #e11d48;
+  display: grid;
+  place-items: center;
+  transform: rotate(45deg);
+}
 
-/* Sentido anti-horario */
-transform: rotate(-30deg);
+/* CSS — Sentido anti-horario */
+.icone { transform: rotate(-30deg); }
 
-/* Unidades possiveis */
-transform: rotate(0.25turn);  /* 1/4 de volta = 90deg */
-transform: rotate(100grad);   /* 100 grads = 90deg */
-transform: rotate(1.57rad);   /* radianos */</code></pre>
+/* CSS — Unidades possiveis */
+.icone { transform: rotate(0.25turn); }  /* 1/4 de volta = 90deg */
+.icone { transform: rotate(100grad); }   /* 100 grads = 90deg */
+.icone { transform: rotate(1.57rad); }   /* radianos */</code></pre>
           <div class="visual">
             <span class="visual-label">hover para ver rotate</span>
             <div class="demo-row">
@@ -84,18 +102,21 @@ transform: rotate(1.57rad);   /* radianos */</code></pre>
             o tamanho original, 2 e o dobro, 0.5 e metade. Nao afeta o
             espaco que o elemento ocupa no layout.
           </p>
-          <pre class="code"><code>/* Dobra o tamanho nos dois eixos */
-transform: scale(2);
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="foto"&gt;&lt;/div&gt;
+&lt;img class="avatar" src="perfil.jpg" alt="Foto" /&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Dobra o tamanho nos dois eixos */
+.foto { transform: scale(2); }
 
-/* Largura 1.5x, altura 0.8x */
-transform: scale(1.5, 0.8);
+/* CSS — Largura 1.5x, altura 0.8x */
+.foto { transform: scale(1.5, 0.8); }
 
-/* Funcoes separadas por eixo */
-transform: scaleX(1.5);
-transform: scaleY(0.8);
+/* CSS — Funcoes separadas por eixo */
+.foto { transform: scaleX(1.5); }
+.foto { transform: scaleY(0.8); }
 
-/* Espelhar horizontalmente */
-transform: scaleX(-1);</code></pre>
+/* CSS — Espelhar horizontalmente */
+.avatar { transform: scaleX(-1); }</code></pre>
           <div class="visual">
             <span class="visual-label">hover para ver scale</span>
             <div class="demo-row">
@@ -110,15 +131,17 @@ transform: scaleX(-1);</code></pre>
             Inclina o elemento ao longo dos eixos X e Y, criando um
             efeito de paralelogramo. Valores em graus.
           </p>
-          <pre class="code"><code>/* Inclina 15 graus no X e 5 no Y */
-transform: skew(15deg, 5deg);
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="faixa"&gt;DESCONTO&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Inclina 15 graus no X e 5 no Y */
+.faixa { transform: skew(15deg, 5deg); }
 
-/* Funcoes separadas */
-transform: skewX(15deg);
-transform: skewY(5deg);
+/* CSS — Funcoes separadas */
+.faixa { transform: skewX(15deg); }
+.faixa { transform: skewY(5deg); }
 
-/* Efeito italico mais forte */
-transform: skewX(-10deg);</code></pre>
+/* CSS — Efeito italico mais forte */
+.faixa { transform: skewX(-10deg); }</code></pre>
           <div class="visual">
             <span class="visual-label">hover para ver skew</span>
             <div class="demo-row">
@@ -201,14 +224,16 @@ transform: skewX(-10deg);</code></pre>
             <code>transform</code>, separadas por espaco. O navegador
             aplica da <strong>esquerda para a direita</strong>.
           </p>
-          <pre class="code"><code>/* Gira E depois escala */
-transform: rotate(15deg) scale(1.2);
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="badge"&gt;Novo&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Gira E depois escala */
+.badge { transform: rotate(15deg) scale(1.2); }
 
-/* Move E depois gira — resultado diferente! */
-transform: translate(50px, 0) rotate(45deg);
+/* CSS — Move E depois gira — resultado diferente! */
+.badge { transform: translate(50px, 0) rotate(45deg); }
 
-/* Gira E depois move — resultado diferente! */
-transform: rotate(45deg) translate(50px, 0);</code></pre>
+/* CSS — Gira E depois move — resultado diferente! */
+.badge { transform: rotate(45deg) translate(50px, 0); }</code></pre>
           <div class="visual">
             <span class="visual-label">hover para ver combinacao</span>
             <div class="demo-row">
@@ -233,18 +258,20 @@ transform: rotate(45deg) translate(50px, 0);</code></pre>
             muda isso para qualquer ponto: cantos, bordas ou posicao
             customizada.
           </p>
-          <pre class="code"><code>/* Padrao — centro */
-transform-origin: center;       /* 50% 50% */
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="porta"&gt;Abrir&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Padrao — centro */
+.porta { transform-origin: center; }       /* 50% 50% */
 
-/* Cantos */
-transform-origin: top left;     /* 0% 0% */
-transform-origin: top right;    /* 100% 0% */
-transform-origin: bottom left;  /* 0% 100% */
-transform-origin: bottom right; /* 100% 100% */
+/* CSS — Cantos */
+.porta { transform-origin: top left; }     /* 0% 0% */
+.porta { transform-origin: top right; }    /* 100% 0% */
+.porta { transform-origin: bottom left; }  /* 0% 100% */
+.porta { transform-origin: bottom right; } /* 100% 100% */
 
-/* Posicao customizada */
-transform-origin: 20px 40px;
-transform-origin: 30% 70%;</code></pre>
+/* CSS — Posicao customizada */
+.porta { transform-origin: 20px 40px; }
+.porta { transform-origin: 30% 70%; }</code></pre>
         </article>
 
         <article class="panel">
@@ -325,11 +352,13 @@ transform-origin: 30% 70%;</code></pre>
               </tr>
             </tbody>
           </table>
-          <pre class="code"><code>/* matrix identidade (nenhuma transformacao) */
-transform: matrix(1, 0, 0, 1, 0, 0);
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="elemento"&gt;M&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — matrix identidade (nenhuma transformacao) */
+.elemento { transform: matrix(1, 0, 0, 1, 0, 0); }
 
-/* equivalente a scale(2) translate(30px, 10px) */
-transform: matrix(2, 0, 0, 2, 30, 10);</code></pre>
+/* CSS — equivalente a scale(2) translate(30px, 10px) */
+.elemento { transform: matrix(2, 0, 0, 2, 30, 10); }</code></pre>
           <p class="note tip">
             Na pratica, <code>matrix()</code> e raramente escrita a mao.
             Use as funcoes individuais (translate, rotate, scale, skew)
@@ -344,15 +373,21 @@ transform: matrix(2, 0, 0, 2, 30, 10);</code></pre>
             O CSS moderno permite escrever translate, rotate e scale como
             propriedades separadas, sem usar <code>transform</code>:
           </p>
-          <pre class="code"><code>/* Forma classica */
-transform: translate(20px, 10px) rotate(15deg) scale(1.2);
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="elemento"&gt;Hover&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Forma classica */
+.elemento {
+  transform: translate(20px, 10px) rotate(15deg) scale(1.2);
+}
 
-/* Forma moderna (propriedades individuais) */
-translate: 20px 10px;
-rotate: 15deg;
-scale: 1.2;
+/* CSS — Forma moderna (propriedades individuais) */
+.elemento {
+  translate: 20px 10px;
+  rotate: 15deg;
+  scale: 1.2;
+}
 
-/* Vantagem: voce pode animar cada uma separadamente */
+/* CSS — Vantagem: voce pode animar cada uma separadamente */
 .elemento {
   translate: 0 0;
   rotate: 0deg;

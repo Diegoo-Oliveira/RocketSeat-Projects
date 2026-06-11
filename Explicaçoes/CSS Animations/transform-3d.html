@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transformacoes 3D — perspective, rotateX/Y/Z, backface-visibility</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Animations</a>
+        <span class="eyebrow">Transform 3D</span>
+      </div>
+
+      <section class="hero">
+        <h1>Transformacoes 3D</h1>
+        <p>
+          Transformacoes 3D adicionam profundidade ao CSS, permitindo
+          girar, mover e posicionar elementos nos eixos X, Y e
+          <strong>Z</strong> (para dentro e fora da tela). Para que o
+          efeito 3D funcione, voce precisa entender
+          <code>perspective</code>, <code>preserve-3d</code> e
+          <code>backface-visibility</code>.
+        </p>
+      </section>
+
+      <!-- ── perspective ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>perspective — a base do 3D</h2>
+          <p>
+            Sem <code>perspective</code>, transformacoes 3D parecem planas.
+            O perspective define a distancia do "olho" do observador ate o
+            elemento. Quanto <strong>menor</strong> o valor, mais
+            dramatico e o efeito; quanto <strong>maior</strong>, mais
+            sutil.
+          </p>
+          <pre class="code"><code>/* Como propriedade no pai (afeta todos os filhos) */
+.container {
+  perspective: 600px;
+}
+
+/* Como funcao no proprio elemento */
+.elemento {
+  transform: perspective(600px) rotateY(30deg);
+}
+
+/* Valores tipicos */
+perspective: 200px;  /* muito dramatico */
+perspective: 500px;  /* equilibrado */
+perspective: 1000px; /* sutil */</code></pre>
+          <p class="note tip">
+            Prefira usar <code>perspective</code> como propriedade no pai
+            para que todos os filhos compartilhem o mesmo ponto de fuga.
+            Use como funcao apenas quando quiser efeito isolado.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Comparacao de perspective</h2>
+          <p>
+            Todos os quadrados estao com <code>rotateY(35deg)</code>,
+            mas cada um tem um perspective diferente:
+          </p>
+          <div class="visual">
+            <span class="visual-label">comparacao de valores</span>
+            <div class="perspective-compare">
+              <div class="persp-item">
+                <div class="persp-wrapper persp-200">
+                  <div class="persp-box">A</div>
+                </div>
+                <span>200px</span>
+              </div>
+              <div class="persp-item">
+                <div class="persp-wrapper persp-500">
+                  <div class="persp-box">B</div>
+                </div>
+                <span>500px</span>
+              </div>
+              <div class="persp-item">
+                <div class="persp-wrapper persp-1000">
+                  <div class="persp-box">C</div>
+                </div>
+                <span>1000px</span>
+              </div>
+              <div class="persp-item">
+                <div class="persp-wrapper persp-none">
+                  <div class="persp-box">D</div>
+                </div>
+                <span>none</span>
+              </div>
+            </div>
+          </div>
+          <p class="note">
+            Note como o quadrado A (200px) parece muito mais "perto" e
+            distorcido, enquanto o D (none) fica completamente plano.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── rotateX/Y/Z ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>rotateX, rotateY e rotateZ</h2>
+          <p>
+            Cada funcao gira o elemento em torno de um eixo especifico.
+            Imagine o elemento como um cartao em pe:
+          </p>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Funcao</th>
+                <th>Eixo</th>
+                <th>Efeito visual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>rotateX(angle)</td>
+                <td>Eixo horizontal (—)</td>
+                <td>Topo move para frente/tras (como abrir uma tampa)</td>
+              </tr>
+              <tr>
+                <td>rotateY(angle)</td>
+                <td>Eixo vertical (|)</td>
+                <td>Lados movem para frente/tras (como abrir uma porta)</td>
+              </tr>
+              <tr>
+                <td>rotateZ(angle)</td>
+                <td>Eixo de profundidade (·)</td>
+                <td>Gira no plano da tela (igual rotate() 2D)</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>transform: rotateX(45deg);   /* tampa abrindo */
+transform: rotateY(45deg);   /* porta abrindo */
+transform: rotateZ(45deg);   /* giro no plano */
+
+/* Funcao unificada com vetor */
+transform: rotate3d(1, 1, 0, 45deg);
+/* Gira 45deg ao redor do eixo definido pelo vetor (1,1,0) */</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Demo interativo — rotacoes 3D</h2>
+          <p>Passe o mouse em cada quadrado para ver a rotacao no eixo:</p>
+          <div class="visual">
+            <span class="visual-label">hover para rotacionar</span>
+            <div class="perspective-container">
+              <div class="box-3d rotate-x">rotateX</div>
+              <div class="box-3d rotate-y">rotateY</div>
+              <div class="box-3d rotate-z">rotateZ</div>
+              <div class="box-3d translate-z">translateZ</div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── translate3d / translateZ ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>translate3d e translateZ</h2>
+          <p>
+            Movem o elemento no espaco 3D. O eixo Z e o que vai "para
+            dentro" e "para fora" da tela:
+          </p>
+          <pre class="code"><code>/* Move em todos os 3 eixos */
+transform: translate3d(20px, 10px, 50px);
+
+/* So no eixo Z (profundidade) */
+transform: translateZ(50px);   /* vem na direcao do usuario */
+transform: translateZ(-50px);  /* afasta do usuario */
+
+/* Precisa de perspective no pai para funcionar */
+.container { perspective: 600px; }
+.filho     { transform: translateZ(80px); }</code></pre>
+          <p class="note">
+            <code>translateZ</code> positivo faz o elemento parecer maior
+            (mais perto), negativo faz parecer menor (mais longe). Sem
+            perspective o efeito nao aparece.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>scale3d e outras funcoes 3D</h2>
+          <pre class="code"><code>/* Escala em 3 dimensoes */
+transform: scale3d(1.5, 1.5, 1);
+/* scaleZ raramente tem efeito visivel sozinho */
+
+/* Combinando funcoes 3D */
+transform: perspective(600px)
+           rotateY(30deg)
+           translateZ(40px)
+           scale(1.1);
+
+/* Ordem: perspective sempre primeiro */</code></pre>
+          <p class="note tip">
+            Quando <code>perspective</code> e usada como funcao dentro
+            de <code>transform</code>, ela deve ser a
+            <strong>primeira</strong> funcao da lista.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── preserve-3d ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>transform-style: preserve-3d</h2>
+          <p>
+            Por padrao, filhos de um elemento transformado sao
+            <strong>achatados</strong> no plano 2D do pai. Para que os
+            filhos mantenham suas posicoes 3D, voce precisa de
+            <code>preserve-3d</code>.
+          </p>
+          <pre class="code"><code>/* Sem preserve-3d: filhos ficam planos */
+.pai {
+  transform: rotateY(30deg);
+}
+
+/* Com preserve-3d: filhos existem em 3D */
+.pai {
+  transform: rotateY(30deg);
+  transform-style: preserve-3d;
+}
+.filho {
+  transform: rotateX(20deg) translateZ(40px);
+  /* Agora esse translate funciona em 3D real */
+}</code></pre>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Valor</th>
+                <th>Comportamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>flat</td>
+                <td>Filhos sao achatados no plano do pai (padrao)</td>
+              </tr>
+              <tr>
+                <td>preserve-3d</td>
+                <td>Filhos mantem posicao no espaco 3D</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel">
+          <h2>backface-visibility</h2>
+          <p>
+            Quando voce gira um elemento mais de 90 graus, o "verso"
+            dele fica virado para o usuario. Por padrao esse verso e
+            visivel (mostra o conteudo espelhado). Com
+            <code>backface-visibility: hidden</code>, o elemento
+            desaparece quando mostra as costas.
+          </p>
+          <pre class="code"><code>/* Verso visivel (padrao) */
+backface-visibility: visible;
+
+/* Verso escondido */
+backface-visibility: hidden;
+
+/* Essencial para efeito card-flip:
+   a face de tras so aparece quando o cartao vira */</code></pre>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Valor</th>
+                <th>Comportamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>visible</td>
+                <td>Verso aparece espelhado (padrao)</td>
+              </tr>
+              <tr>
+                <td>hidden</td>
+                <td>Elemento some quando mostra as costas</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+
+      <!-- ── Card flip ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo pratico: Card Flip</h2>
+          <p>
+            O efeito de virar um cartao e o exemplo classico de 3D no
+            CSS. Ele usa <code>perspective</code>, <code>preserve-3d</code>,
+            <code>backface-visibility</code> e <code>rotateY</code> juntos.
+          </p>
+          <div class="visual">
+            <span class="visual-label">hover para virar o cartao</span>
+            <div class="flip-scene">
+              <div class="flip-card">
+                <div class="flip-face flip-front">Frente</div>
+                <div class="flip-face flip-back">Verso</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo do Card Flip</h2>
+          <pre class="code"><code>/* 1. Container com perspective */
+.flip-scene {
+  perspective: 800px;
+  width: 220px;
+  height: 140px;
+}
+
+/* 2. Cartao que gira */
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s ease;
+  transform-style: preserve-3d;
+}
+
+/* 3. Hover gira 180 graus */
+.flip-scene:hover .flip-card {
+  transform: rotateY(180deg);
+}
+
+/* 4. Faces do cartao */
+.flip-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  backface-visibility: hidden;
+}
+
+/* 5. Frente: estilo normal */
+.flip-front {
+  background: #e11d48;
+  color: #ffffff;
+}
+
+/* 6. Verso: ja comeca virado */
+.flip-back {
+  background: #7c3aed;
+  color: #ffffff;
+  transform: rotateY(180deg);
+}</code></pre>
+          <p class="note tip">
+            O truque e: a face de tras ja comeca com
+            <code>rotateY(180deg)</code>. Quando o cartao inteiro gira
+            180 graus, a frente fica escondida (backface hidden) e o
+            verso aparece de frente.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Tabela resumo 3D ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Tabela resumo — propriedades 3D</h2>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Propriedade / Funcao</th>
+                <th>O que faz</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>perspective</td>
+                <td>Define a distancia do observador (ponto de fuga)</td>
+              </tr>
+              <tr>
+                <td>perspective-origin</td>
+                <td>Muda a posicao do ponto de fuga (padrao: center)</td>
+              </tr>
+              <tr>
+                <td>transform-style</td>
+                <td>flat ou preserve-3d — filhos em 2D ou 3D</td>
+              </tr>
+              <tr>
+                <td>backface-visibility</td>
+                <td>visible ou hidden — mostra ou esconde o verso</td>
+              </tr>
+              <tr>
+                <td>rotateX(angle)</td>
+                <td>Gira no eixo horizontal</td>
+              </tr>
+              <tr>
+                <td>rotateY(angle)</td>
+                <td>Gira no eixo vertical</td>
+              </tr>
+              <tr>
+                <td>rotateZ(angle)</td>
+                <td>Gira no plano da tela</td>
+              </tr>
+              <tr>
+                <td>rotate3d(x, y, z, angle)</td>
+                <td>Gira em eixo customizado</td>
+              </tr>
+              <tr>
+                <td>translate3d(x, y, z)</td>
+                <td>Move em todos os 3 eixos</td>
+              </tr>
+              <tr>
+                <td>translateZ(z)</td>
+                <td>Move na profundidade (perto/longe)</td>
+              </tr>
+              <tr>
+                <td>scale3d(x, y, z)</td>
+                <td>Escala em 3 dimensoes</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel">
+          <h2>Dicas de performance 3D</h2>
+          <ol class="formula-list">
+            <li>
+              <strong>GPU acceleration:</strong>
+              <code>translate3d(0, 0, 0)</code> e um truque classico para
+              forcar o navegador a usar a GPU, mesmo sem movimento real.
+            </li>
+            <li>
+              <strong>will-change:</strong> use
+              <code>will-change: transform</code> para avisar o navegador
+              que o elemento vai ser transformado em breve.
+            </li>
+            <li>
+              <strong>Evite overflow: hidden no pai:</strong> pode cortar
+              elementos que se movem no eixo Z.
+            </li>
+            <li>
+              <strong>Cuidado com preserve-3d em cascata:</strong> alguns
+              navegadores nao propagam preserve-3d por mais de um nivel.
+            </li>
+          </ol>
+          <pre class="code"><code>/* Truque de GPU acceleration */
+.elemento-que-vai-animar {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Remova will-change depois que nao precisar mais,
+   pois consome memoria da GPU */</code></pre>
+          <p class="note warning">
+            <code>will-change</code> nao e magica — use com moderacao.
+            Aplicar em muitos elementos ao mesmo tempo pode
+            <strong>piorar</strong> a performance em vez de melhorar.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Resumo ── -->
+      <section class="section panel">
+        <h2>Resumo rapido</h2>
+        <ol class="formula-list">
+          <li><code>perspective</code> e obrigatorio para efeitos 3D — define a distancia do olho</li>
+          <li>valores menores de perspective = efeito mais dramatico</li>
+          <li><code>rotateX</code> = tampa, <code>rotateY</code> = porta, <code>rotateZ</code> = plano</li>
+          <li><code>translateZ</code> move na profundidade (precisa de perspective)</li>
+          <li><code>preserve-3d</code> faz os filhos existirem em 3D real</li>
+          <li><code>backface-visibility: hidden</code> esconde o verso — essencial para card-flip</li>
+          <li><code>translate3d(0,0,0)</code> forca GPU acceleration</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="transform-2d.html">← Transform 2D</a>
+        <a href="animacoes-keyframes.html">← @keyframes</a>
+        <a href="transicoes.html">← Transicoes</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

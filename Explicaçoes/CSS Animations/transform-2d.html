@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transformacoes 2D — translate, rotate, scale, skew</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Animations</a>
+        <span class="eyebrow">Transform 2D</span>
+      </div>
+
+      <section class="hero">
+        <h1>Transformacoes 2D</h1>
+        <p>
+          A propriedade <code>transform</code> permite mover, girar,
+          redimensionar e distorcer elementos sem afetar o layout dos
+          vizinhos. Transformacoes 2D trabalham nos eixos X (horizontal) e
+          Y (vertical) e sao a base para quase todo movimento visual no CSS.
+        </p>
+      </section>
+
+      <!-- ── translate ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>translate() — mover o elemento</h2>
+          <p>
+            Move o elemento ao longo dos eixos X e Y sem tirar do fluxo
+            do documento. Os vizinhos continuam no lugar original.
+          </p>
+          <pre class="code"><code>/* Move 30px para direita e 10px para cima */
+transform: translate(30px, -10px);
+
+/* Funcoes separadas por eixo */
+transform: translateX(30px);
+transform: translateY(-10px);
+
+/* Usando porcentagem (relativo ao proprio elemento) */
+transform: translate(50%, -50%);
+/* Muito usado para centralizar com position: absolute */</code></pre>
+          <div class="visual">
+            <span class="visual-label">hover para ver translate</span>
+            <div class="demo-row">
+              <div class="demo-box blue transform-demo translate-demo">translate</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>rotate() — girar o elemento</h2>
+          <p>
+            Gira o elemento em torno do seu centro (ou do ponto definido
+            por <code>transform-origin</code>). Valores positivos giram
+            no sentido horario.
+          </p>
+          <pre class="code"><code>/* Gira 45 graus no sentido horario */
+transform: rotate(45deg);
+
+/* Sentido anti-horario */
+transform: rotate(-30deg);
+
+/* Unidades possiveis */
+transform: rotate(0.25turn);  /* 1/4 de volta = 90deg */
+transform: rotate(100grad);   /* 100 grads = 90deg */
+transform: rotate(1.57rad);   /* radianos */</code></pre>
+          <div class="visual">
+            <span class="visual-label">hover para ver rotate</span>
+            <div class="demo-row">
+              <div class="demo-box rose transform-demo rotate-demo">rotate</div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── scale / skew ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>scale() — redimensionar o elemento</h2>
+          <p>
+            Aumenta ou diminui o tamanho visual do elemento. O valor 1 e
+            o tamanho original, 2 e o dobro, 0.5 e metade. Nao afeta o
+            espaco que o elemento ocupa no layout.
+          </p>
+          <pre class="code"><code>/* Dobra o tamanho nos dois eixos */
+transform: scale(2);
+
+/* Largura 1.5x, altura 0.8x */
+transform: scale(1.5, 0.8);
+
+/* Funcoes separadas por eixo */
+transform: scaleX(1.5);
+transform: scaleY(0.8);
+
+/* Espelhar horizontalmente */
+transform: scaleX(-1);</code></pre>
+          <div class="visual">
+            <span class="visual-label">hover para ver scale</span>
+            <div class="demo-row">
+              <div class="demo-box teal transform-demo scale-demo">scale</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>skew() — distorcer o elemento</h2>
+          <p>
+            Inclina o elemento ao longo dos eixos X e Y, criando um
+            efeito de paralelogramo. Valores em graus.
+          </p>
+          <pre class="code"><code>/* Inclina 15 graus no X e 5 no Y */
+transform: skew(15deg, 5deg);
+
+/* Funcoes separadas */
+transform: skewX(15deg);
+transform: skewY(5deg);
+
+/* Efeito italico mais forte */
+transform: skewX(-10deg);</code></pre>
+          <div class="visual">
+            <span class="visual-label">hover para ver skew</span>
+            <div class="demo-row">
+              <div class="demo-box orange transform-demo skew-demo">skew</div>
+            </div>
+          </div>
+          <p class="note">
+            <code>skew</code> e menos usado que translate, rotate e scale,
+            mas e util para efeitos decorativos em backgrounds e faixas.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Tabela resumo + combinando ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Tabela resumo das funcoes 2D</h2>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Funcao</th>
+                <th>O que faz</th>
+                <th>Unidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>translate(x, y)</td>
+                <td>Move o elemento</td>
+                <td>px, %, rem, em</td>
+              </tr>
+              <tr>
+                <td>translateX(x)</td>
+                <td>Move so no eixo X</td>
+                <td>px, %, rem</td>
+              </tr>
+              <tr>
+                <td>translateY(y)</td>
+                <td>Move so no eixo Y</td>
+                <td>px, %, rem</td>
+              </tr>
+              <tr>
+                <td>rotate(angle)</td>
+                <td>Gira o elemento</td>
+                <td>deg, turn, rad, grad</td>
+              </tr>
+              <tr>
+                <td>scale(x, y)</td>
+                <td>Redimensiona</td>
+                <td>numero (1 = original)</td>
+              </tr>
+              <tr>
+                <td>scaleX(x) / scaleY(y)</td>
+                <td>Redimensiona por eixo</td>
+                <td>numero</td>
+              </tr>
+              <tr>
+                <td>skew(x, y)</td>
+                <td>Distorce / inclina</td>
+                <td>deg</td>
+              </tr>
+              <tr>
+                <td>skewX(x) / skewY(y)</td>
+                <td>Distorce por eixo</td>
+                <td>deg</td>
+              </tr>
+              <tr>
+                <td>matrix(a,b,c,d,tx,ty)</td>
+                <td>Todas as 2D em uma so</td>
+                <td>numeros</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel">
+          <h2>Combinando transformacoes</h2>
+          <p>
+            Voce pode aplicar varias funcoes na mesma propriedade
+            <code>transform</code>, separadas por espaco. O navegador
+            aplica da <strong>esquerda para a direita</strong>.
+          </p>
+          <pre class="code"><code>/* Gira E depois escala */
+transform: rotate(15deg) scale(1.2);
+
+/* Move E depois gira — resultado diferente! */
+transform: translate(50px, 0) rotate(45deg);
+
+/* Gira E depois move — resultado diferente! */
+transform: rotate(45deg) translate(50px, 0);</code></pre>
+          <div class="visual">
+            <span class="visual-label">hover para ver combinacao</span>
+            <div class="demo-row">
+              <div class="demo-box purple transform-demo combined-demo">combo</div>
+            </div>
+          </div>
+          <p class="note warning">
+            <strong>A ordem importa!</strong> <code>rotate translate</code>
+            tem resultado diferente de <code>translate rotate</code>
+            porque cada funcao cria um novo sistema de coordenadas.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── transform-origin ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>transform-origin — o ponto de referencia</h2>
+          <p>
+            Por padrao, transformacoes usam o centro do elemento como
+            ponto de referencia. Com <code>transform-origin</code> voce
+            muda isso para qualquer ponto: cantos, bordas ou posicao
+            customizada.
+          </p>
+          <pre class="code"><code>/* Padrao — centro */
+transform-origin: center;       /* 50% 50% */
+
+/* Cantos */
+transform-origin: top left;     /* 0% 0% */
+transform-origin: top right;    /* 100% 0% */
+transform-origin: bottom left;  /* 0% 100% */
+transform-origin: bottom right; /* 100% 100% */
+
+/* Posicao customizada */
+transform-origin: 20px 40px;
+transform-origin: 30% 70%;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Demo de transform-origin</h2>
+          <p>
+            Todos os quadrados abaixo fazem <code>rotate(45deg)</code>
+            no hover, mas cada um tem um <code>transform-origin</code>
+            diferente. Veja como o ponto de rotacao muda:
+          </p>
+          <div class="visual">
+            <span class="visual-label">hover para ver a diferenca</span>
+            <div class="origin-row">
+              <div class="origin-item">
+                <div class="origin-box origin-center">hover</div>
+                <span>center</span>
+              </div>
+              <div class="origin-item">
+                <div class="origin-box origin-tl">hover</div>
+                <span>top left</span>
+              </div>
+              <div class="origin-item">
+                <div class="origin-box origin-tr">hover</div>
+                <span>top right</span>
+              </div>
+              <div class="origin-item">
+                <div class="origin-box origin-bl">hover</div>
+                <span>bottom left</span>
+              </div>
+              <div class="origin-item">
+                <div class="origin-box origin-br">hover</div>
+                <span>bottom right</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── matrix ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>matrix() — todas as 2D em uma funcao</h2>
+          <p>
+            A funcao <code>matrix(a, b, c, d, tx, ty)</code> e a forma
+            unificada de expressar qualquer transformacao 2D. Ela recebe
+            6 parametros que combinam scale, skew e translate:
+          </p>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Parametro</th>
+                <th>Equivalente</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>a</td>
+                <td>scaleX</td>
+              </tr>
+              <tr>
+                <td>b</td>
+                <td>skewY</td>
+              </tr>
+              <tr>
+                <td>c</td>
+                <td>skewX</td>
+              </tr>
+              <tr>
+                <td>d</td>
+                <td>scaleY</td>
+              </tr>
+              <tr>
+                <td>tx</td>
+                <td>translateX</td>
+              </tr>
+              <tr>
+                <td>ty</td>
+                <td>translateY</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* matrix identidade (nenhuma transformacao) */
+transform: matrix(1, 0, 0, 1, 0, 0);
+
+/* equivalente a scale(2) translate(30px, 10px) */
+transform: matrix(2, 0, 0, 2, 30, 10);</code></pre>
+          <p class="note tip">
+            Na pratica, <code>matrix()</code> e raramente escrita a mao.
+            Use as funcoes individuais (translate, rotate, scale, skew)
+            que sao muito mais legiveis. O navegador converte tudo para
+            matrix internamente.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Propriedades individuais (CSS moderno)</h2>
+          <p>
+            O CSS moderno permite escrever translate, rotate e scale como
+            propriedades separadas, sem usar <code>transform</code>:
+          </p>
+          <pre class="code"><code>/* Forma classica */
+transform: translate(20px, 10px) rotate(15deg) scale(1.2);
+
+/* Forma moderna (propriedades individuais) */
+translate: 20px 10px;
+rotate: 15deg;
+scale: 1.2;
+
+/* Vantagem: voce pode animar cada uma separadamente */
+.elemento {
+  translate: 0 0;
+  rotate: 0deg;
+  transition: translate 0.3s ease, rotate 0.5s ease;
+}
+.elemento:hover {
+  translate: 20px -10px;
+  rotate: 15deg;
+}</code></pre>
+          <p class="note info">
+            As propriedades individuais sao suportadas em todos os browsers
+            modernos (Chrome 104+, Firefox 72+, Safari 14.1+). Se precisar
+            de suporte mais amplo, use a forma classica com
+            <code>transform</code>.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Stacking context ── -->
+      <section class="section panel">
+        <h2>Comportamentos importantes</h2>
+        <ol class="formula-list">
+          <li>
+            <strong>Nao afeta o layout:</strong> transform move o elemento
+            visualmente, mas os vizinhos continuam como se ele estivesse no
+            lugar original. Diferente de margin ou position.
+          </li>
+          <li>
+            <strong>Cria stacking context:</strong> qualquer transform
+            diferente de <code>none</code> cria um novo contexto de
+            empilhamento. Filhos com <code>position: fixed</code> passam a
+            se posicionar em relacao ao elemento transformado, nao ao viewport.
+          </li>
+          <li>
+            <strong>GPU acceleration:</strong> transformacoes 2D (especialmente
+            translate e scale) podem ser aceleradas pela GPU, tornando animacoes
+            muito mais suaves que mover elementos com left/top.
+          </li>
+        </ol>
+      </section>
+
+      <!-- ── Resumo ── -->
+      <section class="section panel">
+        <h2>Resumo rapido</h2>
+        <ol class="formula-list">
+          <li><code>translate()</code> move, <code>rotate()</code> gira, <code>scale()</code> redimensiona, <code>skew()</code> distorce</li>
+          <li>combine varias funcoes no mesmo <code>transform</code> separadas por espaco</li>
+          <li>a <strong>ordem</strong> das funcoes muda o resultado final</li>
+          <li><code>transform-origin</code> define o ponto de referencia da transformacao</li>
+          <li><code>matrix()</code> e a forma unificada, mas raramente escrita manualmente</li>
+          <li>propriedades individuais (translate, rotate, scale) sao a forma moderna</li>
+          <li>transform nao afeta o layout dos vizinhos e cria stacking context</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="transicoes.html">← Transicoes</a>
+        <a href="animacoes-keyframes.html">← @keyframes</a>
+        <a href="transform-3d.html">Transform 3D →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

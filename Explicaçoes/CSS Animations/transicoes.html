@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transicoes CSS — transition, timing-function, delay</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Animations</a>
+        <span class="eyebrow">Transition</span>
+      </div>
+
+      <section class="hero">
+        <h1>Transicoes CSS</h1>
+        <p>
+          Uma transicao e a forma mais simples de criar movimento no CSS.
+          Ela interpola suavemente entre dois estados de uma propriedade —
+          por exemplo, mudar a cor de um botao ao passar o mouse. Voce
+          define <strong>o que</strong> anima, <strong>quanto tempo</strong>
+          leva, <strong>qual ritmo</strong> segue e se tem
+          <strong>atraso</strong>.
+        </p>
+      </section>
+
+      <!-- ── Conceito básico ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>O que e uma transicao</h2>
+          <p>
+            Sem transition, quando voce muda uma propriedade CSS (por :hover,
+            :focus ou classe JS), a mudanca e instantanea. Com transition, o
+            navegador cria uma interpolacao suave entre o valor antigo e o novo.
+          </p>
+          <pre class="code"><code>/* SEM transition — mudança instantanea */
+.botao { background: #e11d48; }
+.botao:hover { background: #7c3aed; }
+
+/* COM transition — mudança suave em 0.3s */
+.botao {
+  background: #e11d48;
+  transition: background 0.3s ease;
+}
+.botao:hover { background: #7c3aed; }</code></pre>
+          <p class="note tip">
+            A propriedade <code>transition</code> e escrita no estado
+            <strong>original</strong> do elemento, nao no :hover. Assim ela
+            funciona tanto na ida quanto na volta.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Demo interativo</h2>
+          <p>Passe o mouse no quadrado abaixo para ver a transicao funcionando:</p>
+          <div class="visual">
+            <span class="visual-label">hover para ver a transicao</span>
+            <div class="demo-row">
+              <div class="demo-box rose transition-demo">Hover</div>
+            </div>
+          </div>
+          <pre class="code"><code>.box {
+  transition: all 0.5s ease;
+}
+.box:hover {
+  transform: scale(1.25) rotate(8deg);
+  border-radius: 50%;
+  box-shadow: 0 8px 28px rgba(225, 29, 72, 0.3);
+}</code></pre>
+        </article>
+      </section>
+
+      <!-- ── As 4 sub-propriedades ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>As 4 sub-propriedades</h2>
+          <p>Toda transicao e controlada por estas propriedades:</p>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Propriedade</th>
+                <th>O que faz</th>
+                <th>Exemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>transition-property</td>
+                <td>Qual propriedade animar (ou <code>all</code>)</td>
+                <td>background, transform, opacity</td>
+              </tr>
+              <tr>
+                <td>transition-duration</td>
+                <td>Quanto tempo leva a animacao</td>
+                <td>0.3s, 500ms, 1.2s</td>
+              </tr>
+              <tr>
+                <td>transition-timing-function</td>
+                <td>O ritmo / curva de velocidade</td>
+                <td>ease, linear, cubic-bezier()</td>
+              </tr>
+              <tr>
+                <td>transition-delay</td>
+                <td>Tempo de espera antes de comecar</td>
+                <td>0s, 0.2s, 100ms</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel">
+          <h2>Shorthand transition</h2>
+          <p>
+            O shorthand junta tudo em uma linha. A ordem recomendada e:
+            <code>property duration timing-function delay</code>.
+          </p>
+          <pre class="code"><code>/* Forma longa */
+transition-property: background;
+transition-duration: 0.3s;
+transition-timing-function: ease-in-out;
+transition-delay: 0s;
+
+/* Shorthand equivalente */
+transition: background 0.3s ease-in-out 0s;
+
+/* Varias propriedades separadas por virgula */
+transition:
+  background 0.3s ease,
+  transform 0.5s ease-in-out 0.1s,
+  box-shadow 0.4s ease;</code></pre>
+          <p class="note warning">
+            Se voce escrever dois valores de tempo, o primeiro e sempre a
+            <strong>duration</strong> e o segundo e o <strong>delay</strong>.
+            Nao inverta a ordem!
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Timing functions ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Timing functions — o ritmo da transicao</h2>
+          <p>
+            A timing-function define a curva de velocidade. Passe o mouse em
+            cada barra para comparar o comportamento:
+          </p>
+          <div class="visual">
+            <span class="visual-label">hover nas barras para comparar</span>
+            <div class="timing-track">
+              <div class="timing-row">
+                <span class="timing-label">ease</span>
+                <div class="timing-bar"><div class="timing-ball ease"></div></div>
+              </div>
+              <div class="timing-row">
+                <span class="timing-label">linear</span>
+                <div class="timing-bar"><div class="timing-ball linear"></div></div>
+              </div>
+              <div class="timing-row">
+                <span class="timing-label">ease-in</span>
+                <div class="timing-bar"><div class="timing-ball ease-in"></div></div>
+              </div>
+              <div class="timing-row">
+                <span class="timing-label">ease-out</span>
+                <div class="timing-bar"><div class="timing-ball ease-out"></div></div>
+              </div>
+              <div class="timing-row">
+                <span class="timing-label">ease-in-out</span>
+                <div class="timing-bar"><div class="timing-ball ease-in-out"></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Tabela de timing functions</h2>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Valor</th>
+                <th>Comportamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ease</td>
+                <td>Comeca devagar, acelera no meio, desacelera no final (padrao)</td>
+              </tr>
+              <tr>
+                <td>linear</td>
+                <td>Velocidade constante do inicio ao fim</td>
+              </tr>
+              <tr>
+                <td>ease-in</td>
+                <td>Comeca devagar e vai acelerando</td>
+              </tr>
+              <tr>
+                <td>ease-out</td>
+                <td>Comeca rapido e vai desacelerando</td>
+              </tr>
+              <tr>
+                <td>ease-in-out</td>
+                <td>Devagar no inicio e no final, rapido no meio</td>
+              </tr>
+              <tr>
+                <td>cubic-bezier()</td>
+                <td>Curva personalizada com 4 parametros (x1, y1, x2, y2)</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* cubic-bezier personalizado */
+transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+/* Esse cria um efeito de "overshoot" —
+   o elemento passa do destino e volta */</code></pre>
+        </article>
+      </section>
+
+      <!-- ── Propriedades animáveis ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Propriedades animaveis vs nao-animaveis</h2>
+          <p>
+            Nem toda propriedade CSS pode ser animada com transition.
+            Propriedades que tem valores intermediarios calculaveis
+            funcionam; propriedades discretas (como display) nao.
+          </p>
+          <div class="compare">
+            <div>
+              <span class="compare-label transition">Animaveis</span>
+              <ul>
+                <li>opacity</li>
+                <li>transform</li>
+                <li>background-color</li>
+                <li>color</li>
+                <li>width / height</li>
+                <li>padding / margin</li>
+                <li>border-color / border-radius</li>
+                <li>box-shadow</li>
+                <li>font-size</li>
+                <li>left / top / right / bottom</li>
+              </ul>
+            </div>
+            <div>
+              <span class="compare-label animation">Nao-animaveis</span>
+              <ul>
+                <li>display</li>
+                <li>position</li>
+                <li>float</li>
+                <li>overflow</li>
+                <li>font-family</li>
+                <li>text-decoration</li>
+                <li>list-style</li>
+                <li>white-space</li>
+                <li>content</li>
+                <li>visibility (parcial)</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Performance — o que animar</h2>
+          <p>
+            Algumas propriedades sao muito mais baratas de animar que outras.
+            O navegador consegue animar <code>transform</code> e
+            <code>opacity</code> usando a GPU, sem precisar recalcular o
+            layout da pagina inteira.
+          </p>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Desempenho</th>
+                <th>Propriedades</th>
+                <th>Por que</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color: var(--green);">Otimo</td>
+                <td>transform, opacity</td>
+                <td>Roda na GPU (composite layer)</td>
+              </tr>
+              <tr>
+                <td style="color: var(--orange);">Medio</td>
+                <td>color, background-color, box-shadow</td>
+                <td>Precisa repaint, mas nao reflow</td>
+              </tr>
+              <tr>
+                <td style="color: var(--accent);">Lento</td>
+                <td>width, height, margin, padding, top, left</td>
+                <td>Causa reflow — recalcula layout inteiro</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note tip">
+            Prefira usar <code>transform: translate()</code> em vez de
+            <code>left</code> / <code>top</code> para mover elementos.
+            A dica <code>will-change: transform</code> avisa o navegador
+            para preparar a GPU antecipadamente.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Exemplos práticos ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Exemplo: botao com hover</h2>
+          <pre class="code"><code>.botao {
+  padding: 12px 24px;
+  background: #e11d48;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+.botao:hover {
+  background: #be123c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.3);
+}
+
+.botao:active {
+  transform: translateY(0);
+  box-shadow: none;
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Exemplo: card com elevacao</h2>
+          <pre class="code"><code>.card {
+  padding: 22px;
+  border: 1px solid #d9e2ec;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  border-color: rgba(225, 29, 72, 0.4);
+}</code></pre>
+          <p class="note">
+            Esse padrao de "elevacao no hover" e usado em quase todo
+            site moderno. E exatamente o que os cards deste projeto usam.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Resumo ── -->
+      <section class="section panel">
+        <h2>Resumo rapido</h2>
+        <ol class="formula-list">
+          <li><code>transition</code> cria interpolacao suave entre dois estados</li>
+          <li>escreva a transition no estado <strong>original</strong>, nao no :hover</li>
+          <li>use o shorthand: <code>property duration timing-function delay</code></li>
+          <li>timing-functions controlam o ritmo (ease, linear, cubic-bezier)</li>
+          <li>prefira animar <code>transform</code> e <code>opacity</code> para melhor performance</li>
+          <li>separe varias transicoes com virgula quando animar mais de uma propriedade</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="animacoes-keyframes.html">@keyframes →</a>
+        <a href="transform-2d.html">Transform 2D →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

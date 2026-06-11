@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animacoes @keyframes — animation shorthand, iteration, direction</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Animations</a>
+        <span class="eyebrow">@keyframes</span>
+      </div>
+
+      <section class="hero">
+        <h1>Animacoes com @keyframes</h1>
+        <p>
+          Enquanto transicoes interpolam entre dois estados, animacoes CSS
+          permitem criar sequencias complexas com multiplos passos. Voce
+          define os <strong>keyframes</strong> (quadros-chave) e o navegador
+          preenche o movimento entre eles. Animacoes podem rodar sozinhas,
+          repetir infinitamente e reverter direcao — tudo sem JavaScript.
+        </p>
+      </section>
+
+      <!-- ── O que são keyframes ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>O que sao @keyframes</h2>
+          <p>
+            A regra <code>@keyframes</code> define uma sequencia de estilos
+            que o elemento vai assumir ao longo do tempo. Voce escolhe um
+            nome para a animacao e descreve os estados com
+            <code>from</code> / <code>to</code> ou com porcentagens.
+          </p>
+          <pre class="code"><code>/* Sintaxe com from/to */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sintaxe com porcentagens */
+@keyframes pulsar {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}</code></pre>
+          <p class="note">
+            <code>from</code> e o mesmo que <code>0%</code>, e
+            <code>to</code> e o mesmo que <code>100%</code>. Porcentagens
+            permitem criar quantos passos intermediarios voce precisar.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Aplicando a animacao</h2>
+          <p>
+            Depois de definir os keyframes, use a propriedade
+            <code>animation</code> para aplicar no elemento:
+          </p>
+          <pre class="code"><code>/* Passo 1: definir os keyframes */
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Passo 2: aplicar no elemento */
+.titulo {
+  animation: aparecer 0.6s ease-out forwards;
+}</code></pre>
+          <p class="note tip">
+            Diferente de transition, voce <strong>nao precisa de :hover</strong>
+            para disparar. A animacao roda assim que o CSS e aplicado ao
+            elemento.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Demos visuais ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Demos ao vivo</h2>
+          <p>Cada quadrado abaixo esta rodando uma animacao diferente:</p>
+          <div class="visual">
+            <span class="visual-label">animacoes rodando ao vivo</span>
+            <div class="demo-row">
+              <div class="demo-box rose anim-pulse">pulse</div>
+              <div class="demo-box purple anim-spin">spin</div>
+              <div class="demo-box blue anim-bounce">bounce</div>
+              <div class="demo-box teal anim-color">color</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo das demos</h2>
+          <pre class="code"><code>/* Pulse — escala sobe e desce */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+}
+.pulse { animation: pulse 2s ease-in-out infinite; }
+
+/* Spin — rotacao continua */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.spin { animation: spin 2s linear infinite; }
+
+/* Bounce — pulo com quiques */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-20px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-10px); }
+}
+.bounce { animation: bounce 1.5s ease infinite; }
+
+/* Color shift — troca de cor gradual */
+@keyframes color-shift {
+  0%   { background: #e11d48; }
+  33%  { background: #7c3aed; }
+  66%  { background: #0891b2; }
+  100% { background: #e11d48; }
+}
+.color { animation: color-shift 4s ease infinite; }</code></pre>
+        </article>
+      </section>
+
+      <!-- ── As 8 sub-propriedades ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>As 8 sub-propriedades de animation</h2>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Propriedade</th>
+                <th>O que faz</th>
+                <th>Valores comuns</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>animation-name</td>
+                <td>Nome do @keyframes a usar</td>
+                <td>aparecer, pulse, spin</td>
+              </tr>
+              <tr>
+                <td>animation-duration</td>
+                <td>Quanto tempo dura um ciclo</td>
+                <td>0.5s, 1s, 2s, 300ms</td>
+              </tr>
+              <tr>
+                <td>animation-timing-function</td>
+                <td>Ritmo / curva de velocidade</td>
+                <td>ease, linear, cubic-bezier()</td>
+              </tr>
+              <tr>
+                <td>animation-delay</td>
+                <td>Espera antes de comecar</td>
+                <td>0s, 0.3s, -0.5s</td>
+              </tr>
+              <tr>
+                <td>animation-iteration-count</td>
+                <td>Quantas vezes repete</td>
+                <td>1, 3, infinite</td>
+              </tr>
+              <tr>
+                <td>animation-direction</td>
+                <td>Direcao de reproducao</td>
+                <td>normal, reverse, alternate</td>
+              </tr>
+              <tr>
+                <td>animation-fill-mode</td>
+                <td>Estilos antes/depois da animacao</td>
+                <td>none, forwards, backwards, both</td>
+              </tr>
+              <tr>
+                <td>animation-play-state</td>
+                <td>Pausar ou rodar</td>
+                <td>running, paused</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel">
+          <h2>Shorthand animation</h2>
+          <p>
+            O shorthand junta tudo em uma linha. A ordem recomendada pela MDN:
+          </p>
+          <pre class="code"><code>/* Ordem recomendada */
+animation: name duration timing-function delay
+           iteration-count direction fill-mode play-state;
+
+/* Exemplo completo */
+animation: aparecer 0.6s ease-out 0.2s 1 normal forwards running;
+
+/* Exemplo minimo (name + duration) */
+animation: aparecer 0.6s;
+
+/* Com infinite e alternate */
+animation: pulse 2s ease-in-out infinite alternate;</code></pre>
+          <p class="note warning">
+            Assim como em transition, se voce escrever dois valores de tempo,
+            o <strong>primeiro e a duration</strong> e o
+            <strong>segundo e o delay</strong>. Nao inverta!
+          </p>
+        </article>
+      </section>
+
+      <!-- ── direction, fill-mode, play-state ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>animation-direction</h2>
+          <p>Controla em qual sentido a animacao roda:</p>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Valor</th>
+                <th>Comportamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>normal</td>
+                <td>Roda do from ao to (padrao)</td>
+              </tr>
+              <tr>
+                <td>reverse</td>
+                <td>Roda do to ao from</td>
+              </tr>
+              <tr>
+                <td>alternate</td>
+                <td>Alterna: ida normal, volta reverse</td>
+              </tr>
+              <tr>
+                <td>alternate-reverse</td>
+                <td>Alterna: ida reverse, volta normal</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note tip">
+            <code>alternate</code> e otimo para animacoes de "vai e volta"
+            como pulse e bounce. Evita o pulo de volta ao estado inicial.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>animation-fill-mode</h2>
+          <p>Define qual estilo o elemento mantem antes e depois da animacao:</p>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Valor</th>
+                <th>Comportamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>none</td>
+                <td>Volta ao estilo original quando termina (padrao)</td>
+              </tr>
+              <tr>
+                <td>forwards</td>
+                <td>Mantem o estilo do ultimo keyframe (to / 100%)</td>
+              </tr>
+              <tr>
+                <td>backwards</td>
+                <td>Aplica o estilo do primeiro keyframe durante o delay</td>
+              </tr>
+              <tr>
+                <td>both</td>
+                <td>Combina forwards e backwards</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* Sem forwards: o elemento volta ao estado original */
+animation: aparecer 0.6s ease-out;
+
+/* Com forwards: o elemento fica no estado final */
+animation: aparecer 0.6s ease-out forwards;
+
+/* Com both: aplica from durante delay, mantem to no final */
+animation: aparecer 0.6s ease-out 0.3s both;</code></pre>
+          <p class="note">
+            <code>forwards</code> e o mais usado. Sem ele, um elemento que
+            entra com fade-in vai sumir quando a animacao terminar.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── play-state e delay negativo ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>animation-play-state</h2>
+          <p>
+            Permite pausar e retomar a animacao. Muito util com :hover
+            para criar animacoes que so rodam quando o usuario interage:
+          </p>
+          <pre class="code"><code>/* Animacao pausada por padrao */
+.elemento {
+  animation: spin 2s linear infinite;
+  animation-play-state: paused;
+}
+
+/* Roda quando passa o mouse */
+.elemento:hover {
+  animation-play-state: running;
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Delay negativo</h2>
+          <p>
+            Um delay negativo nao espera — ele <strong>pula</strong> para
+            um ponto ja avancado da animacao. Util para escalonar
+            elementos que aparecem juntos:
+          </p>
+          <pre class="code"><code>.item:nth-child(1) { animation-delay: 0s; }
+.item:nth-child(2) { animation-delay: -0.2s; }
+.item:nth-child(3) { animation-delay: -0.4s; }
+.item:nth-child(4) { animation-delay: -0.6s; }
+
+/* Cada item comeca num ponto diferente da animacao,
+   criando um efeito de onda */</code></pre>
+          <p class="note info">
+            Com delay negativo em <code>infinite</code>, todos os elementos
+            ja comecam rodando — cada um em um ponto diferente do ciclo.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Transition vs Animation ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Diferenca entre transition e animation</h2>
+          <div class="compare">
+            <div>
+              <span class="compare-label transition">Transition</span>
+              <ul>
+                <li>precisa de gatilho (:hover, :focus, classe)</li>
+                <li>2 estados: A → B</li>
+                <li>nao repete sozinha</li>
+                <li>mais simples de escrever</li>
+                <li>ideal para interacoes do usuario</li>
+              </ul>
+            </div>
+            <div>
+              <span class="compare-label animation">Animation</span>
+              <ul>
+                <li>roda sozinha ao carregar</li>
+                <li>multiplos estados via keyframes</li>
+                <li>pode repetir infinitamente</li>
+                <li>mais controle (direction, fill-mode)</li>
+                <li>ideal para efeitos visuais autonomos</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Multiplas animacoes no mesmo elemento</h2>
+          <p>
+            Voce pode aplicar varias animacoes separando com virgula,
+            assim como nas transitions:
+          </p>
+          <pre class="code"><code>.elemento {
+  animation:
+    aparecer 0.6s ease-out forwards,
+    pulse 2s ease-in-out 0.6s infinite;
+}
+
+/* Primeiro aparece (0.6s), depois fica pulsando */</code></pre>
+          <p class="note tip">
+            Use <code>animation-delay</code> na segunda animacao para
+            que ela comece somente quando a primeira terminar.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Resumo ── -->
+      <section class="section panel">
+        <h2>Resumo rapido</h2>
+        <ol class="formula-list">
+          <li><code>@keyframes</code> define a sequencia de estados da animacao</li>
+          <li>use <code>from/to</code> para 2 estados ou <code>%</code> para multiplos</li>
+          <li>o shorthand <code>animation</code> junta name, duration, timing, delay, iteration, direction, fill e play-state</li>
+          <li><code>forwards</code> mantem o estilo final — quase sempre o que voce quer</li>
+          <li><code>alternate</code> cria efeitos de vai-e-volta suaves</li>
+          <li><code>infinite</code> repete sem parar — otimo para loaders e indicadores</li>
+          <li>delay negativo pula para um ponto avancado da animacao</li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="transicoes.html">← Transicoes</a>
+        <a href="transform-2d.html">Transform 2D →</a>
+        <a href="transform-3d.html">Transform 3D →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

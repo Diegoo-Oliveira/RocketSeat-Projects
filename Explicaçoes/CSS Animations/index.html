@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Animations e Transitions — Guia Visual</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="../index.html">Voltar para o catalogo</a>
+        <span class="eyebrow">Animations</span>
+      </div>
+
+      <section class="hero">
+        <h1>Animacoes e transicoes com CSS puro</h1>
+        <p>
+          CSS permite criar movimento sem JavaScript: transicoes suaves entre
+          estados, animacoes com keyframes e transformacoes em 2D e 3D. Cada
+          pagina abaixo explica um conceito com exemplos visuais e codigo
+          pronto para copiar.
+        </p>
+      </section>
+
+      <section class="link-grid">
+        <a class="card" href="transicoes.html">
+          <h2>Transicoes CSS</h2>
+          <p>transition, timing-function, delay, propriedades animaveis e exemplos praticos com :hover.</p>
+        </a>
+
+        <a class="card" href="animacoes-keyframes.html">
+          <h2>Animacoes @keyframes</h2>
+          <p>@keyframes, animation shorthand, iteration, direction, fill-mode e play-state.</p>
+        </a>
+
+        <a class="card" href="transform-2d.html">
+          <h2>Transformacoes 2D</h2>
+          <p>translate, rotate, scale, skew, matrix, transform-origin e ordem de aplicacao.</p>
+        </a>
+
+        <a class="card" href="transform-3d.html">
+          <h2>Transformacoes 3D</h2>
+          <p>perspective, rotateX/Y/Z, translate3d, preserve-3d, backface-visibility e card-flip.</p>
+        </a>
+      </section>
+
+      <section class="section panel">
+        <h2>Sequencia sugerida</h2>
+        <ol class="formula-list">
+          <li>comece pelas transicoes — sao a forma mais simples de movimento</li>
+          <li>depois estude @keyframes para animacoes continuas e complexas</li>
+          <li>aprenda as transformacoes 2D que sao a base do movimento visual</li>
+          <li>por fim, explore as transformacoes 3D e efeitos como card-flip</li>
+        </ol>
+        <p class="note tip">
+          Transicoes e animacoes usam as mesmas timing-functions (ease, linear,
+          cubic-bezier). Dominar uma facilita a outra.
+        </p>
+      </section>
+
+      <section class="section panel">
+        <h2>Transicao vs Animacao — quando usar cada uma</h2>
+        <div class="compare">
+          <div>
+            <span class="compare-label transition">Transition</span>
+            <ul>
+              <li>precisa de um gatilho (:hover, :focus, classe JS)</li>
+              <li>vai do estado A ao estado B</li>
+              <li>ideal para interacoes do usuario</li>
+              <li>mais simples de escrever</li>
+            </ul>
+          </div>
+          <div>
+            <span class="compare-label animation">Animation</span>
+            <ul>
+              <li>pode rodar sozinha ao carregar a pagina</li>
+              <li>aceita multiplos estados (keyframes)</li>
+              <li>pode repetir infinitamente</li>
+              <li>mais controle: direction, fill-mode, play-state</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

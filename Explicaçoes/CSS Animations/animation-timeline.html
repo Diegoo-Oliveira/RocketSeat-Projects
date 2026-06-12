@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>animation-timeline — Scroll, View e Funções de Timing | CSS Animations</title>
+    <meta name="description" content="Aprenda animation-timeline, scroll-timeline, view-timeline e as funções de timing linear(), steps() e cubic-bezier() com exemplos visuais interativos." />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* ── Demos específicos desta página ── */
+
+      /* Scroll-driven demo wrapper */
+      .scroll-demo-outer {
+        margin-top: 16px;
+        border: 2px dashed rgba(124, 58, 237, 0.35);
+        border-radius: 18px;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(124, 58, 237, 0.04) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(124, 58, 237, 0.04) 1px, transparent 1px),
+          #f8f5ff;
+        background-size: 28px 28px;
+        padding: 18px;
+      }
+
+      .scroll-demo-outer .visual-label {
+        color: var(--purple);
+      }
+
+      .scroll-container {
+        height: 180px;
+        overflow-y: scroll;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: #ffffff;
+        scroll-behavior: smooth;
+        position: relative;
+      }
+
+      .scroll-container::-webkit-scrollbar {
+        width: 6px;
+      }
+      .scroll-container::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 999px;
+      }
+      .scroll-container::-webkit-scrollbar-thumb {
+        background: var(--purple);
+        border-radius: 999px;
+      }
+
+      .scroll-content {
+        padding: 16px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        height: 500px;
+      }
+
+      .scroll-hint {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--purple);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-align: center;
+        margin-bottom: 4px;
+      }
+
+      /* Barra de progresso animada via scroll */
+      .progress-bar-wrap {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: #ffffff;
+        padding: 8px 0 10px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .progress-bar {
+        height: 6px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--purple), #a78bfa);
+        transform-origin: left;
+        transform: scaleX(0);
+        animation: scroll-progress linear;
+        animation-timeline: scroll(nearest block);
+      }
+
+      @keyframes scroll-progress {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+      }
+
+      .scroll-item {
+        padding: 14px 16px;
+        border-radius: 12px;
+        background: var(--purple-soft);
+        color: var(--purple);
+        font-weight: 700;
+        font-size: 0.9rem;
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: reveal-item ease-out both;
+        animation-timeline: view(nearest block);
+        animation-range: entry 0% entry 60%;
+      }
+
+      @keyframes reveal-item {
+        from { opacity: 0; transform: translateX(-20px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+
+      /* ── Steps demo ── */
+      .steps-track {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 12px;
+      }
+
+      .steps-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .steps-label {
+        width: 148px;
+        flex-shrink: 0;
+        font-size: 0.80rem;
+        font-weight: 700;
+        color: var(--ink);
+        font-family: Consolas, "Courier New", monospace;
+      }
+
+      .steps-bar {
+        position: relative;
+        flex: 1;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(124, 58, 237, 0.08);
+        overflow: hidden;
+      }
+
+      .steps-ball {
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--purple), #a78bfa);
+      }
+
+      .steps-bar:hover .steps-ball {
+        left: calc(100% - 36px);
+      }
+
+      .steps-ball.s-start      { transition: left 2s steps(5, start); }
+      .steps-ball.s-end        { transition: left 2s steps(5, end); }
+      .steps-ball.s-jump-both  { transition: left 2s steps(4, jump-both); }
+      .steps-ball.s-jump-none  { transition: left 2s steps(6, jump-none); }
+      .steps-ball.s-1          { transition: left 2s step-start; }
+      .steps-ball.s-2          { transition: left 2s step-end; }
+
+      /* ── cubic-bezier demo ── */
+      .bezier-track {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 12px;
+      }
+
+      .bezier-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .bezier-label {
+        width: 200px;
+        flex-shrink: 0;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--ink);
+        font-family: Consolas, "Courier New", monospace;
+      }
+
+      .bezier-bar {
+        position: relative;
+        flex: 1;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(14, 116, 144, 0.08);
+        overflow: hidden;
+      }
+
+      .bezier-ball {
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--teal), #22d3ee);
+      }
+
+      .bezier-bar:hover .bezier-ball {
+        left: calc(100% - 36px);
+      }
+
+      .bezier-ball.bz-elastic   { transition: left 1.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+      .bezier-ball.bz-overshoot { transition: left 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+      .bezier-ball.bz-smooth    { transition: left 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+      .bezier-ball.bz-sharp     { transition: left 0.8s cubic-bezier(0.4, 0, 0.6, 1); }
+      .bezier-ball.bz-expo-out  { transition: left 1s cubic-bezier(0.16, 1, 0.3, 1); }
+      .bezier-ball.bz-back-in   { transition: left 1.2s cubic-bezier(0.6, -0.28, 0.74, 0.05); }
+
+      /* ── linear() demo ── */
+      .linear-track {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 12px;
+      }
+
+      .linear-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .linear-label {
+        width: 140px;
+        flex-shrink: 0;
+        font-size: 0.80rem;
+        font-weight: 700;
+        color: var(--ink);
+        font-family: Consolas, "Courier New", monospace;
+      }
+
+      .linear-bar {
+        position: relative;
+        flex: 1;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(225, 29, 72, 0.07);
+        overflow: hidden;
+      }
+
+      .linear-ball {
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), #fb7185);
+      }
+
+      .linear-bar:hover .linear-ball {
+        left: calc(100% - 36px);
+      }
+
+      .linear-ball.lf-bounce  {
+        transition: left 1.4s linear(
+          0, 0.004, 0.016, 0.035, 0.063, 0.098, 0.141, 0.191, 0.25, 0.316,
+          0.391, 0.473, 0.563, 0.66, 0.765, 0.876, 1, 0.943, 0.891, 0.845,
+          0.804, 0.769, 0.739, 0.714, 0.694, 0.678, 0.666, 0.658, 0.653, 0.651,
+          0.652, 0.656, 0.664, 0.675, 0.688, 0.704, 0.723, 0.744, 0.768, 0.793,
+          0.821, 0.85, 0.881, 0.913, 0.946, 0.979, 1
+        );
+      }
+
+      .linear-ball.lf-spring {
+        transition: left 1.8s linear(
+          0, 0.009, 0.035, 0.077, 0.132, 0.196, 0.267, 0.343, 0.42, 0.496,
+          0.569, 0.638, 0.7, 0.756, 0.803, 0.843, 0.876, 0.901, 0.921, 0.934,
+          0.944, 0.949, 0.95, 0.948, 0.944, 0.938, 0.931, 0.924, 0.918, 0.912,
+          0.908, 0.905, 0.903, 0.903, 0.904, 0.906, 0.909, 0.913, 0.917, 0.922,
+          0.927, 0.933, 0.939, 0.944, 0.95, 0.955, 0.96, 0.965, 0.969, 0.973,
+          0.977, 0.98, 0.983, 0.985, 0.987, 0.989, 0.991, 0.992, 0.993, 0.994,
+          0.996, 0.997, 0.998, 0.999, 1
+        );
+      }
+
+      .linear-ball.lf-ease-classic { transition: left 1.2s linear(0, 0.25 25%, 0.75 75%, 1); }
+
+      /* ── view() demo dedicado ── */
+      .view-demo-outer {
+        margin-top: 16px;
+        border: 2px dashed rgba(8, 145, 178, 0.35);
+        border-radius: 18px;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(8, 145, 178, 0.04) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(8, 145, 178, 0.04) 1px, transparent 1px),
+          #f0fbff;
+        background-size: 28px 28px;
+        padding: 18px;
+      }
+
+      .view-demo-outer .visual-label {
+        color: var(--teal);
+      }
+
+      .view-container {
+        height: 220px;
+        overflow-y: scroll;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: #ffffff;
+        position: relative;
+      }
+
+      .view-container::-webkit-scrollbar { width: 6px; }
+      .view-container::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 999px; }
+      .view-container::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 999px; }
+
+      .view-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        /* altura maior que o container para forcar scroll */
+        min-height: 620px;
+      }
+
+      .view-hint {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--teal);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-align: center;
+      }
+
+      /* Cada cartao entra com animacao diferente ao ficar visivel */
+      .view-card {
+        padding: 16px 20px;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* entry — aparece subindo */
+      .view-card.vc-up {
+        background: var(--teal-soft);
+        color: var(--teal);
+        opacity: 0;
+        transform: translateY(28px);
+        animation: vc-rise ease-out both;
+        animation-timeline: view(nearest block);
+        animation-range: entry 0% entry 70%;
+      }
+      @keyframes vc-rise {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* entry — aparece da direita */
+      .view-card.vc-right {
+        background: var(--blue-soft);
+        color: var(--blue);
+        opacity: 0;
+        transform: translateX(40px);
+        animation: vc-slide-right ease-out both;
+        animation-timeline: view(nearest block);
+        animation-range: entry 0% entry 70%;
+      }
+      @keyframes vc-slide-right {
+        from { opacity: 0; transform: translateX(40px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+
+      /* entry — escala */
+      .view-card.vc-scale {
+        background: var(--purple-soft);
+        color: var(--purple);
+        opacity: 0;
+        transform: scale(0.75);
+        animation: vc-grow ease-out both;
+        animation-timeline: view(nearest block);
+        animation-range: entry 0% entry 65%;
+      }
+      @keyframes vc-grow {
+        from { opacity: 0; transform: scale(0.75); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+
+      /* entry — gira */
+      .view-card.vc-rotate {
+        background: var(--accent-soft);
+        color: var(--accent-dark);
+        opacity: 0;
+        transform: rotate(-8deg) translateY(20px);
+        animation: vc-spin-in ease-out both;
+        animation-timeline: view(nearest block);
+        animation-range: entry 0% entry 70%;
+      }
+      @keyframes vc-spin-in {
+        from { opacity: 0; transform: rotate(-8deg) translateY(20px); }
+        to   { opacity: 1; transform: rotate(0) translateY(0); }
+      }
+
+      /* exit — desaparece ao sair */
+      .view-card.vc-exit {
+        background: var(--orange-soft);
+        color: var(--orange);
+        animation: vc-fade-exit ease-in both;
+        animation-timeline: view(nearest block);
+        animation-range: exit 0% exit 80%;
+      }
+      @keyframes vc-fade-exit {
+        from { opacity: 1; transform: translateX(0); }
+        to   { opacity: 0; transform: translateX(30px); }
+      }
+
+      /* contain — brilha enquanto completamente visivel */
+      .view-card.vc-contain {
+        background: var(--green-soft);
+        color: var(--green);
+        animation: vc-glow ease-in-out both;
+        animation-timeline: view(nearest block);
+        animation-range: contain 0% contain 100%;
+      }
+      @keyframes vc-glow {
+        0%   { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0); }
+        50%  { box-shadow: 0 0 0 6px rgba(15, 118, 110, 0.25); }
+        100% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0); }
+      }
+
+      .view-card-icon {
+        font-size: 1.4rem;
+        flex-shrink: 0;
+      }
+
+      .view-card-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .view-card-title {
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      .view-card-code {
+        font-size: 0.76rem;
+        font-family: Consolas, "Courier New", monospace;
+        opacity: 0.75;
+      }
+
+      /* ── Diff scroll vs view ── */
+      .diff-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .diff-box {
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 0.84rem;
+      }
+
+      .diff-box strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .diff-scroll { background: var(--purple-soft); color: var(--purple); }
+      .diff-view   { background: var(--teal-soft);   color: var(--teal); }
+
+      @media (max-width: 700px) {
+        .diff-grid { grid-template-columns: 1fr; }
+      }
+
+      /* ── view-timeline badge ── */
+      .new-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        background: var(--green-soft);
+        color: var(--green);
+        vertical-align: middle;
+        margin-left: 6px;
+        letter-spacing: 0.03em;
+      }
+
+      /* ── Timeline type pill ── */
+      .timeline-pill {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        font-family: Consolas, "Courier New", monospace;
+      }
+
+      .pill-scroll {
+        background: var(--purple-soft);
+        color: var(--purple);
+      }
+
+      .pill-view {
+        background: var(--teal-soft);
+        color: var(--teal);
+      }
+
+      .pill-auto {
+        background: var(--accent-soft);
+        color: var(--accent-dark);
+      }
+
+      /* ── Support badge ── */
+      .support-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+
+      .support-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .dot-green  { background: var(--green); }
+      .dot-orange { background: var(--orange); }
+      .dot-red    { background: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a class="back-link" href="index.html">Voltar para Animations</a>
+        <span class="eyebrow">animation-timeline</span>
+      </div>
+
+      <section class="hero">
+        <h1>animation-timeline e Funções de Timing</h1>
+        <p>
+          Com <code>animation-timeline</code> voce pode vincular o progresso de
+          uma animacao ao scroll da pagina ou a visibilidade de um elemento —
+          sem uma linha de JavaScript. Junto disso, as funções de timing
+          (<code>steps()</code>, <code>cubic-bezier()</code> e a moderna
+          <code>linear()</code>) definem exatamente o ritmo do movimento.
+        </p>
+      </section>
+
+      <!-- ── O que é animation-timeline ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>O que é animation-timeline</h2>
+          <p>
+            Por padrao, uma animacao CSS avanca no <strong>tempo</strong>
+            (usando <code>animation-duration</code>). Com
+            <code>animation-timeline</code> voce troca esse eixo: o progresso
+            pode ser controlado pelo <strong>scroll</strong> do usuario ou pela
+            <strong>posicao de um elemento na viewport</strong>.
+          </p>
+          <pre class="code"><code>/* Valor padrao — avanca no tempo */
+animation-timeline: auto;
+
+/* Scroll do documento inteiro */
+animation-timeline: scroll();
+
+/* Posicao de um elemento especifico na tela */
+animation-timeline: view();
+
+/* Named scroll timeline (criada com @scroll-timeline) */
+animation-timeline: --minha-timeline;</code></pre>
+          <p class="note info">
+            Scroll-driven animations fazem parte da especificacao
+            <strong>CSS Animations Level 2</strong>. Chrome e Edge &ge; 115
+            suportam sem flag. Firefox e Safari ainda tem suporte parcial.
+          </p>
+          <div class="support-row">
+            <span class="support-item"><span class="dot dot-green"></span> Chrome 115+</span>
+            <span class="support-item"><span class="dot dot-green"></span> Edge 115+</span>
+            <span class="support-item"><span class="dot dot-orange"></span> Firefox (flag)</span>
+            <span class="support-item"><span class="dot dot-orange"></span> Safari 18+</span>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Os tres tipos de timeline</h2>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Sintaxe</th>
+                <th>Quando usar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="timeline-pill pill-auto">auto</span></td>
+                <td>auto</td>
+                <td>Padrao — animacao baseada em tempo</td>
+              </tr>
+              <tr>
+                <td><span class="timeline-pill pill-scroll">scroll()</span></td>
+                <td>scroll(root block)</td>
+                <td>Progresso igual ao scroll do container</td>
+              </tr>
+              <tr>
+                <td><span class="timeline-pill pill-view">view()</span></td>
+                <td>view(block)</td>
+                <td>Baseado na visibilidade do elemento</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* scroll() — argumentos */
+scroll()            /* scroller mais proximo, eixo block */
+scroll(root)        /* usa o viewport (pagina toda) */
+scroll(root inline) /* eixo horizontal */
+scroll(nearest)     /* container overflow mais proximo */
+
+/* view() — argumentos */
+view()              /* eixo block, inset 0 */
+view(inline)        /* eixo horizontal */
+view(block 10%)     /* com margem de 10% dos dois lados */</code></pre>
+        </article>
+      </section>
+
+      <!-- ── scroll() demo ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>scroll() ao vivo — barra de progresso <span class="new-badge">scroll-driven</span></h2>
+          <p>
+            Role dentro da caixa abaixo. A barra roxa no topo avanca de 0% a
+            100% conforme o scroll. Isso e feito com zero JavaScript:
+          </p>
+          <div class="scroll-demo-outer">
+            <span class="visual-label">role dentro da caixa →</span>
+            <div class="scroll-container" id="scroll-demo-box">
+              <div class="progress-bar-wrap">
+                <div class="progress-bar"></div>
+              </div>
+              <div class="scroll-content">
+                <span class="scroll-hint">↓ role para ver os itens aparecerem</span>
+                <div class="scroll-item">📌 Item 1 — animation-timeline: scroll()</div>
+                <div class="scroll-item">🎨 Item 2 — progresso sem JavaScript</div>
+                <div class="scroll-item">⚡ Item 3 — animation-range: entry 0% entry 60%</div>
+                <div class="scroll-item">🌀 Item 4 — vinculado ao scroll do container</div>
+                <div class="scroll-item">✅ Item 5 — funciona so com CSS!</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Codigo do exemplo</h2>
+          <pre class="code"><code>&lt;!-- HTML — container com overflow-y: scroll --&gt;
+&lt;div class="scroll-container"&gt;
+  &lt;div class="progress-bar"&gt;&lt;/div&gt;
+
+  &lt;div class="item"&gt;Item 1&lt;/div&gt;
+  &lt;div class="item"&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Barra de progresso */
+@keyframes scroll-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.progress-bar {
+  transform-origin: left;
+  animation: scroll-progress linear;
+  /* aqui trocamos "auto" por scroll() */
+  animation-timeline: scroll(nearest block);
+}
+
+/* CSS — Itens que aparecem ao rolar */
+@keyframes reveal-item {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.item {
+  animation: reveal-item ease-out both;
+  animation-timeline: view(nearest block);
+  /* define quando no ciclo de visibilidade a animacao ocorre */
+  animation-range: entry 0% entry 60%;
+}</code></pre>
+          <p class="note tip">
+            <code>animation-range</code> define a fatia da timeline que aciona
+            a animacao. <code>entry</code> = elemento entrando na viewport,
+            <code>exit</code> = saindo.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── view() — seção dedicada ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>view() — o que é a "jornada de visibilidade"</h2>
+          <p>
+            Enquanto <code>scroll()</code> usa o <strong>quanto o container foi
+            rolado</strong> como eixo de progresso, a <code>view()</code> usa a
+            <strong>posicao do elemento em relacao ao viewport</strong>. O progresso
+            vai de 0% (elemento totalmente fora, entrando) ate 100% (elemento
+            totalmente fora, saindo).
+          </p>
+          <pre class="code"><code>/* A jornada completa de um elemento com view() */
+
+ 0%  — elemento começa a entrar na viewport (borda inferior)
+       ↓ animation-range: entry
+50%  — metade visivel
+       ↓ animation-range: contain
+75%  — completamente dentro
+       ↓ animation-range: exit
+100% — sai completamente pela borda superior</code></pre>
+          <div class="diff-grid">
+            <div class="diff-box diff-scroll">
+              <strong>scroll()</strong>
+              O eixo é o <em>scroll do container</em>.
+              Todos os elementos compartilham o mesmo progresso.
+              Bom para barras de leitura e parallax.
+            </div>
+            <div class="diff-box diff-view">
+              <strong>view()</strong>
+              O eixo é <em>a posicao deste elemento</em> na viewport.
+              Cada elemento tem seu proprio progresso.
+              Bom para revelar conteudo ao rolar.
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>view() ao vivo — 5 efeitos diferentes <span class="new-badge">view-driven</span></h2>
+          <p>
+            Role dentro da caixa. Cada cartao usa
+            <code>animation-timeline: view()</code> com um
+            <code>animation-range</code> diferente — observe como cada
+            um reage de forma independente:
+          </p>
+          <div class="view-demo-outer">
+            <span class="visual-label">role para ver cada efeito →</span>
+            <div class="view-container">
+              <div class="view-content">
+                <span class="view-hint">↓ cada cartao tem seu proprio progresso</span>
+
+                <div class="view-card vc-up">
+                  <span class="view-card-icon">⬆️</span>
+                  <div class="view-card-info">
+                    <span class="view-card-title">Sobe ao entrar</span>
+                    <span class="view-card-code">animation-range: entry 0% entry 70%</span>
+                  </div>
+                </div>
+
+                <div class="view-card vc-right">
+                  <span class="view-card-icon">➡️</span>
+                  <div class="view-card-info">
+                    <span class="view-card-title">Desliza da direita</span>
+                    <span class="view-card-code">animation-range: entry 0% entry 70%</span>
+                  </div>
+                </div>
+
+                <div class="view-card vc-scale">
+                  <span class="view-card-icon">🔍</span>
+                  <div class="view-card-info">
+                    <span class="view-card-title">Expande ao entrar</span>
+                    <span class="view-card-code">animation-range: entry 0% entry 65%</span>
+                  </div>
+                </div>
+
+                <div class="view-card vc-contain">
+                  <span class="view-card-icon">✨</span>
+                  <div class="view-card-info">
+                    <span class="view-card-title">Brilha enquanto visivel</span>
+                    <span class="view-card-code">animation-range: contain 0% contain 100%</span>
+                  </div>
+                </div>
+
+                <div class="view-card vc-rotate">
+                  <span class="view-card-icon">🔄</span>
+                  <div class="view-card-info">
+                    <span class="view-card-title">Gira ao entrar</span>
+                    <span class="view-card-code">animation-range: entry 0% entry 70%</span>
+                  </div>
+                </div>
+
+                <div class="view-card vc-exit">
+                  <span class="view-card-icon">👋</span>
+                  <div class="view-card-info">
+                    <span class="view-card-title">Some ao sair (role ate o fim)</span>
+                    <span class="view-card-code">animation-range: exit 0% exit 80%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── view() codigo ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Codigo — view() com entry</h2>
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="card vc-up"&gt;Sobe ao entrar&lt;/div&gt;
+&lt;div class="card vc-right"&gt;Desliza da direita&lt;/div&gt;
+&lt;div class="card vc-exit"&gt;Some ao sair&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* Efeito 1 — sobe ao entrar */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.vc-up {
+  animation: rise ease-out both;
+  animation-timeline: view();          /* jornada deste elemento */
+  animation-range: entry 0% entry 70%; /* ocorre ao entrar */
+}
+
+/* Efeito 2 — desliza da direita */
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.vc-right {
+  animation: slide-right ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 70%;
+}
+
+/* Efeito 3 — some ao sair */
+@keyframes fade-exit {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(30px); }
+}
+.vc-exit {
+  animation: fade-exit ease-in both;
+  animation-timeline: view();
+  animation-range: exit 0% exit 80%; /* ocorre ao sair */
+}</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>view() — argumentos e inset</h2>
+          <pre class="code"><code>/* Forma basica — usa o viewport inteiro como zona */
+animation-timeline: view();
+
+/* Especificar o eixo */
+animation-timeline: view(block);  /* vertical (padrao) */
+animation-timeline: view(inline); /* horizontal */
+
+/* Com inset — reduz a zona de visibilidade */
+animation-timeline: view(block 100px);
+/* elemento precisa estar 100px dentro da borda para
+   comecar a contar como "visivel" */
+
+animation-timeline: view(block 20%);
+/* zona de visibilidade reduzida em 20% dos dois lados */
+
+animation-timeline: view(block 80px 0px);
+/* inset-top: 80px, inset-bottom: 0 */</code></pre>
+          <p class="note tip">
+            Use <code>inset</code> para que a animacao comece apenas quando o
+            elemento ja esta bem visivel na tela, evitando que ela dispare
+            logo que um pixel entra no viewport.
+          </p>
+          <pre class="code"><code>/* Exemplo pratico: s&oacute; anima quando
+   o elemento esta pelo menos 80px visivel */
+.secao {
+  animation: aparecer ease-out both;
+  animation-timeline: view(block 80px);
+  animation-range: entry 0% entry 100%;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}</code></pre>
+        </article>
+      </section>
+
+      <!-- ── animation-range ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>animation-range</h2>
+          <p>
+            Funciona junto com <code>view()</code> para definir em qual
+            parte da jornada do elemento a animacao acontece:
+          </p>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Keyword</th>
+                <th>Momento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>entry</td>
+                <td>Elemento entrando na viewport (de fora para dentro)</td>
+              </tr>
+              <tr>
+                <td>exit</td>
+                <td>Elemento saindo da viewport (de dentro para fora)</td>
+              </tr>
+              <tr>
+                <td>contain</td>
+                <td>Enquanto o elemento esta completamente visivel</td>
+              </tr>
+              <tr>
+                <td>cover</td>
+                <td>Todo o intervalo de cobertura (entrada ate saida)</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre class="code"><code>/* Aparece conforme entra (0% a 100% da entrada) */
+animation-range: entry 0% entry 100%;
+
+/* Aparece na primeira metade da entrada */
+animation-range: entry 0% entry 50%;
+
+/* Desaparece ao sair */
+animation-range: exit 0% exit 100%;
+
+/* Shorthand de inicio e fim */
+animation-range: entry exit;</code></pre>
+        </article>
+
+        <article class="panel">
+          <h2>Named Scroll Timeline</h2>
+          <p>
+            Voce pode criar uma timeline nomeada em um container e referenciar
+            ela em qualquer elemento filho:
+          </p>
+          <pre class="code"><code>&lt;!-- HTML --&gt;
+&lt;div class="wrapper"&gt;
+  &lt;div class="fill-bar"&gt;&lt;/div&gt;
+  &lt;div class="conteudo"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — define a timeline nomeada no container */
+.wrapper {
+  overflow-y: scroll;
+  scroll-timeline: --progresso block;
+}
+
+/* CSS — usa a timeline nomeada no filho */
+.fill-bar {
+  animation: crescer linear;
+  animation-timeline: --progresso;
+}
+
+@keyframes crescer {
+  from { width: 0%; }
+  to   { width: 100%; }
+}</code></pre>
+          <p class="note">
+            <code>scroll-timeline: --nome eixo</code> registra a timeline. Qualquer
+            descendente pode usa-la pelo nome, sem precisar de
+            <code>scroll(nearest)</code>.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Funções de Timing ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Funcoes de timing — visao geral</h2>
+          <p>
+            As funções de timing controlam o <strong>ritmo</strong> com que a
+            animacao avanca entre os keyframes. Elas se aplicam tanto a
+            <code>animation-timing-function</code> quanto a
+            <code>transition-timing-function</code>:
+          </p>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Funcao</th>
+                <th>Comportamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ease</td>
+                <td>Rapido no meio, lento nas pontas (padrao)</td>
+              </tr>
+              <tr>
+                <td>linear</td>
+                <td>Velocidade constante do inicio ao fim</td>
+              </tr>
+              <tr>
+                <td>ease-in</td>
+                <td>Comeca devagar, termina rapido</td>
+              </tr>
+              <tr>
+                <td>ease-out</td>
+                <td>Comeca rapido, termina devagar (mais natural)</td>
+              </tr>
+              <tr>
+                <td>ease-in-out</td>
+                <td>Lento nas duas pontas, rapido no meio</td>
+              </tr>
+              <tr>
+                <td>cubic-bezier()</td>
+                <td>Curva totalmente personalizada</td>
+              </tr>
+              <tr>
+                <td>steps()</td>
+                <td>Movimento em passos discretos (quadro a quadro)</td>
+              </tr>
+              <tr>
+                <td>linear()</td>
+                <td>Curva multipontos — spring, bounce e mais</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel">
+          <h2>steps() — quadro a quadro</h2>
+          <p>
+            <code>steps(n, direction)</code> divide a animacao em
+            <strong>n passos discretos</strong>, como os fotogramas de uma
+            animacao tradicional. Passe o mouse para ver a diferenca:
+          </p>
+          <div class="steps-track">
+            <div class="steps-row">
+              <span class="steps-label">steps(5, start)</span>
+              <div class="steps-bar"><div class="steps-ball s-start"></div></div>
+            </div>
+            <div class="steps-row">
+              <span class="steps-label">steps(5, end)</span>
+              <div class="steps-bar"><div class="steps-ball s-end"></div></div>
+            </div>
+            <div class="steps-row">
+              <span class="steps-label">steps(4, jump-both)</span>
+              <div class="steps-bar"><div class="steps-ball s-jump-both"></div></div>
+            </div>
+            <div class="steps-row">
+              <span class="steps-label">steps(6, jump-none)</span>
+              <div class="steps-bar"><div class="steps-ball s-jump-none"></div></div>
+            </div>
+            <div class="steps-row">
+              <span class="steps-label">step-start</span>
+              <div class="steps-bar"><div class="steps-ball s-1"></div></div>
+            </div>
+            <div class="steps-row">
+              <span class="steps-label">step-end</span>
+              <div class="steps-bar"><div class="steps-ball s-2"></div></div>
+            </div>
+          </div>
+          <pre class="code"><code>/* Sintaxe */
+steps(numero-de-passos, direcao)
+
+/* Direcoes disponiveis */
+steps(5, start)      /* pula no inicio de cada passo */
+steps(5, end)        /* pula no final de cada passo (padrao) */
+steps(4, jump-both)  /* inclui inicio e fim */
+steps(6, jump-none)  /* exclui inicio e fim */
+
+/* Atalhos */
+step-start  /* = steps(1, start) */
+step-end    /* = steps(1, end) */
+
+/* Uso classico: sprite sheet */
+.sprite {
+  background: url(spritesheet.png);
+  animation: run 0.6s steps(8) infinite;
+}
+@keyframes run {
+  to { background-position: -640px 0; }
+}</code></pre>
+        </article>
+      </section>
+
+      <!-- ── cubic-bezier ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>cubic-bezier() — curva personalizada</h2>
+          <p>
+            Uma curva de Bezier cubica e definida por
+            <strong>quatro valores</strong>: as coordenadas dos dois pontos de
+            controle <code>P1</code> e <code>P2</code>. Passe o mouse para ver
+            as curvas ao vivo:
+          </p>
+          <div class="bezier-track">
+            <div class="bezier-row">
+              <span class="bezier-label">elastic (overshoot)</span>
+              <div class="bezier-bar"><div class="bezier-ball bz-elastic"></div></div>
+            </div>
+            <div class="bezier-row">
+              <span class="bezier-label">back overshoot</span>
+              <div class="bezier-bar"><div class="bezier-ball bz-overshoot"></div></div>
+            </div>
+            <div class="bezier-row">
+              <span class="bezier-label">smooth (ease-out)</span>
+              <div class="bezier-bar"><div class="bezier-ball bz-smooth"></div></div>
+            </div>
+            <div class="bezier-row">
+              <span class="bezier-label">sharp (material)</span>
+              <div class="bezier-bar"><div class="bezier-ball bz-sharp"></div></div>
+            </div>
+            <div class="bezier-row">
+              <span class="bezier-label">expo out</span>
+              <div class="bezier-bar"><div class="bezier-ball bz-expo-out"></div></div>
+            </div>
+            <div class="bezier-row">
+              <span class="bezier-label">back in</span>
+              <div class="bezier-bar"><div class="bezier-ball bz-back-in"></div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Como funciona o cubic-bezier</h2>
+          <pre class="code"><code>/* Sintaxe */
+cubic-bezier(x1, y1, x2, y2)
+
+/* Os eixos vao de 0 a 1 em X (tempo).
+   Y pode ultrapassar 0–1 para overshoot! */
+
+/* Curvas comuns e equivalencias */
+ease         → cubic-bezier(0.25, 0.1, 0.25, 1)
+ease-in      → cubic-bezier(0.42, 0, 1, 1)
+ease-out     → cubic-bezier(0, 0, 0.58, 1)
+ease-in-out  → cubic-bezier(0.42, 0, 0.58, 1)
+linear       → cubic-bezier(0, 0, 1, 1)
+
+/* Curvas populares de design */
+
+/* Elastic — ultrapassa o destino levemente */
+cubic-bezier(0.34, 1.56, 0.64, 1)
+
+/* Overshoot duplo (spring-like) */
+cubic-bezier(0.68, -0.55, 0.27, 1.55)
+
+/* Expo out — desacelera forte no final */
+cubic-bezier(0.16, 1, 0.3, 1)
+
+/* Material Design — sharp */
+cubic-bezier(0.4, 0, 0.6, 1)</code></pre>
+          <p class="note tip">
+            Use <strong>cubic-bezier.com</strong> para editar a curva
+            visualmente e copiar o codigo pronto.
+          </p>
+        </article>
+      </section>
+
+      <!-- ── linear() ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>linear() — curva multipontos <span class="new-badge">CSS 2024</span></h2>
+          <p>
+            A funcao <code>linear()</code> aceita uma lista de pontos que
+            definem a curva com precisao total. Perfeita para imitar
+            <strong>spring physics</strong> e <strong>bounce</strong> sem
+            bibliotecas JS. Passe o mouse para sentir a diferenca:
+          </p>
+          <div class="linear-track">
+            <div class="linear-row">
+              <span class="linear-label">bounce</span>
+              <div class="linear-bar"><div class="linear-ball lf-bounce"></div></div>
+            </div>
+            <div class="linear-row">
+              <span class="linear-label">spring damped</span>
+              <div class="linear-bar"><div class="linear-ball lf-spring"></div></div>
+            </div>
+            <div class="linear-row">
+              <span class="linear-label">ease simples</span>
+              <div class="linear-bar"><div class="linear-ball lf-ease-classic"></div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Sintaxe do linear()</h2>
+          <pre class="code"><code>/* Forma basica — pontos de 0 a 1 */
+linear(0, 0.5, 1)
+
+/* Com posicao de tempo explicita */
+linear(0, 0.25 25%, 0.75 75%, 1)
+
+/* Bounce simplificado */
+transition-timing-function: linear(
+  0, 0.004, 0.016, 0.035, 0.063, 0.098,
+  0.141, 0.191, 0.25, 0.316, 0.391, 0.473,
+  0.563, 0.66, 0.765, 0.876, 1, 0.943,
+  0.891, 0.845, 0.804, 0.769, 0.739, 0.714,
+  0.694, 0.678, 0.666, 0.658, 0.653, 0.651,
+  /* ... mais pontos ... */
+  1
+);</code></pre>
+          <p class="note">
+            Os pontos sao valores de output (0 = inicio, 1 = fim) interpolados
+            linearmente entre si. Quanto mais pontos, mais fiel e a curva
+            desejada.
+          </p>
+          <pre class="code"><code>/* Geradores de linear() online */
+/* linear-easing.netlify.app */
+/* generator.linear-easing.com */
+
+/* Exemplo de uso em animacao */
+.card {
+  animation: enter 0.9s forwards;
+  animation-timing-function: linear(
+    0, 0.25 25%, 0.75 75%, 1
+  );
+}
+@keyframes enter {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}</code></pre>
+          <p class="note tip">
+            Suporte: Chrome 113+, Edge 113+, Firefox 112+, Safari 17.2+.
+            Ja disponivel para uso em producao!
+          </p>
+        </article>
+      </section>
+
+      <!-- ── Timing function dentro de keyframes ── -->
+      <section class="lesson-grid">
+        <article class="panel">
+          <h2>Timing function dentro de @keyframes</h2>
+          <p>
+            Voce pode aplicar funcoes de timing diretamente em
+            <strong>keyframes individuais</strong>. A funcao vale para o trecho
+            que vai daquele keyframe ate o proximo:
+          </p>
+          <pre class="code"><code>@keyframes exemplo {
+  0% {
+    transform: translateY(0);
+    /* ease-in do 0% ao 50% */
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: translateY(-80px);
+    /* bounce de volta ao final */
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}</code></pre>
+          <p class="note info">
+            Isso permite ritmos diferentes em cada fase da animacao —
+            acelerada na subida e elastica na descida, por exemplo.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2>Aplicando animation-timeline na pratica</h2>
+          <pre class="code"><code>&lt;!-- HTML — pagina com secoes --&gt;
+&lt;header class="hero"&gt;...&lt;/header&gt;
+&lt;section class="secao"&gt;...&lt;/section&gt;
+
+&lt;!-- barra de leitura no topo --&gt;
+&lt;div class="reading-bar"&gt;&lt;/div&gt;</code></pre>
+          <pre class="code"><code>/* CSS — Barra de leitura da pagina inteira */
+@keyframes leitura {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.reading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e11d48, #7c3aed);
+  transform-origin: left;
+
+  /* Vincula ao scroll do documento */
+  animation: leitura linear;
+  animation-timeline: scroll(root block);
+}
+
+/* Elemento que aparece ao entrar na tela */
+.secao {
+  animation: aparecer ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 50%;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}</code></pre>
+        </article>
+      </section>
+
+      <!-- ── Resumo ── -->
+      <section class="section panel">
+        <h2>Resumo rapido</h2>
+        <ol class="formula-list">
+          <li>
+            <code>animation-timeline: scroll()</code> vincula a animacao ao
+            progresso do scroll de um container
+          </li>
+          <li>
+            <code>animation-timeline: view()</code> anima com base na
+            visibilidade do elemento na viewport
+          </li>
+          <li>
+            <code>animation-range</code> delimita qual parte da timeline
+            (entry, exit, contain, cover) aciona a animacao
+          </li>
+          <li>
+            <code>scroll-timeline: --nome eixo</code> cria uma timeline
+            nomeada para reuso em filhos
+          </li>
+          <li>
+            <code>steps(n)</code> cria movimento quadro a quadro — ideal
+            para sprites e efeitos digitais
+          </li>
+          <li>
+            <code>cubic-bezier(x1,y1,x2,y2)</code> permite curvas
+            personalizadas; Y pode passar de 1 para overshoot
+          </li>
+          <li>
+            <code>linear()</code> e a funcao mais flexivel: descreve
+            qualquer curva com uma lista de pontos, incluindo bounce e spring
+          </li>
+          <li>
+            Timing functions podem ser declaradas dentro de keyframes
+            individuais para ritmos diferentes em cada fase
+          </li>
+        </ol>
+      </section>
+
+      <div class="topic-nav">
+        <a href="animacoes-keyframes.html">← @keyframes</a>
+        <a href="transform-2d.html">Transform 2D →</a>
+        <a href="transform-3d.html">Transform 3D →</a>
+        <a href="index.html">Todos os topicos</a>
+      </div>
+    </main>
+  </body>
+</html>

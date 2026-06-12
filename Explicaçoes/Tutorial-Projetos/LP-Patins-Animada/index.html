@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial – LP de Patins Animada</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../index.html">← Voltar aos tutoriais</a>
+
+      <nav aria-label="Guias relacionados">
+        <a href="../../CSS Animations/index.html">Revisar Animacoes</a>
+        <a href="../../CSS FLEXBOX/index.html">Revisar Flexbox</a>
+        <a href="../../CSS Grid/index.html">Revisar Grid</a>
+        <a href="../../Media Queries/index.html">Revisar @media</a>
+      </nav>
+    </header>
+
+    <main class="page">
+
+      <!-- ═══════════════ HERO ═══════════════ -->
+      <section class="hero">
+        <span class="eyebrow">Tutorial mobile-first + animacoes</span>
+        <h1>Como reconstruir a LP de Patins Animada</h1>
+        <p>
+          Este roteiro explica como montar a landing page da <strong>Snitap</strong>
+          do zero: estrutura de pastas, HTML semantico, CSS modular separado por secao,
+          abordagem <strong>mobile-first</strong> com <code>@media (min-width)</code>
+          e as animacoes com <code>@keyframes</code>, <code>transition</code> e
+          <code>animation-timeline: view()</code>. Cada passo mostra o HTML e o CSS
+          juntos, com explicacao do que cada propriedade faz.
+        </p>
+      </section>
+
+      <!-- ═══════════════ PASSO 0: ESTRUTURA ═══════════════ -->
+      <section class="lesson">
+        <span class="section-label">Passo 0</span>
+        <h2>Estrutura de pastas e arquivos</h2>
+        <p>
+          O projeto organiza o CSS em varios arquivos separados por secao.
+          O <code>styles/index.css</code> e o centralizador: ele importa todos os
+          outros na ordem certa.
+        </p>
+
+        <pre><code>lp-de-patins-animada/
+├── index.html
+├── assets/
+│   ├── logo.svg
+│   ├── banner.svg
+│   ├── icons/
+│   │   ├── shopping-bag.svg
+│   │   └── play.svg
+│   ├── hero/
+│   │   ├── patins-image.png
+│   │   ├── ellipse.svg
+│   │   ├── stars-1.svg
+│   │   └── stars-2.svg
+│   └── gallery/
+│       ├── image-1.png  image-2.png
+│       ├── image-3.png  image-4.png
+└── styles/
+    ├── index.css      ← importa todos os outros
+    ├── global.css     ← reset e variaveis CSS
+    ├── header.css     ← cabecalho
+    ├── hero.css       ← secao principal
+    ├── banner.css     ← faixa rolante
+    ├── gallery.css    ← galeria de fotos
+    └── footer.css     ← rodape</code></pre>
+
+        <p>O <code>styles/index.css</code> fica assim:</p>
+
+        <pre><code>/* styles/index.css */
+@import url(global.css);
+@import url(header.css);
+@import url(hero.css);
+@import url(banner.css);
+@import url(gallery.css);
+@import url(footer.css);</code></pre>
+
+        <p class="note tip">
+          <strong>Por que separar?</strong> Facilita a manutencao. Em vez de
+          procurar o estilo do header num arquivo de 500 linhas, voce vai direto
+          em <code>header.css</code>. E uma boa pratica profissional.
+        </p>
+      </section>
+
+      <!-- ═══════════════ PASSO 1: GLOBAL CSS ═══════════════ -->
+      <section class="lesson steps">
+        <span class="section-label">Passo 1 – global.css</span>
+        <h2>Reset universal e variaveis CSS (Design Tokens)</h2>
+        <p>
+          Antes de qualquer componente, definimos o reset e as variaveis que
+          serao usadas em todo o projeto. Mudar uma cor aqui muda em todo o site.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>Reset universal</h3>
+            <p>Remove margens, paddings e garante que o box-sizing funcione corretamente em todos os elementos, incluindo pseudo-elementos.</p>
+            <pre><code>*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}</code></pre>
+            <p class="note">
+              <strong>box-sizing: border-box</strong> faz o padding e border ficarem
+              <em>dentro</em> da largura total do elemento. Sem isso, um elemento
+              com <code>width: 200px</code> e <code>padding: 20px</code> ocuparia
+              240px na tela.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Variaveis CSS – paleta de cores</h3>
+            <p>Todas as cores do projeto definidas em <code>:root</code>, disponíveis em qualquer arquivo CSS.</p>
+            <pre><code>:root {
+  /* Cores da marca */
+  --snitap-sun:       #ffcd1e;  /* amarelo – botao comprar */
+  --snitap-sky-mid:   #06b6d4;  /* ciano   – palavra "radical" */
+  --snitap-sky-light: #67e8f9;  /* ciano claro – banner */
+  --snitap-joy-mid:   #db2777;  /* rosa    – palavra "divertida" */
+  --snitap-joy-light: #f472b6;  /* rosa claro – banner */
+  --snitap-leaf-mid:  #16a34a;  /* verde   – palavra "saudavel" */
+
+  /* Cores de interface */
+  --text:       #000000;
+  --highlights: #000000;
+  --background: #fafafa;
+
+  /* Fontes */
+  --ff-base:   'Montserrat', sans-serif;
+  --ff-accent: 'Syne', sans-serif;
+
+  /* Escala tipografica */
+  --text-sm:  0.875rem;  /* 14px */
+  --text-md:  1rem;      /* 16px */
+  --text-lg:  1.25rem;   /* 20px */
+  --text-xl:  1.5rem;    /* 24px */
+  --text-2xl: 2rem;      /* 32px */
+  --text-3xl: 3rem;      /* 48px */
+  --text-4xl: 5rem;      /* 80px */
+}</code></pre>
+            <p class="note tip">
+              <strong>Por que rem e nao px?</strong> rem e relativo ao tamanho base
+              do browser (geralmente 16px). Se o usuario aumentar a fonte nas
+              configuracoes de acessibilidade, o site inteiro se ajusta.
+              px e fixo e ignora isso.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Estilos base do body, links e imagens</h3>
+            <pre><code>body {
+  font-family: var(--ff-base);
+  background-color: var(--background);
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;  /* remove sublinhado padrao */
+  color: inherit;         /* herda cor do pai */
+}
+
+img {
+  display: block;  /* remove espaco extra abaixo de imagens inline */
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <div>
+            <h3>Google Fonts no index.html</h3>
+            <p>Adicionar as fontes antes do <code>&lt;/head&gt;</code>. O projeto usa 3 fontes: Montserrat, Inter e Syne.</p>
+            <pre><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /&gt;
+&lt;link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@500
+        &amp;family=Montserrat:ital,wght@0,500;1,500
+        &amp;family=Syne:wght@700&amp;display=swap"
+  rel="stylesheet"
+/&gt;</code></pre>
+            <p class="note">
+              <code>rel="preconnect"</code> instrui o browser a abrir a conexao
+              com o servidor de fontes antes mesmo de precisar. Isso acelera
+              o carregamento.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════════════ PASSO 2: HEADER ═══════════════ -->
+      <section class="lesson steps">
+        <span class="section-label mobile">Passo 2 – Header</span>
+        <h2>Cabecalho: logo + carrinho com hover animado</h2>
+        <p>
+          O header usa Flexbox para separar logo e carrinho. As imagens giram
+          ao passar o mouse usando <code>transform</code> e <code>transition</code>.
+          O badge do carrinho e posicionado com <code>position: absolute</code>.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>HTML do header</h3>
+            <pre><code>&lt;header class="top"&gt;
+  &lt;a href="#"&gt;
+    &lt;img src="assets/logo.svg" alt="" /&gt;
+  &lt;/a&gt;
+
+  &lt;a href="#"&gt;
+    &lt;img src="assets/icons/shopping-bag.svg" alt="" /&gt;
+    &lt;span&gt;1&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/header&gt;</code></pre>
+            <p class="note">
+              <strong>Por que alt="" vazio?</strong> Imagens decorativas (logo e
+              icone) devem ter <code>alt=""</code> para que leitores de tela as
+              ignorem. Reservamos o alt descritivo para imagens com conteudo.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>CSS – layout e hover das imagens</h3>
+            <pre><code>/* header.css */
+header.top {
+  max-width: 80rem;
+  width: 100%;
+  padding: 1.25rem 2rem;
+  margin-inline: auto;   /* centraliza horizontalmente */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* logo na esq, carrinho na dir */
+
+  img {
+    width: 2rem;
+    height: 2rem;
+    transition: transform 500ms;   /* suaviza a rotacao */
+  }
+
+  img[src*='logo']:hover {
+    transform: rotate(90deg);      /* logo gira ao hover */
+  }
+
+  img[src*='shopping']:hover {
+    transform: rotate(-30deg);     /* sacola balanca ao hover */
+  }
+}</code></pre>
+            <p class="note tip">
+              <strong>Seletor de atributo [src*='logo']</strong> seleciona imagens
+              onde o src <em>contém</em> a string 'logo'. Assim aplicamos
+              comportamentos diferentes sem precisar de classes extras no HTML.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>CSS – badge circular do carrinho</h3>
+            <pre><code>/* Ainda em header.css */
+header.top a:last-child {
+  position: relative;   /* contexto para o span absolute */
+  display: flex;
+  align-items: center;
+
+  span {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.75rem;
+
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--snitap-joy-mid);
+    color: white;
+    border-radius: 50%;   /* circulo perfeito */
+
+    font: 500 0.625rem/1 'Inter', sans-serif;
+  }
+}</code></pre>
+            <p class="note">
+              <strong>position: relative no pai + absolute no filho</strong>
+              e o padrao de posicionamento. Sem o <code>relative</code> no
+              <code>&lt;a&gt;</code>, o badge se posicionaria em relacao ao
+              <code>body</code> e sairia de lugar.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════════════ PASSO 3: HERO ═══════════════ -->
+      <section class="lesson steps">
+        <span class="section-label anim">Passo 3 – Hero Section</span>
+        <h2>Secao principal: texto rotativo, patins flutuando e estrelas girando</h2>
+        <p>
+          A hero e a secao mais complexa. Ela tem tres animacoes: as palavras
+          deslizando verticalmente com <code>@keyframes slideUp</code>, os patins
+          flutuando com <code>@keyframes float</code> e as estrelas girando com
+          <code>@keyframes spin</code>.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>HTML completo da hero</h3>
+            <pre><code>&lt;section class="hero"&gt;
+  &lt;!-- Lado esquerdo: texto e botoes --&gt;
+  &lt;div&gt;
+    &lt;h1&gt;
+      Snitap, sua vida mais
+      &lt;div&gt;
+        &lt;!-- 4 spans: o 4o repete o 1o para o loop ficar suave --&gt;
+        &lt;span&gt;radical&lt;/span&gt;
+        &lt;span&gt;divertida&lt;/span&gt;
+        &lt;span&gt;saudavel&lt;/span&gt;
+        &lt;span&gt;radical&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/h1&gt;
+
+    &lt;div class="buttons"&gt;
+      &lt;a href="#" class="button buy"&gt;
+        &lt;img src="assets/icons/shopping-bag.svg" alt="" /&gt;
+        Comprar agora
+      &lt;/a&gt;
+      &lt;a href="#" class="button play"&gt;
+        &lt;div class="play-icon"&gt;
+          &lt;img src="assets/icons/play.svg" alt="" /&gt;
+        &lt;/div&gt;
+        Ver demonstracao
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Lado direito: imagem e decoracoes --&gt;
+  &lt;div class="image-wrapper"&gt;
+    &lt;img class="ellipse" src="assets/hero/ellipse.svg" alt="" /&gt;
+    &lt;img class="patins" src="assets/hero/patins-image.png"
+         alt="Patins colorido" /&gt;
+    &lt;img class="stars stars-1" src="assets/hero/stars-1.svg" alt="" /&gt;
+    &lt;img class="stars stars-2" src="assets/hero/stars-2.svg" alt="" /&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            <p class="note">
+              <strong>Por que o 4o span repete "radical"?</strong> Para o loop ser
+              imperceptivel. Quando chegamos ao fim, voltamos ao inicio — mas como
+              o ultimo e identico ao primeiro, o salto acontece fora da area visivel.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>CSS – animacao de texto: a "janela" com overflow hidden</h3>
+            <p>O truque: o <code>&lt;div&gt;</code> que envolve os spans tem altura fixa e <code>overflow: hidden</code>, funcionando como uma janela que mostra apenas uma palavra por vez.</p>
+            <pre><code>section.hero {
+  max-width: 80rem;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+
+  /* Container das palavras rotativas */
+  & h1 div {
+    display: inline-block;
+    overflow: hidden;        /* ← esconde palavras fora da area */
+    height: 5rem;            /* ← mostra apenas 1 palavra por vez */
+    width: min-content;
+    vertical-align: bottom;  /* alinha com o texto ao lado */
+  }
+
+  /* Cores de cada palavra */
+  & h1 span:nth-child(1),
+  & h1 span:nth-child(4) { color: var(--snitap-sky-mid); }
+  & h1 span:nth-child(2) { color: var(--snitap-joy-mid); }
+  & h1 span:nth-child(3) { color: var(--snitap-leaf-mid); }
+
+  /* Cada span e um bloco e anima para cima */
+  & h1 span {
+    display: block;
+    animation: slideUp 5s 2s infinite ease;
+  }
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>@keyframes slideUp – como funciona a troca de palavras</h3>
+            <p>A animacao move o bloco inteiro para cima em etapas. Como o container so mostra 5rem de altura, parece que as palavras trocam.</p>
+            <pre><code>@keyframes slideUp {
+  /* Fica parado em cada posicao por um tempo */
+  0%,  20% { transform: translateY(0);     }  /* "radical"   visivel */
+  25%, 45% { transform: translateY(-100%); }  /* "divertida" visivel */
+  50%, 70% { transform: translateY(-200%); }  /* "saudavel"  visivel */
+  75%,100% { transform: translateY(-300%); }  /* "radical"   (copia) */
+}
+
+/* animation: nome duracao delay repeticao timing-function */
+animation: slideUp 5s 2s infinite ease;</code></pre>
+            <p class="note tip">
+              <strong>Por que usar translateY e nao top?</strong> <code>transform</code>
+              nao causa reflow — o browser so move o elemento na GPU, sem
+              recalcular o layout inteiro. Muito mais performatico.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <div>
+            <h3>CSS – botoes com scale no hover</h3>
+            <pre><code>& .buttons {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+
+  & .button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 5rem;
+    transition: scale 350ms;   /* suaviza o crescimento */
+
+    &.buy {
+      padding: 1.5rem 3rem;
+      background-color: var(--snitap-sun);
+    }
+
+    &.play .play-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--highlights);
+      border-radius: 50%;
+
+      img { filter: invert(1); }  /* torna o icone branco */
+    }
+
+    &:hover { scale: 1.05; }  /* cresce 5% ao passar o mouse */
+  }
+}</code></pre>
+            <p class="note">
+              <strong>filter: invert(1)</strong> inverte as cores da imagem.
+              O icone de play e preto, mas o fundo e preto — entao invertemos
+              para branco sem precisar de uma segunda versao do SVG.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">5</div>
+          <div>
+            <h3>CSS – patins flutuando e estrelas girando</h3>
+            <pre><code>& .image-wrapper {
+  position: relative;
+  flex-shrink: 0;
+
+  & .ellipse { width: 28rem; }
+
+  & .patins {
+    width: 36rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);  /* centralizacao absoluta */
+    animation: float 3s ease-in-out infinite;
+  }
+
+  & .stars {
+    position: absolute;
+    animation: spin 6s linear infinite;
+  }
+
+  & .stars-1 { top: 10%; right: 5%; width: 3rem; }
+  & .stars-2 {
+    bottom: 15%; left: 5%; width: 2rem;
+    animation-direction: reverse;  /* gira ao contrario */
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-50%, -55%); }
+  50%       { transform: translate(-50%, -60%); }
+}
+
+@keyframes spin {
+  from { rotate: 0deg; }
+  to   { rotate: 360deg; }
+}</code></pre>
+            <p class="note tip">
+              <strong>translate(-50%, -50%)</strong> e o truque classico de
+              centralizacao absoluta: <code>top: 50%; left: 50%</code> move o
+              canto superior esquerdo para o centro. O <code>translate(-50%)</code>
+              volta metade do proprio tamanho, centralizando de verdade.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════════════ PASSO 4: BANNER ═══════════════ -->
+      <section class="lesson steps">
+        <span class="section-label anim">Passo 4 – Banner Rolante</span>
+        <h2>Faixa de texto com rolagem infinita e gradiente animado</h2>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>HTML – duplicar imagens para o loop</h3>
+            <pre><code>&lt;section class="banner bg-gradient-animate"&gt;
+  &lt;div class="scroller"&gt;
+    &lt;div class="rolling"&gt;
+      &lt;!-- Mesma imagem 4 vezes para o loop ser imperceptivel --&gt;
+      &lt;img src="assets/banner.svg" alt="snitap patins" /&gt;
+      &lt;img src="assets/banner.svg" alt="snitap patins" /&gt;
+      &lt;img src="assets/banner.svg" alt="snitap patins" /&gt;
+      &lt;img src="assets/banner.svg" alt="snitap patins" /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>CSS – rolagem com translateX(-50%)</h3>
+            <pre><code>.banner {
+  width: 100%;
+  padding-block: 2.5rem;
+  overflow: hidden;   /* esconde o que sai da tela */
+
+  .scroller {
+    overflow: hidden;
+    padding-block: 1rem;
+  }
+
+  .rolling {
+    display: flex;
+    gap: 1.5rem;
+    animation: rolling 20s linear infinite;
+  }
+}
+
+@keyframes rolling {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }  /* move metade do total */
+}</code></pre>
+            <p class="note tip">
+              <strong>Por que -50%?</strong> Temos 4 copias da imagem. A animacao
+              move exatamente metade (2 imagens). Quando reinicia, a posicao
+              visual e identica ao inicio — o loop e imperceptivel.
+              <br /><br />
+              <strong>linear</strong> e essencial aqui! Diferente de <code>ease</code>,
+              mantem velocidade constante — necessario para o efeito de esteira.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>CSS – gradiente animado no fundo</h3>
+            <pre><code>.bg-gradient-animate {
+  background: linear-gradient(
+    90deg,
+    var(--snitap-sky-light),
+    var(--snitap-joy-light),
+    var(--snitap-sun),
+    var(--snitap-sky-light)  /* repete a primeira cor para loop */
+  );
+  background-size: 300% 100%;  /* gradiente 3x maior */
+  animation: gradient-move 4s ease infinite;
+}
+
+@keyframes gradient-move {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}</code></pre>
+            <p class="note">
+              O gradiente e criado 3x maior que o elemento com
+              <code>background-size: 300%</code>. A animacao "desliza" esse
+              gradiente gigante com <code>background-position</code>, criando
+              o efeito de cores fluindo.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════════════ PASSO 5: GALLERY ═══════════════ -->
+      <section class="lesson steps">
+        <span class="section-label anim">Passo 5 – Galeria de Fotos</span>
+        <h2>CSS Grid com areas nomeadas e animacao por scroll</h2>
+        <p>
+          A galeria usa <code>grid-template-areas</code> para criar um layout
+          assimetrico, e <code>animation-timeline: view()</code> para animar
+          as imagens conforme o usuario rola a pagina.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>HTML da galeria</h3>
+            <pre><code>&lt;section class="gallery"&gt;
+  &lt;header&gt;
+    &lt;span&gt;Nossa galeria&lt;/span&gt;
+    &lt;h2&gt;Momentos que valem a pena&lt;/h2&gt;
+  &lt;/header&gt;
+
+  &lt;div class="content"&gt;
+    &lt;figure&gt;
+      &lt;img src="assets/gallery/image-1.png"
+           alt="Pessoa andando de patins" /&gt;
+    &lt;/figure&gt;
+
+    &lt;figure data-delay&gt;
+      &lt;img src="assets/gallery/image-2.png"
+           alt="Patins coloridos" /&gt;
+    &lt;/figure&gt;
+
+    &lt;figure data-delay&gt;
+      &lt;img src="assets/gallery/image-3.png"
+           alt="Grupo andando de patins" /&gt;
+    &lt;/figure&gt;
+
+    &lt;figure&gt;
+      &lt;img src="assets/gallery/image-4.png"
+           alt="Patins em close" /&gt;
+    &lt;/figure&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            <p class="note">
+              <strong>data-delay</strong> e um atributo de dados HTML usado como
+              seletor CSS para dar um delay diferente na animacao de entrada
+              de algumas imagens, criando um efeito escalonado.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>CSS – Grid com areas nomeadas</h3>
+            <pre><code>section.gallery .content {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-areas:
+    'A B B'   /* B ocupa 2 colunas */
+    'C C D';  /* C ocupa 2 colunas */
+  gap: 2.5rem;
+}
+
+/* Atribuindo cada figure a uma area */
+figure:nth-child(1) { grid-area: A; }
+figure:nth-child(2) { grid-area: B; }
+figure:nth-child(3) { grid-area: C; }
+figure:nth-child(4) { grid-area: D; }</code></pre>
+
+            <p>Resultado visual do grid:</p>
+            <pre><code>┌───┬───────┐
+│ A │   B   │  ← B: retangulo largo (2 cols)
+├───────┬───┤
+│   C   │ D │  ← C: retangulo largo (2 cols)
+└───────┴───┘</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>CSS – animation-timeline: view() (animacao por scroll)</h3>
+            <pre><code>figure {
+  border-radius: 2.5rem;
+  overflow: hidden;    /* para o hover de zoom nao vazar */
+  line-height: 0;      /* remove espaco extra abaixo da imagem */
+
+  /* Animacao de entrada ao rolar */
+  animation: image-appear linear backwards;
+  animation-timeline: view();      /* controlada pelo scroll! */
+  animation-range: 100px 300px;    /* quando comecar e terminar */
+
+  &[data-delay] {
+    animation-range: 150px 350px;  /* delay: comeca mais tarde */
+  }
+
+  /* Zoom da imagem ao hover */
+  &:hover img { scale: 1.05; }
+  img { transition: scale 500ms; }
+}
+
+@keyframes image-appear {
+  from { opacity: 0; scale: 0.8; }
+  to   { opacity: 1; scale: 1; }
+}</code></pre>
+            <p class="note warn">
+              <strong>Compatibilidade:</strong> <code>animation-timeline: view()</code>
+              funciona no Chrome 115+ e Edge 115+. Firefox e Safari tem suporte
+              limitado. Use como melhoria progressiva — em browsers sem suporte,
+              as imagens aparecem normalmente sem animacao.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════════════ PASSO 6: FOOTER ═══════════════ -->
+      <section class="lesson steps">
+        <span class="section-label mobile">Passo 6 – Footer</span>
+        <h2>Rodape com underline animado nos links</h2>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>HTML do footer</h3>
+            <pre><code>&lt;footer&gt;
+  &lt;div class="logo"&gt;
+    &lt;a href="#"&gt;&lt;img src="assets/logo.svg" alt="" /&gt;&lt;/a&gt;
+    &lt;span&gt;Snitap&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;nav&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;Catalogo&lt;/a&gt;
+    &lt;a href="#"&gt;Sobre&lt;/a&gt;
+    &lt;a href="#"&gt;Contato&lt;/a&gt;
+  &lt;/nav&gt;
+
+  &lt;p&gt;&amp;copy; 2024 Snitap. Todos os direitos reservados.&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>CSS – underline animado com ::after</h3>
+            <p>
+              O efeito de sublinhado que cresce ao hover e feito com
+              <code>::after</code> — um pseudo-elemento virtual criado so pelo CSS.
+            </p>
+            <pre><code>footer nav a {
+  width: fit-content;
+  position: relative;   /* contexto para o ::after */
+
+  /* Linha invisivel abaixo do texto */
+  &::after {
+    content: '';           /* pseudo-elemento precisa de content */
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+    background-color: currentColor; /* mesma cor do texto */
+
+    opacity: 0;
+    transform: scaleX(0);          /* largura zero */
+    transform-origin: left;        /* cresce da esquerda */
+
+    transition: opacity 300ms, transform 300ms;
+  }
+
+  /* Ao hover: linha aparece crescendo da esquerda */
+  &:hover::after {
+    opacity: 1;
+    transform: scaleX(1);  /* largura total */
+  }
+}</code></pre>
+            <p class="note tip">
+              <strong>Por que scaleX e nao width?</strong> Animar <code>width</code>
+              causa reflow — o browser recalcula o layout inteiro. Animar
+              <code>transform: scaleX</code> roda na GPU sem tocar no layout.
+              Muito mais fluido.
+              <br /><br />
+              <strong>currentColor</strong> usa a cor herdada do texto. Se o
+              link mudar de cor, o sublinhado acompanha automaticamente.
+            </p>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>CSS – layout e logo do footer</h3>
+            <pre><code>footer {
+  max-width: 80rem;
+  width: 100%;
+  padding: 4rem 2rem 2rem;
+  margin-inline: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font: 700 1.25rem/1.3 'Syne', sans-serif;
+
+    img {
+      width: 2rem;
+      transition: rotate 350ms;
+      &:hover { rotate: 90deg; }
+    }
+  }
+
+  p {
+    font: 500 var(--text-sm)/1.5 var(--ff-base);
+    opacity: 0.5;
+  }
+}</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════════════ PASSO 7: RESPONSIVIDADE ═══════════════ -->
+      <section class="lesson steps">
+        <span class="section-label mobile">Passo 7 – Mobile First</span>
+        <h2>Adaptando cada secao: do celular para o desktop</h2>
+        <p>
+          O padrao e sempre o mesmo: CSS base e para celular (simples, empilhado).
+          Os <code>@media (min-width)</code> adicionam complexidade progressivamente.
+          Nunca desfazemos — so adicionamos.
+        </p>
+
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <div>
+            <h3>Hero – coluna no mobile, linha no desktop</h3>
+            <pre><code>/* hero.css – BASE MOBILE */
+section.hero {
+  flex-direction: column;   /* texto em cima, imagem embaixo */
+  text-align: center;
+  padding: 1.5rem 1.25rem;
+  gap: 2rem;
+
+  & h1 { font-size: var(--text-3xl); }  /* 48px */
+
+  & .buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  & .image-wrapper .ellipse { width: 18rem; }
+  & .image-wrapper .patins  { width: 22rem; }
+}
+
+/* hero.css – DESKTOP (min-width) */
+@media (min-width: 1024px) {
+  section.hero {
+    flex-direction: row;      /* texto e imagem lado a lado */
+    text-align: left;
+    padding: 2.5rem 2rem;
+    gap: 0;
+
+    & h1 { font-size: var(--text-4xl); }  /* 80px */
+
+    & .buttons {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+    }
+
+    & .image-wrapper .ellipse { width: 28rem; }
+    & .image-wrapper .patins  { width: 36rem; }
+  }
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <div>
+            <h3>Gallery – 1 coluna → 2 colunas → layout especial</h3>
+            <pre><code>/* gallery.css – BASE MOBILE: 1 coluna */
+.content {
+  display: grid;
+  grid-template-areas: 'A' 'B' 'C' 'D';
+  gap: 1.5rem;
+}
+
+/* Tablet – 2 colunas */
+@media (min-width: 600px) {
+  .content {
+    grid-template-areas:
+      'A B'
+      'C D';
+    gap: 2rem;
+  }
+}
+
+/* Desktop – layout assimetrico */
+@media (min-width: 1024px) {
+  .content {
+    grid-template-areas:
+      'A B B'
+      'C C D';
+    gap: 2.5rem;
+  }
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <div>
+            <h3>Footer – coluna no mobile, linha no desktop</h3>
+            <pre><code>/* footer.css – BASE MOBILE */
+footer {
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+  padding: 3rem 1.25rem 2rem;
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  footer {
+    flex-direction: row;
+    text-align: left;
+    padding: 4rem 2rem 2rem;
+
+    nav {
+      flex-wrap: nowrap;
+      gap: 2rem;
+    }
+  }
+}</code></pre>
+            <p class="note tip">
+              <strong>O padrao central do mobile-first:</strong>
+              <code>flex-direction: column</code> no mobile vira
+              <code>flex-direction: row</code> no desktop. Esse padrao se repete
+              na hero, no about, no footer — em quase todas as secoes. Decore-o.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════════════ RESUMO DE ANIMACOES ═══════════════ -->
+      <section class="lesson">
+        <span class="section-label anim">Animacoes</span>
+        <h2>Todas as animacoes do projeto em um lugar so</h2>
+
+        <div class="compare">
+          <article>
+            <h3>@keyframes slideUp</h3>
+            <p>Palavras rotativas no hero. Controlada por tempo.</p>
+            <pre><code>animation: slideUp 5s 2s infinite ease;</code></pre>
+          </article>
+          <article>
+            <h3>@keyframes float</h3>
+            <p>Patins subindo e descendo suavemente.</p>
+            <pre><code>animation: float 3s ease-in-out infinite;</code></pre>
+          </article>
+          <article>
+            <h3>@keyframes spin</h3>
+            <p>Estrelas girando. Uma no sentido reverso.</p>
+            <pre><code>animation: spin 6s linear infinite;
+animation-direction: reverse;</code></pre>
+          </article>
+          <article>
+            <h3>@keyframes rolling</h3>
+            <p>Faixa de texto rolando infinitamente.</p>
+            <pre><code>animation: rolling 20s linear infinite;</code></pre>
+          </article>
+          <article>
+            <h3>animation-timeline: view()</h3>
+            <p>Imagens da galeria aparecem ao rolar a pagina.</p>
+            <pre><code>animation-timeline: view();
+animation-range: 100px 300px;</code></pre>
+          </article>
+          <article>
+            <h3>transition</h3>
+            <p>Hover dos botoes, imagens do header e underline dos links.</p>
+            <pre><code>transition: transform 500ms;
+transition: scale 350ms;
+transition: opacity 300ms, transform 300ms;</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══════════════ CHECKLIST ═══════════════ -->
+      <section class="lesson">
+        <span class="section-label">Checklist</span>
+        <h2>Ordem para construir o projeto do zero</h2>
+        <ol>
+          <li><strong>Crie a estrutura de pastas</strong> com assets/, styles/ e index.html</li>
+          <li><strong>Escreva o global.css</strong> com reset, variaveis e body</li>
+          <li><strong>Monte o HTML completo</strong> de todas as secoes no index.html</li>
+          <li><strong>Estilize o header</strong> — Flexbox, imagens com hover e badge do carrinho</li>
+          <li><strong>Estilize a hero (mobile)</strong> — column, centralizado, sem alturas fixas</li>
+          <li><strong>Adicione os @keyframes</strong> — slideUp, float, spin</li>
+          <li><strong>Expanda a hero para desktop</strong> — row, imagem ao lado do texto</li>
+          <li><strong>Estilize o banner</strong> — rolling infinito e gradiente animado</li>
+          <li><strong>Estilize a gallery (mobile)</strong> — 1 coluna, sem animation-timeline</li>
+          <li><strong>Adicione o grid assimetrico</strong> no desktop com grid-template-areas</li>
+          <li><strong>Adicione animation-timeline: view()</strong> nas figuras</li>
+          <li><strong>Estilize o footer</strong> — column no mobile, row no desktop, underline animado</li>
+          <li><strong>Teste em 3 larguras:</strong> 375px, 768px e 1280px com DevTools</li>
+        </ol>
+
+        <p class="note tip">
+          Use o DevTools do Chrome (F12 → icone de celular ou Ctrl+Shift+M)
+          para simular diferentes tamanhos. Comece pelo menor (375px) e va
+          aumentando. Se funcionar em 375px e 1280px, funciona em tudo.
+        </p>
+      </section>
+
+    </main>
+  </body>
+</html>

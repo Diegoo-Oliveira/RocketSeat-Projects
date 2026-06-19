@@ -1,11 +1,101 @@
 <!DOCTYPE html>
 <html lang="Pt-br">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snitap - Landing page de patins</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap"
+        rel="stylesheet">
 </head>
-<body>
 
+<body>
+    <header class="nav-header">
+        <nav class="flex align-itens space-between px-15rem">
+            <a href="#" id="logo">
+                <img src="Assets/icons/Logo.svg" alt="">
+            </a>
+            <a href="#">
+                <div id="nav-shopping" class="flex">
+                    <img id="nav-cart" src="Assets/icons/shopping-bag.svg" alt="">
+                    <span class="flex">1</span>
+                </div>
+            </a>
+        </nav>
+    </header>
+
+    <section id="hero-section" class="px-15rem flex gap-xl">
+
+        <section id="hero-img" class="flex">
+            <img src="Assets/hero/Ellipse.svg" alt="" id="hero-ellipse">
+            <img src="Assets/hero/patins-image.png" alt="" id="hero-patins">
+            <img src="Assets/hero/Stars 1.svg" alt="" id="hero-stars-one">
+            <img src="Assets/hero/Stars 2.svg" alt="" id="hero-stars-two">
+        </section>
+
+        <section class="flex gap-xxl " id="hero-content">
+            <h1>Snitap, sua vida mais <span>radical</span></h1>
+
+            <div class="flex gap-lg" id="content-buttons">
+                <div id="hero-buttons" class="flex align-itens gap-base">
+                    <a href="#" >
+                        <div class="flex"><img src="Assets/icons/play.svg" alt=""></div>
+                    </a>
+                    <a href="#">
+                        <span>VEJA EM AÇÃO</span>
+                    </a>
+                </div>
+            <button type="button" class="flex align-itens gap-xsm">
+                <img src="Assets/icons/shopping-bag.svg" alt="">
+                COMPRAR AGORA</button>
+            </div>
+        </section>
+    </section>
+
+    <section id="rotating-belt">
+        <div class="flex">
+            <img src="Assets/rotating-belt/rotating.svg" alt="">
+        </div>
+    </section>
+
+    <section id="photo-gallery" class="flex align-itens px-15rem gap-lg">
+        <header id="photo-header" class="flex align-itens gap-xsm">
+            <p>GALERIA DE FOTOS</p>
+            <h2>#usesnitap por aí</h2>
+        </header>
+
+        <section id="photo-section" class="grid gap-lg">
+                <img src="Assets/img/image 01.svg" alt="">
+                <img src="Assets/img/image 02.svg" alt="">
+                <img src="Assets/img/image 03.svg" alt="">
+                <img src="Assets/img/image 04.svg" alt="">
+        </section>
+    </section>
+
+    <footer id="footer-section" class="flex px-15rem gap-xxl">
+        <div id="footer-logo" class="flex gap-xsm align-itens">
+            <img src="Assets/icons/Logo.svg" alt="">
+            <h2>Snitap</h2>
+        </div>
+
+       <div id="footer-info" class="flex gap-lg">
+        <a href="#">Sobre</a>
+        <a href="#">Nossas lojas</a>
+        <a href="#">Política de privacidade</a>
+       </div> 
+
+       <div id="footer-socials" class="flex gap-base">
+        <a href="#"><img src="Assets/icons/instagram.svg" alt=""></a>
+        <a href="#"><img src="Assets/icons/facebook.svg" alt=""></a>
+        <a href="#"><img src="Assets/icons/youtube.svg" alt=""></a>
+        <a href="#"><img src="Assets/icons/tiktok.svg" alt=""></a>
+       </div>
+       
+    </footer>
 </body>
+
 </html>

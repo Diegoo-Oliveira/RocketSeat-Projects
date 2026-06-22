@@ -1,0 +1,48 @@
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .75rem 1.5rem;
+
+    & img {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    & #shopping {
+        display: flex;
+        width: 3rem;
+        height: 3rem;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        & span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.25rem;
+            height: 1.25rem;
+            background-color: var(--snitap-sun);
+            border-radius: 50%;
+
+            position: absolute;
+            top: -2px;
+            right: 4px;
+            font: 500 0.625rem/1 'Inter', sans-serif;
+        }
+    }
+}
+
+#logo,
+#shopping img {
+    transition: transform 0.5s;
+}
+
+#logo:hover {
+    transform: rotate(90deg);
+}
+
+#shopping img:hover {
+    transform: rotate(-30deg);
+}

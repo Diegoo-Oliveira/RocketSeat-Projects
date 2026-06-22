@@ -46,6 +46,7 @@
     & #hero-content #hero-buttons {
         width: auto;
         font: var(--ButtonLabel);
+
         & a div {
             padding: 1.5rem;
             border-radius: 50%;
@@ -65,7 +66,7 @@
         width: 17.6875rem;
         flex-direction: column;
 
-        & button{
+        & button {
             width: 100%;
             background-color: var(--snitap-sun);
             border-radius: 80px;
@@ -78,24 +79,38 @@
             justify-content: center;
         }
 
-         & h1 div {
+        & h1 div {
             display: inline-block;
-            overflow: hidden;        /* ← esconde palavras fora da area */
-            height: 2.5rem;            /* ← mostra apenas 1 palavra por vez */
+            overflow: hidden;
+            /* ← esconde palavras fora da area */
+            height: 2.5rem;
+            /* ← mostra apenas 1 palavra por vez */
             width: min-content;
-            vertical-align: top;  /* alinha com o texto ao lado */
-            }
+            vertical-align: top;
+            /* alinha com o texto ao lado */
+        }
 
-         & h1 span:nth-child(1) { color: var(--snitap-sky-mid); }
-         & h1 span:nth-child(2) { color: var(--snitap-joy-mid); }
-         & h1 span:nth-child(3) { color: var(--snitap-leaf-mid); }
-         & h1 span:nth-child(4) { color: var(--snitap-sky-mid); }
+        & h1 span:nth-child(1) {
+            color: var(--snitap-sky-mid);
+        }
 
-         & h1 span {
+        & h1 span:nth-child(2) {
+            color: var(--snitap-joy-mid);
+        }
+
+        & h1 span:nth-child(3) {
+            color: var(--snitap-leaf-mid);
+        }
+
+        & h1 span:nth-child(4) {
+            color: var(--snitap-sky-mid);
+        }
+
+        & h1 span {
             display: block;
             animation: slideUp 5s 2s infinite ease;
-            }
         }
+    }
 
     & #content-buttons {
         flex-direction: column;
@@ -103,9 +118,85 @@
 }
 
 @keyframes slideUp {
-  /* Fica parado em cada posicao por um tempo */
-  0%,  20% { transform: translateY(0);     }  /* "radical"   visivel */
-  25%, 45% { transform: translateY(-100%); }  /* "divertida" visivel */
-  50%, 70% { transform: translateY(-200%); }  /* "saudavel"  visivel */
-  75%,100% { transform: translateY(-300%); }  /* "radical"   (copia) */
+
+    /* Fica parado em cada posicao por um tempo */
+    0%,
+    20% {
+        transform: translateY(0);
+    }
+
+    /* "radical"   visivel */
+    25%,
+    45% {
+        transform: translateY(-100%);
+    }
+
+    /* "divertida" visivel */
+    50%,
+    70% {
+        transform: translateY(-200%);
+    }
+
+    /* "saudavel"  visivel */
+    75%,
+    100% {
+        transform: translateY(-300%);
+    }
+
+    /* "radical"   (copia) */
+}
+
+@media (min-width:1024px) {
+    #hero-section {
+        max-width: 1280px;
+        flex-direction: row;
+
+
+        & #hero-img {
+            align-self: right;
+            justify-content: center;
+            position: relative;
+            width: 30.5rem;
+            height: 30.5rem;
+
+            & #hero-ellipse {
+                width: 30.5rem;
+                height: 30.5rem;
+                position: absolute;
+                z-index: 0;
+            }
+
+            & #hero-patins {
+                width: 30.5rem;
+                height: 30.5rem;
+                position: absolute;
+                z-index: 1;
+            }
+
+            & #hero-stars-one {
+                width: 5.5rem;
+                height: 4.5rem;
+                position: absolute;
+                z-index: 2;
+                left: 5px;
+                top: 86px;
+            }
+
+            & #hero-stars-two {
+                width: 2.5rem;
+                height: 3.75rem;
+                position: absolute;
+                z-index: 3;
+                right: 1px;
+                bottom: 92px;
+            }
+        }
+
+        & #hero-content {
+            max-width: ;
+            align-self: left;
+        }
+    }
+
+
 }

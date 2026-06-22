@@ -1,0 +1,28 @@
+.hero {
+    padding: 1rem 3rem;
+    max-width: 24.375rem;
+    width: 100%;
+    margin-inline: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    #hero-content {
+        order: 2;
+    }
+
+    #hero-images {
+        order: 1;
+
+        & #content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & img:first-child {
+                width: ;
+            }
+        }
+    }
+}

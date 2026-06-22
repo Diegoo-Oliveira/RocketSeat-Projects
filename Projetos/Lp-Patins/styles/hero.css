@@ -77,9 +77,35 @@
             align-items: center;
             justify-content: center;
         }
-    }
+
+         & h1 div {
+            display: inline-block;
+            overflow: hidden;        /* ← esconde palavras fora da area */
+            height: 2.5rem;            /* ← mostra apenas 1 palavra por vez */
+            width: min-content;
+            vertical-align: top;  /* alinha com o texto ao lado */
+            }
+
+         & h1 span:nth-child(1) { color: var(--snitap-sky-mid); }
+         & h1 span:nth-child(2) { color: var(--snitap-joy-mid); }
+         & h1 span:nth-child(3) { color: var(--snitap-leaf-mid); }
+         & h1 span:nth-child(4) { color: var(--snitap-sky-mid); }
+
+         & h1 span {
+            display: block;
+            animation: slideUp 5s 2s infinite ease;
+            }
+        }
 
     & #content-buttons {
         flex-direction: column;
     }
+}
+
+@keyframes slideUp {
+  /* Fica parado em cada posicao por um tempo */
+  0%,  20% { transform: translateY(0);     }  /* "radical"   visivel */
+  25%, 45% { transform: translateY(-100%); }  /* "divertida" visivel */
+  50%, 70% { transform: translateY(-200%); }  /* "saudavel"  visivel */
+  75%,100% { transform: translateY(-300%); }  /* "radical"   (copia) */
 }

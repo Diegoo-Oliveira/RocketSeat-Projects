@@ -50,6 +50,17 @@ span {
     font: var(--Span);
 }
 
-button {
+.button {
     font: var(--ButtonLabel);
+}
+
+@media (min-width: 1024px) {
+
+    :root {
+        --h1: 700 4rem/125% var(--ff1);
+        --h2: 700 2.5rem/120% var(--ff1);
+        --ButtonLabel: 500 1rem/150% var(--ff2);
+        --Span: 500 .875/150% var(--ff2);
+        --a: 400 1rem/150% var(--ff2);
+    }
 }

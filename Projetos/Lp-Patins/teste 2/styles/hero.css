@@ -8,20 +8,179 @@
     flex-direction: column;
     gap: 2rem;
 
-    #hero-content {
+    & #hero-content {
         order: 2;
+        width: 17.6875rem;
+        flex-direction: column;
+        display: flex;
+        gap: 3rem;
+
+        & h1 div {
+            display: inline-block;
+            overflow: hidden;
+            height: 2.5rem;
+            width: min-content;
+            vertical-align: top;
+        }
+
+        & h1 span:nth-child(1) {
+            color: var(--snitap-sky-mid);
+        }
+
+        & h1 span:nth-child(2) {
+            color: var(--snitap-joy-mid);
+        }
+
+        & h1 span:nth-child(3) {
+            color: var(--snitap-leaf-mid);
+        }
+
+        & h1 span:nth-child(4) {
+            color: var(--snitap-sky-mid);
+        }
+
+        & h1 span {
+            display: block;
+            animation: slideUp 5s 2s infinite ease;
+        }
+
+        & .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            & .buy {
+                display: flex;
+                align-items: center;
+                order: 2;
+                background-color: var(--snitap-sun);
+                padding: 1.5rem 3rem;
+                gap: .875rem;
+                border-radius: 80px;
+                text-wrap: nowrap;
+                align-self: baseline;
+            }
+
+            & .play {
+                order: 1;
+                display: flex;
+                gap: .875rem;
+                align-items: center;
+                align-self: baseline;
+
+                & span {
+                    padding: 1.5rem;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: white;
+
+                    box-shadow: 1px 1px 10px black;
+                }
+            }
+        }
     }
 
     #hero-images {
         order: 1;
 
-        & #content {
+        & .content {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            width: 19.5rem;
+            height: 19.5rem;
 
-            & img:first-child {
-                width: ;
+            & img:nth-child(1) {
+                width: 18.5rem;
+                height: 18.5rem;
+                position: absolute;
+                z-index: 0;
+            }
+
+            & img:nth-child(2) {
+                width: 19.5rem;
+                height: 18.5rem;
+                position: absolute;
+                z-index: 1;
+            }
+
+            & img:nth-child(3) {
+                width: 3.5rem;
+                height: 2.875rem;
+                position: absolute;
+                z-index: 2;
+                left: 5px;
+                top: 30%;
+            }
+
+            & img:nth-child(4) {
+                width: 1.625rem;
+                height: 2.375rem;
+                position: absolute;
+                z-index: 2;
+                right: 0px;
+                top: 53%;
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        padding: 2.5rem 2rem;
+        max-width: 80rem;
+        width: 100%;
+        margin-inline: auto;
+
+        flex-direction: row;
+        gap: 2rem;
+
+
+        & #hero-content {
+            order: 1;
+            width: auto;
+
+            & h1 div {
+                height: 5rem;
+            }
+
+            & .buttons {
+                flex-direction: row;
+                gap: 2rem;
+
+                & .buy {
+                    order: 1;
+                }
+            }
+        }
+
+        & #hero-images {
+            & .content {
+                width: 30.5rem;
+                height: 30.5rem;
+
+                & img:nth-child(1) {
+                    width: 28.875rem;
+                    height: 28.875rem;
+                }
+
+                & img:nth-child(2) {
+                    width: 30.5rem;
+                    height: 28.875rem;
+                }
+
+                & img:nth-child(3) {
+                    width: 5.5rem;
+                    height: 4.5rem;
+                }
+
+                & img:nth-child(4) {
+                    width: 2.5rem;
+                    height: 3.75rem;
+                }
             }
         }
     }

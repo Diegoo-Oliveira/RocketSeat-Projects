@@ -1,0 +1,57 @@
+.gallery {
+    padding: 1.5rem;
+    display: grid;
+    gap: 24px;
+
+    & header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        & span {
+            font: 500 0.75/150% var(--ff1);
+        }
+    }
+
+    & .gallery-content {
+        display: grid;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: center;
+
+        & figure {
+            position: relative;
+
+            & img {
+                width: 19.5rem;
+                height: 19.5rem;
+                object-fit: cover;
+            }
+
+            & figcaption {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                position: absolute;
+                left: 16px;
+                bottom: 16px;
+
+                & img {
+                    width: 2rem;
+                    height: 2rem;
+                    object-fit: cover;
+                }
+
+                & span {
+                    font: 500 .875/160% var(--ff1);
+                }
+            }
+        }
+    }
+}
+
+@media (min-width:1024px) {
+    
+}

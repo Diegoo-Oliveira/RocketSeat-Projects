@@ -85,7 +85,7 @@
     #hero-images {
         order: 1;
 
-        & .content {
+        & .hero-content {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -137,6 +137,7 @@
 
         flex-direction: row;
         gap: 2rem;
+        align-items: center;
 
 
         & #hero-content {
@@ -151,6 +152,14 @@
                 flex-direction: row;
                 gap: 2rem;
 
+                & .button {
+                    transition: scale 350ms;
+
+                    &:hover {
+                        scale: 1.1;
+                    }
+                }
+
                 & .buy {
                     order: 1;
                 }
@@ -158,7 +167,7 @@
         }
 
         & #hero-images {
-            & .content {
+            & .hero-content {
                 width: 30.5rem;
                 height: 30.5rem;
 

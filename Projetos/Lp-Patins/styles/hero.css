@@ -1,93 +1,26 @@
-#hero-section {
-    padding-top: 1rem;
-    padding-bottom: 3rem;
-    align-items: center;
+.hero {
+    padding: 1rem 3rem;
+    max-width: 24.375rem;
+    width: 100%;
+    margin-inline: auto;
+
+    display: flex;
     flex-direction: column;
-
-    & #hero-img {
-        justify-content: center;
-        position: relative;
-        width: 19.5rem;
-        height: 19.5rem;
-
-        & #hero-ellipse {
-            width: 19.5rem;
-            height: 19.5rem;
-            position: absolute;
-            z-index: 0;
-        }
-
-        & #hero-patins {
-            width: 19.5rem;
-            height: 19.5rem;
-            position: absolute;
-            z-index: 1;
-        }
-
-        & #hero-stars-one {
-            width: 3.5rem;
-            height: 2.8rem;
-            position: absolute;
-            z-index: 2;
-            left: 5px;
-            top: 86px;
-        }
-
-        & #hero-stars-two {
-            width: 1.56rem;
-            height: 2.375rem;
-            position: absolute;
-            z-index: 3;
-            right: 1px;
-            bottom: 92px;
-        }
-    }
-
-    & #hero-content #hero-buttons {
-        width: auto;
-        font: var(--ButtonLabel);
-
-        & a div {
-            padding: 1.5rem;
-            border-radius: 50%;
-            background-color: var(--background);
-            box-shadow: 1px 10px 20px black;
-
-            & img {
-                width: 1.5rem;
-                height: 1.5rem;
-                align-items: center;
-                justify-content: center;
-            }
-        }
-    }
+    gap: 2rem;
 
     & #hero-content {
+        order: 2;
         width: 17.6875rem;
         flex-direction: column;
-
-        & button {
-            width: 100%;
-            background-color: var(--snitap-sun);
-            border-radius: 80px;
-            padding: 1.5rem;
-            border-color: transparent;
-            box-shadow: 1px 10px 20px black;
-            font: var(--ButtonLabel);
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-        }
+        display: flex;
+        gap: 3rem;
 
         & h1 div {
             display: inline-block;
             overflow: hidden;
-            /* ← esconde palavras fora da area */
             height: 2.5rem;
-            /* ← mostra apenas 1 palavra por vez */
             width: min-content;
             vertical-align: top;
-            /* alinha com o texto ao lado */
         }
 
         & h1 span:nth-child(1) {
@@ -110,16 +43,93 @@
             display: block;
             animation: slideUp 5s 2s infinite ease;
         }
+
+        & .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            & .buy {
+                display: flex;
+                align-items: center;
+                order: 2;
+                background-color: var(--snitap-sun);
+                padding: 1.5rem 3rem;
+                gap: .875rem;
+                border-radius: 80px;
+                text-wrap: nowrap;
+                align-self: baseline;
+            }
+
+            & .play {
+                order: 1;
+                display: flex;
+                gap: .875rem;
+                align-items: center;
+                align-self: baseline;
+
+                & span {
+                    padding: 1.5rem;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: white;
+
+                    box-shadow: 1px 1px 10px black;
+                }
+            }
+        }
     }
 
-    & #content-buttons {
-        flex-direction: column;
+    #hero-images {
+        order: 1;
+
+        & .hero-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 19.5rem;
+            height: 19.5rem;
+
+            & img[src*='ellipse'] {
+                width: 18.5rem;
+                height: 18.5rem;
+                position: absolute;
+                z-index: 0;
+            }
+
+            & img[src*='patins-image'] {
+                width: 19.5rem;
+                height: 18.5rem;
+                position: absolute;
+                z-index: 2;
+            }
+
+            & img[src*='stars-1'] {
+                width: 3.5rem;
+                height: 2.875rem;
+                position: absolute;
+                z-index: 1;
+                left: 5px;
+                top: 30%;
+            }
+
+            & img[src*='stars-2'] {
+                width: 1.625rem;
+                height: 2.375rem;
+                position: absolute;
+                z-index: 2;
+                right: 0px;
+                top: 53%;
+            }
+        }
     }
 }
 
 @keyframes slideUp {
 
-    /* Fica parado em cada posicao por um tempo */
     0%,
     20% {
         transform: translateY(0);
@@ -142,61 +152,91 @@
     100% {
         transform: translateY(-300%);
     }
-
-    /* "radical"   (copia) */
 }
 
-@media (min-width:1024px) {
-    #hero-section {
-        max-width: 1280px;
+@media (min-width: 1024px) {
+    .hero {
+        padding: 2.5rem 2rem;
+        max-width: 80rem;
+        width: 100%;
+        margin-inline: auto;
+
         flex-direction: row;
+        gap: 2rem;
+        align-items: center;
 
-
-        & #hero-img {
-            align-self: right;
-            justify-content: center;
-            position: relative;
-            width: 30.5rem;
-            height: 30.5rem;
-
-            & #hero-ellipse {
-                width: 30.5rem;
-                height: 30.5rem;
-                position: absolute;
-                z-index: 0;
-            }
-
-            & #hero-patins {
-                width: 30.5rem;
-                height: 30.5rem;
-                position: absolute;
-                z-index: 1;
-            }
-
-            & #hero-stars-one {
-                width: 5.5rem;
-                height: 4.5rem;
-                position: absolute;
-                z-index: 2;
-                left: 5px;
-                top: 86px;
-            }
-
-            & #hero-stars-two {
-                width: 2.5rem;
-                height: 3.75rem;
-                position: absolute;
-                z-index: 3;
-                right: 1px;
-                bottom: 92px;
-            }
-        }
+        overflow: hidden;
 
         & #hero-content {
-            max-width: ;
-            align-self: left;
+            order: 1;
+            width: 100%;
+
+            & h1 div {
+                height: 5rem;
+            }
+
+            & .buttons {
+                flex-direction: row;
+                gap: 2rem;
+
+                & .button {
+                    transition: scale 350ms;
+
+                    &:hover {
+                        scale: 1.1;
+                    }
+                }
+
+                & .buy {
+                    order: 1;
+                }
+            }
+        }
+
+        & #hero-images {
+            & .hero-content {
+                width: 30.5rem;
+                height: 30.5rem;
+
+                & img[src*='ellipse'] {
+                    width: 28.875rem;
+                    height: 28.875rem;
+                    transform: translateX(200%);
+                    animation: slideIn 3s 200ms ease forwards;
+                }
+
+                & img[src*='patins-image'] {
+                    width: 30.5rem;
+                    height: 28.875rem;
+                    transform: translateX(200%);
+                    animation: slideIn 3s 200ms ease forwards;
+                }
+
+                & img[src*='stars-1'] {
+                    width: 5.5rem;
+                    height: 4.5rem;
+                    transform: translateX(700%);
+                    animation: slideIn 2s 800ms ease forwards, appear 100ms 800ms forwards;
+                }
+
+                & img[src*='stars-2'] {
+                    width: 2.5rem;
+                    height: 3.75rem;
+                    transform: translateX(400%);
+                    animation: slideIn 2.2s 800ms ease forwards;
+                }
+            }
         }
     }
+}
 
 
+@keyframes slideIn {
+    50% {
+        transform: translateX(-20px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }

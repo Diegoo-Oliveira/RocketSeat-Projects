@@ -1,74 +1,68 @@
 <!DOCTYPE html>
-<html lang="Pt-br">
+<html lang="pt_BR">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snitap - Landing page de patins</title>
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snitap Patins</title>
+    <link rel="stylesheet" href="styles/index.css" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Montserrat:ital,wght@0,500;1,500&family=Syne:wght@700&display=swap"
+        rel="stylesheet" />
 </head>
 
 <body>
-    <header class="nav-header">
-        <nav class="flex align-itens space-between px-base">
-            <a href="#" id="logo">
-                <img src="Assets/icons/Logo.svg" alt="">
-            </a>
-            <a href="#">
-                <div id="nav-shopping" class="flex">
-                    <img id="nav-cart" src="Assets/icons/shopping-bag.svg" alt="">
-                    <span class="flex">1</span>
-                </div>
-            </a>
-        </nav>
+    <header class="top">
+        <a href="#" id="logo">
+            <img src="assets/logo.svg" alt="" />
+        </a>
+        <a href="#" id="shopping">
+            <img src="assets/icons/shopping-bag.svg" alt="" />
+            <span>1</span>
+        </a>
     </header>
 
-    <section id="hero-section" class="px-base flex gap-xl">
-
-        <section id="hero-img" class="flex">
-            <img src="Assets/hero/Ellipse.svg" alt="" id="hero-ellipse">
-            <img src="Assets/hero/patins-image.png" alt="" id="hero-patins">
-            <img src="Assets/hero/Stars 1.svg" alt="" id="hero-stars-one">
-            <img src="Assets/hero/Stars 2.svg" alt="" id="hero-stars-two">
-        </section>
-
-        <section class="flex gap-xxl " id="hero-content">
-            <h1>Snitap, sua vida mais
-                <div class="flex">
+    <section class="hero">
+        <div id="hero-content">
+            <h1>
+                Snitap, sua vida mais
+                <div>
                     <span>radical</span>
                     <span>divertida</span>
-                    <span>saudavel</span>
+                    <span>saudável</span>
                     <span>radical</span>
-
                 </div>
             </h1>
 
-            <div class="flex gap-lg" id="content-buttons">
-                <div id="hero-buttons" class="flex align-itens gap-base">
-                    <a href="#">
-                        <div class="flex"><img src="Assets/icons/play.svg" alt=""></div>
-                    </a>
-                    <a href="#photo-gallery">
-                        <span>VEJA EM AÇÃO</span>
-                    </a>
-                </div>
-                <button type="button" class="flex align-itens gap-xsm">
-                    <img src="Assets/icons/shopping-bag.svg" alt="">
-                    COMPRAR AGORA</button>
+            <div class="buttons">
+                <a href="#" class="button buy shadow">
+                    <img src="assets/icons/shopping-bag.svg" alt="" />
+                    COMPRAR AGORA
+                </a>
+
+                <a href="#" class="button play">
+                    <span class="shadow">
+                        <img src="assets/icons/play.svg" alt="" />
+                    </span>
+                    VEJA EM AÇÃO
+                </a>
             </div>
-        </section>
+        </div>
+
+        <div id="hero-images">
+            <div class="hero-content">
+                <img src="assets/hero/ellipse.svg" alt="" />
+                <img src="assets/hero/patins-image.png" alt="" />
+                <img src="assets/hero/stars-1.svg" alt="" />
+                <img src="assets/hero/stars-2.svg" alt="" />
+            </div>
+        </div>
     </section>
 
-    <section id="belt-section">
-        <div id="rotating-belt" class="flex align-itens">
+    <section class="banner">
+        <div class="rolling">
             <div class="rotating-content">
                 Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  
             </div>
@@ -76,41 +70,76 @@
                 Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  Patins  ✦  
             </div>
         </div>
+        </div>
     </section>
 
-    <section id="photo-gallery" class="flex align-itens px-base gap-lg">
-        <header id="photo-header" class="flex align-itens gap-xsm">
-            <p>GALERIA DE FOTOS</p>
+    <section class="gallery">
+        <header>
+            <span>GALERIA DE FOTOS</span>
             <h2>#usesnitap por aí</h2>
         </header>
 
-        <section id="photo-section" class="grid gap-lg">
-            <img src="Assets/img/image 01.svg" alt="">
-            <img src="Assets/img/image 02.svg" alt="">
-            <img src="Assets/img/image 03.svg" alt="">
-            <img src="Assets/img/image 04.svg" alt="">
-        </section>
+        <div class="gallery-content">
+            <figure>
+                <img src="assets/images/01.png" alt="" />
+                <figcaption>
+                    <img src="assets/images/person.png" alt="" />
+                    <span>@laviniapereira</span>
+                </figcaption>
+            </figure>
+
+            <figure data-delay>
+                <img src="assets/images/02.png" alt="" />
+                <figcaption>
+                    <img src="assets/images/person.png" alt="" />
+                    <span>@lucasantos</span>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <img src="assets/images/03.png" alt="" />
+                <figcaption>
+                    <img src="assets/images/person.png" alt="" />
+                    <span>@theresacomt</span>
+                </figcaption>
+            </figure>
+
+            <figure data-delay>
+                <img src="assets/images/04.png" alt="" />
+                <figcaption>
+                    <img src="assets/images/person.png" alt="" />
+                    <span>@carolzinha__</span>
+                </figcaption>
+            </figure>
+        </div>
     </section>
 
-    <footer id="footer-section" class="flex px-base gap-xxl">
-        <div id="footer-logo" class="flex gap-xsm align-itens">
-            <img src="Assets/icons/Logo.svg" alt="">
-            <h2>Snitap</h2>
+    <footer>
+        <div class="logo">
+            <img src="assets/logo.svg" alt="" />
+            <span>Snitap</span>
         </div>
 
-        <div id="footer-info" class="flex gap-lg">
+        <nav>
             <a href="#">Sobre</a>
             <a href="#">Nossas lojas</a>
             <a href="#">Política de privacidade</a>
-        </div>
+        </nav>
 
-        <div id="footer-socials" class="flex gap-base">
-            <a href="#"><img src="Assets/icons/instagram.svg" alt=""></a>
-            <a href="#"><img src="Assets/icons/facebook.svg" alt=""></a>
-            <a href="#"><img src="Assets/icons/youtube.svg" alt=""></a>
-            <a href="#"><img src="Assets/icons/tiktok.svg" alt=""></a>
+        <div class="social-links">
+            <a href="#" title="instagram">
+                <img src="assets/icons/instagram.svg" alt="" />
+            </a>
+            <a href="#" title="facebook">
+                <img src="assets/icons/facebook.svg" alt="" />
+            </a>
+            <a href="#" title="youtube">
+                <img src="assets/icons/youtube.svg" alt="" />
+            </a>
+            <a href="#" title="tiktok">
+                <img src="assets/icons/tiktok.svg" alt="" />
+            </a>
         </div>
-
     </footer>
 </body>
 

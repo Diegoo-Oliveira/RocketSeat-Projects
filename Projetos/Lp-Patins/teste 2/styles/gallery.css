@@ -1,7 +1,7 @@
 .gallery {
     padding: 1.5rem;
     display: grid;
-    gap: 24px;
+    gap: 1.5rem;
 
     & header {
         display: flex;
@@ -23,22 +23,35 @@
 
         & figure {
             position: relative;
+            overflow: hidden;
+            width: 19.5rem;
+            height: 19.5rem;
+            border-radius: 24px;
 
-            & img {
+            &>img {
                 width: 19.5rem;
                 height: 19.5rem;
                 object-fit: cover;
+                transition: transform 0.5s;
             }
 
             & figcaption {
                 display: flex;
                 align-items: center;
+                justify-content: flex-end;
                 gap: 0.5rem;
                 position: absolute;
-                left: 16px;
-                bottom: 16px;
+                bottom: -60px;
+                width: 100%;
 
-                & img {
+                padding: 1.5rem 2rem;
+
+                color: white;
+
+                transition: transform 0.5s;
+                background: linear-gradient(360deg, rgba(0, 0, 0, 0.500), rgba(0, 0, 0, 0));
+
+                &>img {
                     width: 2rem;
                     height: 2rem;
                     object-fit: cover;
@@ -49,9 +62,90 @@
                 }
             }
         }
+
+        & figure:hover img {
+            transform: scale(1.1);
+        }
+
+        & figure:hover figcaption {
+            transform: translateY(-54px);
+        }
     }
 }
 
 @media (min-width:1024px) {
-    
+    .gallery {
+
+        padding: 2.5rem 2rem 2rem;
+        gap: 2rem;
+
+        & .gallery-content {
+            gap: 2rem;
+            grid-template-areas:
+                "a b b"
+                "c c d";
+
+            & figure {
+                animation: image-appear linear backwards;
+                animation-timeline: view();
+                animation-range: 100px 300px;
+
+                &[data-delay] {
+                    animation-range: 150px 350px;
+                }
+            }
+
+            & figure:nth-child(1) {
+                grid-area: a;
+                width: 30.5rem;
+                height: 25rem;
+
+                &>img {
+                    width: 30.5rem;
+                    height: 25rem;
+                }
+            }
+
+            & figure:nth-child(2) {
+                grid-area: b;
+                width: 43.5rem;
+                height: 25rem;
+
+                &>img {
+                    width: 43.5rem;
+                    height: 25rem;
+                }
+            }
+
+            & figure:nth-child(3) {
+                grid-area: c;
+                width: 43.5rem;
+                height: 25rem;
+
+                &>img {
+                    width: 43.5rem;
+                    height: 25rem;
+                }
+            }
+
+            & figure:nth-child(4) {
+                grid-area: d;
+                width: 30.5rem;
+                height: 25rem;
+
+                &>img {
+                    width: 30.5rem;
+                    height: 25rem;
+                }
+            }
+
+        }
+    }
+}
+
+@keyframes image-appear {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
 }

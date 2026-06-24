@@ -93,30 +93,30 @@
             width: 19.5rem;
             height: 19.5rem;
 
-            & img:nth-child(1) {
+            & img[src*='ellipse'] {
                 width: 18.5rem;
                 height: 18.5rem;
                 position: absolute;
                 z-index: 0;
             }
 
-            & img:nth-child(2) {
+            & img[src*='patins-image'] {
                 width: 19.5rem;
                 height: 18.5rem;
                 position: absolute;
-                z-index: 1;
+                z-index: 2;
             }
 
-            & img:nth-child(3) {
+            & img[src*='stars-1'] {
                 width: 3.5rem;
                 height: 2.875rem;
                 position: absolute;
-                z-index: 2;
+                z-index: 1;
                 left: 5px;
                 top: 30%;
             }
 
-            & img:nth-child(4) {
+            & img[src*='stars-2'] {
                 width: 1.625rem;
                 height: 2.375rem;
                 position: absolute;
@@ -125,6 +125,32 @@
                 top: 53%;
             }
         }
+    }
+}
+
+@keyframes slideUp {
+
+    0%,
+    20% {
+        transform: translateY(0);
+    }
+
+    /* "radical"   visivel */
+    25%,
+    45% {
+        transform: translateY(-100%);
+    }
+
+    /* "divertida" visivel */
+    50%,
+    70% {
+        transform: translateY(-200%);
+    }
+
+    /* "saudavel"  visivel */
+    75%,
+    100% {
+        transform: translateY(-300%);
     }
 }
 
@@ -139,10 +165,11 @@
         gap: 2rem;
         align-items: center;
 
+        overflow: hidden;
 
         & #hero-content {
             order: 1;
-            width: auto;
+            width: 100%;
 
             & h1 div {
                 height: 5rem;
@@ -171,26 +198,45 @@
                 width: 30.5rem;
                 height: 30.5rem;
 
-                & img:nth-child(1) {
+                & img[src*='ellipse'] {
                     width: 28.875rem;
                     height: 28.875rem;
+                    transform: translateX(200%);
+                    animation: slideIn 3s 200ms ease forwards;
                 }
 
-                & img:nth-child(2) {
+                & img[src*='patins-image'] {
                     width: 30.5rem;
                     height: 28.875rem;
+                    transform: translateX(200%);
+                    animation: slideIn 3s 200ms ease forwards;
                 }
 
-                & img:nth-child(3) {
+                & img[src*='stars-1'] {
                     width: 5.5rem;
                     height: 4.5rem;
+                    transform: translateX(700%);
+                    animation: slideIn 2s 800ms ease forwards, appear 100ms 800ms forwards;
                 }
 
-                & img:nth-child(4) {
+                & img[src*='stars-2'] {
                     width: 2.5rem;
                     height: 3.75rem;
+                    transform: translateX(400%);
+                    animation: slideIn 2.2s 800ms ease forwards;
                 }
             }
         }
+    }
+}
+
+
+@keyframes slideIn {
+    50% {
+        transform: translateX(-20px);
+    }
+
+    100% {
+        transform: translateX(0);
     }
 }

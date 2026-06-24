@@ -1,0 +1,99 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 1.5rem 1.5rem;
+    justify-content: space-between;
+    gap: 3rem;
+
+
+    & .logo {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        & img {
+            width: 2rem;
+            height: 2rem;
+            transition: transform 0.5s;
+
+            &:hover {
+                transform: rotate(90deg);
+            }
+        }
+
+        & span {
+            font: 700 1.25rem/130% var(--ff1);
+        }
+
+    }
+
+    & nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        font: 500 1rem/150% var(--ff2);
+
+        & a {
+            position: relative;
+            width: fit-content;
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: 2px;
+                width: 90%;
+                background-color: var(--snitap-sky-mid);
+                transform: scaleX(0);
+                opacity: 0;
+                transition: transform 0.2s linear;
+                bottom: 0;
+                left: 5%;
+                transform-origin: center;
+            }
+
+            &:hover::before {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+        }
+    }
+
+    & .social-links {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        & a {
+            transition: transform 0.5s;
+            position: relative;
+            z-index: 1;
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: var(--snitap-sun);
+                border-radius: 50%;
+                z-index: -1;
+
+                transform: scale(0);
+                transition: transform 0.4s;
+            }
+
+            &:hover::before {
+                transform: scale(1);
+            }
+        }
+
+        & img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+}

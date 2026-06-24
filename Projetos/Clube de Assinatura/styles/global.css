@@ -40,3 +40,13 @@
     --Title-xs: 700 1rem/auto var(--ff-base);
 
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+ul[role="list"] {
+    list-style: none;
+}

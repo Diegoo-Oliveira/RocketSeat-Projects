@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variaveis e constantes | JavaScript Basico</title>
+  <link rel="stylesheet" href="../../../../index.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <main class="container">
+    <header class="header lesson-intro">
+      <h1 class="welcome-text">Variaveis e constantes</h1>
+      <p class="subtitle">Variaveis sao nomes que guardam valores para o programa usar depois. Neste modulo, voce aprende como declarar, nomear e entender o alcance desses valores.</p>
+      <div class="module-meta">
+        <span class="module-pill">Modulo 02</span>
+        <span class="module-pill">16 aulas</span>
+        <span class="module-pill">Fundamentos da linguagem</span>
+      </div>
+    </header>
+
+    <div class="action-row" style="margin-top: 0; margin-bottom: 3rem; justify-content: flex-start;">
+      <a href="../index.html" class="btn btn-outline">Voltar para JavaScript Basico</a>
+    </div>
+
+    <section class="lesson-layout">
+      <aside class="lesson-panel">
+        <h2>Neste modulo</h2>
+        <ul class="topic-list">
+          <li><a href="#variaveis">O que sao variaveis?</a></li>
+          <li><a href="#var">Var</a></li>
+          <li><a href="#case-sensitive">Case Sensitive</a></li>
+          <li><a href="#let">Let</a></li>
+          <li><a href="#const">Const</a></li>
+          <li><a href="#escopos">Compreendendo escopos</a></li>
+          <li><a href="#hoisting">Hoisting</a></li>
+          <li><a href="#scope">Scope</a></li>
+          <li><a href="#nomes">Nomes para variaveis</a></li>
+          <li><a href="#tipos">Tipos de Dados</a></li>
+          <li><a href="#string">String</a></li>
+          <li><a href="#template-literals">Template Literals</a></li>
+          <li><a href="#number">Number</a></li>
+          <li><a href="#boolean">Boolean</a></li>
+          <li><a href="#undefined-null">Undefined e Null</a></li>
+          <li><a href="#conversao-coercao">Conversao e Coercao de Tipos</a></li>
+        </ul>
+      </aside>
+
+      <div class="topic-stack">
+        <article id="variaveis" class="topic-card">
+          <h3>O que sao variaveis?</h3>
+          <p>Uma variavel e um nome que aponta para um valor. Pense nela como uma etiqueta em uma caixa: a etiqueta ajuda voce a encontrar o valor depois.</p>
+          <pre class="code"><code>let nome = "Ana";
+let idade = 20;</code></pre>
+          <p class="note">Use variaveis quando um dado precisa ser lembrado, comparado, exibido ou transformado.</p>
+        </article>
+
+        <article id="var" class="topic-card">
+          <h3>Var</h3>
+          <p><code>var</code> declara uma variavel com escopo de funcao ou global. Ela aparece muito em codigos antigos, mas hoje costuma ser substituida por <code>let</code> e <code>const</code>.</p>
+          <pre class="code"><code>var mensagem = "Ola";
+console.log(mensagem);</code></pre>
+          <p class="note">Em estudos modernos, aprenda <code>var</code> para ler codigos existentes, mas prefira <code>let</code> e <code>const</code> nos seus novos codigos.</p>
+        </article>
+
+        <article id="case-sensitive" class="topic-card">
+          <h3>Case Sensitive</h3>
+          <p>JavaScript diferencia letras maiusculas e minusculas. Isso significa que <code>nome</code>, <code>Nome</code> e <code>NOME</code> sao identificadores diferentes.</p>
+          <pre class="code"><code>let nome = "Ana";
+let Nome = "Bruno";
+
+console.log(nome); // Ana
+console.log(Nome); // Bruno</code></pre>
+        </article>
+
+        <article id="let" class="topic-card">
+          <h3>Let</h3>
+          <p><code>let</code> declara uma variavel que pode receber outro valor depois. Ela respeita o bloco onde foi criada.</p>
+          <pre class="code"><code>let contador = 1;
+contador = contador + 1;
+
+console.log(contador); // 2</code></pre>
+          <p class="note">Use <code>let</code> quando o valor realmente precisa mudar durante a execucao.</p>
+        </article>
+
+        <article id="const" class="topic-card">
+          <h3>Const</h3>
+          <p><code>const</code> declara uma constante: o identificador nao pode ser reatribuido. Isso deixa claro que aquele nome deve continuar apontando para o mesmo valor.</p>
+          <pre class="code"><code>const linguagem = "JavaScript";
+
+// linguagem = "CSS"; // gera erro</code></pre>
+          <p class="note">Quando estiver em duvida, comece com <code>const</code>. Troque para <code>let</code> apenas se precisar reatribuir.</p>
+        </article>
+
+        <article id="escopos" class="topic-card">
+          <h3>Compreendendo escopos</h3>
+          <p>Escopo e a area onde uma variavel existe e pode ser acessada. Um bloco entre chaves cria um limite importante para <code>let</code> e <code>const</code>.</p>
+          <pre class="code"><code>if (true) {
+  const status = "ativo";
+  console.log(status);
+}
+
+// console.log(status); // fora do escopo</code></pre>
+        </article>
+
+        <article id="hoisting" class="topic-card">
+          <h3>Hoisting</h3>
+          <p>Hoisting e o comportamento em que algumas declaracoes parecem ser conhecidas antes da linha onde foram escritas. Com <code>var</code>, a declaracao e elevada, mas o valor nao.</p>
+          <pre class="code"><code>console.log(pontos); // undefined
+var pontos = 10;</code></pre>
+          <p class="note">Esse comportamento e uma das razoes para preferir <code>let</code> e <code>const</code>, que tornam erros de acesso antecipado mais evidentes.</p>
+        </article>
+
+        <article id="scope" class="topic-card">
+          <h3>Scope</h3>
+          <p><em>Scope</em> e simplesmente a palavra em ingles para escopo. Em JavaScript, voce vai encontrar termos como <strong>global scope</strong>, <strong>function scope</strong> e <strong>block scope</strong>.</p>
+          <pre class="code"><code>const global = "fora";
+
+function exemplo() {
+  const local = "dentro";
+}</code></pre>
+        </article>
+
+        <article id="nomes" class="topic-card">
+          <h3>Nomes para variaveis</h3>
+          <p>Um bom nome explica o papel do valor. Prefira nomes claros como <code>totalDoPedido</code> em vez de letras soltas como <code>x</code>.</p>
+          <pre class="code"><code>const precoProduto = 49.9;
+const quantidade = 2;
+const total = precoProduto * quantidade;</code></pre>
+        </article>
+
+        <article id="tipos" class="topic-card">
+          <h3>Tipos de Dados</h3>
+          <p>Tipo de dado e a categoria do valor. JavaScript possui tipos como string, number, boolean, undefined, null, object, symbol e bigint.</p>
+          <pre class="code"><code>typeof "texto"; // "string"
+typeof 42;      // "number"
+typeof true;    // "boolean"</code></pre>
+        </article>
+
+        <article id="string" class="topic-card">
+          <h3>String</h3>
+          <p>String e texto. Pode ser escrita com aspas duplas, aspas simples ou crases.</p>
+          <pre class="code"><code>const curso = "JavaScript";
+const saudacao = 'Ola';</code></pre>
+        </article>
+
+        <article id="template-literals" class="topic-card">
+          <h3>Template Literals</h3>
+          <p>Template literals usam crases e permitem encaixar valores dentro do texto com <code>${...}</code>.</p>
+          <pre class="code"><code>const nome = "Ana";
+const mensagem = `Ola, ${nome}!`;
+
+console.log(mensagem);</code></pre>
+        </article>
+
+        <article id="number" class="topic-card">
+          <h3>Number</h3>
+          <p><code>number</code> representa numeros inteiros e decimais. Ele e usado em contas, comparacoes e medidas.</p>
+          <pre class="code"><code>const preco = 19.9;
+const desconto = 5;
+const final = preco - desconto;</code></pre>
+        </article>
+
+        <article id="boolean" class="topic-card">
+          <h3>Boolean</h3>
+          <p>Boolean representa apenas dois estados: <code>true</code> ou <code>false</code>. E muito usado em decisoes.</p>
+          <pre class="code"><code>const usuarioLogado = true;
+
+if (usuarioLogado) {
+  console.log("Mostrar perfil");
+}</code></pre>
+        </article>
+
+        <article id="undefined-null" class="topic-card">
+          <h3>Undefined e Null</h3>
+          <p><code>undefined</code> aparece quando um valor ainda nao foi definido. <code>null</code> costuma ser usado quando voce quer marcar intencionalmente a ausencia de valor.</p>
+          <pre class="code"><code>let resposta;
+const usuario = null;</code></pre>
+        </article>
+
+        <article id="conversao-coercao" class="topic-card">
+          <h3>Conversao e Coercao de Tipos</h3>
+          <p>Conversao e quando voce transforma um tipo de forma explicita. Coercao e quando o JavaScript tenta transformar automaticamente durante uma operacao.</p>
+          <pre class="code"><code>Number("10"); // conversao explicita
+"10" + 2;     // "102", coercao para texto
+"10" - 2;     // 8, coercao para numero</code></pre>
+          <p class="note">Quando estiver aprendendo, prefira conversoes explicitas para deixar a intencao clara.</p>
+        </article>
+
+        <article class="lesson-panel">
+          <h2>Fontes oficiais para revisar</h2>
+          <div class="source-links">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types" target="_blank">MDN: Grammar and types</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let" target="_blank">MDN: let</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const" target="_blank">MDN: const</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting" target="_blank">MDN: Hoisting</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

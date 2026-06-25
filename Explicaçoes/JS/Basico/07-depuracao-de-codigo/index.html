@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depuracao de codigo | JavaScript Basico</title>
+  <link rel="stylesheet" href="../../../../index.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <main class="container">
+    <header class="header lesson-intro">
+      <h1 class="welcome-text">Depuracao de codigo</h1>
+      <p class="subtitle">Depurar e investigar o codigo com calma para entender onde ele para, onde muda de valor ou onde faz algo diferente do esperado.</p>
+      <div class="module-meta">
+        <span class="module-pill">Modulo 07</span>
+        <span class="module-pill">2 aulas</span>
+        <span class="module-pill">Investigacao de erros</span>
+      </div>
+    </header>
+
+    <div class="action-row" style="margin-top: 0; margin-bottom: 3rem; justify-content: flex-start;">
+      <a href="../index.html" class="btn btn-outline">Voltar para JavaScript Basico</a>
+    </div>
+
+    <section class="lesson-layout">
+      <aside class="lesson-panel">
+        <h2>Neste modulo</h2>
+        <ul class="topic-list">
+          <li><a href="#o-que-e">O que e depurar o codigo?</a></li>
+          <li><a href="#depurando">Depurando o codigo</a></li>
+        </ul>
+      </aside>
+
+      <div class="topic-stack">
+        <article id="o-que-e" class="topic-card">
+          <h3>O que e depurar o codigo?</h3>
+          <p>Depurar e acompanhar o codigo como se voce estivesse vendo o passo a passo de uma receita. A ideia e descobrir qual linha cria o problema e quais valores existem naquele momento.</p>
+          <pre class="code"><code>const preco = 20;
+const quantidade = 3;
+const total = preco * quantidade;
+
+console.log(total);</code></pre>
+          <p class="note">O console e o primeiro aliado: ele mostra mensagens, erros e valores enquanto o programa roda.</p>
+        </article>
+
+        <article id="depurando" class="topic-card">
+          <h3>Depurando o codigo</h3>
+          <p>Uma forma pratica de depurar e usar <code>console.log</code>, ler a mensagem de erro e, quando precisar, pausar a execucao com <code>debugger</code> nas ferramentas do navegador.</p>
+          <pre class="code"><code>function calcularTotal(preco, quantidade) {
+  debugger;
+  return preco * quantidade;
+}
+
+const total = calcularTotal(20, 3);
+console.log(total);</code></pre>
+          <p>Quando o navegador encontra <code>debugger</code> com as DevTools abertas, ele pausa a execucao. Assim voce consegue olhar variaveis, executar linha por linha e entender o caminho do codigo.</p>
+          <p class="note">Depuracao nao e adivinhar. E observar: qual erro apareceu, em que linha, qual valor era esperado e qual valor apareceu.</p>
+        </article>
+
+        <article class="lesson-panel">
+          <h2>Checklist rapido</h2>
+          <ul>
+            <li>Leia a mensagem de erro completa.</li>
+            <li>Veja o arquivo e a linha indicados pelo navegador.</li>
+            <li>Teste valores importantes com <code>console.log</code>.</li>
+            <li>Use <code>debugger</code> quando precisar ver a execucao passo a passo.</li>
+            <li>Corrija uma coisa por vez e teste novamente.</li>
+          </ul>
+        </article>
+
+        <article class="lesson-panel">
+          <h2>Fontes oficiais para revisar</h2>
+          <div class="source-links">
+            <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Debugging_JavaScript" target="_blank">MDN: Debugging JavaScript</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger" target="_blank">MDN: debugger</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

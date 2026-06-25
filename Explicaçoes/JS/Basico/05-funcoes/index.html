@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funcoes | JavaScript Basico</title>
+  <link rel="stylesheet" href="../../../../index.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <main class="container">
+    <header class="header lesson-intro">
+      <h1 class="welcome-text">Funcoes</h1>
+      <p class="subtitle">Funcoes agrupam instrucoes com um nome. Elas ajudam voce a reutilizar comportamento e dividir o programa em partes menores.</p>
+      <div class="module-meta">
+        <span class="module-pill">Modulo 05</span>
+        <span class="module-pill">9 aulas</span>
+        <span class="module-pill">Reutilizacao de codigo</span>
+      </div>
+    </header>
+
+    <div class="action-row" style="margin-top: 0; margin-bottom: 3rem; justify-content: flex-start;">
+      <a href="../index.html" class="btn btn-outline">Voltar para JavaScript Basico</a>
+    </div>
+
+    <section class="lesson-layout">
+      <aside class="lesson-panel">
+        <h2>Neste modulo</h2>
+        <ul class="topic-list">
+          <li><a href="#o-que-sao">O que sao funcoes?</a></li>
+          <li><a href="#primeira">Primeira funcao</a></li>
+          <li><a href="#argumentos">Argumentos e Parametros</a></li>
+          <li><a href="#retorno">Retornando valores</a></li>
+          <li><a href="#escopo">Escopo de Funcao</a></li>
+          <li><a href="#documentacao">Comentario de Documentacao</a></li>
+          <li><a href="#anonima">Funcao Anonima</a></li>
+          <li><a href="#arrow">Arrow Function</a></li>
+          <li><a href="#callback">Callback Function</a></li>
+        </ul>
+      </aside>
+
+      <div class="topic-stack">
+        <article id="o-que-sao" class="topic-card">
+          <h3>O que sao funcoes?</h3>
+          <p>Uma funcao e um bloco de codigo preparado para executar uma tarefa. Ela pode receber dados, processar esses dados e devolver um resultado.</p>
+          <pre class="code"><code>function mostrarMensagem() {
+  console.log("Ola!");
+}</code></pre>
+        </article>
+
+        <article id="primeira" class="topic-card">
+          <h3>Primeira funcao</h3>
+          <p>Declarar uma funcao cria a receita. Chamar a funcao executa a receita.</p>
+          <pre class="code"><code>function saudacao() {
+  console.log("Bem-vindo ao JavaScript");
+}
+
+saudacao();</code></pre>
+        </article>
+
+        <article id="argumentos" class="topic-card">
+          <h3>Argumentos e Parametros</h3>
+          <p>Parametro e o nome usado dentro da funcao. Argumento e o valor real enviado na chamada.</p>
+          <pre class="code"><code>function cumprimentar(nome) {
+  console.log(`Ola, ${nome}`);
+}
+
+cumprimentar("Ana");</code></pre>
+          <p class="note"><code>nome</code> e parametro. <code>"Ana"</code> e argumento.</p>
+        </article>
+
+        <article id="retorno" class="topic-card">
+          <h3>Retornando valores</h3>
+          <p><code>return</code> devolve um valor para quem chamou a funcao. Depois do <code>return</code>, a funcao termina.</p>
+          <pre class="code"><code>function somar(a, b) {
+  return a + b;
+}
+
+const total = somar(2, 3);</code></pre>
+        </article>
+
+        <article id="escopo" class="topic-card">
+          <h3>Escopo de Funcao</h3>
+          <p>Valores criados dentro de uma funcao ficam protegidos ali dentro, a menos que sejam retornados ou passados para fora.</p>
+          <pre class="code"><code>function criarMensagem() {
+  const texto = "Oi";
+  return texto;
+}
+
+console.log(criarMensagem());</code></pre>
+        </article>
+
+        <article id="documentacao" class="topic-card">
+          <h3>Comentario de Documentacao</h3>
+          <p>Comentarios de documentacao explicam o objetivo da funcao, seus parametros e retorno. Eles ajudam na leitura do codigo.</p>
+          <pre class="code"><code>/**
+ * Calcula o dobro de um numero.
+ * @param {number} valor
+ * @returns {number}
+ */
+function dobrar(valor) {
+  return valor * 2;
+}</code></pre>
+        </article>
+
+        <article id="anonima" class="topic-card">
+          <h3>Funcao Anonima</h3>
+          <p>Uma funcao anonima nao tem nome proprio. Ela costuma ser guardada em uma variavel ou passada como argumento.</p>
+          <pre class="code"><code>const mostrar = function () {
+  console.log("Executando");
+};
+
+mostrar();</code></pre>
+        </article>
+
+        <article id="arrow" class="topic-card">
+          <h3>Arrow Function</h3>
+          <p>Arrow function e uma sintaxe mais curta para criar funcoes. Ela e muito comum em JavaScript moderno.</p>
+          <pre class="code"><code>const somar = (a, b) =&gt; {
+  return a + b;
+};</code></pre>
+          <p class="note">Quando a funcao tem apenas uma expressao, o retorno pode ficar implicito.</p>
+        </article>
+
+        <article id="callback" class="topic-card">
+          <h3>Callback Function</h3>
+          <p>Callback e uma funcao passada para outra funcao. A funcao principal decide quando chamar esse comportamento.</p>
+          <pre class="code"><code>function executarDepois(callback) {
+  callback();
+}
+
+executarDepois(function () {
+  console.log("Callback executado");
+});</code></pre>
+        </article>
+
+        <article class="lesson-panel">
+          <h2>Fontes oficiais para revisar</h2>
+          <div class="source-links">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions" target="_blank">MDN: Functions</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank">MDN: Arrow functions</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

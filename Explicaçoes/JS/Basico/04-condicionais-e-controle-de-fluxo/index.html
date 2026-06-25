@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Condicionais e controle de fluxo | JavaScript Basico</title>
+  <link rel="stylesheet" href="../../../../index.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <main class="container">
+    <header class="header lesson-intro">
+      <h1 class="welcome-text">Condicionais e controle de fluxo</h1>
+      <p class="subtitle">Controle de fluxo e a ordem em que o codigo roda. Condicionais permitem que o programa escolha caminhos diferentes.</p>
+      <div class="module-meta">
+        <span class="module-pill">Modulo 04</span>
+        <span class="module-pill">9 aulas</span>
+        <span class="module-pill">Decisoes no codigo</span>
+      </div>
+    </header>
+
+    <div class="action-row" style="margin-top: 0; margin-bottom: 3rem; justify-content: flex-start;">
+      <a href="../index.html" class="btn btn-outline">Voltar para JavaScript Basico</a>
+    </div>
+
+    <section class="lesson-layout">
+      <aside class="lesson-panel">
+        <h2>Neste modulo</h2>
+        <ul class="topic-list">
+          <li><a href="#condicionais">Condicionais</a></li>
+          <li><a href="#ternario">Operador Condicional Ternario</a></li>
+          <li><a href="#truthy-falsy">Falsy e Truthy</a></li>
+          <li><a href="#if">If</a></li>
+          <li><a href="#if-else">If Else</a></li>
+          <li><a href="#else-if">Else if</a></li>
+          <li><a href="#switch">Switch</a></li>
+          <li><a href="#excecoes">Tratamento de Excecoes</a></li>
+          <li><a href="#try-catch-finally">Try / Catch / Finally</a></li>
+        </ul>
+      </aside>
+
+      <div class="topic-stack">
+        <article id="condicionais" class="topic-card">
+          <h3>Condicionais</h3>
+          <p>Condicionais fazem o codigo tomar decisoes. Se uma condicao for verdadeira, um bloco roda; se nao for, outro caminho pode acontecer.</p>
+          <pre class="code"><code>const idade = 18;
+
+if (idade >= 18) {
+  console.log("Maior de idade");
+}</code></pre>
+        </article>
+
+        <article id="ternario" class="topic-card">
+          <h3>Operador Condicional Ternario</h3>
+          <p>O ternario e uma forma curta de escolher entre dois valores. Ele tem tres partes: condicao, valor se verdadeiro e valor se falso.</p>
+          <pre class="code"><code>const idade = 17;
+const mensagem = idade >= 18 ? "Pode entrar" : "Nao pode entrar";</code></pre>
+          <p class="note">Use ternario para escolhas simples. Para regras longas, prefira <code>if</code> e <code>else</code>.</p>
+        </article>
+
+        <article id="truthy-falsy" class="topic-card">
+          <h3>Falsy e Truthy</h3>
+          <p>Em contextos de decisao, JavaScript converte valores para booleanos. Valores como <code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code> e <code>NaN</code> sao falsy. Muitos outros valores sao truthy.</p>
+          <pre class="code"><code>const nome = "";
+
+if (nome) {
+  console.log("Tem nome");
+} else {
+  console.log("Nome vazio");
+}</code></pre>
+        </article>
+
+        <article id="if" class="topic-card">
+          <h3>If</h3>
+          <p><code>if</code> executa um bloco somente quando a condicao e verdadeira.</p>
+          <pre class="code"><code>const saldo = 100;
+
+if (saldo > 0) {
+  console.log("Saldo disponivel");
+}</code></pre>
+        </article>
+
+        <article id="if-else" class="topic-card">
+          <h3>If Else</h3>
+          <p><code>else</code> define o caminho alternativo quando o <code>if</code> nao passa.</p>
+          <pre class="code"><code>const aprovado = false;
+
+if (aprovado) {
+  console.log("Parabens");
+} else {
+  console.log("Tente novamente");
+}</code></pre>
+        </article>
+
+        <article id="else-if" class="topic-card">
+          <h3>Else if</h3>
+          <p><code>else if</code> permite testar mais de uma possibilidade em sequencia.</p>
+          <pre class="code"><code>const nota = 7;
+
+if (nota >= 9) {
+  console.log("Excelente");
+} else if (nota >= 6) {
+  console.log("Aprovado");
+} else {
+  console.log("Revisar conteudo");
+}</code></pre>
+        </article>
+
+        <article id="switch" class="topic-card">
+          <h3>Switch</h3>
+          <p><code>switch</code> compara um valor com varias possibilidades. Ele ajuda quando voce tem muitos casos para o mesmo dado.</p>
+          <pre class="code"><code>const dia = "segunda";
+
+switch (dia) {
+  case "segunda":
+    console.log("Comeco da semana");
+    break;
+  default:
+    console.log("Outro dia");
+}</code></pre>
+          <p class="note">O <code>break</code> evita que o codigo continue executando os proximos casos.</p>
+        </article>
+
+        <article id="excecoes" class="topic-card">
+          <h3>Tratamento de Excecoes</h3>
+          <p>Excecoes sao erros que podem interromper a execucao. Tratar excecoes significa preparar uma resposta para quando algo falha.</p>
+          <pre class="code"><code>throw new Error("Algo deu errado");</code></pre>
+        </article>
+
+        <article id="try-catch-finally" class="topic-card">
+          <h3>Try / Catch / Finally</h3>
+          <p><code>try</code> envolve o codigo que pode falhar. <code>catch</code> recebe o erro. <code>finally</code> roda no final, tendo erro ou nao.</p>
+          <pre class="code"><code>try {
+  JSON.parse("{ nome: Ana }");
+} catch (erro) {
+  console.log("JSON invalido");
+} finally {
+  console.log("Tentativa finalizada");
+}</code></pre>
+        </article>
+
+        <article class="lesson-panel">
+          <h2>Fontes oficiais para revisar</h2>
+          <div class="source-links">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling" target="_blank">MDN: Control flow and error handling</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Glossary/Control_flow" target="_blank">MDN: Control flow</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank">MDN: try...catch</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,2 +1,46 @@
-# Local installers and large binary downloads
-*.exe
+# Ignorar dependências e pastas de pacotes
+/node_modules/
+/vendor/
+/jspm_packages/
+
+# Ignorar pastas de builds, binários e arquivos compilados
+/build/
+/dist/
+/out/
+/bin/
+/obj/
+*.pyc
+*.pyo
+*.pyd
+*.class
+
+# Ignorar variáveis de ambiente e arquivos de configuração com dados sensíveis
+.env
+.env.local
+.env.*.local
+config.json
+secret.key
+
+# Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Ignorar pastas de IDEs e editores (VS Code, JetBrains, Eclipse, etc.)
+.vscode/
+.idea/
+*.sublime-workspace
+*.suo
+*.njsproj
+*.lps
+*.pyproj
+
+# Ignorar logs de execução
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar arquivos de banco de dados
+*.sqlite
+*.sqlite3

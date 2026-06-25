@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expressoes e operadores | JavaScript Basico</title>
+  <link rel="stylesheet" href="../../../../index.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <main class="container">
+    <header class="header lesson-intro">
+      <h1 class="welcome-text">Expressoes e operadores</h1>
+      <p class="subtitle">Expressoes produzem valores. Operadores sao simbolos ou palavras que combinam, comparam ou transformam esses valores.</p>
+      <div class="module-meta">
+        <span class="module-pill">Modulo 03</span>
+        <span class="module-pill">10 aulas</span>
+        <span class="module-pill">Calculos e comparacoes</span>
+      </div>
+    </header>
+
+    <div class="action-row" style="margin-top: 0; margin-bottom: 3rem; justify-content: flex-start;">
+      <a href="../index.html" class="btn btn-outline">Voltar para JavaScript Basico</a>
+    </div>
+
+    <section class="lesson-layout">
+      <aside class="lesson-panel">
+        <h2>Neste modulo</h2>
+        <ul class="topic-list">
+          <li><a href="#expressoes">Expressoes e Operadores</a></li>
+          <li><a href="#aritmeticos">Operadores Aritmeticos</a></li>
+          <li><a href="#incremento">Incremento e Decremento</a></li>
+          <li><a href="#precedencia">Ordem de Precedencia</a></li>
+          <li><a href="#grouping">Grouping Operator</a></li>
+          <li><a href="#igual">Igual a e Diferente de</a></li>
+          <li><a href="#estrito">Estritamente Igual e Diferente</a></li>
+          <li><a href="#maior-menor">Maior, Menor e Igual</a></li>
+          <li><a href="#atribuicao">Operadores de Atribuicao</a></li>
+          <li><a href="#logicos">Operadores Logicos</a></li>
+        </ul>
+      </aside>
+
+      <div class="topic-stack">
+        <article id="expressoes" class="topic-card">
+          <h3>Expressoes e Operadores</h3>
+          <p>Uma expressao e qualquer pedaco de codigo que resulta em um valor. O numero <code>2</code>, a conta <code>2 + 3</code> e a chamada <code>nome.toUpperCase()</code> sao expressoes.</p>
+          <pre class="code"><code>const total = 10 + 5;
+const mensagem = "Total: " + total;</code></pre>
+        </article>
+
+        <article id="aritmeticos" class="topic-card">
+          <h3>Operadores Aritmeticos</h3>
+          <p>Servem para fazer contas: soma, subtracao, multiplicacao, divisao, resto da divisao e exponenciacao.</p>
+          <pre class="code"><code>10 + 2; // 12
+10 - 2; // 8
+10 * 2; // 20
+10 / 2; // 5
+10 % 3; // 1
+2 ** 3; // 8</code></pre>
+        </article>
+
+        <article id="incremento" class="topic-card">
+          <h3>Incremento e Decremento</h3>
+          <p><code>++</code> aumenta um valor em 1. <code>--</code> diminui um valor em 1.</p>
+          <pre class="code"><code>let passos = 0;
+passos++;
+passos--;
+
+console.log(passos); // 0</code></pre>
+          <p class="note">Eles sao comuns em contadores, mas escreva com clareza quando estiver aprendendo.</p>
+        </article>
+
+        <article id="precedencia" class="topic-card">
+          <h3>Ordem de Precedencia</h3>
+          <p>Precedencia define qual operador e resolvido primeiro. Multiplicacao costuma acontecer antes da soma.</p>
+          <pre class="code"><code>const resultado = 2 + 3 * 4;
+console.log(resultado); // 14</code></pre>
+        </article>
+
+        <article id="grouping" class="topic-card">
+          <h3>Grouping Operator</h3>
+          <p>Parenteses mudam a ordem de avaliacao e deixam a intencao mais clara.</p>
+          <pre class="code"><code>const resultado = (2 + 3) * 4;
+console.log(resultado); // 20</code></pre>
+        </article>
+
+        <article id="igual" class="topic-card">
+          <h3>Igual a e Diferente de</h3>
+          <p><code>==</code> e <code>!=</code> comparam valores permitindo conversao automatica de tipo. Isso pode causar surpresas.</p>
+          <pre class="code"><code>"5" == 5;  // true
+"5" != 5;  // false</code></pre>
+        </article>
+
+        <article id="estrito" class="topic-card">
+          <h3>Estritamente Igual e Diferente</h3>
+          <p><code>===</code> e <code>!==</code> comparam valor e tipo. Na maioria dos casos, eles sao a escolha mais segura.</p>
+          <pre class="code"><code>"5" === 5; // false
+"5" !== 5; // true</code></pre>
+          <p class="note">Use comparacao estrita para evitar coercao inesperada.</p>
+        </article>
+
+        <article id="maior-menor" class="topic-card">
+          <h3>Maior, Menor e Igual</h3>
+          <p>Esses operadores comparam grandezas e retornam <code>true</code> ou <code>false</code>.</p>
+          <pre class="code"><code>10 > 5;  // true
+10 < 5;  // false
+10 >= 10; // true
+7 <= 4;  // false</code></pre>
+        </article>
+
+        <article id="atribuicao" class="topic-card">
+          <h3>Operadores de Atribuicao</h3>
+          <p>Atribuicao coloca um valor em uma variavel. Alguns atalhos fazem conta e atribuicao ao mesmo tempo.</p>
+          <pre class="code"><code>let pontos = 10;
+pontos += 5; // pontos = pontos + 5
+pontos -= 2; // pontos = pontos - 2</code></pre>
+        </article>
+
+        <article id="logicos" class="topic-card">
+          <h3>Operadores Logicos</h3>
+          <p><code>&amp;&amp;</code> significa "e", <code>||</code> significa "ou" e <code>!</code> inverte um valor booleano.</p>
+          <pre class="code"><code>const temEmail = true;
+const temSenha = true;
+
+if (temEmail &amp;&amp; temSenha) {
+  console.log("Pode entrar");
+}</code></pre>
+        </article>
+
+        <article class="lesson-panel">
+          <h2>Fontes oficiais para revisar</h2>
+          <div class="source-links">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators" target="_blank">MDN: Expressions and operators</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence" target="_blank">MDN: Operator precedence</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

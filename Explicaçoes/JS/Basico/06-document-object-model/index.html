@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Object Model | JavaScript Basico</title>
+  <link rel="stylesheet" href="../../../../index.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <main class="container">
+    <header class="header lesson-intro">
+      <h1 class="welcome-text">Document Object Model</h1>
+      <p class="subtitle">O DOM representa a pagina HTML como uma arvore de objetos. Com JavaScript, voce pode ler, alterar e reagir ao que acontece nessa arvore.</p>
+      <div class="module-meta">
+        <span class="module-pill">Modulo 06</span>
+        <span class="module-pill">15 aulas</span>
+        <span class="module-pill">Interatividade no navegador</span>
+      </div>
+    </header>
+
+    <div class="action-row" style="margin-top: 0; margin-bottom: 3rem; justify-content: flex-start;">
+      <a href="../index.html" class="btn btn-outline">Voltar para JavaScript Basico</a>
+    </div>
+
+    <section class="lesson-layout">
+      <aside class="lesson-panel">
+        <h2>Neste modulo</h2>
+        <ul class="topic-list">
+          <li><a href="#dom">DOM</a></li>
+          <li><a href="#inspecionando">Inspecionando no Navegador</a></li>
+          <li><a href="#acessando">Acessando Elementos no DOM</a></li>
+          <li><a href="#query-selector">Query Selector</a></li>
+          <li><a href="#conteudo">Manipulando Conteudo</a></li>
+          <li><a href="#estilos">Alterando Estilos</a></li>
+          <li><a href="#criando">Criando Elementos</a></li>
+          <li><a href="#atributos">Manipulando Atributos</a></li>
+          <li><a href="#eventos">Eventos</a></li>
+          <li><a href="#evento-especifico">Eventos em um elemento especifico</a></li>
+          <li><a href="#formulario">Eventos de formulario</a></li>
+          <li><a href="#input">Eventos em input</a></li>
+          <li><a href="#regex">Compreendendo Expressao Regular</a></li>
+          <li><a href="#regexr">Utilizando o Regexr</a></li>
+          <li><a href="#valor-input">Manipulando valor de input</a></li>
+        </ul>
+      </aside>
+
+      <div class="topic-stack">
+        <article id="dom" class="topic-card">
+          <h3>DOM</h3>
+          <p>DOM significa Document Object Model. Ele transforma o HTML em objetos que o JavaScript consegue acessar.</p>
+          <pre class="code"><code>document.title;
+document.body;</code></pre>
+        </article>
+
+        <article id="inspecionando" class="topic-card">
+          <h3>Inspecionando no Navegador</h3>
+          <p>O navegador possui ferramentas de desenvolvedor. Na aba Elements voce observa o HTML real; na aba Console voce testa comandos JavaScript.</p>
+          <pre class="code"><code>console.log(document.querySelector("h1"));</code></pre>
+        </article>
+
+        <article id="acessando" class="topic-card">
+          <h3>Acessando Elementos no DOM</h3>
+          <p>Antes de alterar um elemento, voce precisa encontra-lo. Isso pode ser feito por id, classe, tag ou seletor CSS.</p>
+          <pre class="code"><code>const titulo = document.getElementById("titulo");
+const itens = document.getElementsByClassName("item");</code></pre>
+        </article>
+
+        <article id="query-selector" class="topic-card">
+          <h3>Query Selector</h3>
+          <p><code>querySelector</code> busca o primeiro elemento que combina com um seletor CSS. <code>querySelectorAll</code> busca uma lista de elementos.</p>
+          <pre class="code"><code>const botao = document.querySelector(".botao");
+const cards = document.querySelectorAll(".card");</code></pre>
+        </article>
+
+        <article id="conteudo" class="topic-card">
+          <h3>Manipulando Conteudo</h3>
+          <p>Depois de selecionar um elemento, voce pode trocar o texto ou o HTML interno dele.</p>
+          <pre class="code"><code>const titulo = document.querySelector("h1");
+titulo.textContent = "Novo titulo";</code></pre>
+          <p class="note">Para texto simples, prefira <code>textContent</code>. Use <code>innerHTML</code> com cuidado.</p>
+        </article>
+
+        <article id="estilos" class="topic-card">
+          <h3>Alterando Estilos</h3>
+          <p>Voce pode alterar estilos diretamente, mas em projetos reais e comum adicionar ou remover classes CSS.</p>
+          <pre class="code"><code>const caixa = document.querySelector(".caixa");
+caixa.classList.add("ativo");
+caixa.style.color = "yellow";</code></pre>
+        </article>
+
+        <article id="criando" class="topic-card">
+          <h3>Criando Elementos</h3>
+          <p><code>createElement</code> cria um novo elemento. Depois, voce define conteudo e adiciona na pagina.</p>
+          <pre class="code"><code>const item = document.createElement("li");
+item.textContent = "Novo item";
+
+document.querySelector("ul").append(item);</code></pre>
+        </article>
+
+        <article id="atributos" class="topic-card">
+          <h3>Manipulando Atributos</h3>
+          <p>Atributos sao informacoes no HTML, como <code>src</code>, <code>href</code>, <code>alt</code> e <code>disabled</code>.</p>
+          <pre class="code"><code>const link = document.querySelector("a");
+link.setAttribute("href", "https://developer.mozilla.org");
+
+console.log(link.getAttribute("href"));</code></pre>
+        </article>
+
+        <article id="eventos" class="topic-card">
+          <h3>Eventos</h3>
+          <p>Eventos sao acontecimentos que o navegador avisa ao JavaScript, como clique, envio de formulario ou digitacao.</p>
+          <pre class="code"><code>document.addEventListener("DOMContentLoaded", function () {
+  console.log("Pagina pronta");
+});</code></pre>
+        </article>
+
+        <article id="evento-especifico" class="topic-card">
+          <h3>Eventos em um elemento especifico</h3>
+          <p>Voce pode escutar eventos em um unico elemento, como um botao.</p>
+          <pre class="code"><code>const botao = document.querySelector("button");
+
+botao.addEventListener("click", function () {
+  console.log("Clicou");
+});</code></pre>
+        </article>
+
+        <article id="formulario" class="topic-card">
+          <h3>Eventos de formulario</h3>
+          <p>O evento <code>submit</code> acontece quando um formulario e enviado. <code>preventDefault</code> impede o envio padrao quando voce precisa tratar os dados com JavaScript.</p>
+          <pre class="code"><code>const form = document.querySelector("form");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  console.log("Formulario capturado");
+});</code></pre>
+        </article>
+
+        <article id="input" class="topic-card">
+          <h3>Eventos em input</h3>
+          <p>O evento <code>input</code> acontece enquanto a pessoa digita, cola ou altera o valor do campo.</p>
+          <pre class="code"><code>const campo = document.querySelector("input");
+
+campo.addEventListener("input", function () {
+  console.log(campo.value);
+});</code></pre>
+        </article>
+
+        <article id="regex" class="topic-card">
+          <h3>Compreendendo Expressao Regular</h3>
+          <p>Expressao regular e um padrao usado para procurar, validar ou substituir partes de um texto.</p>
+          <pre class="code"><code>const padraoEmail = /@/;
+
+console.log(padraoEmail.test("ana@email.com")); // true</code></pre>
+        </article>
+
+        <article id="regexr" class="topic-card">
+          <h3>Utilizando o Regexr</h3>
+          <p>Regexr e uma ferramenta visual para testar expressoes regulares. Use como laboratorio: escreva o padrao, cole textos de teste e observe o que foi encontrado.</p>
+          <pre class="code"><code>/\\d+/ // encontra um ou mais digitos</code></pre>
+          <p class="note">Ele ajuda a estudar, mas sempre teste a expressao no JavaScript do seu projeto tambem.</p>
+        </article>
+
+        <article id="valor-input" class="topic-card">
+          <h3>Manipulando valor de input</h3>
+          <p>O valor digitado em um campo fica em <code>value</code>. Voce pode ler esse valor, validar e ate alterar.</p>
+          <pre class="code"><code>const input = document.querySelector("#nome");
+const nome = input.value.trim();
+
+input.value = nome.toUpperCase();</code></pre>
+        </article>
+
+        <article class="lesson-panel">
+          <h2>Fontes oficiais para revisar</h2>
+          <div class="source-links">
+            <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting" target="_blank">MDN: DOM scripting</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll" target="_blank">MDN: querySelectorAll</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events" target="_blank">MDN: Events</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions" target="_blank">MDN: Regular expressions</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

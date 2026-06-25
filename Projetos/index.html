@@ -1,114 +1,83 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projetos manuais | RocketSeat</title>
-    <link rel="stylesheet" href="../index.css" />
-  </head>
-  <body>
-    <div class="workspace-shell">
-      <aside class="sidebar" aria-label="Navegacao dos projetos">
-        <a class="home-button" href="../index.html">Home</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Projetos | Área de Estudos</title>
+  <meta name="description" content="Projetos desenvolvidos durante os estudos.">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+  <!-- Efeitos de Fundo Modernos -->
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
 
-        <div class="sidebar-heading">
-          <span>Projetos manuais</span>
-          <h2>Sua pratica</h2>
-          <p>Area para abrir o que voce construiu na mao antes de comparar com a referencia.</p>
-        </div>
+  <main class="container">
+    <header class="header" style="margin-bottom: 3rem;">
+      <h1 class="welcome-text">Projetos Manuais</h1>
+      <p class="subtitle">Página dedicada aos projetos práticos construídos ao longo do aprendizado.</p>
+    </header>
 
-        <nav class="side-nav" aria-label="Categorias">
-          <a href="#visao" class="active">Visao geral</a>
-          <a href="#projetos">Projetos</a>
-          <a href="#comparar">Comparar</a>
-          <a href="../Explicaçoes/index.html">Explicacoes</a>
-          <a href="../RocketSeat-Projects/index.html">Professor</a>
-        </nav>
-      </aside>
-
-      <main class="content">
-        <section class="hero" id="visao">
-          <span class="eyebrow coral">Projetos manuais</span>
-          <h1>Projetos que voce construiu</h1>
-          <p>
-            Esta pagina separa seus projetos praticos das explicacoes e das
-            referencias do professor. Abra por aqui quando quiser revisar layout,
-            estrutura de pastas, CSS e assets de cada entrega.
-          </p>
-
-          <div class="hero-actions">
-            <a class="action-button primary" href="../index.html">Voltar ao inicio</a>
-            <a class="action-button" href="../Explicaçoes/Tutorial-Projetos/index.html">Abrir tutoriais</a>
-          </div>
-        </section>
-
-        <section class="section-block" id="projetos" aria-labelledby="projects-title">
-          <div class="section-heading">
-            <span class="eyebrow small coral">Disponiveis</span>
-            <h2 id="projects-title">Abrir projeto</h2>
-            <p>Cards diretos para as paginas dos projetos que existem nesta pasta.</p>
-          </div>
-
-          <div class="hub-grid">
-            <a class="resource-card accent-coral" href="Travelgram/index.html">
-              <span class="card-label">3º Projeto</span>
-              <h3>Travelgram</h3>
-              <p>Perfil de viagens com navegacao, header, galeria de imagens e footer.</p>
-              <ul>
-                <li>layout com Flexbox</li>
-                <li>assets separados</li>
-                <li>estrutura de pagina social</li>
-              </ul>
-            </a>
-
-            <a class="resource-card accent-blue" href="TechNews/index.html">
-              <span class="card-label">4º Projeto</span>
-              <h3>TechNews</h3>
-              <p>Portal de noticias com destaques, mais lidas, conteudo principal e barra lateral.</p>
-              <ul>
-                <li>layout com Grid</li>
-                <li>cards de noticia</li>
-                <li>organizacao por secoes</li>
-              </ul>
-            </a>
-
-            <a class="resource-card accent-purple" href="PortifolioDev/index.html">
-              <span class="card-label">5º Projeto</span>
-              <h3>Portfolio Dev</h3>
-              <p>Portfolio com apresentacao, habilidades, servicos, projetos e contato.</p>
-              <ul>
-                <li>componentes visuais</li>
-                <li>secoes independentes</li>
-                <li>contato e redes</li>
-              </ul>
-            </a>
-          </div>
-        </section>
-
-        <section class="section-block" id="comparar" aria-labelledby="compare-title">
-          <div class="section-heading">
-            <span class="eyebrow small green">Fluxo recomendado</span>
-            <h2 id="compare-title">Como estudar cada projeto</h2>
-          </div>
-
-          <div class="flow-list">
-            <article class="flow-card accent-coral">
-              <strong>1. Abra sua versao</strong>
-              <span>Revise o que voce fez antes de olhar o codigo de referencia.</span>
-            </article>
-
-            <article class="flow-card accent-green">
-              <strong>2. Compare com o professor</strong>
-              <span>Procure diferencas de estrutura, nomes de classes, CSS e organizacao de assets.</span>
-            </article>
-
-            <article class="flow-card accent-blue">
-              <strong>3. Volte para as explicacoes</strong>
-              <span>Use os guias para entender o motivo das escolhas antes de refatorar.</span>
-            </article>
-          </div>
-        </section>
-      </main>
+    <div class="action-row" style="margin-top: 0; margin-bottom: 3rem; justify-content: flex-start;">
+      <a href="../index.html" class="btn btn-outline">← Voltar ao Início</a>
     </div>
-  </body>
+
+    <section class="section">
+      <div class="grid projects-grid">
+        <!-- Clube de Assinatura -->
+        <div class="glass-card project-card">
+          <div class="project-info">
+            <h3>Clube de Assinatura</h3>
+            <p>Projeto de modelo de assinaturas focado em layout fluído e responsividade.</p>
+          </div>
+          <div class="project-actions">
+            <a href="Clube de Assinatura/index.html" class="btn btn-primary">Ver Projeto <img src="../Explicaçoes/Assets/Icons/ArrowUpRight.svg" alt="Arrow"></a>
+          </div>
+        </div>
+        <!-- Lp-Patins -->
+        <div class="glass-card project-card">
+          <div class="project-info">
+            <h3>LP Patins</h3>
+            <p>Landing page focada em conversão utilizando conceitos de Flexbox e Grid Layout.</p>
+          </div>
+          <div class="project-actions">
+            <a href="Lp-Patins/index.html" class="btn btn-primary">Ver Projeto <img src="../Explicaçoes/Assets/Icons/ArrowUpRight.svg" alt="Arrow"></a>
+          </div>
+        </div>
+        <!-- PortifolioDev -->
+        <div class="glass-card project-card">
+          <div class="project-info">
+            <h3>Portifólio Dev</h3>
+            <p>Um portfólio moderno para apresentação pessoal, lista de habilidades e contato.</p>
+          </div>
+          <div class="project-actions">
+            <a href="PortifolioDev/index.html" class="btn btn-primary">Ver Projeto <img src="../Explicaçoes/Assets/Icons/ArrowUpRight.svg" alt="Arrow"></a>
+          </div>
+        </div>
+        <!-- TechNews -->
+        <div class="glass-card project-card">
+          <div class="project-info">
+            <h3>TechNews</h3>
+            <p>Portal de notícias robusto, aplicando Grid Avançado e estrutura semântica complexa.</p>
+          </div>
+          <div class="project-actions">
+            <a href="TechNews/index.html" class="btn btn-primary">Ver Projeto <img src="../Explicaçoes/Assets/Icons/ArrowUpRight.svg" alt="Arrow"></a>
+          </div>
+        </div>
+        <!-- Travelgram -->
+        <div class="glass-card project-card">
+          <div class="project-info">
+            <h3>Travelgram</h3>
+            <p>Interface de perfil de viagens e galeria de fotos similar a um aplicativo de rede social.</p>
+          </div>
+          <div class="project-actions">
+            <a href="Travelgram/index.html" class="btn btn-primary">Ver Projeto <img src="../Explicaçoes/Assets/Icons/ArrowUpRight.svg" alt="Arrow"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
 </html>

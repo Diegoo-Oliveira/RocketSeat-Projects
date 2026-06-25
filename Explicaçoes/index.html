@@ -1,219 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catalogo de explicacoes</title>
-    <link rel="stylesheet" href="../index.css" />
-  </head>
-  <body>
-    <div class="workspace-shell">
-      <aside class="sidebar" aria-label="Navegacao das explicacoes">
-        <a class="home-button" href="../index.html">Home</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explicações | Área de Estudos</title>
+  <meta name="description" content="Guias e explicações sobre HTML, CSS, JS, React e NodeJS.">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+  <!-- Efeitos de Fundo Modernos -->
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
 
-        <div class="sidebar-heading">
-          <span>Explicacoes</span>
-          <h2>Guias de estudo</h2>
-          <p>Conceitos separados por assunto para consultar durante os projetos.</p>
-        </div>
+  <main class="container">
+    <header class="header" style="margin-bottom: 3rem;">
+      <h1 class="welcome-text">Guias de Estudo</h1>
+      <p class="subtitle">Todo o material teórico e explicações organizadas por linguagem.</p>
+    </header>
 
-        <nav class="side-nav" aria-label="Categorias">
-          <a href="#visao" class="active">Visao geral</a>
-          <a href="#layout">CSS Layout</a>
-          <a href="#responsividade">Responsividade</a>
-          <a href="#funcoes">CSS Functions</a>
-          <a href="#animacoes">Animacoes</a>
-          <a href="#formularios">Formularios</a>
-          <a href="#profissional">Boas praticas</a>
-          <a href="../index.html">Inicio</a>
-        </nav>
-      </aside>
-
-      <main class="content">
-        <section class="hero" id="visao">
-          <span class="eyebrow">RocketSeat estudos</span>
-          <h1>Catalogo de explicacoes</h1>
-          <p>
-            Escolha um assunto para abrir um guia visual com exemplos, paginas
-            separadas por conceito e materiais de apoio para seus projetos.
-          </p>
-
-          <div class="hero-actions">
-            <a class="action-button primary" href="../index.html">Voltar ao inicio</a>
-            <a class="action-button" href="Tutorial-Projetos/index.html">Abrir tutoriais</a>
-          </div>
-        </section>
-
-        <section class="section-block" id="layout" aria-labelledby="layout-title">
-          <div class="section-heading">
-            <span class="eyebrow small">CSS Layout</span>
-            <h2 id="layout-title">Base para organizar telas</h2>
-            <p>Comece por aqui quando a duvida for alinhamento, linhas, colunas e distribuicao.</p>
-          </div>
-
-          <div class="hub-grid">
-            <a class="resource-card accent-coral" href="CSS FLEXBOX/index.html">
-              <span class="card-label">CSS Layout</span>
-              <h3>Flexbox</h3>
-              <p>Eixo principal, eixo cruzado, gap, alinhamentos, children e uma pagina aplicada ao Travelgram.</p>
-              <ul>
-                <li>display: flex</li>
-                <li>justify-content</li>
-                <li>align-items</li>
-              </ul>
-            </a>
-
-            <a class="resource-card accent-blue" href="CSS Grid/index.html">
-              <span class="card-label">CSS Layout</span>
-              <h3>CSS Grid</h3>
-              <p>Linhas, colunas, areas, atalhos, alinhamentos, grid automatico e quando escolher Grid.</p>
-              <ul>
-                <li>grid-template-columns</li>
-                <li>grid-template-areas</li>
-                <li>grid-auto-flow</li>
-              </ul>
-            </a>
-          </div>
-        </section>
-
-        <section class="section-block" id="responsividade" aria-labelledby="responsive-title">
-          <div class="section-heading">
-            <span class="eyebrow small" style="background:#cffafe;color:#0e7490">Responsividade</span>
-            <h2 id="responsive-title">@media e adaptacao de telas</h2>
-            <p>Aprenda a adaptar layouts para celular, tablet, laptop e desktop com media queries, breakpoints e unidades responsivas.</p>
-          </div>
-
-          <div class="hub-grid">
-            <a class="resource-card accent-blue" href="Media Queries/index.html" style="--accent:#0891b2">
-              <span class="card-label" style="background:#cffafe;color:#0e7490">Responsividade</span>
-              <h3>@media e Responsividade</h3>
-              <p>Guia completo com 9 paginas: sintaxe do @media, breakpoints, mobile-first, media types, features, operadores, pratica, unidades e container queries.</p>
-              <ul>
-                <li>@media, min-width e max-width</li>
-                <li>prefers-color-scheme e hover</li>
-                <li>clamp(), container queries</li>
-              </ul>
-            </a>
-          </div>
-        </section>
-
-        <section class="section-block" id="funcoes" aria-labelledby="functions-title">
-          <div class="section-heading">
-            <span class="eyebrow small purple">CSS Valores</span>
-            <h2 id="functions-title">Funcoes usadas como valores no CSS</h2>
-            <p>Um guia unico para estudar transform, math, filter, color, gradients, shapes, references e outros grupos de funcoes.</p>
-          </div>
-
-          <div class="hub-grid">
-            <a class="resource-card accent-purple" href="CSS functions/index.html">
-              <span class="card-label">CSS Functions</span>
-              <h3>CSS value functions</h3>
-              <p>Explicacao em uma pagina, separada por modulos, com sintaxe, argumentos e exemplos praticos baseados na referencia da MDN.</p>
-              <ul>
-                <li>transform, math e filter</li>
-                <li>color, gradient e shape</li>
-                <li>references, grid, counters e easing</li>
-              </ul>
-            </a>
-          </div>
-        </section>
-
-        <section class="section-block" id="animacoes" aria-labelledby="animations-title">
-          <div class="section-heading">
-            <span class="eyebrow small" style="background:#ffe4e6;color:#be123c">Movimento</span>
-            <h2 id="animations-title">Animacoes e transicoes CSS</h2>
-            <p>Aprenda a criar movimento com CSS puro: transicoes suaves, animacoes com @keyframes e transformacoes em 2D e 3D.</p>
-          </div>
-
-          <div class="hub-grid">
-            <a class="resource-card" href="CSS Animations/index.html" style="--accent:#e11d48">
-              <span class="card-label" style="background:#ffe4e6;color:#be123c">Animacoes</span>
-              <h3>CSS Animations e Transitions</h3>
-              <p>Guia completo com 4 paginas: transicoes, @keyframes, transformacoes 2D e 3D com demos visuais interativos e exemplos praticos.</p>
-              <ul>
-                <li>transition e timing-functions</li>
-                <li>@keyframes e animation shorthand</li>
-                <li>transform 2D e 3D, card-flip</li>
-              </ul>
-            </a>
-          </div>
-        </section>
-
-        <section class="section-block" id="formularios" aria-labelledby="forms-title">
-          <div class="section-heading">
-            <span class="eyebrow small green">HTML/CSS</span>
-            <h2 id="forms-title">Formularios, SVG e padroes</h2>
-            <p>Use estes guias quando o projeto tiver campos, icones, estados visuais e CSS modular.</p>
-          </div>
-
-          <div class="hub-grid">
-            <a class="resource-card accent-green" href="formulario/index.html">
-              <span class="card-label">HTML/CSS</span>
-              <h3>Formularios</h3>
-              <p>Guia separado por funcao para estudar form, button, tipos de input, label, textarea, select e fieldset.</p>
-              <ul>
-                <li>input text, email e password</li>
-                <li>checkbox, radio e hidden</li>
-                <li>label, select e fieldset</li>
-              </ul>
-            </a>
-
-            <a class="resource-card accent-orange" href="Formulario-Matricula-Guia/index.html">
-              <span class="card-label">Padrao novo</span>
-              <h3>Formulario de Matricula</h3>
-              <p>Explicacao completa do projeto do professor, com CSS modular, rem, SVG, WebKit e checklist.</p>
-              <ul>
-                <li>fieldset, legend e label</li>
-                <li>CSS por responsabilidade</li>
-                <li>padrao para proximos projetos</li>
-              </ul>
-            </a>
-
-            <a class="resource-card accent-blue" href="SVG-Cores/index.html">
-              <span class="card-label">HTML/CSS</span>
-              <h3>SVG e cores</h3>
-              <p>Explica por que SVG usado com img nao muda de cor pelo pai e quando usar currentColor.</p>
-              <ul>
-                <li>fill e stroke</li>
-                <li>currentColor</li>
-                <li>icones do Portfolio Dev</li>
-              </ul>
-            </a>
-          </div>
-        </section>
-
-        <section class="section-block" id="profissional" aria-labelledby="pro-title">
-          <div class="section-heading">
-            <span class="eyebrow small purple">Organizacao</span>
-            <h2 id="pro-title">Boas praticas e projetos guiados</h2>
-            <p>Materiais para melhorar estrutura, comparar codigos e refatorar com mais criterio.</p>
-          </div>
-
-          <div class="hub-grid">
-            <a class="resource-card accent-purple" href="CSS Profissional/index.html">
-              <span class="card-label">Boas praticas</span>
-              <h3>CSS Profissional</h3>
-              <p>Comparacao entre o TechNews especifico e o modelo com padroes, utilitarios e componentes.</p>
-              <ul>
-                <li>classes reutilizaveis</li>
-                <li>menos repeticao</li>
-                <li>refatoracao passo a passo</li>
-              </ul>
-            </a>
-
-            <a class="resource-card accent-blue" href="Tutorial-Projetos/index.html">
-              <span class="card-label">Projetos guiados</span>
-              <h3>Tutoriais</h3>
-              <p>Area separada para tutoriais de projetos completos e comparacao com referencias do professor.</p>
-              <ul>
-                <li>Tech News</li>
-                <li>Portfolio Dev</li>
-                <li>Formulario de Matricula</li>
-              </ul>
-            </a>
-          </div>
-        </section>
-      </main>
+    <div class="action-row" style="margin-top: 0; margin-bottom: 3rem; justify-content: flex-start;">
+      <a href="../index.html" class="btn btn-outline">← Voltar ao Início</a>
     </div>
-  </body>
+
+    <section class="section">
+      <div class="grid cards-grid">
+        <!-- HTML -->
+        <a href="HTML/index.html" class="glass-card card-html">
+          <div class="card-icon"><img src="Assets/Icons/HTML.svg" alt="HTML Icon"></div>
+          <h3>Guia de HTML</h3>
+          <p>Tudo sobre estruturação de páginas, tags semânticas, formulários, tabelas e boas práticas.</p>
+        </a>
+        <!-- CSS -->
+        <a href="CSS/index.html" class="glass-card card-css">
+          <div class="card-icon"><img src="Assets/Icons/CSS.svg" alt="CSS Icon"></div>
+          <h3>Guia de CSS</h3>
+          <p>Domine Flexbox, Grid Layout, responsividade, animações, variáveis e métodos profissionais.</p>
+        </a>
+        <!-- JS -->
+        <a href="JS/index.html" class="glass-card card-js">
+          <div class="card-icon"><img src="Assets/Icons/JavaScript.svg" alt="JS Icon"></div>
+          <h3>Guia de JavaScript</h3>
+          <p>Entenda a lógica de programação, manipulação da DOM, eventos, Promises e consumo de APIs.</p>
+        </a>
+        <!-- React -->
+        <a href="React/index.html" class="glass-card" style="--card-accent: #61DAFB;">
+          <div class="card-icon"><img src="Assets/Icons/React.svg" alt="React Icon"></div>
+          <h3>Guia de React</h3>
+          <p>Componentização, estados, hooks e desenvolvimento de SPAs.</p>
+        </a>
+        <!-- NodeJS -->
+        <a href="NodeJS/index.html" class="glass-card" style="--card-accent: #339933;">
+          <div class="card-icon"><img src="Assets/Icons/Node.js.svg" alt="NodeJS Icon"></div>
+          <h3>Guia de NodeJS</h3>
+          <p>Back-end com JavaScript, APIs RESTful, banco de dados e autenticação.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
 </html>

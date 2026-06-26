@@ -1,0 +1,30 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue-100: #080815;
+    --blue-200: #0e0f25;
+    --blue-300: #141534;
+    --blue-400: #1f2151;
+    --blue-500: #2f3279;
+    --blue-600: #2f34ab;
+    --blue-700: #4a5dcd;
+    --blue-800: #7d8dec;
+    --blue-900: #b2b8de;
+    --white: #f1f2f6;
+
+    --ff-base: "Inter", sans-serif;
+    --ff-span: "IBM Plex Mono", monospace;
+
+    --heading: 700 2rem/3rem var(--ff-base);
+    --button: 600 1rem/1.25rem var(--ff-base);
+    --body: 400 1rem/1.25rem var(--ff-base);
+    --label: 400 0.75rem/1rem var(--ff-base);
+    --span: 400 1rem/1.25rem var(--ff-span); 
+
+}

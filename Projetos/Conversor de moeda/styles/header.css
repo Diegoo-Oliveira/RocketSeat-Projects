@@ -1,0 +1,15 @@
+header {
+    padding-top: 4rem;
+    display: flex;
+    gap: 3.125rem;
+
+    & #title{
+        display: flex;
+        align-items: center;
+
+        & span {
+            font: 400 1.25rem/1.25rem "Monomaniac One", sans-serif;
+            color: var(--blue-700);
+        }
+    }
+}

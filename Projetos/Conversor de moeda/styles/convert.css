@@ -1,0 +1,107 @@
+#complete-body {
+    width: 480px;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.convert-content {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blue-300);
+    border: 1px solid var(--blue-500);
+    border-radius: 1rem;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 3.5rem 4rem;
+}
+
+#input,
+#select {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font: var(--label);
+    color: var(--blue-800);
+    text-transform: uppercase;
+}
+
+input,
+select {
+    height: 3rem;
+    border: 1px solid var(--blue-400);
+    border-radius: 0.5rem;
+    background-color: var(--blue-200);
+    color: var(--blue-900);
+    font: var(--body);
+    padding: 0 1.25rem;
+}
+
+select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%237D8DEC' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 3rem;
+}
+
+input::placeholder {
+    color: var(--blue-900);
+}
+
+input:focus,
+select:focus {
+    border-color: var(--blue-700);
+}
+
+.form-content button {
+    height: 3rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background-color: var(--blue-600);
+    color: var(--white);
+    font: var(--button);
+    cursor: pointer;
+}
+
+.form-content button:hover {
+    background-color: var(--blue-700);
+}
+
+.form-content button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.result-content {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem 2.5rem;
+    background-color: var(--blue-400);
+}
+
+.result-content #convert {
+    font: var(--span);
+    color: var(--blue-800);
+}
+
+.result-content #result {
+    font: var(--heading);
+    color: var(--white);
+}

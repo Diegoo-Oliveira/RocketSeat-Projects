@@ -10,32 +10,43 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-    <header id="header-content">
-        <div id="title">
-            <img src="assets/ArrowsDownUp.svg" alt="">
-            <span>CONVERT</span>
-        </div>
-    </header>
+    <section id="complete-body">
+        <header id="header-content">
+            <div id="title">
+                <img src="assets/ArrowsDownUp.svg" alt="">
+                <span>CONVERT</span>
+            </div>
+        </header>
 
-    <section class="convert-content">
-        <div class="form-content">
-            <label for="inputValor">VALOR</label>
-            <input type="number" id="inputValor" placeholder="0,00">
+        <section class="convert-content">
+            <div class="form-content">
+                <div id="input">
+                    <label for="inputValor">VALOR</label>
+                    <input type="text" id="inputValor" placeholder="0,00">
+                </div>
 
-            <label for="moedaOrigem">MOEDA</label>
-            <select required id="moedaOrigem" >
-                <option value="" selected disabled>Selecione uma moeda</option>
-                <option value="USD">Dólar americano</option>
-                <option value="EUR">Euro</option>
-                <option value="JPY">Iene Japonês</option>
-                <option value="ARS">Peso Argentino</option>
-                <option value="CNY">Yuan chinês</option>
-            </select>
-        </div>
-        <div class="result-content">
-            <p>US$ 1 =  R$4,86</p>
-            <p>486,00 Reais</p>
-        </div>
+                <div id="select">
+                <label for="moedaOrigem">MOEDA</label>
+                    <select required id="moedaOrigem" >
+                        <option value="" selected disabled hidden>Selecione uma moeda</option>
+                        <option value="USD">Dólar americano</option>
+                        <option value="EUR">Euro</option>
+                        <option value="JPY">Iene Japonês</option>
+                        <option value="ARS">Peso Argentino</option>
+                        <option value="CNY">Yuan chinês</option>
+                    </select>
+                </div>
+
+                <button type="button">Converter em reais</button>
+            </div>
+
+            <div class="result-content show-result">
+                <span id="convert">US$ 1 =  R$4,86</span>
+                <p id="result">486,00 Reais</p>
+            </div>
+        </section>
     </section>
 </body>
+
+<script src="./js/script.js"></script>
 </html>
